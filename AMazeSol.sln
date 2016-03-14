@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeServer", "MazeServer\MazeServer.csproj", "{7303CD87-314B-4D72-B918-2DE658745E57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maze Library", "Maze Library\Maze Library.csproj", "{D912724B-1FEA-4831-B656-2AA0A4F632BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeClient", "MazeClient\MazeClient.csproj", "{1EED295D-180E-45B8-BF80-4736CA98CFD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{7303CD87-314B-4D72-B918-2DE658745E57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7303CD87-314B-4D72-B918-2DE658745E57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7303CD87-314B-4D72-B918-2DE658745E57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D912724B-1FEA-4831-B656-2AA0A4F632BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D912724B-1FEA-4831-B656-2AA0A4F632BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D912724B-1FEA-4831-B656-2AA0A4F632BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D912724B-1FEA-4831-B656-2AA0A4F632BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EED295D-180E-45B8-BF80-4736CA98CFD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EED295D-180E-45B8-BF80-4736CA98CFD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EED295D-180E-45B8-BF80-4736CA98CFD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EED295D-180E-45B8-BF80-4736CA98CFD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
