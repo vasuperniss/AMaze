@@ -10,6 +10,7 @@ namespace MazeClient
     {
         static void Main(string[] args)
         {
+            //wubalubadubdub
         }
     }
 }
