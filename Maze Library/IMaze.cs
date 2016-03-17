@@ -2,7 +2,7 @@
 
 namespace Maze_Library
 {
-    public interface Maze
+    public interface IMaze
     {
         MazePosition getStartPosition();
 
