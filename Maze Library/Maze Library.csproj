@@ -40,6 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\BFS.cs" />
+    <Compile Include="Algorithms\DFS.cs" />
+    <Compile Include="Algorithms\ISearchable.cs" />
+    <Compile Include="Algorithms\ISearcher.cs" />
+    <Compile Include="Algorithms\SearchResult.cs" />
+    <Compile Include="Algorithms\State.cs" />
     <Compile Include="Maze.cs" />
     <Compile Include="MazePosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
