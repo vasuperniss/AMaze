@@ -43,8 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICommandable.cs" />
     <Compile Include="MazeServerMain.cs" />
+    <Compile Include="Options\Close.cs" />
+    <Compile Include="Options\GenerateMaze.cs" />
+    <Compile Include="Options\Multiplayer.cs" />
+    <Compile Include="Options\Play.cs" />
+    <Compile Include="Options\SolveMaze.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

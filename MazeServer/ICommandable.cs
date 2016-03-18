@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MazeServer
 {
-    class MazeServerMain
+    interface ICommandable
     {
-        static void Main(string[] args)
-        {
-        }
+        void Execute();
+
+        bool Validate(string Command);
     }
 }
