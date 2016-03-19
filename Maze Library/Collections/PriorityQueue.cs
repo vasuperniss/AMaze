@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Maze_Library.Algorithms;
 
 namespace Maze_Library.Collections
 {
@@ -47,6 +48,25 @@ namespace Maze_Library.Collections
                 this.ShiftDown(1);
                 return item;
             }
+        }
+
+        internal void Remove<T>(State<T> s)
+        {
+            for (int i = 1; i <= this.numItems; i++)
+            {
+                if (this.pQueue[i].Equals(s))
+                {
+                    this.pQueue[i] = this.pQueue[this.numItems];
+                    this.pQueue.RemoveFrom(this.numItems--);
+                    this.ShiftDown(i);
+                    break;
+                }
+            }
+        }
+
+        public bool Contains<T>(State<T> s)
+        {
+            return this.pQueue.Contains(s);
         }
 
         private void ShiftUp(int k)

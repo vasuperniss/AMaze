@@ -1,4 +1,5 @@
 ﻿using System;
+using Maze_Library.Algorithms;
 
 namespace Maze_Library.Collections
 {
@@ -48,7 +49,7 @@ namespace Maze_Library.Collections
         public void RemoveFrom(int index)
         {
             this.lastIndex--;
-            for (int i = index; i < this.lastIndex; i--)
+            for (int i = index; i < this.lastIndex; i++)
             {
                 this[i] = this[i + 1];
             }
@@ -67,6 +68,18 @@ namespace Maze_Library.Collections
                 }
                 this.vector = resized;
             }
+        }
+
+        public bool Contains<T>(State<T> s)
+        {
+            for (int i = 0; i < this.lastIndex; i++)
+            {
+                if (s.Equals(this.vector[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void Swap(int firstIndex, int secondIndex)

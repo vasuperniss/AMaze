@@ -15,12 +15,12 @@ namespace Maze_Library
 
         public State<MazePosition> GetGoalState()
         {
-            return new State<MazePosition>(this.maze.getFinishPosition());
+            return new State<MazePosition>(this.maze.getFinishPosition(), null, 0);
         }
 
         public State<MazePosition> GetInitialState()
         {
-            return new State<MazePosition>(this.maze.getStartPosition());
+            return new State<MazePosition>(this.maze.getStartPosition(), null, 0);
         }
 
         public List<State<MazePosition>> GetReachableStatesFrom(State<MazePosition> state)

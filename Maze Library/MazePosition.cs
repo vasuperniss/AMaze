@@ -15,5 +15,11 @@
             string str = row + "|" + colomn;
             return str.GetHashCode();
         }
+
+        public override bool Equals(object obj)
+        {
+            return this.row == (obj as MazePosition).row
+                && this.colomn == (obj as MazePosition).colomn;
+        }
     }
 }
