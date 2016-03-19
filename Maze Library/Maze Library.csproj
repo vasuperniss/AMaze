@@ -46,6 +46,8 @@
     <Compile Include="Algorithms\ISearcher.cs" />
     <Compile Include="Algorithms\SearchResult.cs" />
     <Compile Include="Algorithms\State.cs" />
+    <Compile Include="Collections\PriorityQueue.cs" />
+    <Compile Include="Collections\Vector.cs" />
     <Compile Include="IMaze.cs" />
     <Compile Include="MatrixMaze.cs" />
     <Compile Include="MazePosition.cs" />
