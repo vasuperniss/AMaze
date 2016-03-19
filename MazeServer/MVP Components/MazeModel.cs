@@ -1,4 +1,5 @@
 ﻿using Maze_Library;
+using MazeServer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace MazeServer
 {
-    class MazeModel
+    class MazeModel : IMazeModel
     {
         private Dictionary<string, IMaze> Mazes;
         //private Dictionary<string, Multiplayer> MpGames;
@@ -37,6 +38,11 @@ namespace MazeServer
             }
         }
 
-        // public Multiplayer GetMpGame(string name) {}
+        public void AddObserver()
+        {
+            throw new NotImplementedException();
+        }
+
+        // public MultiplayerGame GetMpGame(string name);
     }
 }

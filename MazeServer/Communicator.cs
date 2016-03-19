@@ -10,9 +10,9 @@ namespace MazeServer
 {
     class Communicator
     {
+        int Port;
         IPEndPoint Ipep;
         Socket ServerSock;
-        int Port;
         RequestHandler Handler;
 
         public Communicator(int port)

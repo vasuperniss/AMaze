@@ -45,8 +45,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Communicator.cs" />
-    <Compile Include="ICommandable.cs" />
-    <Compile Include="MazeModel.cs" />
+    <Compile Include="MVP Components\Observable.cs" />
+    <Compile Include="MVP Components\Interfaces\Observer.cs" />
+    <Compile Include="MVP Components\MazePresenter.cs" />
+    <Compile Include="MVP Components\MazeView.cs" />
+    <Compile Include="Options\ICommandable.cs" />
+    <Compile Include="MVP Components\Interfaces\IMazeModel.cs" />
+    <Compile Include="MVP Components\Interfaces\IMazePresenter.cs" />
+    <Compile Include="MVP Components\Interfaces\IMazeView.cs" />
+    <Compile Include="MVP Components\MazeModel.cs" />
     <Compile Include="MazeServerMain.cs" />
     <Compile Include="Options\Close.cs" />
     <Compile Include="Options\GenerateMaze.cs" />
