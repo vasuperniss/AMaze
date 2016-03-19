@@ -10,16 +10,16 @@ namespace MazeServer
     {
         private Dictionary<string, ICommandable> Options;
 
-        public void HandleRequest(string Request)
+        public void HandleRequest(string request)
         {
             ICommandable Value;
 
             // parse Request string
 
             // Execute request if it's in Options dictionary and of valid format
-            if (Options.TryGetValue(Request, out Value) && Options[Request].Validate(Request))
+            if (Options.TryGetValue(request, out Value) && Options[request].Validate(request))
             {
-                Options[Request].Execute();
+                Options[request].Execute();
             }
             else
             {
@@ -27,9 +27,9 @@ namespace MazeServer
             }
         }
 
-        public void AddOption(string OptionName, ICommandable Command)
+        public void AddOption(string optionName, ICommandable command)
         {
-            Options.Add(OptionName, Command);
+            Options.Add(optionName, command);
         }
     }
 }
