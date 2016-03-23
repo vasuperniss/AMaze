@@ -13,9 +13,15 @@ namespace MazeServer.Options
             throw new NotImplementedException();
         }
 
-        public bool Validate(string Command)
+        public bool Validate(string command)
         {
-            throw new NotImplementedException();
+            string[] words = command.Split(' ');
+            string key = words[0];
+
+            if (words.Count() != 2) return false;
+            if (key != "multiplayer") return false;
+
+            return true;
         }
     }
 }
