@@ -11,6 +11,9 @@ namespace MazeServer.Options
         public void Execute()
         {
             throw new NotImplementedException();
+            // do stuff
+
+            // use communicator to send message to client.
         }
 
         public bool Validate(string command)
@@ -20,7 +23,6 @@ namespace MazeServer.Options
             string key = words[0];
 
             if (words.Count() != 2) return false;
-            if (key != "play") return false;
 
             return directions.Contains(words[1]);
         }
