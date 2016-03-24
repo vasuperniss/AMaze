@@ -11,11 +11,19 @@ namespace MazeServer.Options
         public void Execute()
         {
             throw new NotImplementedException();
+            // do stuff
+
+            // use communicator to send message to client.
         }
 
-        public bool Validate(string Command)
+        public bool Validate(string command)
         {
-            throw new NotImplementedException();
+            string[] words = command.Split(' ');
+            string key = words[0];
+
+            if (words.Count() != 2) return false;
+
+            return true;
         }
     }
 }

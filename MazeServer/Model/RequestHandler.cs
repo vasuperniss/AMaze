@@ -12,14 +12,15 @@ namespace MazeServer
 
         public void HandleRequest(string request)
         {
-            ICommandable Value;
+            ICommandable option;
 
-            // parse Request string
+            // get first keyword
+            string key = request.Split(' ')[0];
 
             // Execute request if it's in Options dictionary and of valid format
-            if (Options.TryGetValue(request, out Value) && Options[request].Validate(request))
+            if (Options.TryGetValue(key, out option) && option.Validate(request))
             {
-                Options[request].Execute();
+                option.Execute();
             }
             else
             {
