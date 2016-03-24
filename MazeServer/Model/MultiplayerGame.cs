@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MazeServer.MVP_Components.Interfaces
+namespace MazeServer.Model
 {
-    interface Observer
+    class MultiplayerGame: Observable
     {
-        void Update(Observable obi, object args);
     }
 }

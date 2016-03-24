@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MazeServer.Model;
 
 namespace MazeServer.Interfaces
 {
-    interface IMazeView
+    interface IObserver
     {
-        string GetMessage();
+        void Update(Observable observable, object p);
     }
 }

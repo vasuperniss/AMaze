@@ -45,9 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\MultiplayerGame.cs" />
+    <Compile Include="Model\Options\Commandable.cs" />
     <Compile Include="View\Communicator.cs" />
     <Compile Include="Model\Observable.cs" />
-    <Compile Include="Interfaces\Observer.cs" />
+    <Compile Include="Interfaces\IObserver.cs" />
     <Compile Include="Presenter\MazePresenter.cs" />
     <Compile Include="Interfaces\ICommandable.cs" />
     <Compile Include="Interfaces\IMazeModel.cs" />

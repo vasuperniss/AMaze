@@ -5,12 +5,15 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using MazeServer.Model;
+using MazeServer.Interfaces;
 
-namespace MazeServer
+namespace MazeServer.View
 {
-    class Communicator
+    class Communicator: Observable, IMazeView
     {
         int Port;
+        byte[] ReceivedMessage;
         IPEndPoint Ipep;
         Socket ServerSock;
         RequestHandler Handler;
@@ -31,14 +34,13 @@ namespace MazeServer
             Socket client = ServerSock.Accept();
             while (true)
             {
-                byte[] data = new byte[4096];
-                int recv = ReceiveMessage(client, data);
+                ReceivedMessage = new byte[4096];
+                int recv = ReceiveMessage(client, ReceivedMessage);
                 if (recv == 0) break;
 
-                string message = Encoding.ASCII.GetString(data, 0, recv);
-                Handler.HandleRequest(message);
-
-                SendMessage(client, message, recv);
+                NotifyObservers();
+                //string message = Encoding.ASCII.GetString(ReceivedMessage, 0, recv);
+                //SendMessage(client, message, recv);
             }
             client.Close();
         }
@@ -53,6 +55,11 @@ namespace MazeServer
         {
             byte[] data = Encoding.ASCII.GetBytes(message.ToUpper());
             client.Send(data, recv, SocketFlags.None);
+        }
+
+        public string GetMessage()
+        {
+            return System.Text.Encoding.ASCII.GetString(ReceivedMessage);
         }
     }
 }

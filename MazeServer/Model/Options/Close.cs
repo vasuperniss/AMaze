@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MazeServer.Interfaces;
 
-namespace MazeServer.Options
+namespace MazeServer.Model.Options
 {
-    class Close : ICommandable
+    class Close : Commandable
     {
-        public void Execute()
+        public override void Execute()
         {
             throw new NotImplementedException();
             // do stuff
-
-            // use communicator to send message to client.
         }
 
-        public bool Validate(string command)
+        public override bool Validate(string command)
         {
             string[] words = command.Split(' ');
             string key = words[0];

@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MazeServer.Interfaces;
 
-namespace MazeServer.MVP_Components.Interfaces
+namespace MazeServer.Model
 {
     abstract class Observable
     {
-        List<Observer> Observers = new List<Observer>();
+        List<IObserver> Observers = new List<IObserver>();
 
-        void AddObserver(Observer obs)
+        public void AddObserver(IObserver obs)
         {
             Observers.Add(obs);
         }
 
-        void NotifyObservers()
+        protected void NotifyObservers()
         {
-            foreach (Observer obs in Observers)
+            foreach (IObserver obs in Observers)
             {
                 // change null to something else if there's a need for arguments
                 obs.Update(this,null);

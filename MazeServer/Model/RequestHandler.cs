@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MazeServer.Interfaces;
+using System.Threading;
+using MazeServer.Model.Options;
 
-namespace MazeServer
+namespace MazeServer.Model
 {
-    class RequestHandler
+    class RequestHandler: Observable
     {
-        private Dictionary<string, ICommandable> Options;
+        private Dictionary<string, Commandable> Options;
 
         public void HandleRequest(string request)
         {
-            ICommandable option;
+            Commandable option;
 
             // get first keyword
             string key = request.Split(' ')[0];
@@ -20,7 +23,7 @@ namespace MazeServer
             // Execute request if it's in Options dictionary and of valid format
             if (Options.TryGetValue(key, out option) && option.Validate(request))
             {
-                option.Execute();
+                option.PerformAction();
             }
             else
             {
@@ -28,7 +31,7 @@ namespace MazeServer
             }
         }
 
-        public void AddOption(string optionName, ICommandable command)
+        public void AddOption(string optionName, Commandable command)
         {
             Options.Add(optionName, command);
         }
