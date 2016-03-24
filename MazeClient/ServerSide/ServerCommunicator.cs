@@ -23,7 +23,7 @@ namespace MazeClient.ServerSide
 
         public bool EstablishConnection()
         {
-            if (!this.server.Connected) { return true; }
+            if (this.server.Connected) { return true; }
             if (this.listenerThread != null)
             {
                 // close the thread safly
@@ -35,7 +35,7 @@ namespace MazeClient.ServerSide
                 this.listenerThread.Start();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -53,7 +53,7 @@ namespace MazeClient.ServerSide
                         return true;
                     }
                 }
-                catch (Exception e) { }
+                catch (Exception) { }
             }
             return false;
         }
@@ -70,7 +70,7 @@ namespace MazeClient.ServerSide
                     String response = Encoding.ASCII.GetString(buffer, 0, len);
                     this.OnResponse(response);
                 }
-                catch (SocketException se)
+                catch (SocketException)
                 {
                     break;
                 }
