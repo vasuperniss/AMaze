@@ -45,11 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presenter\IPresenter.cs" />
+    <Compile Include="Presenter\MazeGamePresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\ServerView\Server.cs" />
     <Compile Include="View\IOView\IO.cs" />
-    <Compile Include="View\ServerView\ServerCommunicator.cs" />
+    <Compile Include="View\ServerView\SocketCommunicator.cs" />
     <Compile Include="View\ServerView\IServerView.cs" />
     <Compile Include="View\IOView\IIOView.cs" />
   </ItemGroup>

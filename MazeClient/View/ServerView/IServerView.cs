@@ -8,7 +8,7 @@ namespace MazeClient.View
 
         void Close();
 
-        void AddPresenter(IPresenter presenter);
+        void SetPresenter(IPresenter presenter);
 
         void SendRequest(string request);
     }

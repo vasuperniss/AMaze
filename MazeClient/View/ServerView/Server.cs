@@ -5,12 +5,12 @@ namespace MazeClient.View
 {
     class Server : IServerView
     {
-        private ServerCommunicator server;
+        private SocketCommunicator server;
         private IPresenter presenter;
 
         public Server(string ip, int port)
         {
-            this.server = new ServerCommunicator(ip, port);
+            this.server = new SocketCommunicator(ip, port);
         }
 
         public bool Connect()
@@ -18,7 +18,7 @@ namespace MazeClient.View
             return this.server.EstablishConnection();
         }
 
-        public void AddPresenter(IPresenter presenter)
+        public void SetPresenter(IPresenter presenter)
         {
             this.presenter = presenter;
             this.server.OnResponse += this.OnResponse;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MazeClient.Presenter;
 
 namespace MazeClient.View
 {
@@ -11,5 +7,7 @@ namespace MazeClient.View
         void Display(string str);
 
         string GetInputFromUser();
+
+        void SetPresenter(IPresenter presenter);
     }
 }
