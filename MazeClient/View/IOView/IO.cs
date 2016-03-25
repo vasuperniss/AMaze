@@ -5,6 +5,8 @@ namespace MazeClient.View
 {
     class IO : IIOView
     {
+        private const string END = "-1";
+
         private IPresenter presenter;
 
         public void Display(string str)
@@ -20,6 +22,17 @@ namespace MazeClient.View
         public void SetPresenter(IPresenter presenter)
         {
             this.presenter = presenter;
+        }
+
+        public bool IsCloseRequest(string input)
+        {
+            if (input == END) { return true; }
+            return false;
+        }
+
+        public void DisplayRulesOfUse()
+        {
+            Console.WriteLine("to close the app, enter '-1'.");
         }
     }
 }

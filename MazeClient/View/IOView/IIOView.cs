@@ -9,5 +9,9 @@ namespace MazeClient.View
         string GetInputFromUser();
 
         void SetPresenter(IPresenter presenter);
+
+        bool IsCloseRequest(string input);
+
+        void DisplayRulesOfUse();
     }
 }

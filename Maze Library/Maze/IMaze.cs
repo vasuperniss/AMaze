@@ -4,10 +4,10 @@ namespace Maze_Library
 {
     public interface IMaze
     {
-        MazePosition getStartPosition();
+        IMazePosition getStartPosition();
 
-        MazePosition getFinishPosition();
+        IMazePosition getFinishPosition();
 
-        List<MazePosition> getAvailablePositionsFrom(MazePosition position);
+        List<IMazePosition> getAvailablePositionsFrom(IMazePosition position);
     }
 }

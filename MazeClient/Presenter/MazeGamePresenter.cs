@@ -24,15 +24,19 @@ namespace MazeClient.Presenter
                 this.io.Display("Failed to Establish a connection with the server.");
                 return;
             }
+            this.io.DisplayRulesOfUse();
             while (true)
             {
                 string input = this.io.GetInputFromUser();
+                if (this.io.IsCloseRequest(input)) { break; }
+                this.server.SendRequest(input);
             }
         }
 
         public void HandleRespose(string response)
         {
-
+            // read the response which is in Json format
+            // display if needed
         }
     }
 }

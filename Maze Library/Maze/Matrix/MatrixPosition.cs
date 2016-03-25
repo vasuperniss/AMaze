@@ -1,10 +1,10 @@
-﻿namespace Maze_Library
+﻿namespace Maze_Library.Maze.Matrix
 {
-    public class MazePosition
+    class MatrixPosition : IMazePosition
     {
         private int row, colomn;
 
-        public MazePosition(int row, int colomn)
+        public MatrixPosition(int row, int colomn)
         {
             this.row = row;
             this.colomn = colomn;
@@ -18,8 +18,8 @@
 
         public override bool Equals(object obj)
         {
-            return this.row == (obj as MazePosition).row
-                && this.colomn == (obj as MazePosition).colomn;
+            return this.row == (obj as MatrixPosition).row
+                && this.colomn == (obj as MatrixPosition).colomn;
         }
     }
 }

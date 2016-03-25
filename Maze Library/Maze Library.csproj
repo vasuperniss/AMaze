@@ -51,8 +51,14 @@
     <Compile Include="Collections\PriorityQueue.cs" />
     <Compile Include="Maze\BaseMaze.cs" />
     <Compile Include="Maze\IMaze.cs" />
-    <Compile Include="Maze\MatrixMaze.cs" />
-    <Compile Include="Maze\MazePosition.cs" />
+    <Compile Include="Maze\IMazeWallBreaker.cs" />
+    <Compile Include="Maze\IReshapeAbleMaze.cs" />
+    <Compile Include="Algorithms\ITreeGenerator.cs" />
+    <Compile Include="Maze\Matrix\MatrixMaze.cs" />
+    <Compile Include="Maze\Matrix\MatrixPosition.cs" />
+    <Compile Include="Maze\IMazePosition.cs" />
+    <Compile Include="Maze\Matrix\ReshapeAbleMatrixMaze.cs" />
+    <Compile Include="Maze\MazeWallBreaker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Maze\SearchableMaze.cs" />
   </ItemGroup>
