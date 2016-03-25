@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using MazeClient.ServerSide;
+using MazeClient.View;
 
 namespace MazeClient
 {
@@ -13,15 +14,12 @@ namespace MazeClient
             if (serverIp == null || serverPort == null)
             {
                 Console.WriteLine("error in app.config");
-                Console.ReadLine();
                 return;
             }
-            ServerCommunicator server = new ServerCommunicator(serverIp,
-                                                    int.Parse(serverPort));
-            if (!server.EstablishConnection())
+            Server server = new Server(serverIp, int.Parse(serverPort));
+            if (!server.Connect())
             {
                 Console.WriteLine("failed to Establish a connection with the server");
-                Console.ReadLine();
                 return;
             }
 
