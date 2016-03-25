@@ -1,4 +1,6 @@
-﻿namespace Maze_Library.Algorithms
+﻿using System;
+
+namespace Maze_Library.Algorithms
 {
     class State<T>
     {
@@ -40,6 +42,11 @@
         public override bool Equals(object obj)
         {
             return this.state.Equals((obj as State<T>).state);
+        }
+
+        public T getState()
+        {
+            return this.state;
         }
     }
 }

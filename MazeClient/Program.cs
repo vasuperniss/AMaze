@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
-using MazeClient.ServerSide;
+using MazeClient.View;
+using MazeClient.Presenter;
 
 namespace MazeClient
 {
@@ -8,24 +9,22 @@ namespace MazeClient
     {
         static void Main(string[] args)
         {
+            // Reading App.config file
             string serverIp = ReadSetting("ip");
             string serverPort = ReadSetting("port");
             if (serverIp == null || serverPort == null)
             {
-                Console.WriteLine("error in app.config");
-                Console.ReadLine();
-                return;
-            }
-            ServerCommunicator server = new ServerCommunicator(serverIp,
-                                                    int.Parse(serverPort));
-            if (!server.EstablishConnection())
-            {
-                Console.WriteLine("failed to Establish a connection with the server");
-                Console.ReadLine();
+                Console.WriteLine("Error in app.config.");
                 return;
             }
 
-            Console.ReadLine();
+            // Views Creation
+            IIOView io = new IO();
+            IServerView server = new Server(serverIp, int.Parse(serverPort));
+
+            // Presenter Creation
+            MazeGamePresenter mazeGame = new MazeGamePresenter(io, server);
+            mazeGame.Run();
         }
 
         static string ReadSetting(string key)
@@ -33,9 +32,8 @@ namespace MazeClient
             try
             {
                 var appSettings = ConfigurationManager.AppSettings;
-                string result = appSettings[key] ?? "Not Found";
+                string result = appSettings[key] ?? null;
                 return result;
-                
             }
             catch (ConfigurationErrorsException)
             {

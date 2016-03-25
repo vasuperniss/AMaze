@@ -4,7 +4,7 @@ using Maze_Library.Algorithms;
 
 namespace Maze_Library
 {
-    class SearchableMaze : ISearchable<MazePosition>
+    class SearchableMaze : ISearchable<IMazePosition>
     {
         private IMaze maze;
 
@@ -13,19 +13,25 @@ namespace Maze_Library
             this.maze = maze;
         }
 
-        public State<MazePosition> GetGoalState()
+        public State<IMazePosition> GetGoalState()
         {
-            return new State<MazePosition>(this.maze.getFinishPosition(), null, 0);
+            return new State<IMazePosition>(this.maze.getFinishPosition(), null, 0);
         }
 
-        public State<MazePosition> GetInitialState()
+        public State<IMazePosition> GetInitialState()
         {
-            return new State<MazePosition>(this.maze.getStartPosition(), null, 0);
+            return new State<IMazePosition>(this.maze.getStartPosition(), null, 0);
         }
 
-        public List<State<MazePosition>> GetReachableStatesFrom(State<MazePosition> state)
+        public List<State<IMazePosition>> GetReachableStatesFrom(State<IMazePosition> state)
         {
-            throw new NotImplementedException();
+            List<State<IMazePosition>> states = new List<State<IMazePosition>>();
+            List<IMazePosition> positions = this.maze.getAvailablePositionsFrom(state.getState());
+            foreach (IMazePosition mp in positions)
+            {
+                states.Add(new State<IMazePosition>(mp, state, 0));
+            }
+            return states;
         }
     }
 }

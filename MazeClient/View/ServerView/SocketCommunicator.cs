@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace MazeClient.ServerSide
 {
-    class ServerCommunicator
+    class SocketCommunicator
     {
         public delegate void toDo(string response);
         public event toDo OnResponse;
@@ -15,7 +15,7 @@ namespace MazeClient.ServerSide
         private Socket server;
         private Thread listenerThread;
 
-        public ServerCommunicator(string serverIp, int serverPort)
+        public SocketCommunicator(string serverIp, int serverPort)
         {
             this.serverIPEndPoint = new IPEndPoint(IPAddress.Parse(serverIp), serverPort);
             this.server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
