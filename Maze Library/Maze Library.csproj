@@ -44,7 +44,9 @@
     <Compile Include="Algorithms\DFS.cs" />
     <Compile Include="Algorithms\ISearchable.cs" />
     <Compile Include="Algorithms\ISearcher.cs" />
+    <Compile Include="Algorithms\ITreeBrancher.cs" />
     <Compile Include="Algorithms\SearchResult.cs" />
+    <Compile Include="Algorithms\SearchTree.cs" />
     <Compile Include="Algorithms\State.cs" />
     <Compile Include="Algorithms\StateComparer.cs" />
     <Compile Include="Collections\Vector.cs" />
@@ -53,12 +55,14 @@
     <Compile Include="Maze\IMaze.cs" />
     <Compile Include="Maze\IMazeWallBreaker.cs" />
     <Compile Include="Maze\IReshapeAbleMaze.cs" />
-    <Compile Include="Algorithms\ITreeGenerator.cs" />
     <Compile Include="Maze\Matrix\MatrixMaze.cs" />
     <Compile Include="Maze\Matrix\MatrixPosition.cs" />
     <Compile Include="Maze\IMazePosition.cs" />
     <Compile Include="Maze\Matrix\ReshapeAbleMatrixMaze.cs" />
-    <Compile Include="Maze\MazeWallBreaker.cs" />
+    <Compile Include="Maze\RandomSearchableMaze.cs" />
+    <Compile Include="Maze\WallBreakers\DFSWallBreaker.cs" />
+    <Compile Include="Maze\WallBreakers\RandomWallBreaker.cs" />
+    <Compile Include="Maze\WallBreakers\WallBreakerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Maze\SearchableMaze.cs" />
   </ItemGroup>

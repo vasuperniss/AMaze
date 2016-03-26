@@ -13,17 +13,17 @@ namespace Maze_Library
             this.maze = maze;
         }
 
-        public State<IMazePosition> GetGoalState()
+        public virtual State<IMazePosition> GetGoalState()
         {
             return new State<IMazePosition>(this.maze.getFinishPosition(), null, 0);
         }
 
-        public State<IMazePosition> GetInitialState()
+        public virtual State<IMazePosition> GetInitialState()
         {
             return new State<IMazePosition>(this.maze.getStartPosition(), null, 0);
         }
 
-        public List<State<IMazePosition>> GetReachableStatesFrom(State<IMazePosition> state)
+        public virtual List<State<IMazePosition>> GetReachableStatesFrom(State<IMazePosition> state)
         {
             List<State<IMazePosition>> states = new List<State<IMazePosition>>();
             List<IMazePosition> positions = this.maze.getAvailablePositionsFrom(state.getState());
