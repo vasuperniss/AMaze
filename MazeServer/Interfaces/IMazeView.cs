@@ -8,5 +8,6 @@ namespace MazeServer.Interfaces
 {
     interface IMazeView
     {
+        string GetMessage();
     }
 }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MazeServer.Model;
 
-namespace MazeServer.MVP_Components.Interfaces
+namespace MazeServer.Interfaces
 {
-    interface Observer
+    interface IObserver
     {
-        void Update(Observable obi, object args);
+        void Update(Observable observable, object p);
     }
 }
