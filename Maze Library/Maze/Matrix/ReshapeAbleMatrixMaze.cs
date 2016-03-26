@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Maze_Library.Maze;
+using Maze_Library.Maze.Matrix;
 
 namespace Maze_Library
 {
@@ -44,7 +45,34 @@ namespace Maze_Library
 
         public override List<IMazePosition> getAvailablePositionsFrom(IMazePosition position)
         {
-            return null;
+            List<IMazePosition> result = new List<IMazePosition>();
+            MatrixPosition pos = position as MatrixPosition;
+            if (pos.Colomn % 2 == 1 || pos.Row % 2 == 1)
+            {
+                return result;
+            }
+            // upper cell
+            if (pos.Row > 0)
+            {
+                result.Add(new MatrixPosition(pos.Row - 2, pos.Colomn));
+            }
+            // lower cell 
+            if (pos.Row < this.height - 1)
+            {
+                result.Add(new MatrixPosition(pos.Row + 2, pos.Colomn));
+            }
+            // right cell
+            if (pos.Colomn < this.width - 1)
+            {
+
+                result.Add(new MatrixPosition(pos.Row, pos.Colomn + 2));
+            }
+            // left cell 
+            if (pos.Colomn > 0)
+            {
+                result.Add(new MatrixPosition(pos.Row, pos.Colomn - 2));
+            }
+            return result;
         }
     }
 }

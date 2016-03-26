@@ -1,6 +1,6 @@
-﻿using System;
-using Maze_Library.Maze;
+﻿using Maze_Library.Maze;
 using System.Collections.Generic;
+using Maze_Library.Maze.Matrix;
 
 namespace Maze_Library
 {
@@ -25,7 +25,50 @@ namespace Maze_Library
 
         public override List<IMazePosition> getAvailablePositionsFrom(IMazePosition position)
         {
-            throw new NotImplementedException();
+            List<IMazePosition> result = new List<IMazePosition>();
+            MatrixPosition pos = position as MatrixPosition;
+            if (this.mazeMatrix[pos.Row, pos.Colomn] == WALL)
+            {
+                return result;
+            }
+            // upper cell
+            if (pos.Row > 0)
+            {
+                if (this.mazeMatrix[pos.Row - 1, pos.Colomn] == PASS)
+                {
+                    result.Add(new MatrixPosition(pos.Row - 2, pos.Colomn));
+                }
+            }
+            // lower cell 
+            if (pos.Row < this.height - 1)
+            {
+                if (this.mazeMatrix[pos.Row + 1, pos.Colomn] == PASS)
+                {
+                    result.Add(new MatrixPosition(pos.Row + 2, pos.Colomn));
+                }
+            }
+            // right cell
+            if (pos.Colomn < this.width - 1)
+            {
+                if (this.mazeMatrix[pos.Row, pos.Colomn + 1] == PASS)
+                {
+                    result.Add(new MatrixPosition(pos.Row, pos.Colomn + 2));
+                }
+            }
+            // left cell 
+            if (pos.Colomn > 0)
+            {
+                if (this.mazeMatrix[pos.Row, pos.Colomn - 1] == PASS)
+                {
+                    result.Add(new MatrixPosition(pos.Row, pos.Colomn - 2));
+                }
+            }
+            return result;
+        }
+
+        public override string ToString()
+        {
+            return this.mazeMatrix.ToString();
         }
     }
 }

@@ -21,5 +21,15 @@
             return this.row == (obj as MatrixPosition).row
                 && this.colomn == (obj as MatrixPosition).colomn;
         }
+
+        public int Row
+        {
+            get { return this.row; }
+        }
+
+        public int Colomn
+        {
+            get { return this.colomn; }
+        }
     }
 }

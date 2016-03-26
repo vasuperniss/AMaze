@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Answer\MazePosition.cs" />
+    <Compile Include="Model\JsonAnswerFactory.cs" />
+    <Compile Include="Model\Answer\CloseAnswer.cs" />
+    <Compile Include="Model\Answer\GenerateAnswer.cs" />
+    <Compile Include="Model\Answer\IServerAnswer.cs" />
+    <Compile Include="Model\Answer\MultiplayerAnswer.cs" />
+    <Compile Include="Model\Answer\PlayAnswer.cs" />
+    <Compile Include="Model\Answer\SolveAnswer.cs" />
     <Compile Include="Presenter\IPresenter.cs" />
     <Compile Include="Presenter\MazeGamePresenter.cs" />
     <Compile Include="Program.cs" />
