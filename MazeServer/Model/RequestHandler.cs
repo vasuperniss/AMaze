@@ -20,10 +20,10 @@ namespace MazeServer.Model
             // get first keyword
             string key = request.Split(' ')[0];
 
-            // Execute request if it's in Options dictionary and of valid format
-            if (Options.TryGetValue(key, out option) && option.Validate(request))
+            // Try to get option
+            if (Options.TryGetValue(key, out option))
             {
-                option.PerformAction();
+                option.PerformAction(request);
             }
             else
             {

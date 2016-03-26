@@ -16,14 +16,12 @@ namespace MazeServer.View
         byte[] ReceivedMessage;
         IPEndPoint Ipep;
         Socket ServerSock;
-        RequestHandler Handler;
 
         public Communicator(int port)
         {
             this.Port = port;
             Ipep = new IPEndPoint(IPAddress.Any,Port);
             ServerSock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            Handler = new RequestHandler();
         }
 
         public void StartCommunication()

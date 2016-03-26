@@ -55,12 +55,12 @@
     <Compile Include="Interfaces\IMazeModel.cs" />
     <Compile Include="Interfaces\IMazePresenter.cs" />
     <Compile Include="Interfaces\IMazeView.cs" />
-    <Compile Include="Model\MazeModel.cs" />
+    <Compile Include="Model\MasterModel.cs" />
     <Compile Include="View\MazeServerMain.cs" />
-    <Compile Include="Model\Options\Close.cs" />
+    <Compile Include="Model\Options\CloseMaze.cs" />
     <Compile Include="Model\Options\GenerateMaze.cs" />
-    <Compile Include="Model\Options\Multiplayer.cs" />
-    <Compile Include="Model\Options\Play.cs" />
+    <Compile Include="Model\Options\MultiplayerMaze.cs" />
+    <Compile Include="Model\Options\PlayMaze.cs" />
     <Compile Include="Model\Options\SolveMaze.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\RequestHandler.cs" />

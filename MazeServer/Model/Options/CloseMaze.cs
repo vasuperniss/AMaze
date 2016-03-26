@@ -7,22 +7,24 @@ using MazeServer.Interfaces;
 
 namespace MazeServer.Model.Options
 {
-    class Multiplayer : Commandable
+    class CloseMaze : Commandable
     {
-        public override void Execute()
+        public CloseMaze(IMazeModel model)
+        {
+            Model = model;
+        }
+
+        public override string Execute()
         {
             throw new NotImplementedException();
             // do stuff
 
-            // use communicator to send message to client.
+            return "close";
         }
 
-        public override bool Validate(string command)
+        public override bool Validate()
         {
-            string[] words = command.Split(' ');
-            string key = words[0];
-
-            if (words.Count() != 2) return false;
+            if (CommandParsed.Count() != 2) return false;
 
             return true;
         }

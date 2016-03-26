@@ -1,4 +1,5 @@
 ﻿using Maze_Library;
+using MazeServer.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,12 @@ namespace MazeServer.Interfaces
 {
     interface IMazeModel
     {
-        void GenerateMaze(string name, int type);
+        void AddMaze(string name, IMaze maze);
 
-        void CreateMultiplayerGame(string name);
+        void AddMultiplayerGame(string name, MultiplayerGame mp);
 
         IMaze GetMaze(string name);
 
-        //MultiplayerGame GetMpGame(string name);
-
-        void AddObserver();
+        MultiplayerGame GetMultiplayerGame(string name);
     }
 }

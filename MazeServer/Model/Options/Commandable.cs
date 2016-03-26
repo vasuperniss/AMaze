@@ -7,16 +7,35 @@ using System.Threading.Tasks;
 
 namespace MazeServer.Model.Options
 {
-    abstract class Commandable : Observable
+    abstract class Commandable
     {
-        public abstract void Execute();
+        protected IMazeModel Model;
+        protected string[] CommandParsed;
+        public delegate void TaskCompleted(object source, EventArgs e);
+        public event TaskCompleted Task;
 
-        public abstract bool Validate(string command);
+        public abstract string Execute();
 
-        public void PerformAction()
+        public abstract bool Validate();
+
+        public void PerformAction(string command)
         {
+            CommandParsed = command.Split(' ');
+            if (Validate())
+            {
+                Console.WriteLine("Commandable Error: invalid option");
+                return;
+            }
             Execute();
-            NotifyObservers();
+            NotifyCompletion();
+        }
+
+        protected virtual void NotifyCompletion()
+        {
+            if (Task != null)
+            {
+                Task(this, EventArgs.Empty);
+            }
         }
     }
 }

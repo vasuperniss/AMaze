@@ -4,26 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MazeServer.Interfaces;
+using Maze_Library;
 
 namespace MazeServer.Model.Options
 {
     class SolveMaze : Commandable
     {
-        public override void Execute()
+        public SolveMaze(IMazeModel model)
         {
-            throw new NotImplementedException();
-            // do stuff
-
-            // use communicator to send message to client.
+            Model = model;
         }
 
-        public override bool Validate(string command)
+        public override string Execute()
         {
-            string[] words = command.Split(' ');
-            string key = words[0];
-            string type = words[2];
+            string name = CommandParsed[1];
+            IMaze maze = Model.GetMaze(name);
+            // SolveMaze(maze);
 
-            if (words.Count() != 3) return false;
+            return "solve";
+        }
+
+        public override bool Validate()
+        {
+            if (CommandParsed.Count() != 3) return false;
+            string type = CommandParsed[2];
             if (type != "0" && type != "1") return false;
 
             return true;
