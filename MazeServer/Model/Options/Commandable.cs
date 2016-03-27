@@ -11,8 +11,7 @@ namespace MazeServer.Model.Options
     {
         protected IMazeModel Model;
         protected string[] CommandParsed;
-        public delegate void TaskCompleted(object source, EventArgs e);
-        public event TaskCompleted Task;
+        public event Update ModelChanged;
 
         public abstract string Execute();
 
@@ -27,15 +26,7 @@ namespace MazeServer.Model.Options
                 return;
             }
             Execute();
-            NotifyCompletion();
-        }
-
-        protected virtual void NotifyCompletion()
-        {
-            if (Task != null)
-            {
-                Task(this, EventArgs.Empty);
-            }
+            ModelChanged(this, EventArgs.Empty);
         }
     }
 }

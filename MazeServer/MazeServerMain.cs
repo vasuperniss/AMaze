@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using MazeServer.View;
 
-namespace MazeServer.View
+namespace MazeServer
 {
+    delegate void Update(object source, EventArgs e);
+
     class MazeServerMain
     {
         static void Main(string[] args)

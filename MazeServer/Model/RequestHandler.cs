@@ -9,7 +9,7 @@ using MazeServer.Model.Options;
 
 namespace MazeServer.Model
 {
-    class RequestHandler: Observable
+    class RequestHandler
     {
         private Dictionary<string, Commandable> Options;
 

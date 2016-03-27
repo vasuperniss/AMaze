@@ -45,18 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\LibraryWrapper.cs" />
     <Compile Include="Model\MultiplayerGame.cs" />
     <Compile Include="Model\Options\Commandable.cs" />
+    <Compile Include="View\ClientHandler.cs" />
     <Compile Include="View\Communicator.cs" />
-    <Compile Include="Model\Observable.cs" />
-    <Compile Include="Interfaces\IObserver.cs" />
     <Compile Include="Presenter\MazePresenter.cs" />
-    <Compile Include="Interfaces\ICommandable.cs" />
-    <Compile Include="Interfaces\IMazeModel.cs" />
-    <Compile Include="Interfaces\IMazePresenter.cs" />
-    <Compile Include="Interfaces\IMazeView.cs" />
+    <Compile Include="Model\IMazeModel.cs" />
+    <Compile Include="Presenter\IMazePresenter.cs" />
+    <Compile Include="View\IMazeView.cs" />
     <Compile Include="Model\MasterModel.cs" />
-    <Compile Include="View\MazeServerMain.cs" />
+    <Compile Include="MazeServerMain.cs" />
     <Compile Include="Model\Options\CloseMaze.cs" />
     <Compile Include="Model\Options\GenerateMaze.cs" />
     <Compile Include="Model\Options\MultiplayerMaze.cs" />
@@ -64,7 +63,6 @@
     <Compile Include="Model\Options\SolveMaze.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\RequestHandler.cs" />
-    <Compile Include="Presenter\ServerReply.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

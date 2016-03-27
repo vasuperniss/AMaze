@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using MazeServer.Model;
 using MazeServer.Model.Options;
+using MazeServer.View;
 
 namespace MazeServer.Presenter
 {
-    class MazePresenter: IObserver
+    class MazePresenter
     {
         private IMazeModel Model;
         private IMazeView View;
@@ -26,20 +27,18 @@ namespace MazeServer.Presenter
             Handler.AddOption("multiplayer", new MultiplayerMaze(Model));
             Handler.AddOption("play", new PlayMaze(Model));
             Handler.AddOption("close", new CloseMaze(Model));
-        }
 
-        public void Update(Observable observable, object p)
-        {
-            if(observable == View)
+            View.ViewChanged += delegate (object o, EventArgs e)
             {
-                string receivedMessage = View.GetMessage();
-                Handler.HandleRequest(receivedMessage);
-            }
+                string message = View.GetMessage();
+                Handler.HandleRequest(message);
+            };
 
-            if(observable == Model)
+            Model.ModelChanged += delegate (object o, EventArgs e)
             {
-
-            }
+                string reply = Model.GetServerReply();
+                View.SendReply(reply);
+            };
         }
     }
 }

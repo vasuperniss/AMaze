@@ -6,10 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MazeServer.Interfaces
+namespace MazeServer.Model
 {
     interface IMazeModel
     {
+        event Update ModelChanged;
+
         void AddMaze(string name, IMaze maze);
 
         void AddMultiplayerGame(string name, MultiplayerGame mp);
@@ -17,5 +19,7 @@ namespace MazeServer.Interfaces
         IMaze GetMaze(string name);
 
         MultiplayerGame GetMultiplayerGame(string name);
+
+        string GetServerReply();
     }
 }
