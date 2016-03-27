@@ -1,42 +1,57 @@
 ﻿using System;
 using MazeClient.View;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using MazeClient.Model;
+using MazeClient.Model.Server;
+using MazeClient.Model.Answer;
 
 namespace MazeClient.Presenter
 {
-    class MazeGamePresenter : IPresenter
+    class MazeGamePresenter
     {
-        private IIOView io;
-        private IServerView server;
+        private IView io;
+        private IServer server;
 
-        public MazeGamePresenter(IIOView io, IServerView server)
+        private List<Task> tasks;
+
+        public MazeGamePresenter(IView io, IServer server)
         {
             this.io = io;
             this.server = server;
 
-            this.io.SetPresenter(this);
-            this.server.SetPresenter(this);
+            this.io.OnInputReceived += this.HandleEvent;
+        }
+
+        private void HandleEvent(object sender, EventArgs args)
+        {
+            if (sender == this.io)
+            {
+                string input = (args as InputEventArgs).Input;
+                this.server.SendRequest(input);
+                this.tasks.Add(Task.Factory.StartNew(()
+                                        => this.server.SendRequest(input)));
+            }
+            else if (sender == this.server)
+            {
+                string responseInJson = (args as ResponseEventArgs).Response;
+                IServerAnswer answer = new JsonAnswerFactory()
+                                                .GetJsonAnswer(responseInJson);
+                this.tasks.Add(Task.Factory.StartNew(()
+                        => this.io.Display(answer.GetStringRepresentation())));
+            }
         }
 
         public void Run()
         {
             if (!this.server.Connect())
             {
-                this.io.Display("Failed to Establish a connection with the server.");
+                this.io.Display("Failed to connect to the Server.");
                 return;
             }
-            this.io.DisplayRulesOfUse();
-            while (true)
-            {
-                string input = this.io.GetInputFromUser();
-                if (this.io.IsCloseRequest(input)) { break; }
-                this.server.SendRequest(input);
-            }
-        }
-
-        public void HandleRespose(string response)
-        {
-            // read the response which is in Json format
-            // display if needed
+            this.tasks = new List<Task>();
+            this.io.Run();
+            Task.WaitAll(tasks.ToArray());
         }
     }
 }

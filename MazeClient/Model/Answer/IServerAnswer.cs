@@ -1,4 +1,4 @@
-﻿namespace MazeClient.Model
+﻿namespace MazeClient.Model.Answer
 {
     interface IServerAnswer
     {

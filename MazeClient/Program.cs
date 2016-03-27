@@ -2,6 +2,7 @@
 using System.Configuration;
 using MazeClient.View;
 using MazeClient.Presenter;
+using MazeClient.Model.Server;
 
 namespace MazeClient
 {
@@ -19,8 +20,8 @@ namespace MazeClient
             }
 
             // Views Creation
-            IIOView io = new IO();
-            IServerView server = new Server(serverIp, int.Parse(serverPort));
+            IView io = new IO();
+            IServer server = new Server(serverIp, int.Parse(serverPort));
 
             // Presenter Creation
             MazeGamePresenter mazeGame = new MazeGamePresenter(io, server);

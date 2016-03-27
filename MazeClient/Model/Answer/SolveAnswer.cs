@@ -1,7 +1,6 @@
-﻿using MazeClient.Model.Answer;
-using System;
+﻿using System;
 
-namespace MazeClient.Model
+namespace MazeClient.Model.Answer
 {
     class SolveAnswer : IServerAnswer
     {

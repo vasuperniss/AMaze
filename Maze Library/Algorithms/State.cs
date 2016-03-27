@@ -44,6 +44,11 @@ namespace Maze_Library.Algorithms
             return this.state.Equals((obj as State<T>).state);
         }
 
+        public override int GetHashCode()
+        {
+            return this.state.GetHashCode();
+        }
+
         public T getState()
         {
             return this.state;

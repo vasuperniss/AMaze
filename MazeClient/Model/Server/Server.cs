@@ -1,12 +1,10 @@
-﻿using MazeClient.Presenter;
-using MazeClient.ServerSide;
-
-namespace MazeClient.View
+﻿namespace MazeClient.Model.Server
 {
-    class Server : IServerView
+    class Server : IServer
     {
         private SocketCommunicator server;
-        private IPresenter presenter;
+
+        public event HandleEvent OnResponseReceived;
 
         public Server(string ip, int port)
         {
@@ -15,18 +13,16 @@ namespace MazeClient.View
 
         public bool Connect()
         {
+            this.server.OnResponse += OnResponseFromServer;
             return this.server.EstablishConnection();
         }
 
-        public void SetPresenter(IPresenter presenter)
+        private void OnResponseFromServer(string response)
         {
-            this.presenter = presenter;
-            this.server.OnResponse += this.OnResponse;
-        }
-
-        private void OnResponse(string response)
-        {
-            this.presenter.HandleRespose(response);
+            if (this.OnResponseReceived != null)
+            {
+                this.OnResponseReceived(this, new ResponseEventArgs(response));
+            }
         }
 
         public void SendRequest(string request)

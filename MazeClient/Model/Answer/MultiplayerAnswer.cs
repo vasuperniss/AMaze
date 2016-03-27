@@ -1,37 +1,36 @@
-﻿using MazeClient.Model.Answer;
-using System;
+﻿using System;
 
-namespace MazeClient.Model
+namespace MazeClient.Model.Answer
 {
     class MultiplayerAnswer : IServerAnswer
     {
-        private string name;
-        private string maze;
-        private MazePosition start;
-        private MazePosition end;
+        private string gameName;
+        private string mazeName;
+        private string myMaze;
+        private string othersMaze;
 
         public string Name
         {
-            get { return this.name; }
-            set { this.name = value; }
+            get { return this.gameName; }
+            set { this.gameName = value; }
         }
 
-        public string Maze
+        public string MazeName
         {
-            get { return this.maze; }
-            set { this.maze = value; }
+            get { return this.mazeName; }
+            set { this.mazeName = value; }
         }
 
-        public MazePosition Start
+        public string You
         {
-            get { return this.start; }
-            set { this.start = value; }
+            get { return this.myMaze; }
+            set { this.myMaze = value; }
         }
 
-        public MazePosition End
+        public string Other
         {
-            get { return this.end; }
-            set { this.end = value; }
+            get { return this.othersMaze; }
+            set { this.othersMaze = value; }
         }
 
         public string GetStringRepresentation()

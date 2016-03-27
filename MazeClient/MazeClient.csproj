@@ -47,21 +47,22 @@
   <ItemGroup>
     <Compile Include="Model\Answer\MazePosition.cs" />
     <Compile Include="Model\JsonAnswerFactory.cs" />
-    <Compile Include="Model\Answer\CloseAnswer.cs" />
     <Compile Include="Model\Answer\GenerateAnswer.cs" />
     <Compile Include="Model\Answer\IServerAnswer.cs" />
     <Compile Include="Model\Answer\MultiplayerAnswer.cs" />
     <Compile Include="Model\Answer\PlayAnswer.cs" />
     <Compile Include="Model\Answer\SolveAnswer.cs" />
-    <Compile Include="Presenter\IPresenter.cs" />
+    <Compile Include="Model\Server\ResponseEventArgs.cs" />
+    <Compile Include="Presenter\IAction.cs" />
     <Compile Include="Presenter\MazeGamePresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\ServerView\Server.cs" />
-    <Compile Include="View\IOView\IO.cs" />
-    <Compile Include="View\ServerView\SocketCommunicator.cs" />
-    <Compile Include="View\ServerView\IServerView.cs" />
-    <Compile Include="View\IOView\IIOView.cs" />
+    <Compile Include="Model\Server\Server.cs" />
+    <Compile Include="View\InputEventArgs.cs" />
+    <Compile Include="View\IO.cs" />
+    <Compile Include="Model\Server\SocketCommunicator.cs" />
+    <Compile Include="Model\Server\IServer.cs" />
+    <Compile Include="View\IView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

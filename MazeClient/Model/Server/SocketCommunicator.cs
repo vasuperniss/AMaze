@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace MazeClient.ServerSide
+namespace MazeClient.Model.Server
 {
     class SocketCommunicator
     {
@@ -28,7 +28,7 @@ namespace MazeClient.ServerSide
             {
                 // close the thread safly
             }
-                try
+            try
             {
                 this.server.Connect(serverIPEndPoint);
                 this.listenerThread = new Thread(this.ListenToResponses);
