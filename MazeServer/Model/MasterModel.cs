@@ -12,7 +12,7 @@ namespace MazeServer.Model
     {
         private Dictionary<string, IMaze> Mazes;
         private Dictionary<string, MultiplayerGame> MpGames;
-        public event Update ModelChanged;
+        public event UpdateModel ModelChanged;
 
         public void AddMaze(string name, IMaze maze)
         {
@@ -54,9 +54,9 @@ namespace MazeServer.Model
             }
         }
 
-        public string GetServerReply()
+        public void CompletedTask(string reply)
         {
-            return "reply";
+            ModelChanged(reply, EventArgs.Empty);
         }
     }
 }

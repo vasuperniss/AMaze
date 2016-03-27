@@ -10,7 +10,7 @@ namespace MazeServer.Model
 {
     interface IMazeModel
     {
-        event Update ModelChanged;
+        event UpdateModel ModelChanged;
 
         void AddMaze(string name, IMaze maze);
 
@@ -20,6 +20,6 @@ namespace MazeServer.Model
 
         MultiplayerGame GetMultiplayerGame(string name);
 
-        string GetServerReply();
+        void CompletedTask(string reply);
     }
 }

@@ -34,9 +34,8 @@ namespace MazeServer.Presenter
                 Handler.HandleRequest(message);
             };
 
-            Model.ModelChanged += delegate (object o, EventArgs e)
+            Model.ModelChanged += delegate (string reply, EventArgs e)
             {
-                string reply = Model.GetServerReply();
                 View.SendReply(reply);
             };
         }
