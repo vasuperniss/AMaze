@@ -4,18 +4,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using MazeServer.Model;
 using MazeServer.Interfaces;
+using MazeServer.Presenter;
 
 namespace MazeServer.View
 {
-    class Communicator: Observable, IMazeView
+    class Communicator
     {
-        int Port;
-        byte[] ReceivedMessage;
-        IPEndPoint Ipep;
-        Socket ServerSock;
+        private int Port;
+        private IPEndPoint Ipep;
+        private Socket ServerSock;
+        event Update Notify;
 
         public Communicator(int port)
         {
@@ -29,35 +30,12 @@ namespace MazeServer.View
             ServerSock.Bind(Ipep);
             ServerSock.Listen(10);
 
-            Socket client = ServerSock.Accept();
+            Socket client;
             while (true)
             {
-                ReceivedMessage = new byte[4096];
-                int recv = ReceiveMessage(client, ReceivedMessage);
-                if (recv == 0) break;
-
-                NotifyObservers();
-                //string message = Encoding.ASCII.GetString(ReceivedMessage, 0, recv);
-                //SendMessage(client, message, recv);
+                client = ServerSock.Accept();
+                ThreadPool.QueueUserWorkItem(state => new ClientHandler(client));
             }
-            client.Close();
-        }
-
-        public int ReceiveMessage(Socket client, byte[] data)
-        {
-            int recv = client.Receive(data);
-            return recv;
-        }
-
-        public void SendMessage(Socket client, string message, int recv)
-        {
-            byte[] data = Encoding.ASCII.GetBytes(message.ToUpper());
-            client.Send(data, recv, SocketFlags.None);
-        }
-
-        public string GetMessage()
-        {
-            return System.Text.Encoding.ASCII.GetString(ReceivedMessage);
         }
     }
 }

@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace MazeServer.Model
 {
-    class MasterModel : Observable, IMazeModel
+    class MasterModel : IMazeModel
     {
         private Dictionary<string, IMaze> Mazes;
         private Dictionary<string, MultiplayerGame> MpGames;
+        public event UpdateModel ModelChanged;
 
         public void AddMaze(string name, IMaze maze)
         {
@@ -51,6 +52,11 @@ namespace MazeServer.Model
             {
                 return game;
             }
+        }
+
+        public void CompletedTask(string reply)
+        {
+            ModelChanged(reply, EventArgs.Empty);
         }
     }
 }

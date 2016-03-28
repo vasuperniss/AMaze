@@ -11,8 +11,6 @@ namespace MazeServer.Model.Options
     {
         protected IMazeModel Model;
         protected string[] CommandParsed;
-        public delegate void TaskCompleted(object source, EventArgs e);
-        public event TaskCompleted Task;
 
         public abstract string Execute();
 
@@ -26,16 +24,8 @@ namespace MazeServer.Model.Options
                 Console.WriteLine("Commandable Error: invalid option");
                 return;
             }
-            Execute();
-            NotifyCompletion();
-        }
-
-        protected virtual void NotifyCompletion()
-        {
-            if (Task != null)
-            {
-                Task(this, EventArgs.Empty);
-            }
+            string reply = Execute();
+            Model.CompletedTask(reply);
         }
     }
 }
