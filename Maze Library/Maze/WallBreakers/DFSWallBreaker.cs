@@ -8,7 +8,7 @@ namespace Maze_Library.Maze
         public void BreakWalls(IReshapeAbleMaze reshapeAble)
         {
             ITreeBrancher<IMazePosition> dfsAlg = new DFS<IMazePosition>();
-            SearchTree tree = dfsAlg.Branch(new RandomSearchableMaze(reshapeAble));
+            SearchTreeResult tree = dfsAlg.Branch(new RandomSearchableMaze(reshapeAble));
         }
     }
 }

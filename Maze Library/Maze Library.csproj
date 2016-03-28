@@ -46,8 +46,8 @@
     <Compile Include="Algorithms\ISearcher.cs" />
     <Compile Include="Algorithms\ITreeBrancher.cs" />
     <Compile Include="Algorithms\RandomizedPrim.cs" />
-    <Compile Include="Algorithms\SearchResult.cs" />
-    <Compile Include="Algorithms\SearchTree.cs" />
+    <Compile Include="Algorithms\SearchPathResult.cs" />
+    <Compile Include="Algorithms\SearchTreeResult.cs" />
     <Compile Include="Algorithms\State.cs" />
     <Compile Include="Algorithms\StateComparer.cs" />
     <Compile Include="Collections\Vector.cs" />

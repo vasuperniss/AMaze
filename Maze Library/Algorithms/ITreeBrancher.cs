@@ -2,6 +2,6 @@
 {
     interface ITreeBrancher<T>
     {
-        SearchTree Branch(ISearchable<T> searchable);
+        SearchTreeResult Branch(ISearchable<T> searchable);
     }
 }

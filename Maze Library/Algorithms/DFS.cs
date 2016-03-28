@@ -4,22 +4,21 @@ namespace Maze_Library.Algorithms
 {
     class DFS<T> : ISearcher<T>, ITreeBrancher<T>
     {
-        public SearchResult Search(ISearchable<T> searchable)
+        public SearchPathResult<T> Search(ISearchable<T> searchable)
         {
-            SearchResult result = new SearchResult();
-            this.DFSSearch(searchable, result);
+            SearchPathResult<T> result = new SearchPathResult<T>();
+            this.DFSSearch(searchable);
             return result;
         }
 
-        public SearchTree Branch(ISearchable<T> searchable)
+        public SearchTreeResult<T> Branch(ISearchable<T> searchable)
         {
-            SearchTree result = new SearchTree();
-            this.DFSSearch(searchable, result);
-            return result;
+            return this.DFSSearch(searchable);
         }
 
-        private void DFSSearch(ISearchable<T> searchable, object result)
+        private SearchTreeResult<T> DFSSearch(ISearchable<T> searchable)
         {
+            SearchTreeResult<T> resultTree = new SearchTreeResult<T>(searchable.GetInitialState().getState());
             HashSet<State<T>> visited = new HashSet<State<T>>();
             Stack<State<T>> pending = new Stack<State<T>>();
 
@@ -33,10 +32,13 @@ namespace Maze_Library.Algorithms
                     foreach (State<T> state in searchable.GetReachableStatesFrom(currState))
                     {
                         pending.Push(state);
+                        resultTree.Add(state.getState(), currState.getState());
                     }
                 }
                 visited.Add(currState);
             }
+
+            return resultTree;
         }
     }
 }
