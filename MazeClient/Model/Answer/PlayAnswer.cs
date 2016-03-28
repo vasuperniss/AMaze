@@ -19,9 +19,10 @@ namespace MazeClient.Model.Answer
             set { this.move = value; }
         }
 
-        public string GetStringRepresentation()
+        public override string ToString()
         {
-            throw new NotImplementedException();
+            return string.Format("in that game: {0}, the other player"
+               +" has made the [{1}] move", this.gameName, this.move);
         }
     }
 }

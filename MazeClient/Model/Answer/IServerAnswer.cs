@@ -2,6 +2,5 @@
 {
     interface IServerAnswer
     {
-        string GetStringRepresentation();
     }
 }

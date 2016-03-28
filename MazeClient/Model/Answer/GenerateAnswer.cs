@@ -34,9 +34,12 @@ namespace MazeClient.Model
             set { this.end = value; }
         }
 
-        public string GetStringRepresentation()
+        public override string ToString()
         {
-            throw new NotImplementedException();
+            return string.Format("Maze name : {0}\n"
+                                + "maze : {1}\n"
+                                + "start : {2}, end : {3}",
+                                this.name, this.maze, this.start, this.end);
         }
     }
 }

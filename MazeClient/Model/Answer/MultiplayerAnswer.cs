@@ -6,8 +6,8 @@ namespace MazeClient.Model.Answer
     {
         private string gameName;
         private string mazeName;
-        private string myMaze;
-        private string othersMaze;
+        private GenerateAnswer myMaze;
+        private GenerateAnswer othersMaze;
 
         public string Name
         {
@@ -21,21 +21,23 @@ namespace MazeClient.Model.Answer
             set { this.mazeName = value; }
         }
 
-        public string You
+        public GenerateAnswer You
         {
             get { return this.myMaze; }
             set { this.myMaze = value; }
         }
 
-        public string Other
+        public GenerateAnswer Other
         {
             get { return this.othersMaze; }
             set { this.othersMaze = value; }
         }
 
-        public string GetStringRepresentation()
+        public override string ToString()
         {
-            throw new NotImplementedException();
+            return string.Format("Multiplayer Game, game-name: {0}, maze name {1}\n"
+                                +"Your maze: {2}\nOther player's maze: {3}",this.gameName,
+                                this.mazeName, this.myMaze, this.othersMaze);
         }
     }
 }

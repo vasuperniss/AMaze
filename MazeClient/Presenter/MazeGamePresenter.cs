@@ -21,6 +21,7 @@ namespace MazeClient.Presenter
             this.server = server;
 
             this.io.OnInputReceived += this.HandleEvent;
+            this.server.OnResponseReceived += this.HandleEvent;
         }
 
         private void HandleEvent(object sender, EventArgs args)
@@ -37,8 +38,11 @@ namespace MazeClient.Presenter
                 string responseInJson = (args as ResponseEventArgs).Response;
                 IServerAnswer answer = new JsonAnswerFactory()
                                                 .GetJsonAnswer(responseInJson);
-                this.tasks.Add(Task.Factory.StartNew(()
-                        => this.io.Display(answer.GetStringRepresentation())));
+                if (answer != null)
+                {
+                    this.tasks.Add(Task.Factory.StartNew(()
+                            => this.io.Display(answer.ToString())));
+                }
             }
         }
 
@@ -51,6 +55,7 @@ namespace MazeClient.Presenter
             }
             this.tasks = new List<Task>();
             this.io.Run();
+            this.server.Close();
             Task.WaitAll(tasks.ToArray());
         }
     }

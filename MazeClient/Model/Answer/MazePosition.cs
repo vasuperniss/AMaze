@@ -16,5 +16,10 @@
             get { return this.col; }
             set { this.col = value; }
         }
+
+        public override string ToString()
+        {
+            return "(row: " + this.row + ", col: " + this.col + ")";
+        }
     }
 }
