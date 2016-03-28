@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MazeServer.Interfaces;
-using System.Threading;
 using MazeServer.Model.Options;
+using MazeServer.View;
 
 namespace MazeServer.Model
 {
@@ -13,12 +9,12 @@ namespace MazeServer.Model
     {
         private Dictionary<string, Commandable> Options;
 
-        public void HandleRequest(string request)
+        public void HandleRequest(MessageEventArgs request)
         {
             Commandable option;
 
             // get first keyword
-            string key = request.Split(' ')[0];
+            string key = request.Msg.Split(' ')[0];
 
             // Try to get option
             if (Options.TryGetValue(key, out option))

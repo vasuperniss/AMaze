@@ -26,7 +26,7 @@ namespace MazeServer.View
                 if (recv == 0) break;
 
                 string message = Encoding.ASCII.GetString(data, 0, recv);
-                if (MessageReceived != null) MessageReceived(this, new MessageEventArgs(message));
+                if (MessageReceived != null) MessageReceived(this, new MessageEventArgs(message, this));
  
                 Console.WriteLine(message);
                 //SendMessage(message, recv);
@@ -34,15 +34,10 @@ namespace MazeServer.View
             ClientSocket.Close();
         }
 
-        public void SendMessage(string message, int recv)
+        public void SendMessage(string message)
         {
             byte[] data = Encoding.ASCII.GetBytes(message.ToUpper());
-            ClientSocket.Send(data, recv, SocketFlags.None);
-        }
-
-        public void SendReply(string reply)
-        {
-            //SendMessage(reply);
+            ClientSocket.Send(data);
         }
     }
 }

@@ -11,5 +11,6 @@ namespace MazeServer.View
     {
         event OnMessageReceived MessageReceived;
         void StartListening();
+        void SendMessage(string message);
     }
 }

@@ -9,14 +9,21 @@ namespace MazeServer.View
     public class MessageEventArgs: EventArgs
     {
         private string message;
+        private IClientView client;
         public string Msg
         {
             get { return message; }
         }
 
-        public MessageEventArgs(string str)
+        public IClientView Client
+        {
+            get { return client; }
+        }
+
+        public MessageEventArgs(string str, IClientView cl)
         {
             message = str;
+            client = cl;
         }
     }
 }

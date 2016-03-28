@@ -14,9 +14,6 @@ namespace MazeServer.Model.Options
 
         public override string Execute()
         {
-            throw new NotImplementedException();
-            // do stuff
-
             return "close";
         }
 

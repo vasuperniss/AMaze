@@ -1,17 +1,13 @@
 ﻿using Maze_Library;
+using MazeServer.Presenter;
 using MazeServer.View;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MazeServer.Model
 {
     delegate void UpdateModel(object o, MessageEventArgs e);
     interface IModel
     {
-        event UpdateModel ModelChanged;
+        event UpdateModel TaskCompleted;
 
         void AddMaze(string name, IMaze maze);
 
@@ -21,6 +17,6 @@ namespace MazeServer.Model
 
         MultiplayerGame GetMultiplayerGame(string name);
 
-        void CompletedTask(string reply);
+        void CompletedTask(MessageEventArgs reply);
     }
 }

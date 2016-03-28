@@ -3,6 +3,7 @@ using MazeServer.Model;
 using MazeServer.Model.Options;
 using MazeServer.View;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace MazeServer.Presenter
 {
@@ -12,13 +13,15 @@ namespace MazeServer.Presenter
         private ILobbyView View;
         private RequestHandler Handler;
         private List<IClientView> clients;
+        private List<Task> tasks;
 
         public MazePresenter(IModel model, ILobbyView view)
         {
-            this.Model = model;
-            this.View = view;
+            Model = model;
+            View = view;
             Handler = new RequestHandler();
             clients = new List<IClientView>();
+            tasks = new List<Task>();
 
             Handler.AddOption("generate", new GenerateMaze(Model));
             Handler.AddOption("solve", new SolveMaze(Model));
@@ -26,26 +29,27 @@ namespace MazeServer.Presenter
             Handler.AddOption("play", new PlayMaze(Model));
             Handler.AddOption("close", new CloseMaze(Model));
 
-
             View.OnConnect += NewConnection;
-
-            Model.ModelChanged += delegate (object reply, MessageEventArgs e)
-            {
-                View.SendReply(reply);
-            };
+            Model.TaskCompleted += ReplyToClient;
         }
 
         public void NewConnection(object o, ConnectionEventArgs args)
         {
             clients.Add(args.CView);
-            args.CView.MessageReceived += ReceivedMessage;
+            args.CView.MessageReceived += MessageFromClient;
             Thread t = new Thread(args.CView.StartListening);
             t.Start();
         }
 
-        public void ReceivedMessage(object o, MessageEventArgs args)
+        public void MessageFromClient(object o, MessageEventArgs args)
         {
-            Handler.HandleRequest(args.Msg);
+            Handler.HandleRequest(args);
+            //tasks.Add(Task.Factory.StartNew(Handler.HandleRequest(args)));
+        }
+
+        public void ReplyToClient(object o, MessageEventArgs args)
+        {
+            args.Client.SendMessage(args.Msg);
         }
     }
 }
