@@ -13,14 +13,16 @@ namespace MazeServer.Presenter
     class MazePresenter
     {
         private IMazeModel Model;
-        private IMazeView View;
+        private ILobbyView View;
         private RequestHandler Handler;
+        private List<IClientView> clients;
 
-        public MazePresenter(IMazeModel model, IMazeView view)
+        public MazePresenter(IMazeModel model, ILobbyView view)
         {
             this.Model = model;
             this.View = view;
             Handler = new RequestHandler();
+            clients = new List<IClientView>();
 
             Handler.AddOption("generate", new GenerateMaze(Model));
             Handler.AddOption("solve", new SolveMaze(Model));
@@ -28,16 +30,20 @@ namespace MazeServer.Presenter
             Handler.AddOption("play", new PlayMaze(Model));
             Handler.AddOption("close", new CloseMaze(Model));
 
-            View.ViewChanged += delegate (object o, EventArgs e)
-            {
-                string message = View.GetMessage();
-                Handler.HandleRequest(message);
-            };
+
+            View.OnConnect += NewConnection;
 
             Model.ModelChanged += delegate (string reply, EventArgs e)
             {
                 View.SendReply(reply);
             };
+        }
+
+        public void NewConnection(object o, ConnectionEventArgs args)
+        {
+            clients.Add(args.CView);
+            args.CView.MessageReceived += 
+            Handler.HandleRequest(message);
         }
     }
 }

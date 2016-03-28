@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace MazeServer.View
 {
-    interface IMazeView
+    class MessageEventArgs
     {
-        event Update ViewChanged;
-        string GetMessage();
-        void SendReply(string reply);
     }
 }

@@ -11,12 +11,12 @@ using MazeServer.Presenter;
 
 namespace MazeServer.View
 {
-    class Communicator
+    class Communicator: ILobbyView
     {
         private int Port;
         private IPEndPoint Ipep;
         private Socket ServerSock;
-        event Update Notify;
+        public event Update OnConnect;
 
         public Communicator(int port)
         {
@@ -34,8 +34,20 @@ namespace MazeServer.View
             while (true)
             {
                 client = ServerSock.Accept();
-                ThreadPool.QueueUserWorkItem(state => new ClientHandler(client));
+                ClientHandler ch = new ClientHandler(client);
+                OnConnect(this, new ConnectionEventArgs(ch));
+                //ThreadPool.QueueUserWorkItem(state => new ClientHandler(client));
             }
+        }
+
+        public void StartListening()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Stop()
+        {
+            throw new NotImplementedException();
         }
     }
 }

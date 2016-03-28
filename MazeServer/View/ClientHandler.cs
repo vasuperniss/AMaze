@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace MazeServer.View
 {
-    class ClientHandler: IMazeView
+    class ClientHandler: IClientView
     {
         private Socket ClientSocket;
         private byte[] ReceivedMessage;
         private int Recv;
-        public event Update ViewChanged;
+
+        public event OnMessageReceived MessageReceived;
 
         public ClientHandler(Socket client)
         {
             ClientSocket = client;
-            EstablishConnection();
         }
 
-        private void EstablishConnection()
+        private void StartCommunicating()
         {
             while (true)
             {
@@ -28,7 +28,7 @@ namespace MazeServer.View
                 Recv = ReceiveMessage(ReceivedMessage);
                 if (Recv == 0) break;
 
-                ViewChanged(this, EventArgs.Empty);
+                if(MessageReceived != null) MessageReceived(this, EventArgs.Empty);
 
                 string message = Encoding.ASCII.GetString(ReceivedMessage, 0, Recv);
                 Console.WriteLine(message);
