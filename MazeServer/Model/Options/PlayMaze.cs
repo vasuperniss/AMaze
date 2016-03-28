@@ -9,7 +9,7 @@ namespace MazeServer.Model.Options
 {
     class PlayMaze : Commandable
     {
-        public PlayMaze(IMazeModel model)
+        public PlayMaze(IModel model)
         {
             Model = model;
         }

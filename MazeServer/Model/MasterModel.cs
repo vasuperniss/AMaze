@@ -1,5 +1,5 @@
 ﻿using Maze_Library;
-using MazeServer.Interfaces;
+using MazeServer.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MazeServer.Model
 {
-    class MasterModel : IMazeModel
+    class MasterModel : IModel
     {
         private Dictionary<string, IMaze> Mazes;
         private Dictionary<string, MultiplayerGame> MpGames;
@@ -56,7 +56,7 @@ namespace MazeServer.Model
 
         public void CompletedTask(string reply)
         {
-            ModelChanged(reply, EventArgs.Empty);
+            ModelChanged(this, new MessageEventArgs(reply));
         }
     }
 }

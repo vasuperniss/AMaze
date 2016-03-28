@@ -1,5 +1,5 @@
 ﻿using Maze_Library;
-using MazeServer.Model;
+using MazeServer.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace MazeServer.Model
 {
-    interface IMazeModel
+    delegate void UpdateModel(object o, MessageEventArgs e);
+    interface IModel
     {
         event UpdateModel ModelChanged;
 

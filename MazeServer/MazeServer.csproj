@@ -51,8 +51,7 @@
     <Compile Include="View\ClientHandler.cs" />
     <Compile Include="View\Communicator.cs" />
     <Compile Include="Presenter\MazePresenter.cs" />
-    <Compile Include="Model\IMazeModel.cs" />
-    <Compile Include="Presenter\IMazePresenter.cs" />
+    <Compile Include="Model\IModel.cs" />
     <Compile Include="View\ConnectionEventArgs.cs" />
     <Compile Include="View\IClientView.cs" />
     <Compile Include="View\ILobbyView.cs" />

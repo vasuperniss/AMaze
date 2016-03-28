@@ -9,7 +9,7 @@ namespace MazeServer.Model.Options
 {
     class MultiplayerMaze : Commandable
     {
-        public MultiplayerMaze(IMazeModel model)
+        public MultiplayerMaze(IModel model)
         {
             Model = model;
         }

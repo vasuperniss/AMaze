@@ -10,7 +10,7 @@ namespace MazeServer.Model.Options
 {
     class GenerateMaze : Commandable
     {
-        public GenerateMaze(IMazeModel model)
+        public GenerateMaze(IModel model)
         {
             Model = model;
         }

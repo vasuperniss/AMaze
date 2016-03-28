@@ -9,7 +9,7 @@ namespace MazeServer.Model.Options
 {
     abstract class Commandable
     {
-        protected IMazeModel Model;
+        protected IModel Model;
         protected string[] CommandParsed;
 
         public abstract string Execute();

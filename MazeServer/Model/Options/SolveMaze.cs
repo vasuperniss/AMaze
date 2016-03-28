@@ -10,7 +10,7 @@ namespace MazeServer.Model.Options
 {
     class SolveMaze : Commandable
     {
-        public SolveMaze(IMazeModel model)
+        public SolveMaze(IModel model)
         {
             Model = model;
         }

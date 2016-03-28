@@ -10,9 +10,6 @@ namespace MazeServer.View
     class ClientHandler: IClientView
     {
         private Socket ClientSocket;
-        private byte[] ReceivedMessage;
-        private int Recv;
-
         public event OnMessageReceived MessageReceived;
 
         public ClientHandler(Socket client)
@@ -20,43 +17,32 @@ namespace MazeServer.View
             ClientSocket = client;
         }
 
-        private void StartCommunicating()
+        public void StartListening()
         {
             while (true)
             {
-                ReceivedMessage = new byte[4096];
-                Recv = ReceiveMessage(ReceivedMessage);
-                if (Recv == 0) break;
+                byte[] data = new byte[4096];
+                int recv = ClientSocket.Receive(data);
+                if (recv == 0) break;
 
-                if(MessageReceived != null) MessageReceived(this, EventArgs.Empty);
-
-                string message = Encoding.ASCII.GetString(ReceivedMessage, 0, Recv);
+                string message = Encoding.ASCII.GetString(data, 0, recv);
+                if (MessageReceived != null) MessageReceived(this, new MessageEventArgs(message));
+ 
                 Console.WriteLine(message);
-                //SendMessage(client, message, recv);
+                //SendMessage(message, recv);
             }
             ClientSocket.Close();
         }
 
-        public int ReceiveMessage(byte[] data)
-        {
-            int recv = ClientSocket.Receive(data);
-            return recv;
-        }
-
-        public void SendMessage(string message)
+        public void SendMessage(string message, int recv)
         {
             byte[] data = Encoding.ASCII.GetBytes(message.ToUpper());
-            ClientSocket.Send(data, Recv, SocketFlags.None);
-        }
-
-        public string GetMessage()
-        {
-            return Encoding.ASCII.GetString(ReceivedMessage);
+            ClientSocket.Send(data, recv, SocketFlags.None);
         }
 
         public void SendReply(string reply)
         {
-            SendMessage(reply);
+            //SendMessage(reply);
         }
     }
 }

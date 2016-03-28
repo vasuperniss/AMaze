@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace MazeServer.View
 {
-    class MessageEventArgs
+    public class MessageEventArgs: EventArgs
     {
+        private string message;
+        public string Msg
+        {
+            get { return message; }
+        }
+
+        public MessageEventArgs(string str)
+        {
+            message = str;
+        }
     }
 }

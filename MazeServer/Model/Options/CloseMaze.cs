@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MazeServer.Interfaces;
 
 namespace MazeServer.Model.Options
 {
     class CloseMaze : Commandable
     {
-        public CloseMaze(IMazeModel model)
+        public CloseMaze(IModel model)
         {
             Model = model;
         }

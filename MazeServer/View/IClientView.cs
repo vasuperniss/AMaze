@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace MazeServer.View
 {
-    public delegate void OnMessageReceived(object o, EventArgs args);
+    public delegate void OnMessageReceived(object o, MessageEventArgs args);
     public interface IClientView
     {
         event OnMessageReceived MessageReceived;
+        void StartListening();
     }
 }

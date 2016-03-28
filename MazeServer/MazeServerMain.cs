@@ -8,9 +8,6 @@ using MazeServer.View;
 
 namespace MazeServer
 {
-    delegate void Update(object source, EventArgs e);
-    delegate void UpdateModel(string reply, EventArgs e);
-
     class MazeServerMain
     {
         static void Main(string[] args)
@@ -20,7 +17,7 @@ namespace MazeServer
 
             if (!Int32.TryParse(port, out p)) return;
             Communicator cm = new Communicator(p);
-            cm.StartCommunication();
+            cm.StartListening();
         }
     }
 }
