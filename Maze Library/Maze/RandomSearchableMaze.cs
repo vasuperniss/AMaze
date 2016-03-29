@@ -16,7 +16,7 @@ namespace Maze_Library.Maze
         public override List<State<MazePosition>> GetReachableStatesFrom(State<MazePosition> state)
         {
             List<State<MazePosition>> states = new List<State<MazePosition>>();
-            List<MazePosition> positions = this.maze.getAvailablePositionsFrom(state.getState());
+            List<MazePosition> positions = this.maze.GetAvailablePositionsFrom(state.getState());
             foreach (MazePosition mp in positions)
             {
                 states.Add(new State<MazePosition>(mp, state, 0));

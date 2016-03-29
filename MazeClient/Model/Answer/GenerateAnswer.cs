@@ -49,11 +49,12 @@ namespace MazeClient.Model
             {
                 for (int i = 0; i < rows * 2 - 1; i++)
                 {
+                    if (i > 0) { mazeDisplayStr += "       "; }
                     mazeDisplayStr += maze.Substring(i * (cols * 2 - 1),
                                                     rows * 2 - 1) + "\n";
                 }
             }
-            return string.Format("Maze name : {0} maze :\n{1}"
+            return string.Format("Maze name : {0}\nmaze : {1}"
                                 + "start: {2}, end: {3}",
                             this.name, mazeDisplayStr, this.start, this.end);
         }

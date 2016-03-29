@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace Maze_Library.Algorithms
+namespace Maze_Library.Collections
 {
-    class SearchTreeResult<T>
+    internal class Tree<T>
     {
         TreeNode<T> root;
 
-        public SearchTreeResult(T root)
+        public Tree(T root)
         {
             this.root = new TreeNode<T>(root);
         }

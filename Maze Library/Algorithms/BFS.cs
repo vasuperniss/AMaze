@@ -5,9 +5,9 @@ namespace Maze_Library.Algorithms
 {
     class BFS<T> : ISearcher<T>
     {
-        public SearchPathResult<T> Search(ISearchable<T> searchee)
+        public PathSearchResult<State<T>> Search(ISearchable<T> searchee)
         {
-            SearchPathResult<T> result = new SearchPathResult<T>();
+            PathSearchResult<State<T>> result = new PathSearchResult<State<T>>();
 
             HashSet<State<T>> visited = new HashSet<State<T>>();
             PriorityQueue<State<T>> pending = new PriorityQueue<State<T>>(new StateComparer<T>());

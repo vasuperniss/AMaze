@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Maze_Library.Maze.WallBreakers;
 using System.Text;
+using System;
 
 namespace Maze_Library.Maze.Matrix
 {
@@ -21,7 +22,7 @@ namespace Maze_Library.Maze.Matrix
             BreakerFact.GetWallBreaker().BreakWalls(this);
         }
 
-        public override List<MazePosition> getAvailablePositionsFrom(MazePosition pos)
+        public override List<MazePosition> GetAvailablePositionsFrom(MazePosition pos)
         {
             List<MazePosition> result = new List<MazePosition>();
             if (this.mazeMatrix[pos.Row, pos.Colomn] == WALL)
@@ -119,6 +120,16 @@ namespace Maze_Library.Maze.Matrix
             {
                 this.mazeMatrix[doorRow, doorCol] = WALL;
             }
+        }
+
+        public override ISolution SolveMaze()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ToString(ISolution solution)
+        {
+            throw new NotImplementedException();
         }
     }
 }

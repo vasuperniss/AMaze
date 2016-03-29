@@ -1,5 +1,5 @@
 ﻿using Maze_Library.Algorithms;
-using System;
+using Maze_Library.Collections;
 using System.Collections.Generic;
 
 namespace Maze_Library.Maze.WallBreakers
@@ -8,8 +8,7 @@ namespace Maze_Library.Maze.WallBreakers
     {
         public void BreakWalls(IReshapeAbleMaze reshapeAble)
         {
-            SearchTreeResult<MazePosition> tree
-                                            = this.GetSearchTree(reshapeAble);
+            Tree<MazePosition> tree = this.SearchTreeIntoTree(this.GetSearchTree(reshapeAble));
             reshapeAble.CloseAllDoors();
             Stack<MazePosition> positions = new Stack<MazePosition>();
             positions.Push(tree.GetRoot());
@@ -27,7 +26,14 @@ namespace Maze_Library.Maze.WallBreakers
             }
         }
 
-        protected abstract SearchTreeResult<MazePosition> GetSearchTree(
+        protected abstract TreeSearchResult<MazePosition> GetSearchTree(
                                                 IReshapeAbleMaze reshapeAble);
+        
+        private Tree<MazePosition> SearchTreeIntoTree(TreeSearchResult<MazePosition> statesTree)
+        {
+            Tree<MazePosition> tree = new Tree<MazePosition>(statesTree.GetRoot().getState());
+            // fill in tree
+            return tree;
+        }
     }
 }

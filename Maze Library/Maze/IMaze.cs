@@ -9,10 +9,14 @@ namespace Maze_Library.Maze
 
     public interface IMaze
     {
-        MazePosition getStartPosition();
+        MazePosition GetStartPosition();
 
-        MazePosition getFinishPosition();
+        MazePosition GetFinishPosition();
 
-        List<MazePosition> getAvailablePositionsFrom(MazePosition position);
+        List<MazePosition> GetAvailablePositionsFrom(MazePosition position);
+
+        ISolution SolveMaze();
+
+        string ToString(ISolution solution);
     }
 }

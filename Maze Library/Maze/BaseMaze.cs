@@ -7,14 +7,18 @@ namespace Maze_Library.Maze
         protected MazePosition startPosition;
         protected MazePosition endPosition;
 
-        public abstract List<MazePosition> getAvailablePositionsFrom(MazePosition position);
+        public abstract List<MazePosition> GetAvailablePositionsFrom(MazePosition position);
 
-        public MazePosition getFinishPosition()
+        public abstract ISolution SolveMaze();
+
+        public abstract string ToString(ISolution solution);
+
+        public MazePosition GetFinishPosition()
         {
             return this.endPosition;
         }
 
-        public MazePosition getStartPosition()
+        public MazePosition GetStartPosition()
         {
             return this.startPosition;
         }
