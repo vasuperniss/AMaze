@@ -1,6 +1,4 @@
-﻿using Maze_Library.Maze;
-
-namespace Maze_Library
+﻿namespace Maze_Library.Maze.WallBreakers
 {
     public interface IMazeWallBreaker
     {

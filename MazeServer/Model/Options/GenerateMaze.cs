@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MazeServer.Interfaces;
 using Maze_Library;
+using Maze_Library.Maze;
 
 namespace MazeServer.Model.Options
 {

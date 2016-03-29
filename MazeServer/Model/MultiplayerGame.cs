@@ -1,4 +1,5 @@
 ﻿using Maze_Library;
+using Maze_Library.Maze;
 using System;
 using System.Collections.Generic;
 using System.Linq;

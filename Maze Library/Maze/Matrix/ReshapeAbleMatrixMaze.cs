@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Maze_Library.Maze;
-using Maze_Library.Maze.Matrix;
+using Maze_Library.Maze.WallBreakers;
 
-namespace Maze_Library
+namespace Maze_Library.Maze.Matrix
 {
     public class ReshapeAbleMatrixMaze : BaseMaze, IReshapeAbleMaze
     {
@@ -43,10 +42,9 @@ namespace Maze_Library
             }
         }
 
-        public override List<IMazePosition> getAvailablePositionsFrom(IMazePosition position)
+        public override List<MazePosition> getAvailablePositionsFrom(MazePosition pos)
         {
-            List<IMazePosition> result = new List<IMazePosition>();
-            MatrixPosition pos = position as MatrixPosition;
+            List<MazePosition> result = new List<MazePosition>();
             if (pos.Colomn % 2 == 1 || pos.Row % 2 == 1)
             {
                 return result;
@@ -54,23 +52,23 @@ namespace Maze_Library
             // upper cell
             if (pos.Row > 0)
             {
-                result.Add(new MatrixPosition(pos.Row - 2, pos.Colomn));
+                result.Add(new MazePosition(pos.Row - 2, pos.Colomn));
             }
             // lower cell 
             if (pos.Row < this.height - 1)
             {
-                result.Add(new MatrixPosition(pos.Row + 2, pos.Colomn));
+                result.Add(new MazePosition(pos.Row + 2, pos.Colomn));
             }
             // right cell
             if (pos.Colomn < this.width - 1)
             {
 
-                result.Add(new MatrixPosition(pos.Row, pos.Colomn + 2));
+                result.Add(new MazePosition(pos.Row, pos.Colomn + 2));
             }
             // left cell 
             if (pos.Colomn > 0)
             {
-                result.Add(new MatrixPosition(pos.Row, pos.Colomn - 2));
+                result.Add(new MazePosition(pos.Row, pos.Colomn - 2));
             }
             return result;
         }

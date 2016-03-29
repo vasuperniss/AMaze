@@ -4,17 +4,17 @@ namespace Maze_Library.Maze
 {
     public abstract class BaseMaze : IMaze
     {
-        protected IMazePosition startPosition;
-        protected IMazePosition endPosition;
+        protected MazePosition startPosition;
+        protected MazePosition endPosition;
 
-        public abstract List<IMazePosition> getAvailablePositionsFrom(IMazePosition position);
+        public abstract List<MazePosition> getAvailablePositionsFrom(MazePosition position);
 
-        public IMazePosition getFinishPosition()
+        public MazePosition getFinishPosition()
         {
             return this.endPosition;
         }
 
-        public IMazePosition getStartPosition()
+        public MazePosition getStartPosition()
         {
             return this.startPosition;
         }

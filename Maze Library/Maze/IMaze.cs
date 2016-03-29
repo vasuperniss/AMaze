@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace Maze_Library
+namespace Maze_Library.Maze
 {
     public interface IMaze
     {
-        IMazePosition getStartPosition();
+        MazePosition getStartPosition();
 
-        IMazePosition getFinishPosition();
+        MazePosition getFinishPosition();
 
-        List<IMazePosition> getAvailablePositionsFrom(IMazePosition position);
+        List<MazePosition> getAvailablePositionsFrom(MazePosition position);
     }
 }

@@ -13,21 +13,21 @@ namespace Maze_Library.Maze
             this.maze = maze;
         }
 
-        public override List<State<IMazePosition>> GetReachableStatesFrom(State<IMazePosition> state)
+        public override List<State<MazePosition>> GetReachableStatesFrom(State<MazePosition> state)
         {
-            List<State<IMazePosition>> states = new List<State<IMazePosition>>();
-            List<IMazePosition> positions = this.maze.getAvailablePositionsFrom(state.getState());
-            foreach (IMazePosition mp in positions)
+            List<State<MazePosition>> states = new List<State<MazePosition>>();
+            List<MazePosition> positions = this.maze.getAvailablePositionsFrom(state.getState());
+            foreach (MazePosition mp in positions)
             {
-                states.Add(new State<IMazePosition>(mp, state, 0));
+                states.Add(new State<MazePosition>(mp, state, 0));
             }
             this.Scramble(states);
             return states;
         }
 
-        private void Scramble(List<State<IMazePosition>> states)
+        private void Scramble(List<State<MazePosition>> states)
         {
-            State<IMazePosition> tempState;
+            State<MazePosition> tempState;
             Random r = new Random();
             for (int i = 0; i < states.Count; i++)
             {

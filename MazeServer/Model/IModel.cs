@@ -1,4 +1,5 @@
 ﻿using Maze_Library;
+using Maze_Library.Maze;
 using MazeServer.Presenter;
 using MazeServer.View;
 

@@ -1,8 +1,7 @@
-﻿using Maze_Library.Maze;
-using System.Collections.Generic;
-using Maze_Library.Maze.Matrix;
+﻿using System.Collections.Generic;
+using Maze_Library.Maze.WallBreakers;
 
-namespace Maze_Library
+namespace Maze_Library.Maze.Matrix
 {
     class MatrixMaze : BaseMaze
     {
@@ -23,10 +22,9 @@ namespace Maze_Library
             this.mazeMatrix = reshapeAbleMaze.GetMazeMatrix();
         }
 
-        public override List<IMazePosition> getAvailablePositionsFrom(IMazePosition position)
+        public override List<MazePosition> getAvailablePositionsFrom(MazePosition pos)
         {
-            List<IMazePosition> result = new List<IMazePosition>();
-            MatrixPosition pos = position as MatrixPosition;
+            List<MazePosition> result = new List<MazePosition>();
             if (this.mazeMatrix[pos.Row, pos.Colomn] == WALL)
             {
                 return result;
@@ -36,7 +34,7 @@ namespace Maze_Library
             {
                 if (this.mazeMatrix[pos.Row - 1, pos.Colomn] == PASS)
                 {
-                    result.Add(new MatrixPosition(pos.Row - 2, pos.Colomn));
+                    result.Add(new MazePosition(pos.Row - 2, pos.Colomn));
                 }
             }
             // lower cell 
@@ -44,7 +42,7 @@ namespace Maze_Library
             {
                 if (this.mazeMatrix[pos.Row + 1, pos.Colomn] == PASS)
                 {
-                    result.Add(new MatrixPosition(pos.Row + 2, pos.Colomn));
+                    result.Add(new MazePosition(pos.Row + 2, pos.Colomn));
                 }
             }
             // right cell
@@ -52,7 +50,7 @@ namespace Maze_Library
             {
                 if (this.mazeMatrix[pos.Row, pos.Colomn + 1] == PASS)
                 {
-                    result.Add(new MatrixPosition(pos.Row, pos.Colomn + 2));
+                    result.Add(new MazePosition(pos.Row, pos.Colomn + 2));
                 }
             }
             // left cell 
@@ -60,7 +58,7 @@ namespace Maze_Library
             {
                 if (this.mazeMatrix[pos.Row, pos.Colomn - 1] == PASS)
                 {
-                    result.Add(new MatrixPosition(pos.Row, pos.Colomn - 2));
+                    result.Add(new MazePosition(pos.Row, pos.Colomn - 2));
                 }
             }
             return result;

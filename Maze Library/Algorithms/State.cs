@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Maze_Library.Algorithms
+﻿namespace Maze_Library.Algorithms
 {
     class State<T>
     {

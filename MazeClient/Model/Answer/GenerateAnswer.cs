@@ -1,5 +1,6 @@
 ﻿using MazeClient.Model.Answer;
 using System;
+using System.Configuration;
 
 namespace MazeClient.Model
 {
@@ -36,10 +37,39 @@ namespace MazeClient.Model
 
         public override string ToString()
         {
-            return string.Format("Maze name : {0}\n"
-                                + "maze : {1}\n"
-                                + "start : {2}, end : {3}",
-                                this.name, this.maze, this.start, this.end);
+            int rows, cols;
+            string mazeDisplayStr = "";
+            if (!int.TryParse(ReadSetting("rows"), out rows) ||
+                !int.TryParse(ReadSetting("cols"), out cols) ||
+                this.maze.Length != (cols * 2 - 1) * (rows * 2 - 1))
+            {
+                mazeDisplayStr = this.maze + "\n";
+            }
+            else
+            {
+                for (int i = 0; i < rows * 2 - 1; i++)
+                {
+                    mazeDisplayStr += maze.Substring(i * (cols * 2 - 1),
+                                                    rows * 2 - 1) + "\n";
+                }
+            }
+            return string.Format("Maze name : {0} maze :\n{1}"
+                                + "start: {2}, end: {3}",
+                            this.name, mazeDisplayStr, this.start, this.end);
+        }
+
+        private string ReadSetting(string key)
+        {
+            try
+            {
+                var appSettings = ConfigurationManager.AppSettings;
+                string result = appSettings[key] ?? null;
+                return result;
+            }
+            catch (ConfigurationErrorsException)
+            {
+                return null;
+            }
         }
     }
 }

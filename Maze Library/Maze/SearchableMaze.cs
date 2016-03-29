@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Maze_Library.Algorithms;
 
-namespace Maze_Library
+namespace Maze_Library.Maze
 {
-    class SearchableMaze : ISearchable<IMazePosition>
+    class SearchableMaze : ISearchable<MazePosition>
     {
         private IMaze maze;
 
@@ -13,23 +12,23 @@ namespace Maze_Library
             this.maze = maze;
         }
 
-        public virtual State<IMazePosition> GetGoalState()
+        public virtual State<MazePosition> GetGoalState()
         {
-            return new State<IMazePosition>(this.maze.getFinishPosition(), null, 0);
+            return new State<MazePosition>(this.maze.getFinishPosition(), null, 0);
         }
 
-        public virtual State<IMazePosition> GetInitialState()
+        public virtual State<MazePosition> GetInitialState()
         {
-            return new State<IMazePosition>(this.maze.getStartPosition(), null, 0);
+            return new State<MazePosition>(this.maze.getStartPosition(), null, 0);
         }
 
-        public virtual List<State<IMazePosition>> GetReachableStatesFrom(State<IMazePosition> state)
+        public virtual List<State<MazePosition>> GetReachableStatesFrom(State<MazePosition> state)
         {
-            List<State<IMazePosition>> states = new List<State<IMazePosition>>();
-            List<IMazePosition> positions = this.maze.getAvailablePositionsFrom(state.getState());
-            foreach (IMazePosition mp in positions)
+            List<State<MazePosition>> states = new List<State<MazePosition>>();
+            List<MazePosition> positions = this.maze.getAvailablePositionsFrom(state.getState());
+            foreach (MazePosition mp in positions)
             {
-                states.Add(new State<IMazePosition>(mp, state, 0));
+                states.Add(new State<MazePosition>(mp, state, 0));
             }
             return states;
         }
