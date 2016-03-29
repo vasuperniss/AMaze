@@ -57,7 +57,7 @@
     <Compile Include="View\IClientView.cs" />
     <Compile Include="View\ILobbyView.cs" />
     <Compile Include="Model\MasterModel.cs" />
-    <Compile Include="MazeServerMain.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Model\Options\CloseMaze.cs" />
     <Compile Include="Model\Options\GenerateMaze.cs" />
     <Compile Include="Model\Options\MultiplayerMaze.cs" />

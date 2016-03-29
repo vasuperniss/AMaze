@@ -39,8 +39,8 @@ namespace MazeClient.Model
         {
             int rows, cols;
             string mazeDisplayStr = "";
-            if (!int.TryParse(ReadSetting("rows"), out rows) ||
-                !int.TryParse(ReadSetting("cols"), out cols) ||
+            if (!int.TryParse(AppSettings.Settings["rows"], out rows) ||
+                !int.TryParse(AppSettings.Settings["cols"], out cols) ||
                 this.maze.Length != (cols * 2 - 1) * (rows * 2 - 1))
             {
                 mazeDisplayStr = this.maze + "\n";
@@ -56,20 +56,6 @@ namespace MazeClient.Model
             return string.Format("Maze name : {0} maze :\n{1}"
                                 + "start: {2}, end: {3}",
                             this.name, mazeDisplayStr, this.start, this.end);
-        }
-
-        private string ReadSetting(string key)
-        {
-            try
-            {
-                var appSettings = ConfigurationManager.AppSettings;
-                string result = appSettings[key] ?? null;
-                return result;
-            }
-            catch (ConfigurationErrorsException)
-            {
-                return null;
-            }
         }
     }
 }

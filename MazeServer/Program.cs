@@ -8,7 +8,7 @@ using MazeServer.View;
 
 namespace MazeServer
 {
-    class MazeServerMain
+    class Program
     {
         static void Main(string[] args)
         {
