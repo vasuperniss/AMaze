@@ -2,6 +2,11 @@
 
 namespace Maze_Library.Maze
 {
+    public enum DoorState
+    {
+        Closed, Opened
+    }
+
     public interface IMaze
     {
         MazePosition getStartPosition();

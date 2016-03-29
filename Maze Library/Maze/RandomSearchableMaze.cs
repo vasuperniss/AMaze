@@ -4,7 +4,7 @@ using Maze_Library.Algorithms;
 
 namespace Maze_Library.Maze
 {
-    class RandomSearchableMaze : SearchableMaze
+    internal class RandomSearchableMaze : SearchableMaze
     {
         IMaze maze;
 

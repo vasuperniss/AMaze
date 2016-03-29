@@ -19,6 +19,23 @@ namespace Maze_Library.Algorithms
                 fatherNode.AddChild(child);
             }
         }
+
+        public T GetRoot()
+        {
+            return this.root.Item;
+        }
+
+        public List<T> getAllChildrenOf(T father)
+        {
+            TreeNode<T> fatherNode = this.root.GetNodeWith(father);
+            List<T> returnList = new List<T>();
+            ICollection<TreeNode<T>> children = fatherNode.GetAllChildren();
+            foreach (TreeNode<T> node in children)
+            {
+                returnList.Add(node.Item);
+            }
+            return returnList;
+        }
     }
 
     internal class TreeNode<T>
@@ -42,7 +59,7 @@ namespace Maze_Library.Algorithms
             TreeNode<T> result = null;
             foreach (TreeNode<T> child in this.children)
             {
-                if (child.GetValue().Equals(child))
+                if (child.Item.Equals(child))
                 {
                     return child;
                 }
@@ -54,9 +71,14 @@ namespace Maze_Library.Algorithms
             return result;
         }
 
-        public T GetValue()
+        public HashSet<TreeNode<T>> GetAllChildren()
         {
-            return this.root;
+            return this.children;
+        }
+
+        public T Item
+        {
+            get { return this.root; }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Maze_Library.Maze.WallBreakers
 {
-    public interface IMazeWallBreaker
+    internal interface IMazeWallBreaker
     {
         void BreakWalls(IReshapeAbleMaze reshapeAble);
     }

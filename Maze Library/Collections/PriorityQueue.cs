@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Maze_Library.Algorithms;
 
 namespace Maze_Library.Collections
 {
-    class PriorityQueue<T>
+    internal class PriorityQueue<T>
     {
         private Vector<T> pQueue;
         private IComparer<T> comparer;
@@ -50,7 +49,7 @@ namespace Maze_Library.Collections
             }
         }
 
-        internal void Remove<T>(State<T> s)
+        internal void Remove(T s)
         {
             for (int i = 1; i <= this.numItems; i++)
             {
@@ -64,7 +63,7 @@ namespace Maze_Library.Collections
             }
         }
 
-        public bool Contains<T>(State<T> s)
+        public bool Contains(T s)
         {
             return this.pQueue.Contains(s);
         }

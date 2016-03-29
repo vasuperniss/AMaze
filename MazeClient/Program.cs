@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using MazeClient.View;
 using MazeClient.Presenter;
 using MazeClient.Model.Server;

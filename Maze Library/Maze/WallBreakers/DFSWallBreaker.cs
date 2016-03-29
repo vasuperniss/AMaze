@@ -2,12 +2,12 @@
 
 namespace Maze_Library.Maze.WallBreakers
 {
-    public class DFSWallBreaker : IMazeWallBreaker
+    internal class DFSWallBreaker : BaseMazeWallBreaker
     {
-        public void BreakWalls(IReshapeAbleMaze reshapeAble)
+        protected override SearchTreeResult<MazePosition> GetSearchTree(IReshapeAbleMaze reshapeAble)
         {
             ITreeBrancher<MazePosition> dfsAlg = new DFS<MazePosition>();
-            SearchTreeResult<MazePosition> tree = dfsAlg.Branch(new RandomSearchableMaze(reshapeAble));
+            return dfsAlg.Branch(new RandomSearchableMaze(reshapeAble));
         }
     }
 }
