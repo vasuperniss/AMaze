@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\JsonConverter.cs" />
+    <Compile Include="Utilities\AppConfigSettingsFetcher.cs" />
     <Compile Include="Model\LibraryWrapper.cs" />
     <Compile Include="Model\MultiplayerGame.cs" />
     <Compile Include="Model\Options\Commandable.cs" />
@@ -58,11 +60,11 @@
     <Compile Include="View\ILobbyView.cs" />
     <Compile Include="Model\MasterModel.cs" />
     <Compile Include="MazeServerMain.cs" />
-    <Compile Include="Model\Options\CloseMaze.cs" />
-    <Compile Include="Model\Options\GenerateMaze.cs" />
-    <Compile Include="Model\Options\MultiplayerMaze.cs" />
-    <Compile Include="Model\Options\PlayMaze.cs" />
-    <Compile Include="Model\Options\SolveMaze.cs" />
+    <Compile Include="Model\Options\CloseOption.cs" />
+    <Compile Include="Model\Options\GenerateOption.cs" />
+    <Compile Include="Model\Options\MultiplayerOption.cs" />
+    <Compile Include="Model\Options\PlayOption.cs" />
+    <Compile Include="Model\Options\SolveOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\RequestHandler.cs" />
     <Compile Include="View\MessageEventArgs.cs" />

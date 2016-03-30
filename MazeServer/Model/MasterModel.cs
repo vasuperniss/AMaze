@@ -10,25 +10,26 @@ namespace MazeServer.Model
 {
     class MasterModel : IModel
     {
-        private Dictionary<string, IMaze> Mazes;
-        private Dictionary<string, MultiplayerGame> MpGames;
+        private Dictionary<string, IMaze> mazes;
+        //private Dictionary<string, MazeSolution> mazeSolutions;
+        private Dictionary<string, MultiplayerGame> mpGames;
         public event UpdateModel TaskCompleted;
 
         public void AddMaze(string name, IMaze maze)
         {
-            Mazes.Add(name, maze);
+            mazes.Add(name, maze);
         }
 
         public void AddMultiplayerGame(string name, MultiplayerGame mp)
         {
-            MpGames.Add(name, mp);
+            mpGames.Add(name, mp);
         }
 
         public IMaze GetMaze(string name)
         {
             IMaze maze;
 
-            if (!Mazes.TryGetValue(name, out maze))
+            if (!mazes.TryGetValue(name, out maze))
             {
                 Console.WriteLine("MasterModel Error: No maze by name " + name);
                 return null;
@@ -43,7 +44,7 @@ namespace MazeServer.Model
         {
             MultiplayerGame game;
 
-            if (!MpGames.TryGetValue(name, out game))
+            if (!mpGames.TryGetValue(name, out game))
             {
                 Console.WriteLine("MasterModel Error: No multiplayer game by name " + name);
                 return null;
@@ -54,9 +55,9 @@ namespace MazeServer.Model
             }
         }
 
-        public void CompletedTask(MessageEventArgs reply)
+        public void CompletedTask(object from, MessageEventArgs reply)
         {
-            TaskCompleted(this, reply);
+            TaskCompleted(from, reply);
         }
     }
 }

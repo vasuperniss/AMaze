@@ -17,6 +17,6 @@ namespace MazeServer.Model
 
         MultiplayerGame GetMultiplayerGame(string name);
 
-        void CompletedTask(MessageEventArgs reply);
+        void CompletedTask(object from, MessageEventArgs reply);
     }
 }

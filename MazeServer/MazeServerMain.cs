@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
-using MazeServer.View;
+﻿using MazeServer.View;
+using MazeServer.Utilities;
+using MazeServer.Presenter;
+using MazeServer.Model;
 
 namespace MazeServer
 {
@@ -12,11 +9,13 @@ namespace MazeServer
     {
         static void Main(string[] args)
         {
-            int p = 0;
-            string port = ConfigurationManager.AppSettings["port"];
+            AppConfigSettingsFetcher f = new AppConfigSettingsFetcher();
+            int port = f.GetPort();
+            if (port == -1) return;
 
-            if (!Int32.TryParse(port, out p)) return;
-            Communicator cm = new Communicator(p);
+            ILobbyView cm = new Communicator(port);
+            IModel m = new MasterModel();
+            MazePresenter presenter = new MazePresenter(m, cm);
             cm.StartListening();
         }
     }
