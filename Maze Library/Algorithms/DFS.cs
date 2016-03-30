@@ -4,11 +4,15 @@ namespace Maze_Library.Algorithms
 {
     class DFS<T> : ISearcher<T>, ITreeBrancher<T>
     {
-        public PathSearchResult<State<T>> Search(ISearchable<T> searchable)
+        public PathSearchResult<T> Search(ISearchable<T> searchable)
         {
-            PathSearchResult<State<T>> result = new PathSearchResult<State<T>>();
-            this.DFSSearch(searchable);
-            return result;
+            TreeSearchResult<T> tree = this.DFSSearch(searchable);
+            State<T> goal = tree.Find(searchable.GetGoalState());
+            if (goal != null)
+            {
+                return new PathSearchResult<T>(goal);
+            }
+            return null;
         }
 
         public TreeSearchResult<T> Branch(ISearchable<T> searchable)
@@ -31,8 +35,11 @@ namespace Maze_Library.Algorithms
                 {
                     foreach (State<T> state in searchable.GetReachableStatesFrom(currState))
                     {
-                        pending.Push(state);
-                        resultTree.Add(state, currState);
+                        if (!pending.Contains(state))
+                        {
+                            pending.Push(state);
+                            resultTree.Add(state, currState);
+                        }
                     }
                 }
                 visited.Add(currState);

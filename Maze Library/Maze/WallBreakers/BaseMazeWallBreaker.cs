@@ -31,7 +31,7 @@ namespace Maze_Library.Maze.WallBreakers
         
         private Tree<MazePosition> SearchTreeIntoTree(TreeSearchResult<MazePosition> statesTree)
         {
-            Tree<MazePosition> tree = new Tree<MazePosition>(statesTree.GetRoot().getState());
+            Tree<MazePosition> tree = new Tree<MazePosition>(statesTree.GetRoot().TState);
             // fill in tree
             return tree;
         }

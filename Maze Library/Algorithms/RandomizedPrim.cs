@@ -20,6 +20,7 @@ namespace Maze_Library.Algorithms
                     foreach (State<T> state in searchable.GetReachableStatesFrom(currState))
                     {
                         pending.Add(state);
+                        result.Add(state, currState);
                     }
                     visited.Add(currState);
                 }

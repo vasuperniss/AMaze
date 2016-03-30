@@ -5,10 +5,8 @@ namespace Maze_Library.Algorithms
 {
     class BFS<T> : ISearcher<T>
     {
-        public PathSearchResult<State<T>> Search(ISearchable<T> searchee)
+        public PathSearchResult<T> Search(ISearchable<T> searchee)
         {
-            PathSearchResult<State<T>> result = new PathSearchResult<State<T>>();
-
             HashSet<State<T>> visited = new HashSet<State<T>>();
             PriorityQueue<State<T>> pending = new PriorityQueue<State<T>>(new StateComparer<T>());
             pending.Queue(searchee.GetInitialState());
@@ -17,9 +15,9 @@ namespace Maze_Library.Algorithms
             {
                 State<T> state = pending.DeQueue();
                 visited.Add(state);
-                if (state == searchee.GetGoalState())
+                if (state.Equals(searchee.GetGoalState()))
                 {
-                    // end code
+                    return new PathSearchResult<T>(state);
                 }
                 List<State<T>> nextStates = searchee.GetReachableStatesFrom(state);
                 foreach (State<T> s in nextStates)
@@ -28,23 +26,23 @@ namespace Maze_Library.Algorithms
                     {
                         if (!pending.Contains(s))
                         {
-                            if (s.Cost > state.Cost)
+                            State<T> pendingState = pending.Remove(s);
+                            if (state.Cost + searchee.GetCost(state, pendingState) < s.Cost)
                             {
-                                pending.Remove(s);
                                 s.Cost = state.Cost;
-                                pending.Queue(s);
+                                pendingState = s;
                             }
+                            pending.Queue(pendingState);
                         }
                         else
                         {
-                            s.Cost += state.Cost;
                             pending.Queue(s);
                         }
                     }
                 }
             }
-
-            return result;
+            // didn't find
+            return null;
         }
     }
 }

@@ -7,10 +7,12 @@ namespace Maze_Library.Maze.Matrix
 {
     public class MatrixMaze : BaseMaze, IReshapeAbleMaze
     {
+        private const char SOLPATH = '2';
         private const char WALL = '1';
         private const char PASS = '0';
 
         private char[,] mazeMatrix;
+        private List<MazePosition> solution;
         private int width;
         private int height;
 
@@ -20,6 +22,15 @@ namespace Maze_Library.Maze.Matrix
                                         this.width = width * 2 - 1];
             this.OpenAllDoors();
             BreakerFact.GetWallBreaker().BreakWalls(this);
+            this.solution = null;
+
+            Random r = new Random();
+            int startCol = r.Next(this.width);
+            startCol = startCol % 2 == 0 ? startCol : startCol - 1;
+            int endCol = r.Next(this.width);
+            endCol = endCol % 2 == 0 ? endCol : endCol - 1;
+            this.startPosition = new MazePosition(0, startCol);
+            this.endPosition = new MazePosition(this.height - 1, endCol);
         }
 
         public override List<MazePosition> GetAvailablePositionsFrom(MazePosition pos)
@@ -69,10 +80,32 @@ namespace Maze_Library.Maze.Matrix
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < this.height; i++)
             {
+                if (i != 0)
+                {
+                    sb.Append("\n");
+                }
                 for (int j = 0; j < this.width; j++)
                 {
                     sb.Append(this.mazeMatrix[i, j]);
                 }
+            }
+            return sb.ToString();
+        }
+
+
+        public override string SolutionToString()
+        {
+            StringBuilder sb = new StringBuilder(this.ToString());
+            for (int i = 0; i < this.solution.Count - 1; i++)
+            {
+                sb.Replace(PASS, SOLPATH, this.solution[i].Row
+                            * (1 + this.width) + this.solution[i].Colomn, 1);
+                sb.Replace(PASS, SOLPATH, this.solution[i + 1].Row
+                        * (1 + this.width) + this.solution[i + 1].Colomn, 1);
+                MazePosition door = MazePosition.PositionBetween(this.solution[i],
+                                                                this.solution[i + 1]);
+                sb.Replace(PASS, SOLPATH, door.Row * (1 + this.width)
+                                                                + door.Colomn, 1);
             }
             return sb.ToString();
         }
@@ -122,14 +155,9 @@ namespace Maze_Library.Maze.Matrix
             }
         }
 
-        public override ISolution SolveMaze()
+        public override void SolveMaze(MazeSolverFactory solver)
         {
-            throw new NotImplementedException();
-        }
-
-        public override string ToString(ISolution solution)
-        {
-            throw new NotImplementedException();
+            this.solution = solver.SolveMaze(this);
         }
     }
 }

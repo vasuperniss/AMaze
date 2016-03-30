@@ -49,18 +49,20 @@ namespace Maze_Library.Collections
             }
         }
 
-        internal void Remove(T s)
+        internal T Remove(T s)
         {
             for (int i = 1; i <= this.numItems; i++)
             {
                 if (this.pQueue[i].Equals(s))
                 {
+                    T value = this.pQueue[i];
                     this.pQueue[i] = this.pQueue[this.numItems];
                     this.pQueue.RemoveFrom(this.numItems--);
                     this.ShiftDown(i);
-                    break;
+                    return value;
                 }
             }
+            return default(T);
         }
 
         public bool Contains(T s)

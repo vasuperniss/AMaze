@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Maze_Library.Maze
 {
@@ -9,9 +10,9 @@ namespace Maze_Library.Maze
 
         public abstract List<MazePosition> GetAvailablePositionsFrom(MazePosition position);
 
-        public abstract ISolution SolveMaze();
+        public abstract void SolveMaze(MazeSolverFactory solver);
 
-        public abstract string ToString(ISolution solution);
+        public abstract string SolutionToString();
 
         public MazePosition GetFinishPosition()
         {

@@ -6,7 +6,9 @@ namespace Maze_Library.Maze
 {
     internal class RandomSearchableMaze : SearchableMaze
     {
-        IMaze maze;
+        private const int SCRAMBLE_ROUNDS = 7;
+
+        private IMaze maze;
 
         public RandomSearchableMaze(IMaze maze) : base(maze)
         {
@@ -16,7 +18,7 @@ namespace Maze_Library.Maze
         public override List<State<MazePosition>> GetReachableStatesFrom(State<MazePosition> state)
         {
             List<State<MazePosition>> states = new List<State<MazePosition>>();
-            List<MazePosition> positions = this.maze.GetAvailablePositionsFrom(state.getState());
+            List<MazePosition> positions = this.maze.GetAvailablePositionsFrom(state.TState);
             foreach (MazePosition mp in positions)
             {
                 states.Add(new State<MazePosition>(mp, state, 0));
@@ -29,7 +31,7 @@ namespace Maze_Library.Maze
         {
             State<MazePosition> tempState;
             Random r = new Random();
-            for (int i = 0; i < states.Count; i++)
+            for (int i = 0; i < SCRAMBLE_ROUNDS; i++)
             {
                 for (int j = 0; j < states.Count; j++)
                 {

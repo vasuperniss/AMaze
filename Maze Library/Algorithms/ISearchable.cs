@@ -8,6 +8,8 @@ namespace Maze_Library.Algorithms
 
         State<T> GetGoalState();
 
+        int GetCost(State<T> from, State<T> to);
+
         List<State<T>> GetReachableStatesFrom(State<T> state);
     }
 }

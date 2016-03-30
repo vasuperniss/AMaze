@@ -1,4 +1,6 @@
-﻿namespace Maze_Library.Maze
+﻿using System;
+
+namespace Maze_Library.Maze
 {
     public class MazePosition
     {
@@ -30,6 +32,14 @@
         public int Colomn
         {
             get { return this.colomn; }
+        }
+
+        internal static MazePosition PositionBetween(MazePosition pos1
+                                                        , MazePosition pos2)
+        {
+            int row = pos1.row + ((pos2.row - pos1.row) > 0 ? 1 : -1);
+            int col = pos1.colomn + ((pos2.colomn - pos1.colomn) > 0 ? 1 : -1);
+            return new MazePosition(row, col);
         }
     }
 }

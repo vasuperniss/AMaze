@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Maze_Library.Maze;
 
 namespace Maze_Library.Algorithms
 {
@@ -9,6 +11,17 @@ namespace Maze_Library.Algorithms
         public PathSearchResult()
         {
             this.path = new List<State<T>>();
+        }
+
+        public PathSearchResult(State<T> backTrace)
+        {
+            this.path = new List<State<T>>();
+            this.path.Insert(0, backTrace);
+            while (backTrace.CameFrom != null)
+            {
+                this.path.Insert(0, backTrace.CameFrom);
+                backTrace = backTrace.CameFrom;
+            }
         }
 
         public void AddNode(State<T> node)

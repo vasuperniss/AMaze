@@ -55,7 +55,8 @@
     <Compile Include="Collections\PriorityQueue.cs" />
     <Compile Include="Maze\BaseMaze.cs" />
     <Compile Include="Maze\IMaze.cs" />
-    <Compile Include="Maze\ISolution.cs" />
+    <Compile Include="Maze\IMazeSolution.cs" />
+    <Compile Include="Maze\MazeSolverFactory.cs" />
     <Compile Include="Maze\WallBreakers\BaseMazeWallBreaker.cs" />
     <Compile Include="Maze\WallBreakers\IMazeWallBreaker.cs" />
     <Compile Include="Maze\IReshapeAbleMaze.cs" />

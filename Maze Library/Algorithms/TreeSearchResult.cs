@@ -1,5 +1,6 @@
 ﻿using Maze_Library.Collections;
 using System.Collections.Generic;
+using System;
 
 namespace Maze_Library.Algorithms
 {
@@ -10,6 +11,11 @@ namespace Maze_Library.Algorithms
         public TreeSearchResult(State<T> root)
         {
             this.root = new Tree<State<T>>(root);
+        }
+
+        internal State<T> Find(State<T> state)
+        {
+            return this.root.Find(state);
         }
 
         public void Add(State<T> child, State<T> father)

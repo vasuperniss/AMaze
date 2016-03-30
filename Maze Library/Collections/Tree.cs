@@ -25,6 +25,11 @@ namespace Maze_Library.Collections
             return this.root.Item;
         }
 
+        public T Find(T value)
+        {
+            return this.root.GetNodeWith(value).Item;
+        }
+
         public List<T> getAllChildrenOf(T father)
         {
             TreeNode<T> fatherNode = this.root.GetNodeWith(father);

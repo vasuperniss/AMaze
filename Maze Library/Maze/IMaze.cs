@@ -15,8 +15,8 @@ namespace Maze_Library.Maze
 
         List<MazePosition> GetAvailablePositionsFrom(MazePosition position);
 
-        ISolution SolveMaze();
+        void SolveMaze(MazeSolverFactory solver);
 
-        string ToString(ISolution solution);
+        string SolutionToString();
     }
 }

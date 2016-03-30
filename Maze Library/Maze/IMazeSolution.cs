@@ -1,6 +1,6 @@
 ﻿namespace Maze_Library.Maze
 {
-    public interface ISolution
+    public interface IMazeSolution
     {
 
     }
