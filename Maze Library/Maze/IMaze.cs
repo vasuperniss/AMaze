@@ -1,13 +1,22 @@
 ﻿using System.Collections.Generic;
 
-namespace Maze_Library
+namespace Maze_Library.Maze
 {
+    public enum DoorState
+    {
+        Closed, Opened
+    }
+
     public interface IMaze
     {
-        IMazePosition getStartPosition();
+        MazePosition GetStartPosition();
 
-        IMazePosition getFinishPosition();
+        MazePosition GetFinishPosition();
 
-        List<IMazePosition> getAvailablePositionsFrom(IMazePosition position);
+        List<MazePosition> GetAvailablePositionsFrom(MazePosition position);
+
+        void SolveMaze(MazeSolverFactory solver);
+
+        string SolutionToString();
     }
 }

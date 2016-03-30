@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Answer\MazePosition.cs" />
+    <Compile Include="Model\AppSettings.cs" />
     <Compile Include="Model\JsonAnswerFactory.cs" />
     <Compile Include="Model\Answer\GenerateAnswer.cs" />
     <Compile Include="Model\Answer\IServerAnswer.cs" />

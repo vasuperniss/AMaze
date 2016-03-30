@@ -1,15 +1,22 @@
 ﻿namespace Maze_Library.Maze.WallBreakers
 {
-    class WallBreakerFactory
+    public class WallBreakerFactory
     {
         public enum BreakingType
         {
-            DFS = 1, Random = 2
+            DFS = 1, Random = 0
         }
 
-        public IMazeWallBreaker GetWallBreaker(BreakingType type)
+        private BreakingType type;
+
+        public WallBreakerFactory(BreakingType type)
         {
-            switch (type)
+            this.type = type;
+        }
+
+        internal IMazeWallBreaker GetWallBreaker()
+        {
+            switch (this.type)
             {
                 case BreakingType.DFS:
                     return new DFSWallBreaker();

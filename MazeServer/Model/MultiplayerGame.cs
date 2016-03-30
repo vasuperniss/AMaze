@@ -1,5 +1,4 @@
 ﻿using Maze_Library;
-using MazeServer.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +39,7 @@ namespace MazeServer.Model
                     }
                     // 2 clients
                     else
-                    {
+        {
                         return true;
                     }
                 }

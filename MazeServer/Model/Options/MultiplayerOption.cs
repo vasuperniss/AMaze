@@ -1,4 +1,6 @@
 ﻿using Maze_Library;
+using Maze_Library.Maze;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MazeServer.Model.Options
@@ -31,7 +33,18 @@ namespace MazeServer.Model.Options
                 // game contains 2 different clients
                 if (g.AddClient(from))
                 {
+                    List<object> clients = g.GetClients();
+                    string reply;
+                    object client;
 
+                    // first client
+                    client = clients.ElementAt(0);
+
+                    model.CompletedTask(client, new View.MessageEventArgs(reply));
+                    // second client
+                    client = clients.ElementAt(1);
+
+                    model.CompletedTask(client, new View.MessageEventArgs(reply));
                 }
             }
 

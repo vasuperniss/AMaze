@@ -5,9 +5,9 @@ namespace Maze_Library.Algorithms
 {
     class RandomizedPrim<T> : ITreeBrancher<T>
     {
-        public SearchTreeResult Branch(ISearchable<T> searchable)
+        public TreeSearchResult<T> Branch(ISearchable<T> searchable)
         {
-            SearchTreeResult result = new SearchTreeResult();
+            TreeSearchResult<T> result = new TreeSearchResult<T>(searchable.GetInitialState());
             HashSet<State<T>> visited = new HashSet<State<T>>();
             List<State<T>> pending = new List<State<T>>();
 
@@ -20,6 +20,7 @@ namespace Maze_Library.Algorithms
                     foreach (State<T> state in searchable.GetReachableStatesFrom(currState))
                     {
                         pending.Add(state);
+                        result.Add(state, currState);
                     }
                     visited.Add(currState);
                 }

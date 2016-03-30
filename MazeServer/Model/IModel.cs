@@ -1,4 +1,5 @@
 ﻿using Maze_Library;
+using Maze_Library.Maze;
 using MazeServer.Presenter;
 using MazeServer.View;
 
@@ -10,6 +11,8 @@ namespace MazeServer.Model
         event UpdateModel TaskCompleted;
 
         void AddMaze(string name, IMaze maze);
+
+        string SolveMaze(string name, int type);
 
         void AddMultiplayerGame(string name, MultiplayerGame mp);
 

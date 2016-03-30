@@ -1,14 +1,13 @@
 ﻿using Maze_Library.Algorithms;
-using System;
 
-namespace Maze_Library.Maze
+namespace Maze_Library.Maze.WallBreakers
 {
-    class DFSWallBreaker : IMazeWallBreaker
+    internal class DFSWallBreaker : BaseMazeWallBreaker
     {
-        public void BreakWalls(IReshapeAbleMaze reshapeAble)
+        protected override TreeSearchResult<MazePosition> GetSearchTree(IReshapeAbleMaze reshapeAble)
         {
-            ITreeBrancher<IMazePosition> dfsAlg = new DFS<IMazePosition>();
-            SearchTreeResult tree = dfsAlg.Branch(new RandomSearchableMaze(reshapeAble));
+            ITreeBrancher<MazePosition> dfsAlg = new DFS<MazePosition>();
+            return dfsAlg.Branch(new RandomSearchableMaze(reshapeAble));
         }
     }
 }

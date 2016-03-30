@@ -2,6 +2,6 @@
 {
     interface ISearcher<T>
     {
-        SearchPathResult<T> Search(ISearchable<T> searchable);
+        PathSearchResult<T> Search(ISearchable<T> searchable);
     }
 }

@@ -4,21 +4,25 @@ namespace Maze_Library.Algorithms
 {
     class DFS<T> : ISearcher<T>, ITreeBrancher<T>
     {
-        public SearchPathResult<T> Search(ISearchable<T> searchable)
+        public PathSearchResult<T> Search(ISearchable<T> searchable)
         {
-            SearchPathResult<T> result = new SearchPathResult<T>();
-            this.DFSSearch(searchable);
-            return result;
+            TreeSearchResult<T> tree = this.DFSSearch(searchable);
+            State<T> goal = tree.Find(searchable.GetGoalState());
+            if (goal != null)
+            {
+                return new PathSearchResult<T>(goal);
+            }
+            return null;
         }
 
-        public SearchTreeResult<T> Branch(ISearchable<T> searchable)
+        public TreeSearchResult<T> Branch(ISearchable<T> searchable)
         {
             return this.DFSSearch(searchable);
         }
 
-        private SearchTreeResult<T> DFSSearch(ISearchable<T> searchable)
+        private TreeSearchResult<T> DFSSearch(ISearchable<T> searchable)
         {
-            SearchTreeResult<T> resultTree = new SearchTreeResult<T>(searchable.GetInitialState().getState());
+            TreeSearchResult<T> resultTree = new TreeSearchResult<T>(searchable.GetInitialState());
             HashSet<State<T>> visited = new HashSet<State<T>>();
             Stack<State<T>> pending = new Stack<State<T>>();
 
@@ -31,8 +35,11 @@ namespace Maze_Library.Algorithms
                 {
                     foreach (State<T> state in searchable.GetReachableStatesFrom(currState))
                     {
-                        pending.Push(state);
-                        resultTree.Add(state.getState(), currState.getState());
+                        if (!pending.Contains(state))
+                        {
+                            pending.Push(state);
+                            resultTree.Add(state, currState);
+                        }
                     }
                 }
                 visited.Add(currState);

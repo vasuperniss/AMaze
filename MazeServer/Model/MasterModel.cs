@@ -1,4 +1,5 @@
 ﻿using Maze_Library;
+using Maze_Library.Maze;
 using MazeServer.View;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace MazeServer.Model
     class MasterModel : IModel
     {
         private Dictionary<string, IMaze> mazes;
-        //private Dictionary<string, MazeSolution> mazeSolutions;
+        private Dictionary<string, IMazeSolution> mazeSolutions;
         private Dictionary<string, MultiplayerGame> mpGames;
         public event UpdateModel TaskCompleted;
 
@@ -40,6 +41,14 @@ namespace MazeServer.Model
             }
         }
 
+        public string SolveMaze(string name, int type)
+        {
+            IMaze maze = GetMaze(name);
+            MazeSolverFactory solver = new MazeSolverFactory((WayToSolve)type);
+            maze.SolveMaze(solver);
+            return maze.SolutionToString();
+        }
+
         public MultiplayerGame GetMultiplayerGame(string name)
         {
             MultiplayerGame game;
@@ -59,5 +68,7 @@ namespace MazeServer.Model
         {
             TaskCompleted(from, reply);
         }
+
+
     }
 }

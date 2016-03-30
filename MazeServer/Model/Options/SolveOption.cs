@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Maze_Library;
 
 namespace MazeServer.Model.Options
 {
@@ -14,17 +13,10 @@ namespace MazeServer.Model.Options
         {
             string name = commandParsed[1];
             int type = int.Parse(commandParsed[2]);
-            IMaze maze = model.GetMaze(name);
 
-            if(maze != null)
-            {
-                // SolveMaze(maze, type);
-                return "solved";
-            }
-            else
-            {
-                return null;
-            }
+            string solution = model.SolveMaze(name, type);
+
+            return "";
         }
 
         public override bool Validate(string[] commandParsed)

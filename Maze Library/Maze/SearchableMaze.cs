@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Maze_Library.Algorithms;
 
-namespace Maze_Library
+namespace Maze_Library.Maze
 {
-    class SearchableMaze : ISearchable<IMazePosition>
+    internal class SearchableMaze : ISearchable<MazePosition>
     {
         private IMaze maze;
 
@@ -13,23 +13,30 @@ namespace Maze_Library
             this.maze = maze;
         }
 
-        public virtual State<IMazePosition> GetGoalState()
+        public virtual State<MazePosition> GetGoalState()
         {
-            return new State<IMazePosition>(this.maze.getFinishPosition(), null, 0);
+            return new State<MazePosition>(this.maze.GetFinishPosition(), null, 0);
         }
 
-        public virtual State<IMazePosition> GetInitialState()
+        public virtual State<MazePosition> GetInitialState()
         {
-            return new State<IMazePosition>(this.maze.getStartPosition(), null, 0);
+            return new State<MazePosition>(this.maze.GetStartPosition(), null, 0);
         }
 
-        public virtual List<State<IMazePosition>> GetReachableStatesFrom(State<IMazePosition> state)
+        public int GetCost(State<MazePosition> from, State<MazePosition> to)
         {
-            List<State<IMazePosition>> states = new List<State<IMazePosition>>();
-            List<IMazePosition> positions = this.maze.getAvailablePositionsFrom(state.getState());
-            foreach (IMazePosition mp in positions)
+            Random r = new Random();
+            return r.Next(0, 10);
+        }
+
+        public virtual List<State<MazePosition>> GetReachableStatesFrom(State<MazePosition> state)
+        {
+            List<State<MazePosition>> states = new List<State<MazePosition>>();
+            List<MazePosition> positions = this.maze.GetAvailablePositionsFrom(state.TState);
+            foreach (MazePosition mp in positions)
             {
-                states.Add(new State<IMazePosition>(mp, state, 0));
+                Random r = new Random();
+                states.Add(new State<MazePosition>(mp, state, state.Cost + r.Next(0, 10)));
             }
             return states;
         }

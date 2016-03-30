@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Maze_Library.Algorithms
+﻿namespace Maze_Library.Algorithms
 {
     class State<T>
     {
@@ -15,28 +13,21 @@ namespace Maze_Library.Algorithms
             this.cameFrom = cameFrom;
         }
 
+        public T TState
+        {
+            get { return this.state; }
+        }
+
         public int Cost
         {
-            get
-            {
-                return this.cost;
-            }
-            set
-            {
-                this.cost = value;
-            }
+            get { return this.cost; }
+            set { this.cost = value; }
         }
 
         public State<T> CameFrom
         {
-            get
-            {
-                return this.CameFrom;
-            }
-            set
-            {
-                this.CameFrom = value;
-            }
+            get { return this.CameFrom; }
+            set { this.CameFrom = value; }
         }
 
         public override bool Equals(object obj)
@@ -47,11 +38,6 @@ namespace Maze_Library.Algorithms
         public override int GetHashCode()
         {
             return this.state.GetHashCode();
-        }
-
-        public T getState()
-        {
-            return this.state;
         }
     }
 }

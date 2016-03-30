@@ -1,10 +1,13 @@
-﻿namespace Maze_Library.Maze.WallBreakers
+﻿using Maze_Library.Algorithms;
+
+namespace Maze_Library.Maze.WallBreakers
 {
-    class RandomWallBreaker : IMazeWallBreaker
+    internal class RandomWallBreaker : BaseMazeWallBreaker
     {
-        public void BreakWalls(IReshapeAbleMaze reshapeAble)
+        protected override TreeSearchResult<MazePosition> GetSearchTree(IReshapeAbleMaze reshapeAble)
         {
-            
+            ITreeBrancher<MazePosition> dfsAlg = new RandomizedPrim<MazePosition>();
+            return dfsAlg.Branch(new RandomSearchableMaze(reshapeAble));
         }
     }
 }

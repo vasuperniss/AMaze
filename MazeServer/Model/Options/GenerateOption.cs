@@ -2,6 +2,8 @@
 using Maze_Library;
 using Maze_Library.Maze.WallBreakers;
 using MazeServer.Utilities;
+using Maze_Library.Maze;
+using Maze_Library.Maze.Matrix;
 
 namespace MazeServer.Model.Options
 {
@@ -20,7 +22,13 @@ namespace MazeServer.Model.Options
             IMaze maze = CreateMaze(int.Parse(type));
             model.AddMaze(name, maze);
 
-            return "generate";
+            string reply = "{\"Type\":1,\"Content\":{";
+            reply += JsonConverter.NameToJson(name) + ",";
+            reply += JsonConverter.MazeToJson(maze) + ",";
+            reply += JsonConverter.PointToJson("Start",maze.GetStartPosition()) + ",";
+            reply += JsonConverter.PointToJson("End", maze.GetFinishPosition()) + "}}";
+
+            return reply;
         }
 
         public override bool Validate(string[] commandParsed)
@@ -34,9 +42,7 @@ namespace MazeServer.Model.Options
 
         public static IMaze CreateMaze(int type)
         {
-            WallBreakerFactory factory = new WallBreakerFactory();
-            IMazeWallBreaker breaker = factory.GetWallBreaker(
-                                        (WallBreakerFactory.BreakingType)type);
+            WallBreakerFactory breaker = new WallBreakerFactory((WallBreakerFactory.BreakingType)type);
             return new MatrixMaze(fetcher.GetHeight(), fetcher.GetWidth(), breaker);
         }
     }

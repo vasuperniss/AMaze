@@ -5,7 +5,7 @@ using MazeServer.Model;
 
 namespace MazeServer
 {
-    class MazeServerMain
+    class ServerMain
     {
         static void Main(string[] args)
         {

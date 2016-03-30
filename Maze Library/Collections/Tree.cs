@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Maze_Library.Algorithms
+namespace Maze_Library.Collections
 {
-    class SearchTreeResult<T>
+    internal class Tree<T>
     {
         TreeNode<T> root;
 
-        public SearchTreeResult(T root)
+        public Tree(T root)
         {
             this.root = new TreeNode<T>(root);
         }
@@ -19,6 +18,28 @@ namespace Maze_Library.Algorithms
             {
                 fatherNode.AddChild(child);
             }
+        }
+
+        public T GetRoot()
+        {
+            return this.root.Item;
+        }
+
+        public T Find(T value)
+        {
+            return this.root.GetNodeWith(value).Item;
+        }
+
+        public List<T> getAllChildrenOf(T father)
+        {
+            TreeNode<T> fatherNode = this.root.GetNodeWith(father);
+            List<T> returnList = new List<T>();
+            ICollection<TreeNode<T>> children = fatherNode.GetAllChildren();
+            foreach (TreeNode<T> node in children)
+            {
+                returnList.Add(node.Item);
+            }
+            return returnList;
         }
     }
 
@@ -43,7 +64,7 @@ namespace Maze_Library.Algorithms
             TreeNode<T> result = null;
             foreach (TreeNode<T> child in this.children)
             {
-                if (child.GetValue().Equals(child))
+                if (child.Item.Equals(child))
                 {
                     return child;
                 }
@@ -55,9 +76,14 @@ namespace Maze_Library.Algorithms
             return result;
         }
 
-        public T GetValue()
+        public HashSet<TreeNode<T>> GetAllChildren()
         {
-            return this.root;
+            return this.children;
+        }
+
+        public T Item
+        {
+            get { return this.root; }
         }
     }
 }

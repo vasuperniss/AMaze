@@ -1,7 +1,12 @@
 ﻿namespace Maze_Library.Maze
 {
-    public interface IReshapeAbleMaze : IMaze
+    internal interface IReshapeAbleMaze : IMaze
     {
+        void OpenAllDoors();
 
+        void CloseAllDoors();
+
+        void ChangeDoorStateBetween(MazePosition first, MazePosition second,
+                                                            DoorState state);
     }
 }

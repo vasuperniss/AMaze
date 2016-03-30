@@ -1,12 +1,13 @@
-﻿using Maze_Library;
+﻿using Maze_Library.Maze;
 
-namespace MazeServer.Model
+namespace MazeServer.Utilities
 {
     class JsonConverter
     {
         public static string MazeToJson(IMaze maze)
         {
-            string res = "";
+            string res = maze.ToString();
+            res = res.Remove('\n');
             return "\"Maze\":\""+res+"\"";
         }
 
@@ -15,7 +16,7 @@ namespace MazeServer.Model
             return "\"Name\":\""+name+"\"";
         }
 
-        public static string PointToJson(string type, IMazePosition start)
+        public static string PointToJson(string type, MazePosition start)
         {
             string row = "0";
             string col = "0";

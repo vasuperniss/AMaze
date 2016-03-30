@@ -1,9 +1,8 @@
 ﻿using System;
-using Maze_Library.Algorithms;
 
 namespace Maze_Library.Collections
 {
-    class Vector<T>
+    internal class Vector<T>
     {
         private const int STARTING_SIZE = 4;
         private T[] vector;
@@ -70,7 +69,7 @@ namespace Maze_Library.Collections
             }
         }
 
-        public bool Contains<T>(State<T> s)
+        public bool Contains(T s)
         {
             for (int i = 0; i < this.lastIndex; i++)
             {
