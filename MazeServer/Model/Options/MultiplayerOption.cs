@@ -34,7 +34,7 @@ namespace MazeServer.Model.Options
                 if (g.AddClient(from))
                 {
                     List<object> clients = g.GetClients();
-                    string reply;
+                    string reply = "";
                     object client;
 
                     // first client

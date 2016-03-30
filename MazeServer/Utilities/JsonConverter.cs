@@ -4,11 +4,9 @@ namespace MazeServer.Utilities
 {
     class JsonConverter
     {
-        public static string MazeToJson(IMaze maze)
+        public static string MazeToJson(string maze)
         {
-            string res = maze.ToString();
-            res = res.Remove('\n');
-            return "\"Maze\":\""+res+"\"";
+            return "\"Maze\":\""+maze+"\"";
         }
 
         public static string NameToJson(string name)

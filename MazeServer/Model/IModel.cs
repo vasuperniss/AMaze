@@ -12,9 +12,9 @@ namespace MazeServer.Model
 
         void AddMaze(string name, IMaze maze);
 
-        string SolveMaze(string name, int type);
-
         void AddMultiplayerGame(string name, MultiplayerGame mp);
+
+        void AddMazeSolution(string name, string sol, string jsonDesc);
 
         IMaze GetMaze(string name);
 

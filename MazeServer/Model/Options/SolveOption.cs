@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using Maze_Library.Maze;
+using MazeServer.Utilities;
+using System.Linq;
 
 namespace MazeServer.Model.Options
 {
@@ -13,10 +15,28 @@ namespace MazeServer.Model.Options
         {
             string name = commandParsed[1];
             int type = int.Parse(commandParsed[2]);
+            string commandType = "2";
 
-            string solution = model.SolveMaze(name, type);
+            IMaze maze = model.GetMaze(name);
+            if (maze == null) return null;
 
-            return "";
+            // solve maze
+            MazeSolverFactory solver = new MazeSolverFactory((WayToSolve)type);
+            maze.SolveMaze(solver);
+            string solution = maze.SolutionToString();
+            string solutionJson = "{";
+
+            // Build reply
+            string reply = "{\"Type\":"+ commandType +",\"Content\":";
+
+            solutionJson += JsonConverter.NameToJson(name) + ",";
+            solutionJson += JsonConverter.MazeToJson(solution) + ",";
+
+            solutionJson += JsonConverter.PointToJson("Start", maze.GetStartPosition()) + ",";
+            solutionJson += JsonConverter.PointToJson("End", maze.GetFinishPosition()) + "}";
+
+            model.AddMazeSolution(name, solution, solutionJson);
+            return reply + solutionJson + "}";
         }
 
         public override bool Validate(string[] commandParsed)

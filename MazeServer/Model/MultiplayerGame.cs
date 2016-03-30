@@ -1,6 +1,7 @@
 ﻿using Maze_Library;
 using System;
 using System.Collections.Generic;
+using Maze_Library.Maze;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -32,16 +33,7 @@ namespace MazeServer.Model
                 if (!clients.Contains(client) && clients.Count < 2)
                 {
                     clients.Add(client);
-                    // 1 client
-                    if(clients.Count == 1)
-                    {
-                        return true;
-                    }
-                    // 2 clients
-                    else
-        {
-                        return true;
-                    }
+                    return true;
                 }
             }
             return false;

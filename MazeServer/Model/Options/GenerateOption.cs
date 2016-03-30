@@ -19,12 +19,15 @@ namespace MazeServer.Model.Options
         {
             string name = commandParsed[1];
             string type = commandParsed[2];
+            string commandType = "1";
             IMaze maze = CreateMaze(int.Parse(type));
             model.AddMaze(name, maze);
 
-            string reply = "{\"Type\":1,\"Content\":{";
+            // build reply
+            string reply = "{\"Type\":" + commandType + ",\"Content\":{";
             reply += JsonConverter.NameToJson(name) + ",";
-            reply += JsonConverter.MazeToJson(maze) + ",";
+            reply += JsonConverter.MazeToJson(maze.ToString().Remove('\n')) + ",";
+
             reply += JsonConverter.PointToJson("Start",maze.GetStartPosition()) + ",";
             reply += JsonConverter.PointToJson("End", maze.GetFinishPosition()) + "}}";
 
