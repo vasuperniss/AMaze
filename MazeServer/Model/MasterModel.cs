@@ -13,7 +13,7 @@ namespace MazeServer.Model
     class MasterModel : IModel
     {
         private Dictionary<string, IMaze> mazes;
-        private Dictionary<string, IMazeSolution> mazeSolutions;
+        private Dictionary<string, string> mazeSolutions;
         private Dictionary<string, MultiplayerGame> mpGames;
         private string solutions_path;
         public event UpdateModel TaskCompleted;
@@ -21,7 +21,7 @@ namespace MazeServer.Model
         public MasterModel()
         {
             mazes = new Dictionary<string, IMaze>();
-            mazeSolutions = new Dictionary<string, IMazeSolution>();
+            mazeSolutions = new Dictionary<string, string>();
             mpGames = new Dictionary<string, MultiplayerGame>();
 
             string dir = Directory.GetCurrentDirectory();
@@ -47,11 +47,11 @@ namespace MazeServer.Model
             if(!mpGames.Keys.Contains(name)) mpGames.Add(name, mp);
         }
 
-        public void AddMazeSolution(string name, string sol, string jsonDesc)
+        public void AddMazeSolution(string name, string jsonDesc)
         {
             if (!mazeSolutions.Keys.Contains(name))
             {
-                //mazeSolutions.Add(name, sol);
+                mazeSolutions.Add(name, jsonDesc);
                 File.WriteAllText(solutions_path, jsonDesc);
             }
         }
@@ -83,6 +83,21 @@ namespace MazeServer.Model
             else
             {
                 return game;
+            }
+        }
+
+        public string GetMazeSolution(string name)
+        {
+            string sol;
+
+            if (!mazeSolutions.TryGetValue(name, out sol))
+            {
+                Console.WriteLine("MasterModel Error: No maze solution by name " + name);
+                return null;
+            }
+            else
+            {
+                return sol;
             }
         }
 
