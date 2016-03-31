@@ -26,6 +26,20 @@ namespace MazeServer.Model.Options
             model.AddMaze(name, maze);
 
             // build reply
+            return BuildReply(maze, name, commandType);
+        }
+
+        public override bool Validate(string[] commandParsed)
+        {
+            if (commandParsed.Count() != 3) return false;
+            string type = commandParsed[2];
+            if (type != "0" && type != "1") return false;
+
+            return true;
+        }
+
+        private string BuildReply(IMaze maze, string name, int type)
+        {
             GenerateAnswer ans = new GenerateAnswer();
             JsonOptions.MazePosition start = new JsonOptions.MazePosition();
             JsonOptions.MazePosition finish = new JsonOptions.MazePosition();
@@ -40,16 +54,7 @@ namespace MazeServer.Model.Options
             ans.Start = start;
             ans.End = finish;
 
-            return new Answer().GetJSONAnswer(commandType, ans);
-        }
-
-        public override bool Validate(string[] commandParsed)
-        {
-            if (commandParsed.Count() != 3) return false;
-            string type = commandParsed[2];
-            if (type != "0" && type != "1") return false;
-
-            return true;
+            return new Answer().GetJSONAnswer(type, ans);
         }
 
         public static IMaze CreateMaze(int type)
