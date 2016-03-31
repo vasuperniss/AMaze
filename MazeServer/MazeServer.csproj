@@ -37,6 +37,7 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,9 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\JsonOptions\Answer.cs" />
+    <Compile Include="Model\JsonOptions\GenerateAnswer.cs" />
+    <Compile Include="Model\JsonOptions\IServerAnswer.cs" />
+    <Compile Include="Model\JsonOptions\MazePosition.cs" />
+    <Compile Include="Model\JsonOptions\MultiplayerAnswer.cs" />
+    <Compile Include="Model\JsonOptions\PlayAnswer.cs" />
+    <Compile Include="Model\JsonOptions\SolveAnswer.cs" />
+    <Compile Include="Utilities\AppSettings.cs" />
     <Compile Include="Utilities\JsonConverter.cs" />
     <Compile Include="ServerMain.cs" />
-    <Compile Include="Utilities\AppConfigSettingsFetcher.cs" />
     <Compile Include="Model\MultiplayerGame.cs" />
     <Compile Include="Model\Options\Commandable.cs" />
     <Compile Include="Presenter\ServerReplyEventArgs.cs" />

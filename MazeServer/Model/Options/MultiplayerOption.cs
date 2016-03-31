@@ -20,6 +20,10 @@ namespace MazeServer.Model.Options
             // game does not exist
             if(g == null)
             {
+                // client is already waiting for a different multiplayer game to start
+                if (model.IsClientInQueue(from)) return null;
+
+                // otherwise create a game
                 IMaze maze = GenerateOption.CreateMaze(1);
                 MultiplayerGame game = new MultiplayerGame(model, name, maze);
                 game.AddClient(from);
@@ -29,8 +33,7 @@ namespace MazeServer.Model.Options
             // game exists
             else
             {
-                // client successully added
-                // game contains 2 different clients
+                // game contains 2 different clients after addition
                 if (g.AddClient(from))
                 {
                     List<object> clients = g.GetClients();

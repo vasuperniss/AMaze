@@ -4,6 +4,8 @@ using Maze_Library.Maze.WallBreakers;
 using MazeServer.Utilities;
 using Maze_Library.Maze;
 using Maze_Library.Maze.Matrix;
+using MazeServer.Model.JsonOptions;
+using System.Web.Script.Serialization;
 
 namespace MazeServer.Model.Options
 {
@@ -12,26 +14,33 @@ namespace MazeServer.Model.Options
         public GenerateOption(IModel model)
         {
             this.model = model;
-            fetcher = new AppConfigSettingsFetcher();
         }
 
         public override string Execute(object from, string[] commandParsed)
         {
             string name = commandParsed[1];
             string type = commandParsed[2];
-            string commandType = "1";
+            int commandType = 1;
+
             IMaze maze = CreateMaze(int.Parse(type));
             model.AddMaze(name, maze);
 
             // build reply
-            string reply = "{\"Type\":" + commandType + ",\"Content\":{";
-            reply += JsonConverter.NameToJson(name) + ",";
-            reply += JsonConverter.MazeToJson(maze.ToString().Remove('\n')) + ",";
+            GenerateAnswer ans = new GenerateAnswer();
+            JsonOptions.MazePosition start = new JsonOptions.MazePosition();
+            JsonOptions.MazePosition finish = new JsonOptions.MazePosition();
 
-            reply += JsonConverter.PointToJson("Start",maze.GetStartPosition()) + ",";
-            reply += JsonConverter.PointToJson("End", maze.GetFinishPosition()) + "}}";
+            ans.Name = name;
+            ans.Maze = maze.ToString().Remove('\n');
 
-            return reply;
+            start.Row = maze.GetStartPosition().Row;
+            start.Col = maze.GetStartPosition().Colomn;
+            finish.Row = maze.GetFinishPosition().Row;
+            finish.Col = maze.GetFinishPosition().Colomn;
+            ans.Start = start;
+            ans.End = finish;
+
+            return new Answer().GetJSONAnswer(commandType, ans);
         }
 
         public override bool Validate(string[] commandParsed)
@@ -46,7 +55,8 @@ namespace MazeServer.Model.Options
         public static IMaze CreateMaze(int type)
         {
             WallBreakerFactory breaker = new WallBreakerFactory((WallBreakerFactory.BreakingType)type);
-            return new MatrixMaze(fetcher.GetHeight(), fetcher.GetWidth(), breaker);
+            MazeFactory factory = new MazeFactory(int.Parse(AppSettings.Settings["height"]), int.Parse(AppSettings.Settings["width"]));
+            return factory.GetMaze(breaker);
         }
     }
 }

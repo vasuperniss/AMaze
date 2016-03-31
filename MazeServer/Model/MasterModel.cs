@@ -86,6 +86,16 @@ namespace MazeServer.Model
             }
         }
 
+        public bool IsClientInQueue(object client)
+        {
+            foreach (string key in mpGames.Keys)
+            {
+                if (mpGames[key].ContainsClient(client)) return true;
+            }
+
+            return false;
+        }
+
         public void CompletedTask(object from, MessageEventArgs reply)
         {
             TaskCompleted(from, reply);

@@ -15,18 +15,20 @@ namespace MazeServer.Model
         private IMaze maze;
         private string name;
         private IModel model;
+        private object lockThis;
 
         public MultiplayerGame(IModel model, string name, IMaze maze)
         {
             this.name = name;
             this.maze = maze;
             this.model = model;
+            lockThis = new object();
             clients = new List<object>();
         }
 
         public bool AddClient(object client)
         {
-            object lockThis = new object();
+            
             lock (lockThis)
             {
                 // check if client is not already in the game
@@ -37,6 +39,11 @@ namespace MazeServer.Model
                 }
             }
             return false;
+        }
+
+        public bool ContainsClient(object cl)
+        {
+            return clients.Contains(cl);
         }
 
         public List<object> GetClients()
