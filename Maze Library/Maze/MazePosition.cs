@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Maze_Library.Maze
+﻿namespace Maze_Library.Maze
 {
     public class MazePosition
     {
@@ -37,8 +35,15 @@ namespace Maze_Library.Maze
         internal static MazePosition PositionBetween(MazePosition pos1
                                                         , MazePosition pos2)
         {
-            int row = pos1.row + ((pos2.row - pos1.row) > 0 ? 1 : -1);
-            int col = pos1.colomn + ((pos2.colomn - pos1.colomn) > 0 ? 1 : -1);
+            int row = pos1.row;
+            int col = pos1.colomn;
+
+            if (pos2.row > pos1.row) { row++; }
+            else if (pos2.row < pos1.row) { row--; }
+
+            if (pos2.colomn > pos1.colomn) { col++; }
+            else if (pos2.colomn < pos1.colomn) { col--; }
+
             return new MazePosition(row, col);
         }
     }

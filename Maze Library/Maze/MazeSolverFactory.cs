@@ -24,10 +24,10 @@ namespace Maze_Library.Maze
             switch (this.way)
             {
                 case WayToSolve.BFS:
-                    result = new DFS<MazePosition>().Search(new RandomSearchableMaze(maze));
+                    result = new BFS<MazePosition>().Search(new RandomSearchableMaze(maze));
                     break;
                 case WayToSolve.DFS:
-                    result = new BFS<MazePosition>().Search(new SearchableMaze(maze));
+                    result = new DFS<MazePosition>().Search(new SearchableMaze(maze));
                     break;
                 default:
                     return null;

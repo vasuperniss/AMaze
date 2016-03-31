@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Maze_Library.Maze;
+﻿using System.Collections.Generic;
 
 namespace Maze_Library.Algorithms
 {

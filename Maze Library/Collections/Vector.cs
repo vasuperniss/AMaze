@@ -73,7 +73,7 @@ namespace Maze_Library.Collections
         {
             for (int i = 0; i < this.lastIndex; i++)
             {
-                if (s.Equals(this.vector[i]))
+                if (this.vector[i] != null && s.Equals(this.vector[i]))
                 {
                     return true;
                 }

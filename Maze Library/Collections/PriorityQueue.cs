@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Maze_Library.Collections
 {
-    internal class PriorityQueue<T>
+    public class PriorityQueue<T>
     {
         private Vector<T> pQueue;
         private IComparer<T> comparer;
@@ -72,6 +72,7 @@ namespace Maze_Library.Collections
 
         private void ShiftUp(int k)
         {
+            if (k <= 1) { return; }
             if (this.comparer.Compare(this.pQueue[k],
                                 this.pQueue[k/2]) == 1)
             {
