@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Maze_Library.Maze
 {
-    public abstract class BaseMaze : IMaze
+    internal abstract class BaseMaze : IMaze
     {
         protected MazePosition startPosition;
         protected MazePosition endPosition;
@@ -13,6 +13,10 @@ namespace Maze_Library.Maze
         public abstract void SolveMaze(MazeSolverFactory solver);
 
         public abstract string SolutionToString();
+
+        public abstract void ChangeStartPosition();
+
+        public abstract void ChangeEndPosition();
 
         public MazePosition GetFinishPosition()
         {

@@ -5,7 +5,7 @@ using System;
 
 namespace Maze_Library.Maze.Matrix
 {
-    public class MatrixMaze : BaseMaze, IReshapeAbleMaze
+    internal class MatrixMaze : BaseMaze, IReshapeAbleMaze
     {
         private const char SOLPATH = '2';
         private const char WALL = '1';
@@ -31,6 +31,25 @@ namespace Maze_Library.Maze.Matrix
             endCol = endCol % 2 == 0 ? endCol : endCol - 1;
             this.startPosition = new MazePosition(0, startCol);
             this.endPosition = new MazePosition(this.height - 1, endCol);
+        }
+
+        public MatrixMaze(MatrixMaze maze)
+        {
+            this.width = maze.width;
+            this.height = maze.height;
+            this.solution = maze.solution;
+            this.startPosition = new MazePosition(maze.startPosition.Row,
+                                                    maze.startPosition.Colomn);
+            this.endPosition = new MazePosition(maze.endPosition.Row,
+                                                    maze.endPosition.Colomn);
+            this.mazeMatrix = new char[this.height, this.width];
+            for (int i = 0; i < this.height; i++)
+            {
+                for (int j = 0; j < this.width; j++)
+                {
+                    this.mazeMatrix[i, j] = maze.mazeMatrix[i, j];
+                }
+            }
         }
 
         public override List<MazePosition> GetAvailablePositionsFrom(MazePosition pos)
@@ -158,6 +177,28 @@ namespace Maze_Library.Maze.Matrix
         public override void SolveMaze(MazeSolverFactory solver)
         {
             this.solution = solver.SolveMaze(this);
+        }
+
+        public override void ChangeStartPosition()
+        {
+            Random r = new Random();
+            int sCol;
+            while ((sCol = r.Next(this.width)) == this.startPosition.Colomn)
+            {
+                sCol = sCol % 2 == 0 ? sCol : sCol - 1;
+            }
+            this.startPosition = new MazePosition(0, sCol);
+        }
+
+        public override void ChangeEndPosition()
+        {
+            Random r = new Random();
+            int eCol;
+            while ((eCol = r.Next(this.width)) == this.endPosition.Colomn)
+            {
+                eCol = eCol % 2 == 0 ? eCol : eCol - 1;
+            }
+            this.endPosition = new MazePosition(this.height - 1, eCol);
         }
     }
 }

@@ -15,6 +15,10 @@ namespace Maze_Library.Maze
 
         List<MazePosition> GetAvailablePositionsFrom(MazePosition position);
 
+        void ChangeStartPosition();
+
+        void ChangeEndPosition();
+
         void SolveMaze(MazeSolverFactory solver);
 
         string SolutionToString();
