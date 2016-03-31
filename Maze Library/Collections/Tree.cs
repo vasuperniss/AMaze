@@ -62,13 +62,17 @@ namespace Maze_Library.Collections
         public TreeNode<T> GetNodeWith(T value)
         {
             TreeNode<T> result = null;
+            if (this.root.Equals(value))
+            {
+                return this;
+            }
             foreach (TreeNode<T> child in this.children)
             {
-                if (child.Item.Equals(child))
+                if (child.Item.Equals(value))
                 {
                     return child;
                 }
-                if ((result = GetNodeWith(value)) != null)
+                if ((result = child.GetNodeWith(value)) != null)
                 {
                     return result;
                 }

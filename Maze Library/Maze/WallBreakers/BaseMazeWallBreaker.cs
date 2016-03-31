@@ -8,18 +8,18 @@ namespace Maze_Library.Maze.WallBreakers
     {
         public void BreakWalls(IReshapeAbleMaze reshapeAble)
         {
-            Tree<MazePosition> tree = this.SearchTreeIntoTree(this.GetSearchTree(reshapeAble));
+            TreeSearchResult<MazePosition> tree = this.GetSearchTree(reshapeAble);
             reshapeAble.CloseAllDoors();
-            Stack<MazePosition> positions = new Stack<MazePosition>();
+            Stack<State<MazePosition>> positions = new Stack<State<MazePosition>>();
             positions.Push(tree.GetRoot());
             while (positions.Count > 0)
             {
-                MazePosition pos = positions.Pop();
-                ICollection<MazePosition> children
+                State<MazePosition> pos = positions.Pop();
+                ICollection<State<MazePosition>> children
                                                 = tree.getAllChildrenOf(pos);
-                foreach (MazePosition child in children)
+                foreach (State<MazePosition> child in children)
                 {
-                    reshapeAble.ChangeDoorStateBetween(pos, child,
+                    reshapeAble.ChangeDoorStateBetween(pos.TState, child.TState,
                                                         DoorState.Opened);
                     positions.Push(child);
                 }
@@ -28,12 +28,5 @@ namespace Maze_Library.Maze.WallBreakers
 
         protected abstract TreeSearchResult<MazePosition> GetSearchTree(
                                                 IReshapeAbleMaze reshapeAble);
-        
-        private Tree<MazePosition> SearchTreeIntoTree(TreeSearchResult<MazePosition> statesTree)
-        {
-            Tree<MazePosition> tree = new Tree<MazePosition>(statesTree.GetRoot().TState);
-            // fill in tree
-            return tree;
-        }
     }
 }

@@ -5,6 +5,8 @@ namespace Maze_Library.Algorithms
 {
     class RandomizedPrim<T> : ITreeBrancher<T>
     {
+        private Random r = new Random();
+
         public TreeSearchResult<T> Branch(ISearchable<T> searchable)
         {
             TreeSearchResult<T> result = new TreeSearchResult<T>(searchable.GetInitialState());
@@ -19,8 +21,16 @@ namespace Maze_Library.Algorithms
                 {
                     foreach (State<T> state in searchable.GetReachableStatesFrom(currState))
                     {
-                        pending.Add(state);
-                        result.Add(state, currState);
+                        if (!pending.Contains(state) && !visited.Contains(state))
+                        {
+                            RandomInsert(pending, state);
+                            result.Add(state, currState);
+                        }
+                        else if (pending.Contains(state) && RandomBool())
+                        {
+                            pending.Remove(state);
+                            RandomInsert(pending, state);
+                        }
                     }
                     visited.Add(currState);
                 }
@@ -31,11 +41,27 @@ namespace Maze_Library.Algorithms
 
         private State<T> RandomRemoval(List<State<T>> list)
         {
-            Random r = new Random();
-            int random = r.Next(0, list.Count - 1);
+            int random = r.Next(list.Count - 1);
             State<T> returnVal = list[random];
             list.RemoveAt(random);
             return returnVal;
+        }
+
+        private void RandomInsert(List<State<T>> list, State<T> item)
+        {
+            int random = r.Next(list.Count > 0 ? list.Count - 1 : 0);
+            random = random > 0 ? random : 0;
+            list.Insert(random, item);
+        }
+
+        private bool RandomBool()
+        {
+            int random = r.Next(3);
+            if (random == 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

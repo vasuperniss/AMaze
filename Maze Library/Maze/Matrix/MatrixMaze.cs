@@ -8,9 +8,9 @@ namespace Maze_Library.Maze.Matrix
     internal class MatrixMaze : BaseMaze, IReshapeAbleMaze
     {
         private const char SOLPATH = '2';
-        private const char WALL = '1';
-        private const char PASS = '0';
-
+        private const char WALL = '█';
+        private const char PASS = ' ';
+        
         private char[,] mazeMatrix;
         private List<MazePosition> solution;
         private int width;
@@ -20,17 +20,19 @@ namespace Maze_Library.Maze.Matrix
         {
             this.mazeMatrix = new char[this.height = height * 2 - 1,
                                         this.width = width * 2 - 1];
-            this.OpenAllDoors();
-            BreakerFact.GetWallBreaker().BreakWalls(this);
-            this.solution = null;
 
             Random r = new Random();
             int startCol = r.Next(this.width);
             startCol = startCol % 2 == 0 ? startCol : startCol - 1;
             int endCol = r.Next(this.width);
             endCol = endCol % 2 == 0 ? endCol : endCol - 1;
-            this.startPosition = new MazePosition(0, startCol);
+            this.startPosition = new MazePosition((this.height / 2) % 2 == 0 ? this.height / 2 : this.height / 2 - 1, startCol);
             this.endPosition = new MazePosition(this.height - 1, endCol);
+
+            this.OpenAllDoors();
+            BreakerFact.GetWallBreaker().BreakWalls(this);
+            this.startPosition = new MazePosition(0, startCol);
+            this.solution = null;
         }
 
         public MatrixMaze(MatrixMaze maze)
@@ -97,16 +99,30 @@ namespace Maze_Library.Maze.Matrix
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
+            sb.Append(" ");
+            for (int j = 0; j < this.width; j++)
+            {
+                sb.Append("-");
+            }
+            sb.Append("\n");
             for (int i = 0; i < this.height; i++)
             {
                 if (i != 0)
                 {
                     sb.Append("\n");
                 }
+                sb.Append("|");
                 for (int j = 0; j < this.width; j++)
                 {
                     sb.Append(this.mazeMatrix[i, j]);
                 }
+                sb.Append("|");
+            }
+            sb.Append("\n");
+            sb.Append(" ");
+            for (int j = 0; j < this.width; j++)
+            {
+                sb.Append("-");
             }
             return sb.ToString();
         }
@@ -160,10 +176,12 @@ namespace Maze_Library.Maze.Matrix
         public void ChangeDoorStateBetween(MazePosition first,
                                         MazePosition second, DoorState state)
         {
-            int doorRow = first.Row + 1;
+            int doorRow = first.Row;
             if (second.Row < first.Row) { doorRow = first.Row - 1; }
-            int doorCol = first.Colomn + 1;
+            else if (second.Row > first.Row) { doorRow = first.Row + 1; }
+            int doorCol = first.Colomn;
             if (second.Colomn < first.Colomn) { doorCol = first.Colomn - 1; }
+            else if (second.Colomn > first.Colomn) { doorCol = first.Colomn + 1; }
             if (state == DoorState.Opened)
             {
                 this.mazeMatrix[doorRow, doorCol] = PASS;

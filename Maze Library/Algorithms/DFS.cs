@@ -35,7 +35,7 @@ namespace Maze_Library.Algorithms
                 {
                     foreach (State<T> state in searchable.GetReachableStatesFrom(currState))
                     {
-                        if (!pending.Contains(state))
+                        if (!pending.Contains(state) && !visited.Contains(state))
                         {
                             pending.Push(state);
                             resultTree.Add(state, currState);
