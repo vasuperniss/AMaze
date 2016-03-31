@@ -26,7 +26,7 @@ namespace MazeServer.View
                 if (recv == 0) break;
 
                 string message = Encoding.ASCII.GetString(data, 0, recv);
-                if (MessageReceived != null) MessageReceived(this, new MessageEventArgs(message, this));
+                if (MessageReceived != null) MessageReceived(this, new MessageEventArgs(message));
  
                 Console.WriteLine(message);
                 //SendMessage(message, recv);

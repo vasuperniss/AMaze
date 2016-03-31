@@ -1,7 +1,7 @@
 ﻿using Maze_Library;
-using Maze_Library.Maze;
 using System;
 using System.Collections.Generic;
+using Maze_Library.Maze;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -11,37 +11,47 @@ namespace MazeServer.Model
 {
     class MultiplayerGame
     {
-        private Socket FirstPlayer;
-        private Socket SecondPlayer;
-        private IMaze Maze;
-        private string Name;
+        private List<object> clients;
+        private IMaze maze;
+        private string name;
+        private IModel model;
 
-        public MultiplayerGame(Socket firstPlayer, Socket secondPlayer, string name)
+        public MultiplayerGame(IModel model, string name, IMaze maze)
         {
-            FirstPlayer = firstPlayer;
-            SecondPlayer= secondPlayer;
-            Name = name;
-            // Maze = GenerateMaze(name + " maze", 1);
+            this.name = name;
+            this.maze = maze;
+            this.model = model;
+            clients = new List<object>();
         }
 
-        public Socket GetFirstPlayerSocket()
+        public bool AddClient(object client)
         {
-            return FirstPlayer;
+            object lockThis = new object();
+            lock (lockThis)
+            {
+                // check if client is not already in the game
+                if (!clients.Contains(client) && clients.Count < 2)
+                {
+                    clients.Add(client);
+                    return true;
+                }
+            }
+            return false;
         }
 
-        public Socket GetSecondPlayerSocket()
+        public List<object> GetClients()
         {
-            return SecondPlayer;
+            return clients;
         }
 
         public string GetName()
         {
-            return Name;
+            return name;
         }
 
         public IMaze GetMaze()
         {
-            return Maze;
+            return maze;
         }
     }
 }

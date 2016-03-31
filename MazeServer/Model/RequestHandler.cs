@@ -9,7 +9,7 @@ namespace MazeServer.Model
     {
         private Dictionary<string, Commandable> Options;
 
-        public void HandleRequest(MessageEventArgs request)
+        public void HandleRequest(object from, MessageEventArgs request)
         {
             Commandable option;
 
@@ -19,7 +19,7 @@ namespace MazeServer.Model
             // Try to get option
             if (Options.TryGetValue(key, out option))
             {
-                option.PerformAction(request);
+                option.PerformAction(from, request);
             }
             else
             {

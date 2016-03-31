@@ -23,11 +23,11 @@ namespace MazeServer.Presenter
             clients = new List<IClientView>();
             tasks = new List<Task>();
 
-            Handler.AddOption("generate", new GenerateMaze(Model));
-            Handler.AddOption("solve", new SolveMaze(Model));
-            Handler.AddOption("multiplayer", new MultiplayerMaze(Model));
-            Handler.AddOption("play", new PlayMaze(Model));
-            Handler.AddOption("close", new CloseMaze(Model));
+            Handler.AddOption("generate", new GenerateOption(Model));
+            Handler.AddOption("solve", new SolveOption(Model));
+            Handler.AddOption("multiplayer", new MultiplayerOption(Model));
+            Handler.AddOption("play", new PlayOption(Model));
+            Handler.AddOption("close", new CloseOption(Model));
 
             View.OnConnect += NewConnection;
             Model.TaskCompleted += ReplyToClient;
@@ -41,15 +41,16 @@ namespace MazeServer.Presenter
             t.Start();
         }
 
-        public void MessageFromClient(object o, MessageEventArgs args)
+        public void MessageFromClient(object sender, MessageEventArgs args)
         {
-            Handler.HandleRequest(args);
-            //tasks.Add(Task.Factory.StartNew(Handler.HandleRequest(args)));
+            Handler.HandleRequest(sender, args);
+            //tasks.Add(Task.Factory.StartNew(state => (Handler.HandleRequest(sender, args))));
         }
 
-        public void ReplyToClient(object o, MessageEventArgs args)
+        public void ReplyToClient(object from, MessageEventArgs args)
         {
-            args.Client.SendMessage(args.Msg);
+            // if message is null then reply is not sent to client
+            if (args.Msg != null) ((IClientView)from).SendMessage(args.Msg);
         }
     }
 }

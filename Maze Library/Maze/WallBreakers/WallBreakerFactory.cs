@@ -4,7 +4,7 @@
     {
         public enum BreakingType
         {
-            DFS = 1, Random = 2
+            DFS = 1, Random = 0
         }
 
         private BreakingType type;

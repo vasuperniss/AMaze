@@ -5,7 +5,7 @@ namespace Maze_Library.Maze
 {
     public enum WayToSolve
     {
-        DFS, BFS
+        DFS = 0, BFS = 1
     }
 
     public class MazeSolverFactory

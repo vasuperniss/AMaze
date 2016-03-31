@@ -1,27 +1,33 @@
-﻿using MazeServer.View;
+﻿using MazeServer.Utilities;
+using MazeServer.View;
 using System;
 
 namespace MazeServer.Model.Options
 {
     abstract class Commandable
     {
-        protected IModel Model;
-        protected string[] CommandParsed;
+        protected IModel model;
+        protected static AppConfigSettingsFetcher fetcher;
 
-        public abstract string Execute();
+        public abstract string Execute(object from, string[] commandParsed);
 
-        public abstract bool Validate();
+        public abstract bool Validate(string[] commandParsed);
 
-        public void PerformAction(MessageEventArgs request)
+        public void PerformAction(object from, MessageEventArgs request)
         {
-            CommandParsed = request.Msg.Split(' ');
-            if (Validate())
+            string reply;
+            string[] commandParsed = request.Msg.Split(' ');
+
+            if (Validate(commandParsed))
+            {
+                reply = Execute(from, commandParsed);
+            }
+            else
             {
                 Console.WriteLine("Commandable Error: invalid option");
-                return;
+                reply = null;
             }
-            string reply = Execute();
-            Model.CompletedTask(new MessageEventArgs(reply, request.Client));
+            model.CompletedTask(from, new MessageEventArgs(reply));
         }
     }
 }

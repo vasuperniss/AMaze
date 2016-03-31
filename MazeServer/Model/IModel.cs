@@ -14,10 +14,12 @@ namespace MazeServer.Model
 
         void AddMultiplayerGame(string name, MultiplayerGame mp);
 
+        void AddMazeSolution(string name, string sol, string jsonDesc);
+
         IMaze GetMaze(string name);
 
         MultiplayerGame GetMultiplayerGame(string name);
 
-        void CompletedTask(MessageEventArgs reply);
+        void CompletedTask(object from, MessageEventArgs reply);
     }
 }
