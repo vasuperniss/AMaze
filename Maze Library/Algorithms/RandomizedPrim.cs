@@ -26,11 +26,6 @@ namespace Maze_Library.Algorithms
                             RandomInsert(pending, state);
                             result.Add(state, currState);
                         }
-                        else if (pending.Contains(state) && RandomBool())
-                        {
-                            pending.Remove(state);
-                            RandomInsert(pending, state);
-                        }
                     }
                     visited.Add(currState);
                 }

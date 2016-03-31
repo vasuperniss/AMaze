@@ -24,15 +24,14 @@ namespace Maze_Library.Algorithms
                 {
                     if (!visited.Contains(s))
                     {
-                        if (!pending.Contains(s))
+                        if (pending.Contains(s))
                         {
-                            State<T> pendingState = pending.Remove(s);
-                            if (state.Cost + searchee.GetCost(state, pendingState) < s.Cost)
-                            {
-                                s.Cost = state.Cost;
-                                pendingState = s;
-                            }
-                            pending.Queue(pendingState);
+                            //State<T> pendingState = pending.Remove(s);
+                            //if (s.Cost < pendingState.Cost)
+                            //{
+                            //    pending.Queue(s);
+                            //}
+                            //else { pending.Queue(pendingState); }
                         }
                         else
                         {

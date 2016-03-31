@@ -26,8 +26,8 @@
 
         public State<T> CameFrom
         {
-            get { return this.CameFrom; }
-            set { this.CameFrom = value; }
+            get { return this.cameFrom; }
+            set { this.cameFrom = value; }
         }
 
         public override bool Equals(object obj)

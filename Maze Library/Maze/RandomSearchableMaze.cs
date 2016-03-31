@@ -21,12 +21,7 @@ namespace Maze_Library.Maze
 
         public override List<State<MazePosition>> GetReachableStatesFrom(State<MazePosition> state)
         {
-            List<State<MazePosition>> states = new List<State<MazePosition>>();
-            List<MazePosition> positions = this.maze.GetAvailablePositionsFrom(state.TState);
-            foreach (MazePosition mp in positions)
-            {
-                states.Add(new State<MazePosition>(mp, state, 0));
-            }
+            List<State<MazePosition>> states = base.GetReachableStatesFrom(state);
             this.Scramble(states);
             this.RandomlyRemoveAState(states);
             this.RandomlyRemoveAState(states);

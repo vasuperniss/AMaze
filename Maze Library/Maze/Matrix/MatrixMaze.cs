@@ -7,7 +7,7 @@ namespace Maze_Library.Maze.Matrix
 {
     internal class MatrixMaze : BaseMaze, IReshapeAbleMaze
     {
-        private const char SOLPATH = '2';
+        private const char SOLPATH = 'o';
         private const char WALL = '█';
         private const char PASS = ' ';
         
@@ -99,30 +99,16 @@ namespace Maze_Library.Maze.Matrix
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(" ");
-            for (int j = 0; j < this.width; j++)
-            {
-                sb.Append("-");
-            }
-            sb.Append("\n");
             for (int i = 0; i < this.height; i++)
             {
                 if (i != 0)
                 {
                     sb.Append("\n");
                 }
-                sb.Append("|");
                 for (int j = 0; j < this.width; j++)
                 {
                     sb.Append(this.mazeMatrix[i, j]);
                 }
-                sb.Append("|");
-            }
-            sb.Append("\n");
-            sb.Append(" ");
-            for (int j = 0; j < this.width; j++)
-            {
-                sb.Append("-");
             }
             return sb.ToString();
         }
