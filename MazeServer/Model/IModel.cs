@@ -16,7 +16,7 @@ namespace MazeServer.Model
 
         void AddMazeSolution(string name, string jsonDesc);
 
-        bool IsClientInQueue(object client);
+        MultiplayerGame IsClientInGame(object client);
 
         IMaze GetMaze(string name);
 

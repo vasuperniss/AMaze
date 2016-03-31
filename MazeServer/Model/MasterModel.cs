@@ -101,14 +101,14 @@ namespace MazeServer.Model
             }
         }
 
-        public bool IsClientInQueue(object client)
+        public MultiplayerGame IsClientInGame(object client)
         {
             foreach (string key in mpGames.Keys)
             {
-                if (mpGames[key].ContainsClient(client)) return true;
+                if (mpGames[key].ContainsClient(client)) return mpGames[key];
             }
 
-            return false;
+            return null;
         }
 
         public void CompletedTask(object from, MessageEventArgs reply)

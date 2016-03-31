@@ -51,6 +51,15 @@ namespace MazeServer.Model
             return clients;
         }
 
+        public void RetrieveOtherClient(object cl, out object other)
+        {
+            other = null;
+            foreach (object client in clients)
+            {
+                if (client != cl) other = client;
+            }
+        }
+
         public string GetName()
         {
             return name;

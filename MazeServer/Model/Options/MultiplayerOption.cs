@@ -22,8 +22,8 @@ namespace MazeServer.Model.Options
             // game does not exist
             if(g == null)
             {
-                // client is already waiting for a different multiplayer game to start
-                if (model.IsClientInQueue(from)) return null;
+                // client is already in a different multiplayer game
+                if (model.IsClientInGame(from) != null) return null;
 
                 // otherwise create a game
                 IMaze maze = GenerateOption.CreateMaze(1);
