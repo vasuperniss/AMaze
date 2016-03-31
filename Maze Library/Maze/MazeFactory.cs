@@ -2,7 +2,7 @@
 
 namespace Maze_Library.Maze
 {
-    class MazeFactory
+    public class MazeFactory
     {
         private int colomns;
         private int rows;
