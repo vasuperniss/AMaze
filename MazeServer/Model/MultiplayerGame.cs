@@ -17,6 +17,11 @@ namespace MazeServer.Model
         private IModel model;
         private object lockThis;
 
+        public int Count
+        {
+            get { return clients.Count; }
+        }
+
         public MultiplayerGame(IModel model, string name, IMaze maze)
         {
             this.name = name;
@@ -46,11 +51,6 @@ namespace MazeServer.Model
             return clients.Contains(cl);
         }
 
-        public List<object> GetClients()
-        {
-            return clients;
-        }
-
         public void RetrieveOtherClient(object cl, out object other)
         {
             other = null;
@@ -58,6 +58,11 @@ namespace MazeServer.Model
             {
                 if (client != cl) other = client;
             }
+        }
+
+        public void RemoveClient(object cl)
+        {
+            clients.Remove(cl);
         }
 
         public string GetName()

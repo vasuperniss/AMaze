@@ -37,7 +37,7 @@ namespace MazeServer.Model.Options
                 // game contains 2 different clients after addition
                 if (g.AddClient(from))
                 {
-                    List<object> clients = g.GetClients();
+                    //List<object> clients = g.GetClients();
                     string reply;
                     IMaze maze = g.GetMaze();
                     object client;
@@ -49,12 +49,12 @@ namespace MazeServer.Model.Options
                     GenerateAnswer secondClient = BuildMaze(maze, name + "_2");
 
                     // first client
-                    client = clients.ElementAt(0);
+                    g.RetrieveOtherClient(from, out client);
                     reply = BuildReply(name, commandType, firstClient, secondClient);
                     model.CompletedTask(client, new View.MessageEventArgs(reply));
 
-                    // second client
-                    client = clients.ElementAt(1);
+                    // second client ('from' is the second player)
+                    client = from;
                     reply = BuildReply(name, commandType, secondClient, firstClient);
                     model.CompletedTask(client, new View.MessageEventArgs(reply));
                 }

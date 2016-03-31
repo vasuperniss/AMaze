@@ -22,6 +22,8 @@ namespace MazeServer.Model
 
         MultiplayerGame GetMultiplayerGame(string name);
 
+        void RemoveMultiplayerGame(string name);
+
         string GetMazeSolution(string name);
 
         void CompletedTask(object from, MessageEventArgs reply);

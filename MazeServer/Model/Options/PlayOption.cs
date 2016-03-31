@@ -27,7 +27,7 @@ namespace MazeServer.Model.Options
             // get the second player from the game
             game.RetrieveOtherClient(from, out otherClient);
             
-            // should never happen, but just in case
+            // a client tries to play while he's the only one in the game
             if (otherClient == null) return null;
 
             ans.Name = game.GetName();

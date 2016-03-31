@@ -86,6 +86,11 @@ namespace MazeServer.Model
             }
         }
 
+        public void RemoveMultiplayerGame(string name)
+        {
+            mpGames.Remove(name);
+        }
+
         public string GetMazeSolution(string name)
         {
             string sol;
