@@ -11,8 +11,10 @@ namespace Maze_Library.Algorithms
             PriorityQueue<State<T>> pending = new PriorityQueue<State<T>>(new StateComparer<T>());
             pending.Queue(searchee.GetInitialState());
 
+            int count = 0;
             while (!pending.isEmpty())
             {
+                count++;
                 State<T> state = pending.DeQueue();
                 visited.Add(state);
                 if (state.Equals(searchee.GetGoalState()))
@@ -26,12 +28,12 @@ namespace Maze_Library.Algorithms
                     {
                         if (pending.Contains(s))
                         {
-                            //State<T> pendingState = pending.Remove(s);
-                            //if (s.Cost < pendingState.Cost)
-                            //{
-                            //    pending.Queue(s);
-                            //}
-                            //else { pending.Queue(pendingState); }
+                            State<T> pendingState = pending.Remove(s);
+                            if (s.Cost < pendingState.Cost)
+                            {
+                                pending.Queue(s);
+                            }
+                            else { pending.Queue(pendingState); }
                         }
                         else
                         {
@@ -40,6 +42,7 @@ namespace Maze_Library.Algorithms
                     }
                 }
             }
+            
             // didn't find
             return null;
         }

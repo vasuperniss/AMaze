@@ -50,8 +50,8 @@
     <Compile Include="Algorithms\TreeSearchResult.cs" />
     <Compile Include="Algorithms\State.cs" />
     <Compile Include="Algorithms\StateComparer.cs" />
+    <Compile Include="Collections\RandomList.cs" />
     <Compile Include="Collections\Tree.cs" />
-    <Compile Include="Collections\Vector.cs" />
     <Compile Include="Collections\PriorityQueue.cs" />
     <Compile Include="Maze\BaseMaze.cs" />
     <Compile Include="Maze\IMaze.cs" />

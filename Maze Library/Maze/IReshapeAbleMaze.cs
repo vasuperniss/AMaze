@@ -8,5 +8,6 @@
 
         void ChangeDoorStateBetween(MazePosition first, MazePosition second,
                                                             DoorState state);
+        bool ChangeEndPosition(MazePosition position);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Maze_Library.Collections;
+using System;
 using System.Collections.Generic;
 
 namespace Maze_Library.Algorithms
@@ -11,20 +12,28 @@ namespace Maze_Library.Algorithms
         {
             TreeSearchResult<T> result = new TreeSearchResult<T>(searchable.GetInitialState());
             HashSet<State<T>> visited = new HashSet<State<T>>();
-            List<State<T>> pending = new List<State<T>>();
+            RandomList<State<T>> pending = new RandomList<State<T>>();
 
-            pending.Add(searchable.GetInitialState());
+            pending.RandomInsert(searchable.GetInitialState());
             while (pending.Count > 0)
             {
-                State<T> currState = RandomRemoval(pending);
+                State<T> currState = pending.RandomRemoval();
                 if (!visited.Contains(currState))
                 {
                     foreach (State<T> state in searchable.GetReachableStatesFrom(currState))
                     {
-                        if (!pending.Contains(state) && !visited.Contains(state))
+                        if (!visited.Contains(state))
                         {
-                            RandomInsert(pending, state);
-                            result.Add(state, currState);
+                            if (!pending.Contains(state))
+                            {
+                                pending.RandomInsert(state);
+                                result.Add(state, currState);
+                            }
+                            else if (this.RandomBool())
+                            {
+                                result.RemoveLeaf(state);
+                                result.Add(state, currState);
+                            }
                         }
                     }
                     visited.Add(currState);
@@ -51,7 +60,7 @@ namespace Maze_Library.Algorithms
 
         private bool RandomBool()
         {
-            int random = r.Next(3);
+            int random = r.Next(2);
             if (random == 0)
             {
                 return true;
