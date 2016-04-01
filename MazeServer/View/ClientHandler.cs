@@ -35,7 +35,7 @@ namespace MazeServer.View
 
         public void SendMessage(string message)
         {
-            byte[] data = Encoding.ASCII.GetBytes(message.ToUpper());
+            byte[] data = Encoding.ASCII.GetBytes(message);
             ClientSocket.Send(data);
         }
     }

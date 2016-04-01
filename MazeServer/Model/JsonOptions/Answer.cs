@@ -10,7 +10,7 @@ namespace MazeServer.Model.JsonOptions
     class Answer
     {
         private int type;
-        private string data;
+        private object data;
 
         public int Type
         {
@@ -18,7 +18,7 @@ namespace MazeServer.Model.JsonOptions
             set { type = value;  }
         }
 
-        public string Content
+        public object Content
         {
             get { return data; }
             set { data = value; }
@@ -28,7 +28,7 @@ namespace MazeServer.Model.JsonOptions
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             this.type = type;
-            this.data = serializer.Serialize(ans);
+            this.data = ans;
 
             return serializer.Serialize(this);
         }

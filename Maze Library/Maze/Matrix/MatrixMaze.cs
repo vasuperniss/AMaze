@@ -7,9 +7,9 @@ namespace Maze_Library.Maze.Matrix
 {
     internal class MatrixMaze : BaseMaze, IReshapeAbleMaze
     {
-        private const char SOLPATH = 'o';
-        private const char WALL = '█';
-        private const char PASS = ' ';
+        private const char SOLPATH = '2';
+        private const char WALL = '1';
+        private const char PASS = '0';
         
         private char[,] mazeMatrix;
         private List<MazePosition> solution;

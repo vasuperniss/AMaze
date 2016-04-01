@@ -63,10 +63,9 @@ namespace MazeClient.Model.Server
             byte[] buffer = new byte[4096];
             while (true)
             {
-                int len = this.server.Receive(buffer);
                 try
                 {
-                    this.server.Receive(buffer);
+                    int len = this.server.Receive(buffer);
                     String response = Encoding.ASCII.GetString(buffer, 0, len);
                     this.OnResponse(response);
                 }

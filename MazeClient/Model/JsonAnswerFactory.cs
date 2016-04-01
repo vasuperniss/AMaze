@@ -1,4 +1,5 @@
 ﻿using MazeClient.Model.Answer;
+using System;
 using System.Web.Script.Serialization;
 
 namespace MazeClient.Model
@@ -15,12 +16,15 @@ namespace MazeClient.Model
 
         public IServerAnswer GetJsonAnswer(string jsonStr)
         {
+            //string TypeStr = "\"Type\":";
+            //string ContentStr = "\"Content\":";
+
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            //IServerAnswer result = serializer.Deserialize<>
             //jsonStr = jsonStr.Substring(jsonStr.IndexOf(TypeStr) + TypeStr.Length);
             //int type = int.Parse(jsonStr.Substring(0, jsonStr.IndexOf(',')));
             //jsonStr = jsonStr.Substring(jsonStr.IndexOf(ContentStr) + ContentStr.Length);
             //jsonStr = jsonStr.Substring(0, jsonStr.LastIndexOf('}'));
+            Console.WriteLine(jsonStr);
             ServerAnswer answer = serializer.Deserialize<ServerAnswer>(jsonStr);
             switch (answer.Type)
             {
