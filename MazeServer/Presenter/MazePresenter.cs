@@ -50,7 +50,10 @@ namespace MazeServer.Presenter
         public void ReplyToClient(object from, MessageEventArgs args)
         {
             // if message is null then reply is not sent to client
-            if (args.Msg != null) ((IClientView)from).SendMessage(args.Msg);
+            IClientView client = from as IClientView;
+
+            if (client == null) return;
+            if (args.Msg != null) client.SendMessage(args.Msg);
         }
     }
 }

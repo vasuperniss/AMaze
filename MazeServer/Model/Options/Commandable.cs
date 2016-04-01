@@ -7,7 +7,6 @@ namespace MazeServer.Model.Options
     abstract class Commandable
     {
         protected IModel model;
-        protected static AppConfigSettingsFetcher fetcher;
 
         public abstract string Execute(object from, string[] commandParsed);
 

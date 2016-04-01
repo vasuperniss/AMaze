@@ -2,6 +2,7 @@
 using MazeServer.Utilities;
 using MazeServer.Presenter;
 using MazeServer.Model;
+using System;
 
 namespace MazeServer
 {
@@ -9,11 +10,14 @@ namespace MazeServer
     {
         static void Main(string[] args)
         {
-            AppConfigSettingsFetcher f = new AppConfigSettingsFetcher();
-            int port = f.GetPort();
-            if (port == -1) return;
+            // Reading App.config file
+            if (!AppSettings.Settings.ReadAllSettings(AppSettings.settings))
+            {
+                Console.WriteLine("Error in app.config.");
+                return;
+            }
 
-            ILobbyView cm = new Communicator(port);
+            ILobbyView cm = new Communicator(int.Parse(AppSettings.Settings["port"]));
             IModel m = new MasterModel();
             MazePresenter presenter = new MazePresenter(m, cm);
             cm.StartListening();
