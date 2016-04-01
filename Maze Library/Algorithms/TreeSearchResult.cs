@@ -32,5 +32,10 @@ namespace Maze_Library.Algorithms
         {
             return this.root.getAllChildrenOf(father);
         }
+
+        internal void RemoveLeaf(State<T> state)
+        {
+            this.root.RemoveLeaf(state);
+        }
     }
 }

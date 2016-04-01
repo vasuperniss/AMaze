@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Maze_Library.Algorithms;
 
 namespace Maze_Library.Collections
 {
@@ -41,22 +43,33 @@ namespace Maze_Library.Collections
             }
             return returnList;
         }
+
+        internal void RemoveLeaf(T item)
+        {
+            TreeNode<T> leaf = this.root.GetNodeWith(item);
+            TreeNode<T> father = leaf.GetFather();
+            father.RemoveChild(leaf);
+        }
     }
 
     internal class TreeNode<T>
     {
-        T root;
-        HashSet<TreeNode<T>> children;
+        private T root;
+        private TreeNode<T> father;
+        private HashSet<TreeNode<T>> children;
 
         public TreeNode(T root)
         {
+            this.father = null;
             this.root = root;
             this.children = new HashSet<TreeNode<T>>();
         }
 
         public void AddChild(T child)
         {
-            this.children.Add(new TreeNode<T>(child));
+            TreeNode<T> newNode = new TreeNode<T>(child);
+            newNode.father = this;
+            this.children.Add(newNode);
         }
 
         public TreeNode<T> GetNodeWith(T value)
@@ -83,6 +96,16 @@ namespace Maze_Library.Collections
         public HashSet<TreeNode<T>> GetAllChildren()
         {
             return this.children;
+        }
+
+        internal TreeNode<T> GetFather()
+        {
+            return this.father;
+        }
+
+        internal void RemoveChild(TreeNode<T> leaf)
+        {
+            this.children.Remove(leaf);
         }
 
         public T Item

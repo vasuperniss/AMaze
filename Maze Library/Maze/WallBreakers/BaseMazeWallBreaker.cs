@@ -12,6 +12,7 @@ namespace Maze_Library.Maze.WallBreakers
             reshapeAble.CloseAllDoors();
             Stack<State<MazePosition>> positions = new Stack<State<MazePosition>>();
             positions.Push(tree.GetRoot());
+            State<MazePosition> farfarthest = tree.GetRoot();
             while (positions.Count > 0)
             {
                 State<MazePosition> pos = positions.Pop();
@@ -22,6 +23,13 @@ namespace Maze_Library.Maze.WallBreakers
                     reshapeAble.ChangeDoorStateBetween(pos.TState, child.TState,
                                                         DoorState.Opened);
                     positions.Push(child);
+                    if (child.Distance > farfarthest.Distance)
+                    {
+                        if (reshapeAble.ChangeEndPosition(child.TState))
+                        {
+                            farfarthest = child;
+                        }
+                    }
                 }
             }
         }

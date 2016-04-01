@@ -26,12 +26,11 @@ namespace Maze_Library.Maze.Matrix
             startCol = startCol % 2 == 0 ? startCol : startCol - 1;
             int endCol = r.Next(this.width);
             endCol = endCol % 2 == 0 ? endCol : endCol - 1;
-            this.startPosition = new MazePosition((this.height / 2) % 2 == 0 ? this.height / 2 : this.height / 2 - 1, startCol);
+            this.startPosition = new MazePosition(0, startCol);
             this.endPosition = new MazePosition(this.height - 1, endCol);
 
             this.OpenAllDoors();
             BreakerFact.GetWallBreaker().BreakWalls(this);
-            this.startPosition = new MazePosition(0, startCol);
             this.solution = null;
         }
 
@@ -203,6 +202,17 @@ namespace Maze_Library.Maze.Matrix
                 eCol = eCol % 2 == 0 ? eCol : eCol - 1;
             }
             this.endPosition = new MazePosition(this.height - 1, eCol);
+        }
+
+        public bool ChangeEndPosition(MazePosition position)
+        {
+            if (position.Row == 0 || position.Row == this.height - 1
+                || position.Colomn == 0 || position.Colomn == this.width - 1)
+            {
+                this.endPosition = position;
+                return true;
+            }
+            return false;
         }
     }
 }
