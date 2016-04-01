@@ -46,7 +46,6 @@ namespace MazeServer.Model.Options
             JsonOptions.MazePosition finish = new JsonOptions.MazePosition();
 
             ans.Name = name;
-            ans.Maze = maze.ToString().Remove('\n');
             StringBuilder sb = new StringBuilder(maze.ToString());
             sb.Replace("\n", "", 0, sb.Length);
             ans.Maze = sb.ToString();

@@ -3,6 +3,7 @@ using Maze_Library.Maze;
 using MazeServer.Model.JsonOptions;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace MazeServer.Model.Options
 {
@@ -87,7 +88,9 @@ namespace MazeServer.Model.Options
             JsonOptions.MazePosition finish = new JsonOptions.MazePosition();
 
             ans.Name = name;
-            ans.Maze = maze.ToString().Remove('\n');
+            StringBuilder sb = new StringBuilder(maze.ToString());
+            sb.Replace("\n", "", 0, sb.Length);
+            ans.Maze = sb.ToString();
 
             start.Row = maze.GetStartPosition().Row;
             start.Col = maze.GetStartPosition().Colomn;
