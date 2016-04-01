@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeClient", "MazeClient\Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryTesting", "LibraryTesting\LibraryTesting.csproj", "{970D3725-5E24-48B8-B4B8-AC2B723BA25C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyClient", "DummyClient\DummyClient.csproj", "{C76EF812-FC91-4B83-9074-938F09AC415D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,9 @@ Global
 		{970D3725-5E24-48B8-B4B8-AC2B723BA25C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{970D3725-5E24-48B8-B4B8-AC2B723BA25C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{970D3725-5E24-48B8-B4B8-AC2B723BA25C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C76EF812-FC91-4B83-9074-938F09AC415D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C76EF812-FC91-4B83-9074-938F09AC415D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C76EF812-FC91-4B83-9074-938F09AC415D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

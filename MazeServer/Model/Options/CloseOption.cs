@@ -25,7 +25,7 @@ namespace MazeServer.Model.Options
 
         public override bool Validate(string[] commandParsed)
         {
-            if (commandParsed.Count() != 2) return false;
+            if (commandParsed.Count() != 1) return false;
 
             return true;
         }
