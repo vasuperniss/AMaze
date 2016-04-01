@@ -29,7 +29,7 @@ namespace MazeClient.Presenter
             if (sender == this.io)
             {
                 string input = (args as InputEventArgs).Input;
-                this.server.SendRequest(input);
+                //this.server.SendRequest(input);
                 this.tasks.Add(Task.Factory.StartNew(()
                                         => this.server.SendRequest(input)));
             }

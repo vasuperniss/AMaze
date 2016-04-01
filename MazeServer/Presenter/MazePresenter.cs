@@ -45,8 +45,10 @@ namespace MazeServer.Presenter
 
         public void MessageFromClient(object sender, MessageEventArgs args)
         {
-            Handler.HandleRequest(sender, args);
+            //Handler.HandleRequest(sender, args);
             //tasks.Add(Task.Factory.StartNew(state => (Handler.HandleRequest(sender, args))));
+
+            tasks.Add(Task.Factory.StartNew(() => Handler.HandleRequest(sender, args)));
         }
 
         public void ReplyToClient(object from, MessageEventArgs args)
