@@ -15,7 +15,6 @@ namespace MazeServer.View
         private int port;
         private IPEndPoint ipep;
         private Socket serverSock;
-        private bool listen;
         public event OnConnection OnConnect;
 
         public Communicator(int port)
@@ -28,13 +27,14 @@ namespace MazeServer.View
 
         public void StartListening()
         {
-            listen = true;
             serverSock.Listen(10);
+            Console.WriteLine("Listening..");
 
             Socket client;
-            while (listen)
+            while (true)
             {
                 client = serverSock.Accept();
+                Console.WriteLine("Client accepted");
                 ClientHandler ch = new ClientHandler(client);
                 if(OnConnect != null) OnConnect(this, new ConnectionEventArgs(ch));
             }
@@ -42,7 +42,7 @@ namespace MazeServer.View
 
         public void Stop()
         {
-            listen = false;
+            throw new NotImplementedException();
         }
     }
 }

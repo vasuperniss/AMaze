@@ -60,7 +60,7 @@ namespace MazeServer.Model.Options
         public static IMaze CreateMaze(int type)
         {
             WallBreakerFactory breaker = new WallBreakerFactory((WallBreakerFactory.BreakingType)type);
-            MazeFactory factory = new MazeFactory(int.Parse(AppSettings.Settings["height"]), int.Parse(AppSettings.Settings["width"]));
+            MazeFactory factory = new MazeFactory(int.Parse(AppSettings.Settings["rows"]), int.Parse(AppSettings.Settings["cols"]));
             return factory.GetMaze(breaker);
         }
     }

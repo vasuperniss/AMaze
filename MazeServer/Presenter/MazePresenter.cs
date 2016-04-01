@@ -4,6 +4,7 @@ using MazeServer.Model.Options;
 using MazeServer.View;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 
 namespace MazeServer.Presenter
 {
@@ -37,6 +38,7 @@ namespace MazeServer.Presenter
         {
             clients.Add(args.CView);
             args.CView.MessageReceived += MessageFromClient;
+            Console.WriteLine("Presenter recieved client. Starting new thread..");
             Thread t = new Thread(args.CView.StartListening);
             t.Start();
         }

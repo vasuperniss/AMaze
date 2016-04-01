@@ -18,6 +18,7 @@ namespace MazeServer.View
 
         public void StartListening()
         {
+            Console.WriteLine("ClientView listening..");
             while (true)
             {
                 byte[] data = new byte[4096];
@@ -25,10 +26,9 @@ namespace MazeServer.View
                 if (recv == 0) break;
 
                 string message = Encoding.ASCII.GetString(data, 0, recv);
+                Console.WriteLine("Message: " + message);
+
                 if (MessageReceived != null) MessageReceived(this, new MessageEventArgs(message));
- 
-                Console.WriteLine(message);
-                //SendMessage(message, recv);
             }
             ClientSocket.Close();
         }

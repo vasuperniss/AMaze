@@ -43,7 +43,7 @@ namespace MazeClient.Model.Server
 
         public bool SendRequest(string request)
         {
-            if (!this.server.Connected || request == null)
+            if (this.server.Connected && request != null)
             {
                 try
                 {

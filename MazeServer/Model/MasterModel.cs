@@ -52,7 +52,8 @@ namespace MazeServer.Model
             if (!mazeSolutions.Keys.Contains(name))
             {
                 mazeSolutions.Add(name, jsonDesc);
-                File.WriteAllText(solutions_path, jsonDesc);
+                //File.WriteAllText(solutions_path, jsonDesc);
+                File.AppendAllText(solutions_path, jsonDesc + '\n');
             }
         }
 
