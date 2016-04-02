@@ -6,9 +6,6 @@ namespace MazeClient.Model
 {
     class JsonAnswerFactory
     {
-        //private const string TypeStr = "\"Type\":";
-        //private const string ContentStr = "\"Content\":";
-
         private const int GENERATE = 1;
         private const int SOLVE = 2;
         private const int MULTIPLAYER = 3;
@@ -16,28 +13,26 @@ namespace MazeClient.Model
 
         public IServerAnswer GetJsonAnswer(string jsonStr)
         {
-            //string TypeStr = "\"Type\":";
-            //string ContentStr = "\"Content\":";
-
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            //jsonStr = jsonStr.Substring(jsonStr.IndexOf(TypeStr) + TypeStr.Length);
-            //int type = int.Parse(jsonStr.Substring(0, jsonStr.IndexOf(',')));
-            //jsonStr = jsonStr.Substring(jsonStr.IndexOf(ContentStr) + ContentStr.Length);
-            //jsonStr = jsonStr.Substring(0, jsonStr.LastIndexOf('}'));
-            Console.WriteLine(jsonStr);
-            ServerAnswer answer = serializer.Deserialize<ServerAnswer>(jsonStr);
-            switch (answer.Type)
+            try {
+                ServerAnswer answer = serializer.Deserialize<ServerAnswer>(jsonStr);
+                switch (answer.Type)
+                {
+                    case GENERATE:
+                        return serializer.ConvertToType<GenerateAnswer>(answer.Content);
+                    case SOLVE:
+                        return serializer.ConvertToType<SolveAnswer>(answer.Content);
+                    case MULTIPLAYER:
+                        return serializer.ConvertToType<MultiplayerAnswer>(answer.Content);
+                    case PLAY:
+                        return serializer.ConvertToType<PlayAnswer>(answer.Content);
+                    default:
+                        return null;
+                }
+            }
+            catch (Exception)
             {
-                case GENERATE:
-                    return serializer.ConvertToType<GenerateAnswer>(answer.Content);
-                case SOLVE:
-                    return serializer.ConvertToType<SolveAnswer>(answer.Content);
-                case MULTIPLAYER:
-                    return serializer.ConvertToType<MultiplayerAnswer>(answer.Content);
-                case PLAY:
-                    return serializer.ConvertToType<PlayAnswer>(answer.Content);
-                default:
-                    return null;
+                return null;
             }
         }
     }

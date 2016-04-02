@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 
-namespace MazeClient.Model
+namespace MazeClient
 {
     class AppSettings
     {
@@ -22,6 +22,12 @@ namespace MazeClient.Model
                 }
                 return singletonSettings;
             }
+        }
+
+        internal void AddSetting(string key, string value)
+        {
+            if (this.settingsDict != null)
+                this.settingsDict.Add(key, value);
         }
 
         private Dictionary<string, string> settingsDict;
@@ -48,6 +54,7 @@ namespace MazeClient.Model
         public string this[string key]
         {
             get { return this.settingsDict[key]; }
+            set { this.settingsDict[key] = value; }
         }
 
         private string ReadSetting(string key)

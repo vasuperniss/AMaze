@@ -35,27 +35,17 @@ namespace MazeClient.Model.Answer
 
         public override string ToString()
         {
-            int rows, cols;
-            string solDisplayStr = "";
-            if (!int.TryParse(AppSettings.Settings["rows"], out rows) ||
-                !int.TryParse(AppSettings.Settings["cols"], out cols) ||
-                this.sol.Length != (cols * 2 - 1) * (rows * 2 - 1))
-            {
-                solDisplayStr = this.sol + "\n";
-            }
-            else
-            {
-                for (int i = 0; i < rows * 2 - 1; i++)
-                {
-                    if (i > 0) { solDisplayStr += "       "; }
-                    solDisplayStr += sol.Substring(i * (cols * 2 - 1),
-                                                    rows * 2 - 1) + "\n";
-                }
-            }
+            int rows = 0, cols = 0;
+            int.TryParse(AppSettings.Settings["rows"], out rows);
+            int.TryParse(AppSettings.Settings["cols"], out cols);
+            bool isCV = bool.Parse(AppSettings.Settings["isCoolVersion"]);
+            string solDisplay = new MazeDrawer().getMazeToStr(this.sol,
+                                                    13, isCV, rows, cols);
+
             return string.Format("Solution for Maze: {0}\n"
-                                + "solution is: {1}"
-                                + "start: {2}, end: {3}",
-                                this.name, solDisplayStr, this.start, this.end);
+                                + "solution is: {1}\n"
+                                + "start: {2}\nend: {3}",
+                                this.name, solDisplay, this.start, this.end);
         }
     }
 }

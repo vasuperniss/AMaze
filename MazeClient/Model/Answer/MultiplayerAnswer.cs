@@ -35,7 +35,7 @@ namespace MazeClient.Model.Answer
 
         public override string ToString()
         {
-            return string.Format("Multiplayer Game, game-name: {0}, maze name {1}\n"
+            return string.Format("Multiplayer Game, game-name: {0}, maze name: {1}\n"
                                 +"Your maze: {2}\nOther player's maze: {3}",this.gameName,
                                 this.mazeName, this.myMaze, this.othersMaze);
         }

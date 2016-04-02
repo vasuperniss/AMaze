@@ -12,5 +12,7 @@ namespace MazeClient.View
         void Display(string str);
 
         void Run();
+
+        void Stop();
     }
 }
