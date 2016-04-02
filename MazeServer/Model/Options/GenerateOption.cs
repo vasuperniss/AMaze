@@ -24,10 +24,12 @@ namespace MazeServer.Model.Options
             int commandType = 1;
 
             IMaze maze = CreateMaze(int.Parse(type));
-            model.AddMaze(name, maze);
 
             // build reply
-            return BuildReply(maze, name, commandType);
+            string reply = BuildReply(maze, name, commandType);
+            model.AddMaze(name, maze, reply);
+
+            return reply;
         }
 
         public override bool Validate(string[] commandParsed)

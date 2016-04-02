@@ -1,5 +1,6 @@
 ﻿using Maze_Library;
 using Maze_Library.Maze;
+using MazeServer.Model.JsonOptions;
 using MazeServer.View;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace MazeServer.Model
 {
@@ -16,6 +18,7 @@ namespace MazeServer.Model
         private Dictionary<string, string> mazeSolutions;
         private Dictionary<string, MultiplayerGame> mpGames;
         private string solutions_path;
+        private string mazes_path;
         public event UpdateModel TaskCompleted;
 
         public MasterModel()
@@ -26,34 +29,46 @@ namespace MazeServer.Model
 
             string dir = Directory.GetCurrentDirectory();
             solutions_path = dir + "\\" + "mazeSolutions.json";
+            mazes_path = dir + "\\" + "mazes.json";
 
-            if (File.Exists(solutions_path))
-            {
-
-            }
-            else
-            {
-                File.Create(solutions_path);
-            }
+            CreateDataFromFile();
         }
 
-        public void AddMaze(string name, IMaze maze)
+        public void AddMaze(string name, IMaze maze, string jsonDesc)
         {
-            if(!mazes.Keys.Contains(name)) mazes.Add(name, maze);
+            try
+            {
+                mazes.Add(name, maze);
+                //File.AppendAllText(mazes_path, jsonDesc + '\n');
+            }
+            catch (ArgumentException)
+            {
+                // dictionary already contains the maze
+            }
         }
 
         public void AddMultiplayerGame(string name, MultiplayerGame mp)
         {
-            if(!mpGames.Keys.Contains(name)) mpGames.Add(name, mp);
+            try
+            {
+                mpGames.Add(name, mp);
+            }
+            catch (ArgumentException)
+            {
+                // dictionary already contains the game
+            }
         }
 
         public void AddMazeSolution(string name, string jsonDesc)
         {
-            if (!mazeSolutions.Keys.Contains(name))
+            try
             {
                 mazeSolutions.Add(name, jsonDesc);
-                //File.WriteAllText(solutions_path, jsonDesc);
                 File.AppendAllText(solutions_path, jsonDesc + '\n');
+            }
+            catch (ArgumentException)
+            {
+                // dictionary already contains the solution
             }
         }
 
@@ -122,9 +137,32 @@ namespace MazeServer.Model
             TaskCompleted(from, reply);
         }
 
-        private void CreateSolutionsFromFile()
+        private void CreateDataFromFile()
         {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            SolveAnswer solved;
+            
+            foreach (string line in File.ReadLines(@solutions_path))
+            {
+                if (line.Length > 0)
+                {
+                    Answer ans = serializer.Deserialize<Answer>(line);
+                    solved = serializer.ConvertToType<SolveAnswer>(ans.Content);
+                    mazeSolutions.Add(solved.Name, line);
+                }
+            }
 
+            /*
+            foreach (string line in File.ReadLines(@mazes_path))
+            {
+                if (line.Length > 0)
+                {
+                    Answer ans = serializer.Deserialize<Answer>(line);
+                    maze = serializer.ConvertToType<GenerateAnswer>(ans.Content);
+                    
+                }
+            }
+            */
         }
     }
 }

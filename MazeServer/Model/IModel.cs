@@ -10,7 +10,7 @@ namespace MazeServer.Model
     {
         event UpdateModel TaskCompleted;
 
-        void AddMaze(string name, IMaze maze);
+        void AddMaze(string name, IMaze maze, string jsonDesc);
 
         void AddMultiplayerGame(string name, MultiplayerGame mp);
 

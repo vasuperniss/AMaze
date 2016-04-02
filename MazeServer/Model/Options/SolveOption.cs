@@ -2,6 +2,7 @@
 using MazeServer.Model.JsonOptions;
 using MazeServer.Utilities;
 using System.Linq;
+using System.Text;
 
 namespace MazeServer.Model.Options
 {
@@ -18,12 +19,13 @@ namespace MazeServer.Model.Options
             int type = int.Parse(commandParsed[2]);
             int commandType = 2;
 
-            IMaze maze = model.GetMaze(name);
-            if (maze == null) return null;
-
             // check if there exists a solution
             string reply = model.GetMazeSolution(name);
             if (reply != null) return reply;
+
+            // otherwise fetch the maze and generate a solution
+            IMaze maze = model.GetMaze(name);
+            if (maze == null) return null;
 
             // otherwise generate one
             MazeSolverFactory solver = new MazeSolverFactory((WayToSolve)type);
@@ -57,8 +59,11 @@ namespace MazeServer.Model.Options
             finish.Row = maze.GetFinishPosition().Row;
             finish.Col = maze.GetFinishPosition().Colomn;
 
+            StringBuilder sb = new StringBuilder(solution);
+            sb.Replace("\n", "", 0, sb.Length);
+
             ans.Name = name;
-            ans.Maze = solution;
+            ans.Maze = sb.ToString();
             ans.Start = start;
             ans.End = finish;
 
