@@ -20,6 +20,8 @@ namespace MazeClient
                 return;
             }
 
+            AppSettings.Settings.AddSetting("isCoolVersion", "false");
+
             // Views Creation
             IView io = new IO();
             IServer server = new Server(AppSettings.Settings["ip"],

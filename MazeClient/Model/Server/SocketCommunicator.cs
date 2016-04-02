@@ -66,11 +66,17 @@ namespace MazeClient.Model.Server
                 try
                 {
                     int len = this.server.Receive(buffer);
+                    if (len == 0)
+                    {
+                        this.OnResponse(null);
+                        break;
+                    }
                     String response = Encoding.ASCII.GetString(buffer, 0, len);
                     this.OnResponse(response);
                 }
                 catch (SocketException)
                 {
+                    this.OnResponse(null);
                     break;
                 }
             }

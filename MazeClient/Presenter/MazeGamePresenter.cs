@@ -29,19 +29,31 @@ namespace MazeClient.Presenter
             if (sender == this.io)
             {
                 string input = (args as InputEventArgs).Input;
-                //this.server.SendRequest(input);
                 this.tasks.Add(Task.Factory.StartNew(()
                                         => this.server.SendRequest(input)));
             }
             else if (sender == this.server)
             {
                 string responseInJson = (args as ResponseEventArgs).Response;
+                if (responseInJson == null)
+                {
+                    this.io.Display("Server has stoped. enter any key to"
+                                                          + " close the App");
+                    this.io.Stop();
+                    return;
+                }
                 IServerAnswer answer = new JsonAnswerFactory()
                                                 .GetJsonAnswer(responseInJson);
                 if (answer != null)
                 {
                     this.tasks.Add(Task.Factory.StartNew(()
                             => this.io.Display(answer.ToString())));
+                }
+                else
+                {
+                    this.tasks.Add(Task.Factory.StartNew(()
+                            => this.io.Display("Received a message from the"
+                            + " server, but in incorrect Json format.")));
                 }
             }
         }
