@@ -14,7 +14,7 @@ namespace MazeServer.Model.Options
             this.model = model;
         }
 
-        public override string Execute(object from, string[] commandParsed)
+        public override void Execute(object from, string[] commandParsed)
         {
             string name = commandParsed[1];
             int commandType = 3;
@@ -24,7 +24,7 @@ namespace MazeServer.Model.Options
             if(g == null)
             {
                 // client is already in a different multiplayer game
-                if (model.IsClientInGame(from) != null) return null;
+                if (model.IsClientInGame(from) != null) return;
 
                 // otherwise create a game
                 IMaze maze = GenerateOption.CreateMaze(1);
@@ -60,7 +60,6 @@ namespace MazeServer.Model.Options
                     model.CompletedTask(client, new View.MessageEventArgs(reply));
                 }
             }
-            return null;
         }
 
         public override bool Validate(string[] commandParsed)

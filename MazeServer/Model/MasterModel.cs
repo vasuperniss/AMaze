@@ -34,7 +34,7 @@ namespace MazeServer.Model
             CreateDataFromFile();
         }
 
-        public void AddMaze(string name, IMaze maze, string jsonDesc)
+        public void AddMaze(string name, IMaze maze)
         {
             try
             {
@@ -78,7 +78,6 @@ namespace MazeServer.Model
 
             if (!mazes.TryGetValue(name, out maze))
             {
-                Console.WriteLine("MasterModel Error: No maze by name " + name);
                 return null;
             }
             else

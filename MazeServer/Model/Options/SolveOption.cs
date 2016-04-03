@@ -13,7 +13,7 @@ namespace MazeServer.Model.Options
             this.model = model;
         }
 
-        public override string Execute(object from, string[] commandParsed)
+        public override void Execute(object from, string[] commandParsed)
         {
             string name = commandParsed[1];
             int type = int.Parse(commandParsed[2]);
@@ -21,22 +21,21 @@ namespace MazeServer.Model.Options
 
             // check if there exists a solution
             string reply = model.GetMazeSolution(name);
-            if (reply != null) return reply;
+            if (reply != null) model.CompletedTask(from, new View.MessageEventArgs(reply));
 
-            // otherwise fetch the maze and generate a solution
+            // otherwise try to fetch the maze and generate a solution
             IMaze maze = model.GetMaze(name);
-            if (maze == null) return null;
+            if (maze == null) return;
 
-            // otherwise generate one
+            // maze exists but without a solution
             MazeSolverFactory solver = new MazeSolverFactory((WayToSolve)type);
             maze.SolveMaze(solver);
             string solution = maze.SolutionToString();
 
             // build reply
             reply = BuildReply(maze, name, solution, commandType);
-
             model.AddMazeSolution(name, reply);
-            return reply;
+            model.CompletedTask(from, new View.MessageEventArgs(reply));
         }
 
         public override bool Validate(string[] commandParsed)

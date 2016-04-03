@@ -17,19 +17,21 @@ namespace MazeServer.Model.Options
             this.model = model;
         }
 
-        public override string Execute(object from, string[] commandParsed)
+        public override void Execute(object from, string[] commandParsed)
         {
             string name = commandParsed[1];
             string type = commandParsed[2];
             int commandType = 1;
 
+            // maze exists
+            if (model.GetMaze(name) != null) return;
+
             IMaze maze = CreateMaze(int.Parse(type));
+            model.AddMaze(name, maze);
 
             // build reply
             string reply = BuildReply(maze, name, commandType);
-            model.AddMaze(name, maze, reply);
-
-            return reply;
+            model.CompletedTask(from, new View.MessageEventArgs(reply));
         }
 
         public override bool Validate(string[] commandParsed)
