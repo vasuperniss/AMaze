@@ -1,8 +1,6 @@
 ﻿using System;
 using Maze_Library.Maze;
 using Maze_Library.Maze.WallBreakers;
-using Maze_Library.Collections;
-using System.Collections.Generic;
 
 namespace LibraryTesting
 {

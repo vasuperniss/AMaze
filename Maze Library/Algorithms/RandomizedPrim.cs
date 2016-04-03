@@ -4,14 +4,31 @@ using System.Collections.Generic;
 
 namespace Maze_Library.Algorithms
 {
+    /// <summary>
+    /// Randomized Prim algoritm class
+    /// </summary>
+    /// <typeparam name="T">the type of States to use</typeparam>
+    /// <seealso cref="Maze_Library.Algorithms.ITreeBrancher{T}" />
     class RandomizedPrim<T> : ITreeBrancher<T>
     {
+        /// <summary>
+        /// Random object
+        /// </summary>
         private Random r = new Random();
 
+        /// <summary>
+        /// Branches the specified searchable.
+        /// </summary>
+        /// <param name="searchable">The searchable.</param>
+        /// <returns>
+        /// a Search States Tree
+        /// </returns>
         public TreeSearchResult<T> Branch(ISearchable<T> searchable)
         {
             TreeSearchResult<T> result = new TreeSearchResult<T>(searchable.GetInitialState());
+            // closed list - HashSet
             HashSet<State<T>> visited = new HashSet<State<T>>();
+            // opened list - RandomList
             RandomList<State<T>> pending = new RandomList<State<T>>();
 
             pending.RandomInsert(searchable.GetInitialState());
@@ -26,11 +43,13 @@ namespace Maze_Library.Algorithms
                         {
                             if (!pending.Contains(state))
                             {
+                                // found a brand new State
                                 pending.RandomInsert(state);
                                 result.Add(state, currState);
                             }
                             else if (this.RandomBool())
                             {
+                                // change the father of state in the tree
                                 result.RemoveLeaf(state);
                                 result.Add(state, currState);
                             }
@@ -43,21 +62,10 @@ namespace Maze_Library.Algorithms
             return result;
         }
 
-        private State<T> RandomRemoval(List<State<T>> list)
-        {
-            int random = r.Next(list.Count - 1);
-            State<T> returnVal = list[random];
-            list.RemoveAt(random);
-            return returnVal;
-        }
-
-        private void RandomInsert(List<State<T>> list, State<T> item)
-        {
-            int random = r.Next(list.Count > 0 ? list.Count - 1 : 0);
-            random = random > 0 ? random : 0;
-            list.Insert(random, item);
-        }
-
+        /// <summary>
+        /// Randomizes a bool value.
+        /// </summary>
+        /// <returns>a random boolean value</returns>
         private bool RandomBool()
         {
             int random = r.Next(2);

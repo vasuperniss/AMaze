@@ -3,37 +3,79 @@ using Maze_Library.Maze.WallBreakers;
 using System.Text;
 using System;
 
+/// <summary>
+/// the Matrix namespace for Matrix based Mazes
+/// </summary>
 namespace Maze_Library.Maze.Matrix
 {
+    /// <summary>
+    /// represents a Matrix based Maze
+    /// </summary>
+    /// <seealso cref="Maze_Library.Maze.BaseMaze" />
+    /// <seealso cref="Maze_Library.Maze.IReshapeAbleMaze" />
     internal class MatrixMaze : BaseMaze, IReshapeAbleMaze
     {
+        /// <summary>
+        /// The solution path char
+        /// </summary>
         private const char SOLPATH = '2';
+        /// <summary>
+        /// The wall char
+        /// </summary>
         private const char WALL = '1';
+        /// <summary>
+        /// The pass char
+        /// </summary>
         private const char PASS = '0';
-        
+
+        /// <summary>
+        /// The maze matrix representation
+        /// </summary>
         private char[,] mazeMatrix;
+        /// <summary>
+        /// The solution of the maze
+        /// </summary>
         private List<MazePosition> solution;
+        /// <summary>
+        /// The width of the maze
+        /// </summary>
         private int width;
+        /// <summary>
+        /// The height of the maze
+        /// </summary>
         private int height;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MatrixMaze"/> class.
+        /// </summary>
+        /// <param name="height">The height of the maze.</param>
+        /// <param name="width">The width of the maze.</param>
+        /// <param name="BreakerFact">The wall breaker factory.</param>
         public MatrixMaze(int height, int width, WallBreakerFactory BreakerFact)
         {
             this.mazeMatrix = new char[this.height = height * 2 - 1,
                                         this.width = width * 2 - 1];
 
             Random r = new Random();
+            // randomly set a start and end positions
             int startCol = r.Next(this.width);
             startCol = startCol % 2 == 0 ? startCol : startCol - 1;
             int endCol = r.Next(this.width);
             endCol = endCol % 2 == 0 ? endCol : endCol - 1;
             this.startPosition = new MazePosition(0, startCol);
             this.endPosition = new MazePosition(this.height - 1, endCol);
-
+            // initiallizes the matrix array of the maze will all doors open
             this.OpenAllDoors();
+            // generates the maze
             BreakerFact.GetWallBreaker().BreakWalls(this);
             this.solution = null;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MatrixMaze"/> class.
+        /// using an existing maze
+        /// </summary>
+        /// <param name="maze">The maze to copy.</param>
         public MatrixMaze(MatrixMaze maze)
         {
             this.width = maze.width;
@@ -53,6 +95,11 @@ namespace Maze_Library.Maze.Matrix
             }
         }
 
+        /// <summary>
+        /// Gets the available positions from.
+        /// </summary>
+        /// <param name="pos">The position to move from.</param>
+        /// <returns>the positions available</returns>
         public override List<MazePosition> GetAvailablePositionsFrom(MazePosition pos)
         {
             List<MazePosition> result = new List<MazePosition>();
@@ -95,6 +142,12 @@ namespace Maze_Library.Maze.Matrix
             return result;
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -113,6 +166,12 @@ namespace Maze_Library.Maze.Matrix
         }
 
 
+        /// <summary>
+        /// Solutions to string.
+        /// </summary>
+        /// <returns>
+        /// the maze string with the solution on it
+        /// </returns>
         public override string SolutionToString()
         {
             StringBuilder sb = new StringBuilder(this.ToString());
@@ -130,6 +189,9 @@ namespace Maze_Library.Maze.Matrix
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Opens all doors in the Maze.
+        /// </summary>
         public void OpenAllDoors()
         {
             for (int i = 0; i < this.height; i++)
@@ -144,6 +206,9 @@ namespace Maze_Library.Maze.Matrix
             }
         }
 
+        /// <summary>
+        /// Closes all doors in the Maze.
+        /// </summary>
         public void CloseAllDoors()
         {
             for (int i = 0; i < this.height; i++)
@@ -158,6 +223,12 @@ namespace Maze_Library.Maze.Matrix
             }
         }
 
+        /// <summary>
+        /// Changes the door state between first and second.
+        /// </summary>
+        /// <param name="first">The first MazePosition.</param>
+        /// <param name="second">The second MazePosition.</param>
+        /// <param name="state">The door state to be set.</param>
         public void ChangeDoorStateBetween(MazePosition first,
                                         MazePosition second, DoorState state)
         {
@@ -177,11 +248,18 @@ namespace Maze_Library.Maze.Matrix
             }
         }
 
+        /// <summary>
+        /// Solves the maze.
+        /// </summary>
+        /// <param name="solver">The solver.</param>
         public override void SolveMaze(MazeSolverFactory solver)
         {
             this.solution = solver.SolveMaze(this);
         }
 
+        /// <summary>
+        /// Changes the start position.
+        /// </summary>
         public override void ChangeStartPosition()
         {
             Random r = new Random();
@@ -193,6 +271,9 @@ namespace Maze_Library.Maze.Matrix
             this.startPosition = new MazePosition(0, sCol);
         }
 
+        /// <summary>
+        /// Changes the end position.
+        /// </summary>
         public override void ChangeEndPosition()
         {
             Random r = new Random();
@@ -204,6 +285,13 @@ namespace Maze_Library.Maze.Matrix
             this.endPosition = new MazePosition(this.height - 1, eCol);
         }
 
+        /// <summary>
+        /// Changes the end position.
+        /// </summary>
+        /// <param name="position">The new End position.</param>
+        /// <returns>
+        /// true if successfuly changed the position
+        /// </returns>
         public bool ChangeEndPosition(MazePosition position)
         {
             if (position.Row == 0 || position.Row == this.height - 1

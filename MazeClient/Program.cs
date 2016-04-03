@@ -2,7 +2,6 @@
 using MazeClient.View;
 using MazeClient.Presenter;
 using MazeClient.Model.Server;
-using MazeClient.Model;
 
 namespace MazeClient
 {
