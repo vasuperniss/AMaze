@@ -22,7 +22,7 @@ namespace MazeServer.Model.Options
             }
             else
             {
-                Console.WriteLine("Commandable Error: invalid option");
+                //Console.WriteLine("Commandable Error: invalid option");
             }
         }
     }

@@ -18,7 +18,6 @@ namespace MazeServer.Model
         private Dictionary<string, string> mazeSolutions;
         private Dictionary<string, MultiplayerGame> mpGames;
         private string solutions_path;
-        private string mazes_path;
         public event UpdateModel TaskCompleted;
 
         public MasterModel()
@@ -29,7 +28,6 @@ namespace MazeServer.Model
 
             string dir = Directory.GetCurrentDirectory();
             solutions_path = dir + "\\" + "mazeSolutions.json";
-            mazes_path = dir + "\\" + "mazes.json";
 
             CreateDataFromFile();
         }
@@ -92,7 +90,7 @@ namespace MazeServer.Model
 
             if (!mpGames.TryGetValue(name, out game))
             {
-                Console.WriteLine("MasterModel Error: No multiplayer game by name " + name);
+                Console.WriteLine("MasterModel: No multiplayer game by name " + name);
                 return null;
             }
             else
@@ -103,7 +101,13 @@ namespace MazeServer.Model
 
         public void RemoveMultiplayerGame(string name)
         {
-            mpGames.Remove(name);
+            try {
+                mpGames.Remove(name);
+            }
+            catch (ArgumentNullException)
+            {
+                // no such game
+            }
         }
 
         public string GetMazeSolution(string name)
@@ -112,7 +116,7 @@ namespace MazeServer.Model
 
             if (!mazeSolutions.TryGetValue(name, out sol))
             {
-                Console.WriteLine("MasterModel Error: No maze solution by name " + name);
+                //Console.WriteLine("MasterModel: No maze solution by name " + name);
                 return null;
             }
             else
@@ -150,18 +154,6 @@ namespace MazeServer.Model
                     mazeSolutions.Add(solved.Name, line);
                 }
             }
-
-            /*
-            foreach (string line in File.ReadLines(@mazes_path))
-            {
-                if (line.Length > 0)
-                {
-                    Answer ans = serializer.Deserialize<Answer>(line);
-                    maze = serializer.ConvertToType<GenerateAnswer>(ans.Content);
-                    
-                }
-            }
-            */
         }
     }
 }

@@ -38,16 +38,12 @@ namespace MazeServer.Presenter
         {
             clients.Add(args.CView);
             args.CView.MessageReceived += MessageFromClient;
-            Console.WriteLine("Presenter recieved client. Starting new thread..");
             Thread t = new Thread(args.CView.StartListening);
             t.Start();
         }
 
         public void MessageFromClient(object sender, MessageEventArgs args)
         {
-            //Handler.HandleRequest(sender, args);
-            //tasks.Add(Task.Factory.StartNew(state => (Handler.HandleRequest(sender, args))));
-
             tasks.Add(Task.Factory.StartNew(() => Handler.HandleRequest(sender, args)));
         }
 

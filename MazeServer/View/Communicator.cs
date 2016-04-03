@@ -28,13 +28,11 @@ namespace MazeServer.View
         public void StartListening()
         {
             serverSock.Listen(10);
-            Console.WriteLine("Listening..");
 
             Socket client;
             while (true)
             {
                 client = serverSock.Accept();
-                Console.WriteLine("Client accepted");
                 ClientHandler ch = new ClientHandler(client);
                 if(OnConnect != null) OnConnect(this, new ConnectionEventArgs(ch));
             }
