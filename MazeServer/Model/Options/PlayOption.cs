@@ -13,7 +13,7 @@ namespace MazeServer.Model.Options
             this.model = model;
         }
 
-        public override string Execute(object from, string[] commandParsed)
+        public override void Execute(object from, string[] commandParsed)
         {
             string move = commandParsed[1];
             int commandType = 4;
@@ -22,20 +22,20 @@ namespace MazeServer.Model.Options
 
             // retrieve game
             MultiplayerGame game = model.IsClientInGame(from);
-            if (game == null) return null;
+            if (game == null) return;
 
             // get the second player from the game
             game.RetrieveOtherClient(from, out otherClient);
             
             // a client tries to play while he's the only one in the game
-            if (otherClient == null) return null;
+            if (otherClient == null) return;
 
             ans.Name = game.GetName();
             ans.Move = move;
             string reply = new Answer().GetJSONAnswer(commandType, ans);
             
             model.CompletedTask(otherClient, new View.MessageEventArgs(reply));
-            return null;
+            return;
         }
 
         public override bool Validate(string[] commandParsed)

@@ -12,15 +12,14 @@ namespace MazeServer.Model.Options
            this.model = model;
         }
 
-        public override string Execute(object from, string[] commandParsed)
+        public override void Execute(object from, string[] commandParsed)
         {
             MultiplayerGame game = model.IsClientInGame(from);
-            if (game == null) return null;
+            if (game == null) return;
 
             game.RemoveClient(from);
             // game is empty
             if (game.Count == 0) model.RemoveMultiplayerGame(game.GetName());
-            return null;
         }
 
         public override bool Validate(string[] commandParsed)

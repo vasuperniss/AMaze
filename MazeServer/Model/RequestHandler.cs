@@ -16,7 +16,6 @@ namespace MazeServer.Model
         public void HandleRequest(object from, MessageEventArgs request)
         {
             Commandable option;
-            Console.WriteLine("RequestHandler recieved message");
 
             // get first keyword
             string key = request.Msg.Split(' ')[0];
@@ -28,7 +27,7 @@ namespace MazeServer.Model
             }
             else
             {
-                Console.WriteLine("RequestHandler Error: Unknown request");
+                //Console.WriteLine("RequestHandler Error: Unknown request");
             }
         }
 

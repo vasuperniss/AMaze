@@ -54,7 +54,6 @@
     <Compile Include="Model\JsonOptions\PlayAnswer.cs" />
     <Compile Include="Model\JsonOptions\SolveAnswer.cs" />
     <Compile Include="Utilities\AppSettings.cs" />
-    <Compile Include="Utilities\JsonConverter.cs" />
     <Compile Include="ServerMain.cs" />
     <Compile Include="Model\MultiplayerGame.cs" />
     <Compile Include="Model\Options\Commandable.cs" />

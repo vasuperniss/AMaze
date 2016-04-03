@@ -8,25 +8,22 @@ namespace MazeServer.Model.Options
     {
         protected IModel model;
 
-        public abstract string Execute(object from, string[] commandParsed);
+        public abstract void Execute(object from, string[] commandParsed);
 
         public abstract bool Validate(string[] commandParsed);
 
         public void PerformAction(object from, MessageEventArgs request)
         {
-            string reply;
             string[] commandParsed = request.Msg.Split(' ');
 
             if (Validate(commandParsed))
             {
-                reply = Execute(from, commandParsed);
+                Execute(from, commandParsed);
             }
             else
             {
-                Console.WriteLine("Commandable Error: invalid option");
-                reply = null;
+                //Console.WriteLine("Commandable Error: invalid option");
             }
-            model.CompletedTask(from, new MessageEventArgs(reply));
         }
     }
 }

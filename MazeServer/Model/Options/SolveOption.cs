@@ -2,6 +2,7 @@
 using MazeServer.Model.JsonOptions;
 using MazeServer.Utilities;
 using System.Linq;
+using System.Text;
 
 namespace MazeServer.Model.Options
 {
@@ -12,29 +13,29 @@ namespace MazeServer.Model.Options
             this.model = model;
         }
 
-        public override string Execute(object from, string[] commandParsed)
+        public override void Execute(object from, string[] commandParsed)
         {
             string name = commandParsed[1];
             int type = int.Parse(commandParsed[2]);
             int commandType = 2;
 
-            IMaze maze = model.GetMaze(name);
-            if (maze == null) return null;
-
             // check if there exists a solution
             string reply = model.GetMazeSolution(name);
-            if (reply != null) return reply;
+            if (reply != null) model.CompletedTask(from, new View.MessageEventArgs(reply));
 
-            // otherwise generate one
+            // otherwise try to fetch the maze and generate a solution
+            IMaze maze = model.GetMaze(name);
+            if (maze == null) return;
+
+            // maze exists but without a solution
             MazeSolverFactory solver = new MazeSolverFactory((WayToSolve)type);
             maze.SolveMaze(solver);
             string solution = maze.SolutionToString();
 
             // build reply
             reply = BuildReply(maze, name, solution, commandType);
-
             model.AddMazeSolution(name, reply);
-            return reply;
+            model.CompletedTask(from, new View.MessageEventArgs(reply));
         }
 
         public override bool Validate(string[] commandParsed)
@@ -57,8 +58,11 @@ namespace MazeServer.Model.Options
             finish.Row = maze.GetFinishPosition().Row;
             finish.Col = maze.GetFinishPosition().Colomn;
 
+            StringBuilder sb = new StringBuilder(solution);
+            sb.Replace("\n", "", 0, sb.Length);
+
             ans.Name = name;
-            ans.Maze = solution;
+            ans.Maze = sb.ToString();
             ans.Start = start;
             ans.End = finish;
 
