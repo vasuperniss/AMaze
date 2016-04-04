@@ -1,27 +1,51 @@
-﻿using Maze_Library;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Maze_Library.Maze;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MazeServer.Model
 {
+    /// <summary>
+    /// Multiplayer game.
+    /// </summary>
     class MultiplayerGame
     {
+        /// <summary>
+        /// The clients list.
+        /// </summary>
         private List<object> clients;
+        /// <summary>
+        /// The maze of the game.
+        /// </summary>
         private IMaze maze;
+        /// <summary>
+        /// The name of the game.
+        /// </summary>
         private string name;
+        /// <summary>
+        /// The model.
+        /// </summary>
         private IModel model;
+        /// <summary>
+        /// The locking object.
+        /// </summary>
         private object lockThis;
 
+        /// <summary>
+        /// Gets the number of clients.
+        /// </summary>
+        /// <value>
+        /// The count.
+        /// </value>
         public int Count
         {
             get { return clients.Count; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiplayerGame"/> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="name">The name of the game.</param>
+        /// <param name="maze">The maze used in the game.</param>
         public MultiplayerGame(IModel model, string name, IMaze maze)
         {
             this.name = name;
@@ -31,9 +55,13 @@ namespace MazeServer.Model
             clients = new List<object>();
         }
 
+        /// <summary>
+        /// Adds a client.
+        /// </summary>
+        /// <param name="client">The client.</param>
+        /// <returns> 'true' if succeeded. 'false' if failed. </returns>
         public bool AddClient(object client)
         {
-            
             lock (lockThis)
             {
                 // check if client is not already in the game
@@ -46,11 +74,21 @@ namespace MazeServer.Model
             return false;
         }
 
+        /// <summary>
+        /// Determines whether the specified clients list contains a given client.
+        /// </summary>
+        /// <param name="cl">The client.</param>
+        /// <returns>'true' if the client is in this game. 'false' if he's not. </returns>
         public bool ContainsClient(object cl)
         {
             return clients.Contains(cl);
         }
 
+        /// <summary>
+        /// Retrieves the other client.
+        /// </summary>
+        /// <param name="cl">The client.</param>
+        /// <param name="other">The other client.</param>
         public void RetrieveOtherClient(object cl, out object other)
         {
             other = null;
@@ -60,16 +98,28 @@ namespace MazeServer.Model
             }
         }
 
+        /// <summary>
+        /// Removes a client.
+        /// </summary>
+        /// <param name="cl">The client.</param>
         public void RemoveClient(object cl)
         {
             clients.Remove(cl);
         }
 
+        /// <summary>
+        /// Gets the name of the game.
+        /// </summary>
+        /// <returns></returns>
         public string GetName()
         {
             return name;
         }
 
+        /// <summary>
+        /// Gets the maze used in the game.
+        /// </summary>
+        /// <returns></returns>
         public IMaze GetMaze()
         {
             return maze;

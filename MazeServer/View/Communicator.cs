@@ -1,22 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using MazeServer.Model;
-using MazeServer.Presenter;
 
 namespace MazeServer.View
 {
-    class Communicator: ILobbyView
+
+    /// <summary>
+    /// Handles connections from clients.
+    /// </summary>
+    /// <seealso cref="MazeServer.View.ILobbyView" />
+    class Communicator : ILobbyView
     {
+        /// <summary>
+        /// The port
+        /// </summary>
         private int port;
+
+        /// <summary>
+        /// The IP end point.
+        /// </summary>
         private IPEndPoint ipep;
+
+        /// <summary>
+        /// The server socket.
+        /// </summary>
         private Socket serverSock;
+
+        /// <summary>
+        /// Occurs when a client connects.
+        /// </summary>
         public event OnConnection OnConnect;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Communicator"/> class.
+        /// </summary>
+        /// <param name="port">The port.</param>
         public Communicator(int port)
         {
             this.port = port;
@@ -25,6 +42,9 @@ namespace MazeServer.View
             serverSock.Bind(ipep);
         }
 
+        /// <summary>
+        /// Starts listening. When a client is connected a new ClientHandler is created for him and the presenter is notified.
+        /// </summary>
         public void StartListening()
         {
             serverSock.Listen(10);
@@ -36,11 +56,6 @@ namespace MazeServer.View
                 ClientHandler ch = new ClientHandler(client);
                 if(OnConnect != null) OnConnect(this, new ConnectionEventArgs(ch));
             }
-        }
-
-        public void Stop()
-        {
-            throw new NotImplementedException();
         }
     }
 }

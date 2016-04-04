@@ -1,21 +1,38 @@
-﻿using Maze_Library.Maze;
-using MazeServer.Model;
-using System;
+﻿using System;
 using System.Net.Sockets;
 using System.Text;
 
 namespace MazeServer.View
 {
-    class ClientHandler: IClientView
+
+    /// <summary>
+    /// Handles communication with client.
+    /// </summary>
+    /// <seealso cref="MazeServer.View.IClientView" />
+    class ClientHandler : IClientView
     {
+        /// <summary>
+        /// The client socket.
+        /// </summary>
         private Socket ClientSocket;
+
+        /// <summary>
+        /// Occurs when a message has been received from the client.
+        /// </summary>
         public event OnMessageReceived MessageReceived;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClientHandler"/> class.
+        /// </summary>
+        /// <param name="client">The client's socket.</param>
         public ClientHandler(Socket client)
         {
             ClientSocket = client;
         }
 
+        /// <summary>
+        /// Starts listening to messages from client. When a message is received the presenter is notified.
+        /// </summary>
         public void StartListening()
         {
             byte[] data = new byte[4096];
@@ -38,6 +55,10 @@ namespace MazeServer.View
             ClientSocket.Close();
         }
 
+        /// <summary>
+        /// Sends a message to the client.
+        /// </summary>
+        /// <param name="message">The message.</param>
         public void SendMessage(string message)
         {
             byte[] data = Encoding.ASCII.GetBytes(message);

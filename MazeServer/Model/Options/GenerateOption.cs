@@ -1,27 +1,34 @@
 ﻿using System.Linq;
-using Maze_Library;
 using Maze_Library.Maze.WallBreakers;
 using MazeServer.Utilities;
 using Maze_Library.Maze;
-using Maze_Library.Maze.Matrix;
 using MazeServer.Model.JsonOptions;
-using System.Web.Script.Serialization;
 using System.Text;
 
 namespace MazeServer.Model.Options
 {
+    /// <summary>
+    /// Generates a maze.
+    /// </summary>
+    /// <seealso cref="MazeServer.Model.Options.Commandable" />
     class GenerateOption : Commandable
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateOption"/> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
         public GenerateOption(IModel model)
         {
             this.model = model;
         }
 
         /// <summary>
-        /// Executes the specified from.
+        /// Checks if the requested maze exists. If so it is sent back to the client.
+        /// Otherwise, it is created, added to the model's data,
+        /// gets converted to JSON and is sent to the client.
         /// </summary>
-        /// <param name="from">From.</param>
-        /// <param name="commandParsed">The command parsed.</param>
+        /// <param name="from">client that sent the command.</param>
+        /// <param name="commandParsed">The parsed command.</param>
         public override void Execute(object from, string[] commandParsed)
         {
             string name = commandParsed[1];
@@ -46,6 +53,14 @@ namespace MazeServer.Model.Options
             model.CompletedTask(from, new View.MessageEventArgs(reply));
         }
 
+        /// <summary>
+        /// Checks if the command contains 3 words, and if the last word is either 1 or 0.
+        /// </summary>
+        /// <param name="commandParsed">The parsed command.</param>
+        /// <returns>
+        /// 'true' if command is valid.
+        /// 'false' if command is invalid.
+        /// </returns>
         public override bool Validate(string[] commandParsed)
         {
             if (commandParsed.Count() != 3) return false;
@@ -55,6 +70,13 @@ namespace MazeServer.Model.Options
             return true;
         }
 
+        /// <summary>
+        /// Builds a reply for the client.
+        /// </summary>
+        /// <param name="maze">The maze.</param>
+        /// <param name="name">The name of the maze.</param>
+        /// <param name="type">The type of the command.</param>
+        /// <returns>reply string</returns>
         private string BuildReply(IMaze maze, string name, int type)
         {
             GenerateAnswer ans = new GenerateAnswer();
@@ -76,6 +98,11 @@ namespace MazeServer.Model.Options
             return new Answer().GetJSONAnswer(type, ans);
         }
 
+        /// <summary>
+        /// Creates the maze.
+        /// </summary>
+        /// <param name="type">The type of algorithm to use to create the maze.</param>
+        /// <returns>the created maze</returns>
         public static IMaze CreateMaze(int type)
         {
             WallBreakerFactory breaker = new WallBreakerFactory((WallBreakerFactory.BreakingType)type);

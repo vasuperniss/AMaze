@@ -8,6 +8,11 @@ namespace MazeServer
 {
     class ServerMain
     {
+        /// <summary>
+        ///     Reads information from AppConfig file and initiates the View, Model and Presenter.
+        ///     View starts listening.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         static void Main(string[] args)
         {
             // Reading App.config file
