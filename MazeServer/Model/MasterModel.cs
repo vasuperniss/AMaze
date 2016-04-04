@@ -144,6 +144,13 @@ namespace MazeServer.Model
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             SolveAnswer solved;
+
+            if (!File.Exists(@solutions_path))
+            {
+                File.Create(@solutions_path);
+                return;
+            }
+            
             
             foreach (string line in File.ReadLines(@solutions_path))
             {
@@ -151,7 +158,13 @@ namespace MazeServer.Model
                 {
                     Answer ans = serializer.Deserialize<Answer>(line);
                     solved = serializer.ConvertToType<SolveAnswer>(ans.Content);
-                    mazeSolutions.Add(solved.Name, line);
+                    try {
+                        mazeSolutions.Add(solved.Name, line);
+                    }
+                    catch (Exception)
+                    {
+                        // do nothing
+                    }
                 }
             }
         }

@@ -17,20 +17,32 @@ namespace MazeServer.Model.Options
             this.model = model;
         }
 
+        /// <summary>
+        /// Executes the specified from.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="commandParsed">The command parsed.</param>
         public override void Execute(object from, string[] commandParsed)
         {
             string name = commandParsed[1];
             string type = commandParsed[2];
             int commandType = 1;
+            string reply;
 
             // maze exists
-            if (model.GetMaze(name) != null) return;
+            IMaze existingMaze = model.GetMaze(name);
+            if (existingMaze != null)
+            {
+                reply = BuildReply(existingMaze, name, commandType);
+                model.CompletedTask(from, new View.MessageEventArgs(reply));
+                return;
+            }
 
             IMaze maze = CreateMaze(int.Parse(type));
             model.AddMaze(name, maze);
 
             // build reply
-            string reply = BuildReply(maze, name, commandType);
+            reply = BuildReply(maze, name, commandType);
             model.CompletedTask(from, new View.MessageEventArgs(reply));
         }
 

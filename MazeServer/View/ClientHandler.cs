@@ -18,15 +18,22 @@ namespace MazeServer.View
 
         public void StartListening()
         {
+            byte[] data = new byte[4096];
             while (true)
             {
-                byte[] data = new byte[4096];
-                int recv = ClientSocket.Receive(data);
-                if (recv == 0) break;
+                try
+                {
+                    int recv = ClientSocket.Receive(data);
+                    if (recv == 0) break;
 
-                string message = Encoding.ASCII.GetString(data, 0, recv);
+                    string message = Encoding.ASCII.GetString(data, 0, recv);
 
-                if (MessageReceived != null) MessageReceived(this, new MessageEventArgs(message));
+                    if (MessageReceived != null) MessageReceived(this, new MessageEventArgs(message));
+                }
+                catch (Exception)
+                {
+                    break;
+                }
             }
             ClientSocket.Close();
         }
