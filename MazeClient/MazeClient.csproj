@@ -55,7 +55,6 @@
     <Compile Include="Model\Answer\PlayAnswer.cs" />
     <Compile Include="Model\Answer\SolveAnswer.cs" />
     <Compile Include="Model\Server\ResponseEventArgs.cs" />
-    <Compile Include="Presenter\IAction.cs" />
     <Compile Include="Presenter\MazeGamePresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

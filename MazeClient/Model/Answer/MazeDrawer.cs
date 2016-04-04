@@ -2,8 +2,20 @@
 
 namespace MazeClient.Model.Answer
 {
+    /// <summary>
+    /// a Maze Drawer Object
+    /// </summary>
     class MazeDrawer
     {
+        /// <summary>
+        /// Gets the maze to string.
+        /// </summary>
+        /// <param name="maze">The maze.</param>
+        /// <param name="tabs">The tabs to add in each new line.</param>
+        /// <param name="isVisual">if the maze should be more visual.</param>
+        /// <param name="rows">The number of rows.</param>
+        /// <param name="cols">The number of cols.</param>
+        /// <returns>the Maze String</returns>
         public string getMazeToStr(string maze, int tabs, bool isVisual,
                                                     int rows, int cols)
         {
