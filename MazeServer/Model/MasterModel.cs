@@ -97,7 +97,7 @@ namespace MazeServer.Model
             try
             {
                 mazeSolutions.Add(name, jsonDesc);
-                File.AppendAllText(solutions_path, jsonDesc + '\n');
+                File.AppendAllText(@solutions_path, jsonDesc + '\n');
             }
             catch (ArgumentException)
             {
@@ -217,21 +217,17 @@ namespace MazeServer.Model
 
             if (!File.Exists(@solutions_path))
             {
-                File.Create(@solutions_path);
                 return;
             }
-
-            // exit if file is empty.
-            if (new FileInfo(@solutions_path).Length == 0) return;
 
             foreach (string line in File.ReadLines(@solutions_path))
             {
                 if (line.Length > 0)
                 {
+                    Answer ans = serializer.Deserialize<Answer>(line);
+                    solved = serializer.ConvertToType<SolveAnswer>(ans.Content);
                     try
                     {
-                        Answer ans = serializer.Deserialize<Answer>(line);
-                        solved = serializer.ConvertToType<SolveAnswer>(ans.Content);
                         mazeSolutions.Add(solved.Name, line);
                     }
                     catch (Exception)
