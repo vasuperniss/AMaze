@@ -159,7 +159,18 @@ namespace Maze_Library.Maze.Matrix
                 }
                 for (int j = 0; j < this.width; j++)
                 {
-                    sb.Append(this.mazeMatrix[i, j]);
+                    if (this.startPosition.Row == i && this.startPosition.Colomn == j)
+                    {
+                        sb.Append('*');
+                    }
+                    else if (this.endPosition.Row == i && this.endPosition.Colomn == j)
+                    {
+                        sb.Append('#');
+                    }
+                    else
+                    {
+                        sb.Append(this.mazeMatrix[i, j]);
+                    }
                 }
             }
             return sb.ToString();
@@ -178,7 +189,8 @@ namespace Maze_Library.Maze.Matrix
             for (int i = 0; i < this.solution.Count - 1; i++)
             {
                 sb.Replace(PASS, SOLPATH, this.solution[i].Row
-                            * (1 + this.width) + this.solution[i].Colomn, 1);
+                        * (1 + this.width) + this.solution[i].Colomn, 1);
+
                 sb.Replace(PASS, SOLPATH, this.solution[i + 1].Row
                         * (1 + this.width) + this.solution[i + 1].Colomn, 1);
                 MazePosition door = MazePosition.PositionBetween(this.solution[i],
@@ -186,6 +198,10 @@ namespace Maze_Library.Maze.Matrix
                 sb.Replace(PASS, SOLPATH, door.Row * (1 + this.width)
                                                                 + door.Colomn, 1);
             }
+            sb.Replace(SOLPATH, '*', this.startPosition.Row
+                        * (1 + this.width) + this.startPosition.Colomn, 1);
+            sb.Replace(SOLPATH, '#', this.endPosition.Row
+                        * (1 + this.width) + this.endPosition.Colomn, 1);
             return sb.ToString();
         }
 
