@@ -50,9 +50,10 @@ namespace MazeServer.Model.Options
             // game exists
             else
             {
-                // game contains 2 different clients after addition
-                if (g.AddClient(from))
+                // add second(different) client to game, and if the game had not been started yet
+                if (g.AddClient(from) && !g.IsInProgress())
                 {
+                    g.GameStarted();
                     string reply;
                     IMaze maze = g.GetMaze();
                     object client;
@@ -119,8 +120,7 @@ namespace MazeServer.Model.Options
         /// <param name="name">The name of it.</param>
         /// <returns>
         /// GenerateAnswer class that represents the server's answer
-        /// to a generate request 
-        /// </returns>
+        /// to a generate request </returns>
         private GenerateAnswer BuildMaze(IMaze maze, string name)
         {
             GenerateAnswer ans = new GenerateAnswer();

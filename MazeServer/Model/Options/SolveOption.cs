@@ -37,7 +37,11 @@ namespace MazeServer.Model.Options
 
             // check if there exists a solution
             string reply = model.GetMazeSolution(name);
-            if (reply != null) model.CompletedTask(from, new View.MessageEventArgs(reply));
+            if (reply != null)
+            {
+                model.CompletedTask(from, new View.MessageEventArgs(reply));
+                return;
+            }
 
             // otherwise try to fetch the maze and generate a solution
             IMaze maze = model.GetMaze(name);

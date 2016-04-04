@@ -30,6 +30,11 @@ namespace MazeServer.Model
         private object lockThis;
 
         /// <summary>
+        /// indicates if a game had started.
+        /// </summary>
+        private bool gameStarted;
+
+        /// <summary>
         /// Gets the number of clients.
         /// </summary>
         /// <value>
@@ -53,6 +58,7 @@ namespace MazeServer.Model
             this.model = model;
             lockThis = new object();
             clients = new List<object>();
+            gameStarted = false;
         }
 
         /// <summary>
@@ -72,6 +78,20 @@ namespace MazeServer.Model
                 }
             }
             return false;
+        }
+
+
+        /// <summary>
+        /// Starts the game.
+        /// </summary>
+        public void GameStarted()
+        {
+            gameStarted = true;
+        }
+
+        public bool IsInProgress()
+        {
+            return gameStarted;
         }
 
         /// <summary>

@@ -4,6 +4,7 @@ using MazeServer.Utilities;
 using Maze_Library.Maze;
 using MazeServer.Model.JsonOptions;
 using System.Text;
+using System.Web.Script.Serialization;
 
 namespace MazeServer.Model.Options
 {
@@ -35,6 +36,14 @@ namespace MazeServer.Model.Options
             string type = commandParsed[2];
             int commandType = 1;
             string reply;
+
+            string mazeSol = model.GetMazeSolution(name);
+            if(mazeSol != null)
+            {
+                reply = ConvertSolutionToMaze(mazeSol);
+                model.CompletedTask(from, new View.MessageEventArgs(reply));
+                return;
+            }
 
             // maze exists
             IMaze existingMaze = model.GetMaze(name);
@@ -108,6 +117,25 @@ namespace MazeServer.Model.Options
             WallBreakerFactory breaker = new WallBreakerFactory((WallBreakerFactory.BreakingType)type);
             MazeFactory factory = new MazeFactory(int.Parse(AppSettings.Settings["rows"]), int.Parse(AppSettings.Settings["cols"]));
             return factory.GetMaze(breaker);
+        }
+
+        /// <summary>
+        /// Converts a maze solution to a maze.
+        /// swaps all 2's to 0's.
+        /// </summary>
+        /// <param name="sol">The sol.</param>
+        /// <returns>JSON object of the final answer.</returns>
+        private string ConvertSolutionToMaze(string sol)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            Answer ans = serializer.Deserialize<Answer>(sol);
+            SolveAnswer solved = serializer.ConvertToType<SolveAnswer>(ans.Content);
+
+            StringBuilder sb = new StringBuilder(solved.Maze);
+            sb.Replace("2", "0", 0, sb.Length);
+            solved.Maze = sb.ToString();
+
+            return new Answer().GetJSONAnswer(ans.Type, solved);
         }
     }
 }
