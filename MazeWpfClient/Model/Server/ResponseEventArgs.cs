@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace MazeClient.Model.Server
+namespace MazeWpfClient.Model.Server
 {
     /// <summary>
     /// event args object for server Response event
     /// </summary>
     /// <seealso cref="System.EventArgs" />
-    class ResponseEventArgs : EventArgs
+    public class ResponseEventArgs : EventArgs
     {
         /// <summary>
         /// The response

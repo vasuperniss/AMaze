@@ -1,11 +1,11 @@
 ﻿using System.Text;
 
-namespace MazeClient.Model.Answer
+namespace MazeWpfClient.Model.Answer
 {
     /// <summary>
     /// a Maze Drawer Object
     /// </summary>
-    class MazeDrawer
+    public class MazeDrawer
     {
         /// <summary>
         /// Gets the maze to string.

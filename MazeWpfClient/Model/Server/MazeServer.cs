@@ -1,10 +1,10 @@
-﻿namespace MazeClient.Model.Server
+﻿namespace MazeWpfClient.Model.Server
 {
     /// <summary>
     /// the Server View
     /// </summary>
     /// <seealso cref="MazeClient.Model.Server.IServer" />
-    class Server : IServer
+    class MazeServer : IServer
     {
         /// <summary>
         /// The Socket Communicator to talk to the server
@@ -20,11 +20,11 @@
         public event HandleEvent OnResponseReceived;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Server"/> class.
+        /// Initializes a new instance of the <see cref="MazeServer"/> class.
         /// </summary>
         /// <param name="ip">The ip of the server.</param>
         /// <param name="port">The port of the server.</param>
-        public Server(string ip, int port)
+        public MazeServer(string ip, int port)
         {
             this.server = new SocketCommunicator(ip, port);
         }

@@ -1,9 +1,9 @@
-﻿namespace MazeClient.Model.Answer
+﻿namespace MazeWpfClient.Model.Answer
 {
     /// <summary>
     /// a Position in a Maze
     /// </summary>
-    class MazePosition
+    public class MazePosition
     {
         /// <summary>
         /// The row of the position
@@ -13,6 +13,12 @@
         /// The col of the position
         /// </summary>
         private int col;
+
+        public MazePosition(MazePosition pos)
+        {
+            this.row = pos.row;
+            this.col = pos.col;
+        }
 
         /// <summary>
         /// Gets or sets the row.

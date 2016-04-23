@@ -1,9 +1,9 @@
-﻿namespace MazeClient.Model.Answer
+﻿namespace MazeWpfClient.Model.Answer
 {
     /// <summary>
     /// Represents Classes that are Server Answers
     /// </summary>
-    interface IServerAnswer
+    public interface IServerAnswer
     {
     }
 }

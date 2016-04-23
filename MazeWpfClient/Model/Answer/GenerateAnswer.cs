@@ -1,12 +1,10 @@
-﻿using MazeClient.Model.Answer;
-
-namespace MazeClient.Model
+﻿namespace MazeWpfClient.Model.Answer
 {
     /// <summary>
     /// a Generate Server Answer
     /// </summary>
     /// <seealso cref="MazeClient.Model.Answer.IServerAnswer" />
-    class GenerateAnswer : IServerAnswer
+    public class GenerateAnswer : IServerAnswer
     {
         /// <summary>
         /// The name of the Maze

@@ -1,10 +1,10 @@
-﻿namespace MazeClient.Model.Answer
+﻿namespace MazeWpfClient.Model.Answer
 {
     /// <summary>
     /// a Solve Server Answer
     /// </summary>
     /// <seealso cref="MazeClient.Model.Answer.IServerAnswer" />
-    class SolveAnswer : IServerAnswer
+    public class SolveAnswer : IServerAnswer
     {
         /// <summary>
         /// The name of the maze

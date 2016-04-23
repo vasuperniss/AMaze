@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace MazeClient.Model.Server
+namespace MazeWpfClient.Model.Server
 {
     /// <summary>
     /// a Socket Communicator

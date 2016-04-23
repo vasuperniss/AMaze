@@ -1,8 +1,8 @@
-﻿using MazeClient.Model.Answer;
+﻿using MazeWpfClient.Model.Answer;
 using System;
 using System.Web.Script.Serialization;
 
-namespace MazeClient.Model
+namespace MazeWpfClient.Model
 {
     /// <summary>
     /// Factory for generating ServerAnswers from json strings

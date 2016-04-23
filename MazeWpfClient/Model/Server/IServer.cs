@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace MazeClient.Model.Server
+namespace MazeWpfClient.Model.Server
 {
     /// <summary>
     /// a basic event delegate
     /// </summary>
     /// <param name="sender">The sender.</param>
     /// <param name="args">The <see cref="EventArgs"/> instance containing the event data.</param>
-    public delegate void HandleEvent(object sender, EventArgs args);
+    public delegate void HandleEvent(object sender, ResponseEventArgs args);
 
     /// <summary>
     /// the Server interface
