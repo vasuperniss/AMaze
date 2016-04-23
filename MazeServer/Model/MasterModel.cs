@@ -217,7 +217,7 @@ namespace MazeServer.Model
 
             if (!File.Exists(@solutions_path))
             {
-                File.Create(@solutions_path);
+                //File.Create(@solutions_path);
                 return;
             }
 

@@ -79,6 +79,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Answer\GenerateAnswer.cs" />
+    <Compile Include="Model\Answer\IServerAnswer.cs" />
+    <Compile Include="Model\Answer\MazeDrawer.cs" />
+    <Compile Include="Model\Answer\MazePosition.cs" />
+    <Compile Include="Model\Answer\MultiplayerAnswer.cs" />
+    <Compile Include="Model\Answer\PlayAnswer.cs" />
+    <Compile Include="Model\Answer\SolveAnswer.cs" />
+    <Compile Include="Model\JsonAnswerFactory.cs" />
+    <Compile Include="Model\Server\IServer.cs" />
+    <Compile Include="Model\Server\ResponseEventArgs.cs" />
+    <Compile Include="Model\Server\Server.cs" />
+    <Compile Include="Model\Server\SocketCommunicator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -113,6 +125,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon-maze.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\maze-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
+    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

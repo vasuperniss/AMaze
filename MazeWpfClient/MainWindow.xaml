@@ -5,14 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MazeWpfClient"
         mc:Ignorable="d"
-        Title="Maze Game - Main Menu" Height="350" Width="500" ResizeMode="NoResize" WindowStyle="ToolWindow" Icon="icon-maze.ico">
+        Title="Maze Game - Main Menu" Height="400" Width="500" ResizeMode="NoResize" WindowStyle="ToolWindow" Icon="icon-maze.ico">
     <Window.Effect>
         <DropShadowEffect Color="#FF4D0D4A"/>
     </Window.Effect>
-    <Grid>
+    <Window.Resources>
+        <Style TargetType="Label" x:Key="labelButtonStyle">
+            <Setter Property="Foreground" Value="Blue"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FF320B29"/>
+                    <Setter Property="FontSize" Value="28"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Foreground" Value="#FF0A0C17"/>
+                    <Setter Property="FontSize" Value="24"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FF320B29"/>
+                    <Setter Property="FontSize" Value="28"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Foreground" Value="#FF0A0C17"/>
+                    <Setter Property="FontSize" Value="24"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Background="Azure" Height="Auto">
         <Grid.RowDefinitions>
-            <RowDefinition Height="27*"/>
-            <RowDefinition Height="82*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#FF6D9795">
+            <Image x:Name="image" HorizontalAlignment="Center" VerticalAlignment="Center" Source="Resources/maze-logo.png" Stretch="UniformToFill" Height="112" Width="265"/>
+        </Grid>
+        <Grid Grid.Row="1" Background="#FF98B2B8"/>
+        <Grid Grid.Row="2" Background="#FFBDD3C3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" Content=" Single player" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource labelButtonStyle}" BorderThickness="3,0,0,0" BorderBrush="#FF1E4F20"/>
+            <Label Grid.Row="3" Content=" Multi player" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource labelButtonStyle}" BorderBrush="#FFB61616" BorderThickness="3,0,0,0"/>
+            <Label Grid.Row="5" Content=" Settings" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource labelButtonStyle}" BorderBrush="#FFC7B718" BorderThickness="3,0,0,0"/>
+        </Grid>
     </Grid>
 </Window>
