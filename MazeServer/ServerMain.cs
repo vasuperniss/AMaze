@@ -22,6 +22,7 @@ namespace MazeServer
                 return;
             }
 
+            // test
             ILobbyView lv = new Communicator(int.Parse(AppSettings.Settings["port"]));
             IModel m = new MasterModel();
             MazePresenter presenter = new MazePresenter(m, lv);
