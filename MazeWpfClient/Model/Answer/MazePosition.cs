@@ -14,6 +14,11 @@
         /// </summary>
         private int col;
 
+        public MazePosition()
+        {
+
+        }
+
         public MazePosition(MazePosition pos)
         {
             this.row = pos.row;

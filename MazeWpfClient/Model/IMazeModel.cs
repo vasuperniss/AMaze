@@ -4,7 +4,7 @@ namespace MazeWpfClient.Model
 {
     public enum Move { Up, Down, Left, Right }
 
-    interface IMazeModel : INotifyPropertyChanged
+    public interface IMazeModel : INotifyPropertyChanged
     {
         bool Connect(string ip, int port);
         void LoadNewSinglePlayer(string mazeName);

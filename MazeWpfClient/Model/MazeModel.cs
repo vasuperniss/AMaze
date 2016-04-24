@@ -5,7 +5,7 @@ using System;
 
 namespace MazeWpfClient.Model
 {
-    class MazeModel : IMazeModel
+    public class MazeModel : IMazeModel
     {
         private IServer server;
         private JsonAnswerFactory answersFactory;
@@ -130,18 +130,14 @@ namespace MazeWpfClient.Model
         private void ServerResponseHandler(object sender, ResponseEventArgs args)
         {
             IServerAnswer answer = this.answersFactory.GetJsonAnswer(args.Response);
-            if (answer is GenerateAnswer)
+            switch ((answer as ServerAnswer).Type)
             {
-                this.SinglePlayerGame = new SinglePlayerMaze(answer as GenerateAnswer, width, height);
-            } else if (answer is MultiplayerAnswer)
-            {
-                this.MultiPlayerGame = new MultiPlayerMaze(answer as MultiplayerAnswer);
-            } else if (answer is SolveAnswer)
-            {
-
-            } else if (answer is PlayAnswer)
-            {
-
+                case 1:
+                    this.SinglePlayerGame = new SinglePlayerMaze((answer as ServerAnswer).Content as GenerateAnswer, width, height);
+                    break;
+                case 2:
+                    this.MultiPlayerGame = new MultiPlayerMaze((answer as ServerAnswer).Content as MultiplayerAnswer);
+                    break;
             }
         }
     }
