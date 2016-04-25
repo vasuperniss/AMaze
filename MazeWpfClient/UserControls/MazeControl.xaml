@@ -7,13 +7,15 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Border Width="Auto" Height="Auto" BorderBrush="#FFA61C1C" BorderThickness="2">
-        <Grid Background="AntiqueWhite" Width="Auto" Height="Auto">
+        <Grid Background="BlueViolet" Width="Auto" Height="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.2*"/>
                 <RowDefinition Height="0.8*"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Canvas DataContext="{Binding Maze}" x:Name="canvas" Grid.Row="1" Margin="5" Width="Auto" Height="Auto" DataContextChanged="canvasContextChanged"/>
+            <TextBlock Grid.Row="0" Text="{Binding VM_MazeName}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+            <Canvas Background="Beige" x:Name="canvas" Grid.Row="1" Margin="5" Width="Auto" Height="Auto"/>
+            <TextBox Visibility="Hidden" Text="{Binding VM_PlayerPosition}" TextChanged="PositionTextChanged"/>
+            <TextBox Visibility="Hidden" Text="{Binding VM_MazeString}" TextChanged="MazeTextChanged"/>
         </Grid>
     </Border>
 </UserControl>

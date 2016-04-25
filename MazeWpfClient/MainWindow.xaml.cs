@@ -1,4 +1,5 @@
 ﻿using MazeWpfClient.Model;
+using MazeWpfClient.Model.Server;
 using MazeWpfClient.View;
 using System.Windows;
 
@@ -9,14 +10,17 @@ namespace MazeWpfClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        private IMazeModel model;
+        private ISinglePlayerModel model;
 
         public MainWindow()
         {
             InitializeComponent();
-            model = new MazeModel(10, 10);
-            if (model.Connect("127.0.0.1", 55000))
-                model.LoadNewSinglePlayer("iMaze55");
+            IServer server = new MazeServer("127.0.0.1", 55000);
+            model = new SinglePlayerModel(server);
+            if (server.Connect())
+            {
+                model.LoadNewGame("iMaze55");
+            }
         }
 
         private void SinglePlayerBtn_Clicked(object sender, RoutedEventArgs e)

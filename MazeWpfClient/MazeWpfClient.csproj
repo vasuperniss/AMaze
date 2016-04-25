@@ -103,9 +103,9 @@
     <Compile Include="Model\Answer\MultiplayerAnswer.cs" />
     <Compile Include="Model\Answer\PlayAnswer.cs" />
     <Compile Include="Model\Answer\SolveAnswer.cs" />
-    <Compile Include="Model\IMazeModel.cs" />
+    <Compile Include="Model\ISinglePlayerModel.cs" />
     <Compile Include="Model\JsonAnswerFactory.cs" />
-    <Compile Include="Model\MazeModel.cs" />
+    <Compile Include="Model\SinglePlayerModel.cs" />
     <Compile Include="Model\MultiPlayerMaze.cs" />
     <Compile Include="Model\Server\IServer.cs" />
     <Compile Include="Model\Server\ResponseEventArgs.cs" />

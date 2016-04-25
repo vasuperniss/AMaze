@@ -1,4 +1,5 @@
 ﻿using MazeWpfClient.Model;
+using MazeWpfClient.Model.Answer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,11 +11,11 @@ namespace MazeWpfClient.ViewModel
 {
     class SinglePlayerViewModel : INotifyPropertyChanged
     {
-        private IMazeModel model;
+        private ISinglePlayerModel model;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public SinglePlayerViewModel(IMazeModel model)
+        public SinglePlayerViewModel(ISinglePlayerModel model)
         {
             this.model = model;
             this.model.PropertyChanged += Model_PropertyChanged;
@@ -26,9 +27,27 @@ namespace MazeWpfClient.ViewModel
                 this.PropertyChanged(this, new PropertyChangedEventArgs("VM_" + e.PropertyName));
         }
 
-        public SinglePlayerMaze VM_Maze
+        public void Move(Move m)
         {
-            get { return this.model.SinglePlayerGame; }
+            this.model.MakeMove(m);
+        }
+
+        public string VM_MazeName
+        {
+            get { return this.model.MazeName; }
+            set {; }
+        }
+
+        public string VM_MazeString
+        {
+            get { return this.model.MazeString; }
+            set {; }
+        }
+
+        public string VM_PlayerPosition
+        {
+            get { return this.model.PlayerPosition.ToString(); }
+            set {; }
         }
     }
 }

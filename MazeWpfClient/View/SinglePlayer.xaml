@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:MazeWpfClient.View"
         mc:Ignorable="d"
         Title="SinglePlayer" Height="456.18" Width="575.281"
-        xmlns:Controls="clr-namespace:MazeWpfClient.UserControls">
+        xmlns:Controls="clr-namespace:MazeWpfClient.UserControls" KeyUp="window_onKeyUp">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="8*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Controls:MazeControl Grid.Row="1" Margin="10" DataContext="{Binding VM_Maze}"></Controls:MazeControl>
+        <Controls:MazeControl x:Name="mazeCtrl" Grid.Row="1" Margin="10"></Controls:MazeControl>
     </Grid>
 </Window>

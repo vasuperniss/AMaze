@@ -1,4 +1,5 @@
 ﻿using MazeWpfClient.Model.Answer;
+using System.ComponentModel;
 
 namespace MazeWpfClient.Model
 {
@@ -6,14 +7,14 @@ namespace MazeWpfClient.Model
     {
         private GenerateAnswer answer;
         private MazePosition playerPosition;
-        private int height;
-        private int width;
+        private int rows;
+        private int cols;
 
-        public SinglePlayerMaze(GenerateAnswer answer, int width, int height)
+        public SinglePlayerMaze(GenerateAnswer answer, int rows, int cols)
         {
             this.answer = answer;
-            this.width = width;
-            this.height = height;
+            this.cols = cols;
+            this.rows = rows;
             this.playerPosition = new MazePosition(this.answer.Start);
         }
 
@@ -40,7 +41,10 @@ namespace MazeWpfClient.Model
         public MazePosition PlayerPosition
         {
             get { return this.playerPosition; }
-            set { this.playerPosition = value; }
+            set
+            {
+                this.playerPosition = value;
+            }
         }
 
         public void Move(Move move)
@@ -48,36 +52,36 @@ namespace MazeWpfClient.Model
             switch (move)
             {
                 case Model.Move.Up:
-                    if (this.playerPosition.Col > 0)
+                    if (this.playerPosition.Row > 0)
                     {
-                        if (this.Maze[(this.playerPosition.Row - 1) * (this.height) + this.playerPosition.Col] == '0')
+                        if (this.Maze[(this.playerPosition.Row - 1) * (this.cols * 2 - 1) + this.playerPosition.Col] == '0')
                         {
                             this.PlayerPosition.Row -= 2;
                         }
                     }
                     break;
                 case Model.Move.Down:
-                    if (this.playerPosition.Col < this.height)
+                    if (this.playerPosition.Row < this.rows * 2 - 2)
                     {
-                        if (this.Maze[(this.playerPosition.Row + 1) * (this.height) + this.playerPosition.Col] == '0')
+                        if (this.Maze[(this.playerPosition.Row + 1) * (this.cols * 2 - 1) + this.playerPosition.Col] == '0')
                         {
                             this.PlayerPosition.Row += 2;
                         }
                     }
                     break;
                 case Model.Move.Right:
-                    if (this.playerPosition.Row < this.width)
+                    if (this.playerPosition.Col < this.cols * 2 - 2)
                     {
-                        if (this.Maze[this.playerPosition.Row * (this.height) + this.playerPosition.Col + 1] == '0')
+                        if (this.Maze[this.playerPosition.Row * (this.cols * 2 - 1) + this.playerPosition.Col + 1] == '0')
                         {
                             this.PlayerPosition.Col += 2;
                         }
                     }
                     break;
                 case Model.Move.Left:
-                    if (this.playerPosition.Row > 0)
+                    if (this.playerPosition.Col > 0)
                     {
-                        if (this.Maze[this.playerPosition.Row * (this.height) + this.playerPosition.Col - 1] == '0')
+                        if (this.Maze[this.playerPosition.Row * (this.cols * 2 - 1) + this.playerPosition.Col - 1] == '0')
                         {
                             this.PlayerPosition.Col -= 2;
                         }

@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using MazeWpfClient.Model;
+using MazeWpfClient.Model.Answer;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -10,23 +12,31 @@ namespace MazeWpfClient.UserControls
     /// </summary>
     public partial class MazeControl : UserControl
     {
-        private string maze;
+        private Ellipse player;
 
         public MazeControl()
         {
             InitializeComponent();
+            this.player = new Ellipse();
+            this.player.Fill = Brushes.Black;
+            this.player.Width = 20;
+            this.player.Height = 20;
         }
 
-        private void canvasContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void DrawPlayer(int row, int col)
         {
-            this.maze = e.NewValue as string;
-            //this.maze = "01000101010" + "01010101010" + "00010101010" + "11110101010" + "00000101010" + "01111101010" + "00000001010";
-            //this.maze = "01000101010" + "01000101010" + "01000101010" + "01000101010" + "01000101010" + "01000101010" + "01000101010"
-            //   + "01000101010" + "01000101010" + "01000101010" + "01000101010";
+            this.canvas.Children.Remove(this.player);
+            Canvas.SetLeft(this.player, ((col / 2) * (this.canvas.ActualWidth / 24)));
+            Canvas.SetTop(this.player, ((row / 2) * (this.canvas.ActualHeight / 8)));
+            this.canvas.Children.Add(this.player);
+        }
+
+        private void DrawMaze(string maze)
+        {
             int rows = 2 * 8 - 1;
             int cols = 2 * 24 - 1;
-            char[,] matrix = this.stringMazeToIntMatrix(this.maze, rows, cols);
-            int width = (int)this.canvas.ActualWidth / 24;
+            char[,] matrix = this.stringMazeToIntMatrix(maze, rows, cols);
+            int width = (int)this.canvas.ActualWidth / 23;
             int height = (int)this.canvas.ActualHeight / 8;
             for (int i = 0; i < rows; ++i)
             {
@@ -38,13 +48,13 @@ namespace MazeWpfClient.UserControls
                         // p1 & p2
                         if (i%2 == 1)
                         {
-                            line.Y1 = (line.Y2 = (height) * ((i + 1) / 2));
+                            line.Y1 = (line.Y2 = (height) * ((i) / 2 + 1));
                             line.X1 = (width) * (j / 2);
                             line.X2 = (width) * (j / 2 + 1) + 2;
                         }
                         else
                         {
-                            line.X1 = (line.X2 = (width) * ((j + 1) / 2));
+                            line.X1 = (line.X2 = (width) * ((j) / 2 + 1));
                             line.Y1 = (height) * (i / 2);
                             line.Y2 = (height) * (i / 2 + 1) + 2;
                         }
@@ -67,6 +77,11 @@ namespace MazeWpfClient.UserControls
                 }
             }
             this.AddBorders();
+            if (this.canvas.Children.Contains(this.player))
+            {
+                this.canvas.Children.Remove(this.player);
+                this.canvas.Children.Add(this.player);
+            }
         }
 
         private void AddBorders()
@@ -104,7 +119,7 @@ namespace MazeWpfClient.UserControls
         {
             Line line = new Line();
             line.Stroke = Brushes.Black;
-            line.StrokeThickness = 5;
+            line.StrokeThickness = 5.5;
             return line;
         }
 
@@ -127,6 +142,23 @@ namespace MazeWpfClient.UserControls
                 for (int j = 0; j < cols; j++)
                     matrix[i, j] = m[i * cols + j];
             return matrix;
+        }
+
+        private void MazeTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((sender as TextBox).Text.Length > 0)
+                this.DrawMaze((sender as TextBox).Text);
+        }
+
+        private void PositionTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((sender as TextBox).Text.Length > 0)
+            {
+                string[] position = (sender as TextBox).Text.Split(new char[] { ',' });
+                int row = int.Parse(position[0]);
+                int col = int.Parse(position[1]);
+                this.DrawPlayer(row, col);
+            }
         }
     }
 }

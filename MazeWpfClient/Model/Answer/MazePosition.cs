@@ -57,7 +57,7 @@
         /// </returns>
         public override string ToString()
         {
-            return "(row: " + this.row + ", col: " + this.col + ")";
+            return this.row + "," + this.col;
         }
     }
 }

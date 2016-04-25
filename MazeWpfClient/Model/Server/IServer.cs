@@ -12,7 +12,7 @@ namespace MazeWpfClient.Model.Server
     /// <summary>
     /// the Server interface
     /// </summary>
-    interface IServer
+    public interface IServer
     {
         /// <summary>
         /// Occurs when [on response received].
