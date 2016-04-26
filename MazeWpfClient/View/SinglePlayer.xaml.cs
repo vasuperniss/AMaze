@@ -22,34 +22,40 @@ namespace MazeWpfClient.View
 
         private void window_onKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if(e.Key == System.Windows.Input.Key.W)
-            {
-                this.vm.Move(Move.Up);
-            }
-            else if (e.Key == System.Windows.Input.Key.S)
-            {
-                this.vm.Move(Move.Down);
-            }
-            else if (e.Key == System.Windows.Input.Key.D)
-            {
-                this.vm.Move(Move.Right);
-            }
-            else if (e.Key == System.Windows.Input.Key.A)
-            {
-                this.vm.Move(Move.Left);
+            switch (e.Key) {
+                case System.Windows.Input.Key.W:
+                case System.Windows.Input.Key.Up:
+                    this.vm.Move(Move.Up);
+                    break;
+                case System.Windows.Input.Key.S:
+                case System.Windows.Input.Key.Down:
+                    this.vm.Move(Move.Down);
+                    break;
+                case System.Windows.Input.Key.D:
+                case System.Windows.Input.Key.Right:
+                    this.vm.Move(Move.Right);
+                    break;
+                case System.Windows.Input.Key.A:
+                case System.Windows.Input.Key.Left:
+                    this.vm.Move(Move.Left);
+                    break;
             }
         }
 
-        int counter = 0;
-
-        private void Label_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        public void CreateClicked(object sender, RoutedEventArgs e)
         {
-            (sender as Label).Content = "changed : " + ++counter + " times";
+            if (this.mazeNameTxt.Text.Length > 0)
+                this.vm.CreateNewMaze(this.mazeNameTxt.Text);
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        public void ShowHintClicked(object sender, RoutedEventArgs e)
         {
-            counter++;
+            this.vm.ShowHint();
+        }
+
+        public void ShowSolutionClicked(object sender, RoutedEventArgs e)
+        {
+            this.vm.ShowSolution();
         }
     }
 }

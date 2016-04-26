@@ -1,11 +1,6 @@
 ﻿using MazeWpfClient.Model;
-using MazeWpfClient.Model.Answer;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
 namespace MazeWpfClient.ViewModel
 {
@@ -29,7 +24,8 @@ namespace MazeWpfClient.ViewModel
 
         public void Move(Move m)
         {
-            this.model.MakeMove(m);
+            if (!this.model.WonGame)
+                this.model.MakeMove(m);
         }
 
         public string VM_MazeName
@@ -48,6 +44,39 @@ namespace MazeWpfClient.ViewModel
         {
             get { return this.model.PlayerPosition.ToString(); }
             set {; }
+        }
+
+        public bool VM_WonGame
+        {
+            get { return this.model.WonGame; }
+            set {; }
+        }
+
+        public string VM_SolutionString
+        {
+            get { return this.model.SolutionString; }
+            set {; }
+        }
+
+        public string VM_Hint
+        {
+            get { return this.model.Hint.ToString(); }
+            set {; }
+        }
+
+        internal void CreateNewMaze(string text)
+        {
+            this.model.LoadNewGame(text);
+        }
+
+        internal void ShowSolution()
+        {
+            this.model.SolveMaze();
+        }
+
+        internal void ShowHint()
+        {
+            this.model.GetHint();
         }
     }
 }

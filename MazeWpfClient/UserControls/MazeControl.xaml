@@ -9,13 +9,22 @@
     <Border Width="Auto" Height="Auto" BorderBrush="#FFA61C1C" BorderThickness="2">
         <Grid Background="BlueViolet" Width="Auto" Height="Auto">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="0.8*"/>
+                <RowDefinition Height="0.1*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="{Binding VM_MazeName}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
             <Canvas Background="Beige" x:Name="canvas" Grid.Row="1" Margin="5" Width="Auto" Height="Auto"/>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label x:Name="cTxt1" FontSize="28" Visibility="Hidden" Content="Congratulations!!" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FFC97C7C" BorderBrush="#FFC53232" BorderThickness="0,1"/>
+                <Label x:Name="cTxt2" Visibility="Hidden" Margin="8" Content="You solved the Maze." Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FFEAC5C5"/>
+            </StackPanel>
             <TextBox Visibility="Hidden" Text="{Binding VM_PlayerPosition}" TextChanged="PositionTextChanged"/>
             <TextBox Visibility="Hidden" Text="{Binding VM_MazeString}" TextChanged="MazeTextChanged"/>
+            <TextBox Visibility="Hidden" Text="{Binding VM_WonGame}" TextChanged="WonTextChanged"/>
+            <TextBox Visibility="Hidden" Text="{Binding VM_SolutionString}" TextChanged="SolutionTextChanged"/>
+            <TextBox Visibility="Hidden" Text="{Binding VM_Hint}" TextChanged="HintTextChanged"/>
+            <Label Grid.Row="2" Content="use the {A,W,S,D} or {Arrow} keys to play the game" Foreground="#FFF1F1F1"/>
         </Grid>
     </Border>
 </UserControl>

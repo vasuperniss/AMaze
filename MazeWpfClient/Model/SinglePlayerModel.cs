@@ -14,6 +14,8 @@ namespace MazeWpfClient.Model
 
         private int cols;
         private int rows;
+        private bool showSolution;
+        private bool showHint;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -28,24 +30,28 @@ namespace MazeWpfClient.Model
 
         public void LoadNewGame(string mazeName)
         {
-            this.server.SendRequest("generate " + mazeName + " 0");
+            this.server.SendRequest("generate " + mazeName + " 1");
+            this.showSolution = false;
+            this.showHint = false;
         }
 
         public void SolveMaze()
         {
-            this.server.SendRequest("solve " + this.singlePlayerMaze.Name + " 0");
+            this.showSolution = true;
+            this.NotifyPropertyChanged("SolutionString");
         }
 
         public void GetHint()
         {
-
+            this.showHint = true;
+            this.NotifyPropertyChanged("Hint");
         }
 
         public string MazeName
         {
             get
             {
-                return this.singlePlayerMaze != null ? this.singlePlayerMaze.Name : "Loading Maze...";
+                return this.singlePlayerMaze != null ? this.singlePlayerMaze.Name : "No Maze atm";
             }
             set
             {
@@ -77,6 +83,49 @@ namespace MazeWpfClient.Model
             }
         }
 
+        public bool WonGame
+        {
+            get
+            {
+                if (this.singlePlayerMaze == null)
+                {
+                    return false;
+                }
+                return this.singlePlayerMaze.End.Row == this.PlayerPosition.Row &&
+                    this.singlePlayerMaze.End.Col == this.PlayerPosition.Col;
+            }
+            set
+            {
+                this.NotifyPropertyChanged("WonGame");
+            }
+        }
+
+        public string SolutionString
+        {
+            get
+            {
+                if (!this.showSolution) return "";
+                return this.singlePlayerMaze.Solution;
+            }
+            set
+            {
+                this.NotifyPropertyChanged("SolutionString");
+            }
+        }
+
+        public MazePosition Hint
+        {
+            get
+            {
+                if (!this.showHint) return null;
+                return this.singlePlayerMaze.Hint;
+            }
+            set
+            {
+                this.NotifyPropertyChanged("Hint");
+            }
+        }
+
         private void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
@@ -87,8 +136,11 @@ namespace MazeWpfClient.Model
         {
             if (this.singlePlayerMaze != null)
             {
-                this.singlePlayerMaze.Move(move);
+                if (this.singlePlayerMaze.Move(move))
+                    this.showHint = false;
                 this.NotifyPropertyChanged("PlayerPosition");
+                this.NotifyPropertyChanged("WonGame");
+                this.NotifyPropertyChanged("Hint");
             }
         }
 
@@ -99,9 +151,26 @@ namespace MazeWpfClient.Model
             {
                 case 1:
                     this.singlePlayerMaze = new SinglePlayerMaze((answer as ServerAnswer).Content as GenerateAnswer, rows, cols);
+                    this.server.SendRequest("solve " + this.singlePlayerMaze.Name + " 0");
                     this.MazeName = this.singlePlayerMaze.Name;
                     this.MazeString = this.singlePlayerMaze.Maze;
                     this.PlayerPosition = this.singlePlayerMaze.PlayerPosition;
+                    this.WonGame = false;
+                    break;
+                case 2:
+                    if (this.singlePlayerMaze != null)
+                    {
+                        this.singlePlayerMaze.Solution = ((answer as ServerAnswer).Content as SolveAnswer).Maze;
+                    }
+                    else
+                    {
+                        this.singlePlayerMaze = new SinglePlayerMaze((answer as ServerAnswer).Content as SolveAnswer, rows, cols);
+                        this.server.SendRequest("solve " + this.singlePlayerMaze.Name + " 0");
+                        this.MazeName = this.singlePlayerMaze.Name;
+                        this.MazeString = this.singlePlayerMaze.Maze;
+                        this.PlayerPosition = this.singlePlayerMaze.PlayerPosition;
+                        this.WonGame = false;
+                    }
                     break;
             }
         }

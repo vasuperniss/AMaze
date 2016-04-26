@@ -13,6 +13,7 @@ namespace MazeWpfClient.UserControls
     public partial class MazeControl : UserControl
     {
         private Ellipse player;
+        private Ellipse hint;
 
         public MazeControl()
         {
@@ -21,6 +22,11 @@ namespace MazeWpfClient.UserControls
             this.player.Fill = Brushes.Black;
             this.player.Width = 20;
             this.player.Height = 20;
+
+            this.hint = new Ellipse();
+            this.hint.Fill = Brushes.OrangeRed;
+            this.hint.Width = 30;
+            this.hint.Height = 30;
         }
 
         private void DrawPlayer(int row, int col)
@@ -31,8 +37,25 @@ namespace MazeWpfClient.UserControls
             this.canvas.Children.Add(this.player);
         }
 
+        private void DrawHint(int row, int col)
+        {
+            this.canvas.Children.Remove(this.hint);
+            Canvas.SetLeft(this.hint, ((col / 2) * (this.canvas.ActualWidth / 24)));
+            Canvas.SetTop(this.hint, ((row / 2) * (this.canvas.ActualHeight / 8)));
+            this.canvas.Children.Add(this.hint);
+            if (this.canvas.Children.Contains(this.player))
+            {
+                this.canvas.Children.Remove(this.player);
+                this.canvas.Children.Add(this.player);
+            }
+        }
+
         private void DrawMaze(string maze)
         {
+            bool hadPlayerOn = false;
+            if (this.canvas.Children.Contains(this.player))
+                hadPlayerOn = true;
+            this.canvas.Children.Clear();
             int rows = 2 * 8 - 1;
             int cols = 2 * 24 - 1;
             char[,] matrix = this.stringMazeToIntMatrix(maze, rows, cols);
@@ -77,9 +100,8 @@ namespace MazeWpfClient.UserControls
                 }
             }
             this.AddBorders();
-            if (this.canvas.Children.Contains(this.player))
+            if (hadPlayerOn)
             {
-                this.canvas.Children.Remove(this.player);
                 this.canvas.Children.Add(this.player);
             }
         }
@@ -158,6 +180,65 @@ namespace MazeWpfClient.UserControls
                 int row = int.Parse(position[0]);
                 int col = int.Parse(position[1]);
                 this.DrawPlayer(row, col);
+            }
+        }
+
+        private void HintTextChanged(object sender, TextChangedEventArgs e)
+        {
+            this.canvas.Children.Remove(this.hint);
+            if ((sender as TextBox).Text.Length > 0)
+            {
+                string[] position = (sender as TextBox).Text.Split(new char[] { ',' });
+                int row = int.Parse(position[0]);
+                int col = int.Parse(position[1]);
+                this.DrawHint(row, col);
+            }
+        }
+
+        private void WonTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((sender as TextBox).Text.ToLower() == "true")
+            {
+                this.cTxt1.Visibility = Visibility.Visible;
+                this.cTxt2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.cTxt1.Visibility = Visibility.Hidden;
+                this.cTxt2.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void SolutionTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((sender as TextBox).Text.Length > 0)
+            {
+                this.DrawSolution((sender as TextBox).Text);
+            }
+        }
+
+        private void DrawSolution(string solution)
+        {
+            int rows = 2 * 8 - 1;
+            int cols = 2 * 24 - 1;
+            char[,] matrix = this.stringMazeToIntMatrix(solution, rows, cols);
+            int width = (int)this.canvas.ActualWidth / 23;
+            int height = (int)this.canvas.ActualHeight / 8;
+            for (int i = 0; i < rows; ++i)
+            {
+                for (int j = 0; j < cols; ++j)
+                {
+                    if (matrix[i, j] == '2')
+                    {
+                        Rectangle rec2 = this.GetRectangle(Brushes.PaleVioletRed, (j / 2) * width + 6, (i / 2) * height + 6, width - 12, height - 12);
+                        this.canvas.Children.Add(rec2);
+                    }
+                }
+            }
+            if (this.canvas.Children.Contains(this.player))
+            {
+                this.canvas.Children.Remove(this.player);
+                this.canvas.Children.Add(this.player);
             }
         }
     }

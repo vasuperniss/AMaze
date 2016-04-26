@@ -9,6 +9,8 @@ namespace MazeWpfClient.Model
         private MazePosition playerPosition;
         private int rows;
         private int cols;
+        private string solution = "";
+        private MazePosition hint;
 
         public SinglePlayerMaze(GenerateAnswer answer, int rows, int cols)
         {
@@ -16,6 +18,16 @@ namespace MazeWpfClient.Model
             this.cols = cols;
             this.rows = rows;
             this.playerPosition = new MazePosition(this.answer.Start);
+            this.hint = new MazePosition(this.answer.Start);
+        }
+
+        public SinglePlayerMaze(SolveAnswer answer, int rows, int cols)
+        {
+            this.answer = new GenerateAnswer(answer);
+            this.cols = cols;
+            this.rows = rows;
+            this.playerPosition = new MazePosition(this.answer.Start);
+            this.hint = new MazePosition(this.answer.Start);
         }
 
         public string Name
@@ -47,8 +59,33 @@ namespace MazeWpfClient.Model
             }
         }
 
-        public void Move(Move move)
+        public string Solution
         {
+            get
+            {
+                return this.solution;
+            }
+            set
+            {
+                this.solution = value;
+            }
+        }
+
+        public MazePosition Hint
+        {
+            get
+            {
+                return this.hint;
+            }
+            set
+            {
+                this.hint = value;
+            }
+        }
+
+        public bool Move(Move move)
+        {
+            bool moved = false;
             switch (move)
             {
                 case Model.Move.Up:
@@ -57,6 +94,7 @@ namespace MazeWpfClient.Model
                         if (this.Maze[(this.playerPosition.Row - 1) * (this.cols * 2 - 1) + this.playerPosition.Col] == '0')
                         {
                             this.PlayerPosition.Row -= 2;
+                            moved = true;
                         }
                     }
                     break;
@@ -66,6 +104,7 @@ namespace MazeWpfClient.Model
                         if (this.Maze[(this.playerPosition.Row + 1) * (this.cols * 2 - 1) + this.playerPosition.Col] == '0')
                         {
                             this.PlayerPosition.Row += 2;
+                            moved = true;
                         }
                     }
                     break;
@@ -75,6 +114,7 @@ namespace MazeWpfClient.Model
                         if (this.Maze[this.playerPosition.Row * (this.cols * 2 - 1) + this.playerPosition.Col + 1] == '0')
                         {
                             this.PlayerPosition.Col += 2;
+                            moved = true;
                         }
                     }
                     break;
@@ -84,10 +124,19 @@ namespace MazeWpfClient.Model
                         if (this.Maze[this.playerPosition.Row * (this.cols * 2 - 1) + this.playerPosition.Col - 1] == '0')
                         {
                             this.PlayerPosition.Col -= 2;
+                            moved = true;
                         }
                     }
                     break;
             }
+            if (this.solution != "")
+            {
+                if (this.solution[this.playerPosition.Row * (this.cols * 2 - 1) + this.playerPosition.Col] == '2')
+                {
+                    this.hint = new MazePosition(this.playerPosition);
+                }
+            }
+            return moved;
         }
     }
 }

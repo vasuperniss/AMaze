@@ -14,6 +14,9 @@ namespace MazeWpfClient.Model
 
         string MazeName { get; set; }
         string MazeString { get; set; }
+        string SolutionString { get; set; }
         MazePosition PlayerPosition { get; set; }
+        bool WonGame { get; set; }
+        MazePosition Hint { get; set; }
     }
 }

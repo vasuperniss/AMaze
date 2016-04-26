@@ -23,6 +23,16 @@
         /// </summary>
         private MazePosition end;
 
+        public GenerateAnswer() { }
+
+        public GenerateAnswer(SolveAnswer answer)
+        {
+            this.name = answer.Name;
+            this.maze = answer.Maze.Replace('2', '0');
+            this.start = answer.Start;
+            this.end = answer.End;
+        }
+
         /// <summary>
         /// Gets or sets the name of the Maze.
         /// </summary>
