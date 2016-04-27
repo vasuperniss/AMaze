@@ -135,7 +135,7 @@ namespace MazeServer.Model.Options
             sb.Replace("2", "0", 0, sb.Length);
             solved.Maze = sb.ToString();
 
-            return new Answer().GetJSONAnswer(ans.Type, solved);
+            return new Answer().GetJSONAnswer(1, solved);
         }
     }
 }
