@@ -1,6 +1,4 @@
-﻿using MazeWpfClient.Model;
-using MazeWpfClient.Model.Answer;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -14,6 +12,8 @@ namespace MazeWpfClient.UserControls
     {
         private Ellipse player;
         private Ellipse hint;
+
+        private int canvasWidth = 480, canvasHeight = 250;
 
         public MazeControl()
         {
@@ -32,16 +32,16 @@ namespace MazeWpfClient.UserControls
         private void DrawPlayer(int row, int col)
         {
             this.canvas.Children.Remove(this.player);
-            Canvas.SetLeft(this.player, ((col / 2) * (this.canvas.ActualWidth / 24)));
-            Canvas.SetTop(this.player, ((row / 2) * (this.canvas.ActualHeight / 8)));
+            Canvas.SetLeft(this.player, ((col / 2) * (canvasWidth / 24)));
+            Canvas.SetTop(this.player, ((row / 2) * (canvasHeight / 8)));
             this.canvas.Children.Add(this.player);
         }
 
         private void DrawHint(int row, int col)
         {
             this.canvas.Children.Remove(this.hint);
-            Canvas.SetLeft(this.hint, ((col / 2) * (this.canvas.ActualWidth / 24)));
-            Canvas.SetTop(this.hint, ((row / 2) * (this.canvas.ActualHeight / 8)));
+            Canvas.SetLeft(this.hint, ((col / 2) * (canvasWidth / 24)));
+            Canvas.SetTop(this.hint, ((row / 2) * (canvasHeight / 8)));
             this.canvas.Children.Add(this.hint);
             if (this.canvas.Children.Contains(this.player))
             {
@@ -59,8 +59,8 @@ namespace MazeWpfClient.UserControls
             int rows = 2 * 8 - 1;
             int cols = 2 * 24 - 1;
             char[,] matrix = this.stringMazeToIntMatrix(maze, rows, cols);
-            int width = (int)this.canvas.ActualWidth / 23;
-            int height = (int)this.canvas.ActualHeight / 8;
+            int width = canvasWidth / 23;
+            int height = canvasHeight / 8;
             for (int i = 0; i < rows; ++i)
             {
                 for (int j = 0; j < cols; ++j)
@@ -111,29 +111,29 @@ namespace MazeWpfClient.UserControls
             // upper
             Line upper = this.GetLine();
             upper.X1 = 0;
-            upper.X2 = this.canvas.ActualWidth;
+            upper.X2 = canvasWidth;
             upper.Y1 = upper.Y2 = 0;
             this.canvas.Children.Add(upper);
 
             // lower
             Line lower = this.GetLine();
             lower.X1 = 0;
-            lower.X2 = this.canvas.ActualWidth;
-            lower.Y1 = lower.Y2 = this.canvas.ActualHeight;
+            lower.X2 = canvasWidth;
+            lower.Y1 = lower.Y2 = canvasHeight;
             this.canvas.Children.Add(lower);
 
             // right
             Line right = this.GetLine();
             right.X1 = right.X2 = 0;
             right.Y1 = 0;
-            right.Y2 = this.canvas.ActualHeight;
+            right.Y2 = canvasHeight;
             this.canvas.Children.Add(right);
 
             // left
             Line left = this.GetLine();
-            left.X1 = left.X2 = this.canvas.ActualWidth;
+            left.X1 = left.X2 = canvasWidth;
             left.Y1 = 0;
-            left.Y2 = this.canvas.ActualHeight;
+            left.Y2 = canvasHeight;
             this.canvas.Children.Add(left);
         }
 
@@ -222,8 +222,8 @@ namespace MazeWpfClient.UserControls
             int rows = 2 * 8 - 1;
             int cols = 2 * 24 - 1;
             char[,] matrix = this.stringMazeToIntMatrix(solution, rows, cols);
-            int width = (int)this.canvas.ActualWidth / 23;
-            int height = (int)this.canvas.ActualHeight / 8;
+            int width = canvasWidth / 23;
+            int height = canvasHeight / 8;
             for (int i = 0; i < rows; ++i)
             {
                 for (int j = 0; j < cols; ++j)

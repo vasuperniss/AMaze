@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MazeWpfClient"
         mc:Ignorable="d"
-        Title="Maze Game - Main Menu" Height="400" Width="500" ResizeMode="NoResize" WindowStyle="ToolWindow" Icon="icon-maze.ico">
+        Title="Maze Game - Main Menu" Height="400" Width="500" ResizeMode="NoResize" WindowStyle="ToolWindow" Icon="icon-maze.ico" Closed="OnClosed">
     <Window.Effect>
         <DropShadowEffect Color="#FF4D0D4A"/>
     </Window.Effect>
