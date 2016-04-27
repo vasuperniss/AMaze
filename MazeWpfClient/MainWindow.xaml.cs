@@ -29,5 +29,11 @@ namespace MazeWpfClient
             singlePlayer.Show();
             this.Close();
         }
+
+        private void SettingsBtn_Clicked(object sender, RoutedEventArgs e)
+        {
+
+            this.Close();
+        }
     }
 }
