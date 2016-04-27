@@ -38,8 +38,15 @@ namespace MazeWpfClient
 
         private void SettingsBtn_Clicked(object sender, RoutedEventArgs e)
         {
+            double x, y;
+            x = this.Width / 4;
+            y = this.Height / 4;
+            var location = this.PointToScreen(new Point(x, y));
 
-            this.Close();
+            Settings settings = new Settings();
+            settings.Left = location.X;
+            settings.Top = location.Y;
+            settings.ShowDialog();
         }
     }
 }

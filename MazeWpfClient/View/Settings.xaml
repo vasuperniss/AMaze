@@ -4,15 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MazeWpfClient.View"
+        xmlns:MyNamespace="clr-namespace:MazeWpfClient.View"
         mc:Ignorable="d"
-        Title="Settings" Height="300" Width="300">
+        Title="Settings" Height="201.68" Width="237.815">
     <Grid>
-        <StackPanel Height="249" Margin="10,10,10,0" VerticalAlignment="Top">
-            <Label x:Name="label" Content="IP Address" FontFamily="Tahoma" Margin="5,0" FontSize="16"/>
-            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox" Margin="10,0" FontFamily="Tahoma">
-            </TextBox>
-            <Label x:Name="label1" Content="Port&#xD;&#xA;" Height="28" FontFamily="Tahoma" Margin="5,0" FontSize="16"/>
-            <TextBox x:Name="textBox1" Height="23" TextWrapping="Wrap" Text="TextBox" Margin="10,0" FontFamily="Tahoma"/>
+        <StackPanel Height="168" Margin="10,10,10,0" VerticalAlignment="Top">
+            <Label x:Name="IP_label" Content="IP Address" FontFamily="Tahoma" Margin="5,0" FontSize="16"/>
+            <TextBox x:Name="IP_text" Height="23" TextWrapping="Wrap" Margin="10,0" FontFamily="Tahoma" PreviewMouseDown="IP_text_PreviewMouseDown"/>
+            <Label x:Name="Port_label" Content="Port&#xD;&#xA;" Height="28" FontFamily="Tahoma" Margin="5,0" FontSize="16"/>
+            <TextBox x:Name="Port_text" Height="23" TextWrapping="Wrap" Margin="10,0" FontFamily="Tahoma" PreviewMouseDown="Port_text_PreviewMouseDown"/>
+            <Grid Height="34" Margin="10,10,10,0">
+                <Button x:Name="cancel" Content="Cancel" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="75" Click="cancel_Click"/>
+                <Button x:Name="confirm" Content="Confirm" HorizontalAlignment="Right" Margin="0,7,10,0" VerticalAlignment="Top" Width="75" Click="confirm_Click"/>
+            </Grid>
         </StackPanel>
 
     </Grid>

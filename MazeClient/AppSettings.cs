@@ -98,7 +98,7 @@ namespace MazeClient
         }
 
         /// <summary>
-        /// Reads the setting from the app.config file.
+        /// Reads a setting from the app.config file.
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns>the value of the setting if exists</returns>

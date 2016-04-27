@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 
 namespace MazeWpfClient
 {
@@ -97,23 +99,42 @@ namespace MazeWpfClient
         }
 
         /// <summary>
-        /// Reads the setting from the app.config file.
+        /// Reads the settings from the app.config file.
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns>the value of the setting if exists</returns>
         private string ReadSetting(string key)
         {
-            //try
-            //{
-            //    var appSettings = ConfigurationManager.AppSettings;
-            //    string result = appSettings[key] ?? null;
-            //    return result;
-            //}
-            //catch (ConfigurationErrorsException)
-            //{
-            //    return null;
-            //}
+            try
+            {
+                var appSettings = ConfigurationManager.AppSettings;
+                string result = appSettings[key] ?? null;
+                return result;
+            }
+            catch (ConfigurationErrorsException)
+            {
+                return null;
+            }
             return null;
+        }
+
+
+        public static void ModifySetting(string key, string value)
+        {
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+
+                if (settings[key] == null) settings.Add(key, value);
+                else settings[key].Value = value;
+
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+            }
+            catch (Exception e)
+            {
+            }
         }
     }
 }
