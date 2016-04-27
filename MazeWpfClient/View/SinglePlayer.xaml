@@ -5,19 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MazeWpfClient.View"
         mc:Ignorable="d"
-        Title="SinglePlayer" Height="456.18" Width="575.281"
-        xmlns:Controls="clr-namespace:MazeWpfClient.UserControls" KeyUp="window_onKeyUp">
+        Title="SinglePlayer" Height="550" Width="575.281"
+        xmlns:Controls="clr-namespace:MazeWpfClient.UserControls" KeyUp="window_onKeyUp" Closed="OnCloced">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="8*"/>
-            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Controls:MazeControl x:Name="mazeCtrl" Grid.Row="1" Margin="10"></Controls:MazeControl>
         <StackPanel Grid.Row="0" Margin="5" Orientation="Horizontal">
             <Label Content="maze name : " Height="25" VerticalAlignment="Bottom"/>
             <TextBox x:Name="mazeNameTxt" Width="135" Height="25" Margin="0,0,5,0" VerticalAlignment="Bottom"/>
-            <Button Content="Create" Width="70" Margin="5,37,5,0" Click="CreateClicked"/>
+            <Button Content="Create" VerticalAlignment="Bottom" Height="30" Width="70" Margin="5,37,5,0" Click="CreateClicked"/>
             <Button Content="Show Hint" VerticalAlignment="Bottom" Height="30" Width="70" Margin="5,0" Click="ShowHintClicked"/>
             <Button Content="Show Solution" VerticalAlignment="Bottom" Height="30" Width="100" Margin="5,0" Click="ShowSolutionClicked"/>
         </StackPanel>

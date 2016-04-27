@@ -1,7 +1,6 @@
 ﻿using MazeWpfClient.Model;
 using MazeWpfClient.ViewModel;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace MazeWpfClient.View
 {
@@ -11,10 +10,12 @@ namespace MazeWpfClient.View
     public partial class SinglePlayer : Window
     {
         private SinglePlayerViewModel vm;
+        private Window mainWindow;
 
-        public SinglePlayer(ISinglePlayerModel model)
+        public SinglePlayer(ISinglePlayerModel model, Window main)
         {
             InitializeComponent();
+            this.mainWindow = main;
             this.vm = new SinglePlayerViewModel(model);
             this.DataContext = this.vm;
             this.mazeCtrl.DataContext = this.vm;
@@ -56,6 +57,11 @@ namespace MazeWpfClient.View
         public void ShowSolutionClicked(object sender, RoutedEventArgs e)
         {
             this.vm.ShowSolution();
+        }
+
+        private void OnCloced(object sender, System.EventArgs e)
+        {
+            this.mainWindow.Show();
         }
     }
 }

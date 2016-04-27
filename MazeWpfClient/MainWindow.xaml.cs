@@ -11,11 +11,12 @@ namespace MazeWpfClient
     public partial class MainWindow : Window
     {
         private ISinglePlayerModel model;
+        private IServer server;
 
         public MainWindow()
         {
             InitializeComponent();
-            IServer server = new MazeServer("127.0.0.1", 55000);
+            this.server = new MazeServer("127.0.0.1", 55000);
             model = new SinglePlayerModel(server);
             if (server.Connect())
             {
@@ -25,9 +26,14 @@ namespace MazeWpfClient
 
         private void SinglePlayerBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            SinglePlayer singlePlayer = new SinglePlayer(this.model);
+            SinglePlayer singlePlayer = new SinglePlayer(this.model, this);
             singlePlayer.Show();
-            this.Close();
+            this.Hide();
+        }
+
+        private void OnClosed(object sender, System.EventArgs e)
+        {
+            this.server.Close();
         }
     }
 }
