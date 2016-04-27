@@ -23,6 +23,8 @@ namespace MazeWpfClient.View
         public Settings()
         {
             InitializeComponent();
+            this.IP_text.Text = AppSettings.GetSettingValue("ip");
+            this.Port_text.Text = AppSettings.GetSettingValue("port");
         }
 
         private void cancel_Click(object sender, RoutedEventArgs e)

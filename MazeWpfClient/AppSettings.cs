@@ -136,5 +136,19 @@ namespace MazeWpfClient
             {
             }
         }
+
+        public static string GetSettingValue(string key)
+        {
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                return settings[key].Value;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }
