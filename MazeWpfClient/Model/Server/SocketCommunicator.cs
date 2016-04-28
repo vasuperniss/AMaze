@@ -127,8 +127,17 @@ namespace MazeWpfClient.Model.Server
         /// <returns></returns>
         public bool Close()
         {
-            this.server.Close();
-            this.listenerThread.Join();
+            try {
+                if (this.server.Connected)
+                {
+                    this.server.Close();
+                    if (this.listenerThread.ThreadState == ThreadState.Running)
+                        this.listenerThread.Join();
+                }
+            } catch (Exception)
+            {
+                return false;
+            }
             return true;
         }
     }
