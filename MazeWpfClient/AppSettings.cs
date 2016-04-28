@@ -95,7 +95,24 @@ namespace MazeWpfClient
         public string this[string key]
         {
             get { return this.settingsDict[key]; }
-            set { this.settingsDict[key] = value; }
+            set
+            {
+                this.settingsDict[key] = value;
+                // change app.config file
+                Configuration config =
+                ConfigurationManager.OpenExeConfiguration(
+                                   ConfigurationUserLevel.None);
+
+                config.AppSettings.Settings.Remove(key);
+                var kvElem = new KeyValueConfigurationElement(key, value);
+                config.AppSettings.Settings.Add(kvElem);
+
+                // Save the configuration file.
+                config.Save(ConfigurationSaveMode.Modified);
+
+                // Force a reload of a changed section.
+                ConfigurationManager.RefreshSection("appSettings");
+            }
         }
 
         /// <summary>
@@ -114,26 +131,6 @@ namespace MazeWpfClient
             catch (ConfigurationErrorsException)
             {
                 return null;
-            }
-            return null;
-        }
-
-
-        public static void ModifySetting(string key, string value)
-        {
-            try
-            {
-                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var settings = configFile.AppSettings.Settings;
-
-                if (settings[key] == null) settings.Add(key, value);
-                else settings[key].Value = value;
-
-                configFile.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
-            }
-            catch (Exception e)
-            {
             }
         }
 
