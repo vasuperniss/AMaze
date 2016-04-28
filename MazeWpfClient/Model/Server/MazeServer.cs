@@ -68,6 +68,8 @@
         /// </summary>
         public void Close()
         {
+            if (this.isClosed)
+                return;
             this.isClosed = true;
             this.server.Close();
         }

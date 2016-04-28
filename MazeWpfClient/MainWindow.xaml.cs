@@ -10,7 +10,6 @@ namespace MazeWpfClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ISinglePlayerModel model;
         private IServer server;
 
         static string[] settings = new string[] { "ip", "port",
@@ -26,16 +25,13 @@ namespace MazeWpfClient
             }
             this.server = new MazeServer(AppSettings.Settings["ip"],
                                     int.Parse(AppSettings.Settings["port"]));
-            model = new SinglePlayerModel(server);
-            if (server.Connect())
-            {
-                model.LoadNewGame("iMaze55");
-            }
+            this.server.Connect();
         }
 
         private void SinglePlayerBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            SinglePlayer singlePlayer = new SinglePlayer(this.model, this);
+            ISinglePlayerModel model = new SinglePlayerModel(server);
+            SinglePlayer singlePlayer = new SinglePlayer(model, this);
             singlePlayer.Show();
             this.Hide();
         }
@@ -52,10 +48,14 @@ namespace MazeWpfClient
             y = this.Height / 4;
             var location = this.PointToScreen(new Point(x, y));
 
-            Settings settings = new Settings();
+            Settings settings = new Settings(this.server);
             settings.Left = location.X;
             settings.Top = location.Y;
             settings.ShowDialog();
+            this.server.Close();
+            this.server = new MazeServer(AppSettings.Settings["ip"],
+                                    int.Parse(AppSettings.Settings["port"]));
+            this.server.Connect();
         }
     }
 }

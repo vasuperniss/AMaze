@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using MazeWpfClient.Model.Server;
+using System.Net;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -10,11 +11,14 @@ namespace MazeWpfClient.View
     /// </summary>
     public partial class Settings : Window
     {
-        public Settings()
+        private IServer server;
+
+        public Settings(IServer server)
         {
             InitializeComponent();
             this.IP_text.Text = AppSettings.Settings["ip"];
             this.Port_text.Text = AppSettings.Settings["port"];
+            this.server = server;
         }
 
         private void cancel_Click(object sender, RoutedEventArgs e)
@@ -38,9 +42,6 @@ namespace MazeWpfClient.View
             if (!portRet || !ipRet) return;
 
             // update appSettings.
-            //AppSettings.ModifySetting("ip", ip.ToString());
-            //AppSettings.ModifySetting("port", port.ToString());
-
             AppSettings.Settings["ip"] = this.IP_text.Text;
             AppSettings.Settings["port"] = this.Port_text.Text;
 
