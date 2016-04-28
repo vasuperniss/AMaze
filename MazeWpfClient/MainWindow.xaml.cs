@@ -13,10 +13,19 @@ namespace MazeWpfClient
         private ISinglePlayerModel model;
         private IServer server;
 
+        static string[] settings = new string[] { "ip", "port",
+                                              "rows", "cols" };
+
         public MainWindow()
         {
             InitializeComponent();
-            this.server = new MazeServer("127.0.0.1", 55000);
+            // Reading App.config file
+            if (!AppSettings.Settings.ReadAllSettings(settings))
+            {
+                this.Close();
+            }
+            this.server = new MazeServer(AppSettings.Settings["ip"],
+                                    int.Parse(AppSettings.Settings["port"]));
             model = new SinglePlayerModel(server);
             if (server.Connect())
             {
