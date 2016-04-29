@@ -67,7 +67,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\IMultiplayerModel.cs" />
+    <Compile Include="Model\IMultiPlayerModel.cs" />
+    <Compile Include="Model\MultiPlayerModel.cs" />
     <Compile Include="UserControls\MazeControl.xaml.cs">
       <DependentUpon>MazeControl.xaml</DependentUpon>
     </Compile>
