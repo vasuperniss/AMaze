@@ -1,6 +1,5 @@
 ﻿using MazeWpfClient.Model;
 using System.ComponentModel;
-using System;
 
 namespace MazeWpfClient.ViewModel
 {
@@ -42,7 +41,13 @@ namespace MazeWpfClient.ViewModel
 
         public string VM_PlayerPosition
         {
-            get { return this.model.PlayerPosition.ToString(); }
+            get {
+                    Model.Answer.MazePosition pos = this.model.PlayerPosition;
+                    if (pos != null)
+                        return pos.ToString();
+                    else
+                        return "";
+                }
             set {; }
         }
 
@@ -60,7 +65,13 @@ namespace MazeWpfClient.ViewModel
 
         public string VM_Hint
         {
-            get { return this.model.Hint.ToString(); }
+            get {
+                Model.Answer.MazePosition pos = this.model.Hint;
+                if (pos != null)
+                    return pos.ToString();
+                else
+                    return "";
+                }
             set {; }
         }
 

@@ -11,7 +11,6 @@ namespace MazeWpfClient
     public partial class MainWindow : Window
     {
         private IServer server;
-
         static string[] settings = new string[] { "ip", "port",
                                               "rows", "cols" };
 
@@ -36,9 +35,13 @@ namespace MazeWpfClient
             this.Hide();
         }
 
-        private void OnClosed(object sender, System.EventArgs e)
+        private void MultiplayerBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            this.server.Close();
+            //ISinglePlayerModel model = new SinglePlayerModel(server);
+            //SinglePlayer singlePlayer = new SinglePlayer(model, this);
+            //singlePlayer.Show();
+
+            this.Hide();
         }
 
         private void SettingsBtn_Clicked(object sender, RoutedEventArgs e)
@@ -56,6 +59,11 @@ namespace MazeWpfClient
             this.server = new MazeServer(AppSettings.Settings["ip"],
                                     int.Parse(AppSettings.Settings["port"]));
             this.server.Connect();
+        }
+
+        private void OnClosed(object sender, System.EventArgs e)
+        {
+            this.server.Close();
         }
     }
 }
