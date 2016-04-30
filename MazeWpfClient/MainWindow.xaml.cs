@@ -37,10 +37,9 @@ namespace MazeWpfClient
 
         private void MultiplayerBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            //ISinglePlayerModel model = new SinglePlayerModel(server);
-            //SinglePlayer singlePlayer = new SinglePlayer(model, this);
-            //singlePlayer.Show();
-
+            IMultiPlayerModel model = new MultiPlayerModel(server);
+            MultiPlayer multiPlayer = new MultiPlayer(model, this);
+            multiPlayer.Show();
             this.Hide();
         }
 

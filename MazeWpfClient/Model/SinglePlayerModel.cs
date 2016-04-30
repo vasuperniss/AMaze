@@ -1,7 +1,6 @@
 ﻿using MazeWpfClient.Model.Answer;
 using MazeWpfClient.Model.Server;
 using System.ComponentModel;
-using System;
 
 namespace MazeWpfClient.Model
 {
@@ -9,7 +8,6 @@ namespace MazeWpfClient.Model
     {
         private IServer server;
         private JsonAnswerFactory answersFactory;
-
         private SinglePlayerMaze singlePlayerMaze;
 
         private int cols;

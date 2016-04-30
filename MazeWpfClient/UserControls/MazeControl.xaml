@@ -24,7 +24,6 @@
             <TextBox Visibility="Hidden" Text="{Binding VM_WonGame}" TextChanged="WonTextChanged"/>
             <TextBox Visibility="Hidden" Text="{Binding VM_SolutionString}" TextChanged="SolutionTextChanged"/>
             <TextBox Visibility="Hidden" Text="{Binding VM_Hint}" TextChanged="HintTextChanged"/>
-            <Label Grid.Row="2" Content="use the {A,W,S,D} or {Arrow} keys to play the game" Foreground="#FFF1F1F1"/>
         </Grid>
     </Border>
 </UserControl>

@@ -88,7 +88,7 @@ namespace MazeWpfClient.Model
             bool moved = false;
             switch (move)
             {
-                case Model.Move.Up:
+                case Model.Move.up:
                     if (this.playerPosition.Row > 0)
                     {
                         if (this.Maze[(this.playerPosition.Row - 1) * (this.cols * 2 - 1) + this.playerPosition.Col] == '0')
@@ -98,7 +98,7 @@ namespace MazeWpfClient.Model
                         }
                     }
                     break;
-                case Model.Move.Down:
+                case Model.Move.down:
                     if (this.playerPosition.Row < this.rows * 2 - 2)
                     {
                         if (this.Maze[(this.playerPosition.Row + 1) * (this.cols * 2 - 1) + this.playerPosition.Col] == '0')
@@ -108,7 +108,7 @@ namespace MazeWpfClient.Model
                         }
                     }
                     break;
-                case Model.Move.Right:
+                case Model.Move.right:
                     if (this.playerPosition.Col < this.cols * 2 - 2)
                     {
                         if (this.Maze[this.playerPosition.Row * (this.cols * 2 - 1) + this.playerPosition.Col + 1] == '0')
@@ -118,7 +118,7 @@ namespace MazeWpfClient.Model
                         }
                     }
                     break;
-                case Model.Move.Left:
+                case Model.Move.left:
                     if (this.playerPosition.Col > 0)
                     {
                         if (this.Maze[this.playerPosition.Row * (this.cols * 2 - 1) + this.playerPosition.Col - 1] == '0')

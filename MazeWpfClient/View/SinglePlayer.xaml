@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MazeWpfClient.View"
         mc:Ignorable="d"
-        Title="SinglePlayer" Height="550" Width="507.5" MinWidth="575" MinHeight="550"
-        xmlns:Controls="clr-namespace:MazeWpfClient.UserControls" KeyUp="window_onKeyUp" Closed="OnCloced">
+        Title="SinglePlayer" Height="599" Width="404" MinWidth="575" MinHeight="656"
+        xmlns:Controls="clr-namespace:MazeWpfClient.UserControls" KeyUp="window_onKeyUp" Closed="OnClosed">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
-        <Controls:MazeControl x:Name="mazeCtrl" Grid.Row="1" Margin="10"></Controls:MazeControl>
+        <Controls:MazeControl x:Name="mazeCtrl" Grid.Row="1" Margin="10,10,10,0" Height="454" VerticalAlignment="Top"></Controls:MazeControl>
         <StackPanel Grid.Row="0" Margin="5" Orientation="Horizontal">
             <Label Content="maze name : " Height="25" VerticalAlignment="Bottom"/>
             <TextBox x:Name="mazeNameTxt" Width="135" Height="25" Margin="0,0,5,0" VerticalAlignment="Bottom"/>
@@ -20,5 +20,6 @@
             <Button Content="Show Hint" VerticalAlignment="Bottom" Height="30" Width="70" Margin="5,0" Click="ShowHintClicked"/>
             <Button Content="Show Solution" VerticalAlignment="Bottom" Height="30" Width="100" Margin="5,0" Click="ShowSolutionClicked"/>
         </StackPanel>
+        <Label x:Name="label" Content="Use WASD or Arrow keys to play." Height="26" HorizontalAlignment="Left" Margin="10,469,0,0" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
 </Window>

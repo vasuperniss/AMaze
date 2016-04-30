@@ -3,20 +3,22 @@ using System.ComponentModel;
 
 namespace MazeWpfClient.Model
 {
-    interface IMultiPlayerModel : INotifyPropertyChanged
+    public interface IMultiPlayerModel : INotifyPropertyChanged
     {
         void LoadNewGame(string mazeName);
         void MakeMove(Move move);
         void SolveMaze();
         void GetHint();
 
-        string MazeName { get; set; }
+        string PlayerMazeName { get; set; }
+        string OpponentMazeName { get; set; }
         string GameName { get; set; }
-        string MazeString { get; set; }
+        string PlayerMazeString { get; set; }
+        string OpponentMazeString { get; set; }
         string SolutionString { get; set; }
         MazePosition PlayerPosition { get; set; }
         MazePosition OpponentPosition { get; set; }
-        bool WonGame { get; set; }
+        int WonGame { get; set; }
         MazePosition Hint { get; set; }
     }
 }

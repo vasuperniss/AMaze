@@ -49,6 +49,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -72,9 +73,13 @@
     <Compile Include="UserControls\MazeControl.xaml.cs">
       <DependentUpon>MazeControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MultiPlayerOpponentViewModel.cs" />
+    <Compile Include="ViewModel\MultiPlayerPlayerViewModel.cs" />
+    <Compile Include="ViewModel\MultiPlayerViewModel.cs" />
+    <Compile Include="ViewModel\MultiPropertyChangedEventArgs.cs" />
     <Compile Include="ViewModel\SinglePlayerViewModel.cs" />
-    <Compile Include="View\Multiplayer.xaml.cs">
-      <DependentUpon>Multiplayer.xaml</DependentUpon>
+    <Compile Include="View\MultiPlayer.xaml.cs">
+      <DependentUpon>MultiPlayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
@@ -99,7 +104,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Multiplayer.xaml">
+    <Page Include="View\MultiPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

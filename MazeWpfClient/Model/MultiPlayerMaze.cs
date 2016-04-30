@@ -1,10 +1,13 @@
 ﻿using MazeWpfClient.Model.Answer;
+using MazeWpfClient.Model.Server;
+using System;
 
 namespace MazeWpfClient.Model
 {
     public class MultiPlayerMaze
     {
         private MultiplayerAnswer answer;
+        private IServer server;
         private MazePosition playerPosition;
         private MazePosition opponenetPosition;
         private int rows;
@@ -12,8 +15,9 @@ namespace MazeWpfClient.Model
         private string solution = "";
         private MazePosition hint;
 
-        public MultiPlayerMaze(MultiplayerAnswer answer, int rows, int cols)
+        public MultiPlayerMaze(MultiplayerAnswer answer, int rows, int cols, IServer server)
         {
+            this.server = server;
             this.answer = answer;
             this.cols = cols;
             this.rows = rows;
@@ -37,6 +41,16 @@ namespace MazeWpfClient.Model
             get { return this.answer.Other.Maze; }
         }
 
+        public string PlayerMazeName
+        {
+            get { return this.answer.You.Name; }
+        }
+
+        public string OpponentMazeName
+        {
+            get { return this.answer.Other.Name; }
+        }
+
         public MazePosition PlayerStart
         {
             get { return this.answer.You.Start; }
@@ -45,6 +59,16 @@ namespace MazeWpfClient.Model
         public MazePosition PlayerEnd
         {
             get { return this.answer.You.End; }
+        }
+
+        public MazePosition OpponentStart
+        {
+            get { return this.answer.Other.Start; }
+        }
+
+        public MazePosition OpponentEnd
+        {
+            get { return this.answer.Other.End; }
         }
 
         public MazePosition PlayerPosition
@@ -86,45 +110,51 @@ namespace MazeWpfClient.Model
         public bool Move(Move move)
         {
             bool moved = false;
+            string direction = "play "+Enum.GetName(typeof(Move),move);
+
             switch (move)
             {
-                case Model.Move.Up:
+                case Model.Move.up:
                     if (this.playerPosition.Row > 0)
                     {
                         if (this.PlayerMaze[(this.playerPosition.Row - 1) * (this.cols * 2 - 1) + this.playerPosition.Col] == '0')
                         {
                             this.PlayerPosition.Row -= 2;
                             moved = true;
+                            this.server.SendRequest(direction);
                         }
                     }
                     break;
-                case Model.Move.Down:
+                case Model.Move.down:
                     if (this.playerPosition.Row < this.rows * 2 - 2)
                     {
                         if (this.PlayerMaze[(this.playerPosition.Row + 1) * (this.cols * 2 - 1) + this.playerPosition.Col] == '0')
                         {
                             this.PlayerPosition.Row += 2;
                             moved = true;
+                            this.server.SendRequest(direction);
                         }
                     }
                     break;
-                case Model.Move.Right:
+                case Model.Move.right:
                     if (this.playerPosition.Col < this.cols * 2 - 2)
                     {
                         if (this.PlayerMaze[this.playerPosition.Row * (this.cols * 2 - 1) + this.playerPosition.Col + 1] == '0')
                         {
                             this.PlayerPosition.Col += 2;
                             moved = true;
+                            this.server.SendRequest(direction);
                         }
                     }
                     break;
-                case Model.Move.Left:
+                case Model.Move.left:
                     if (this.playerPosition.Col > 0)
                     {
                         if (this.PlayerMaze[this.playerPosition.Row * (this.cols * 2 - 1) + this.playerPosition.Col - 1] == '0')
                         {
                             this.PlayerPosition.Col -= 2;
                             moved = true;
+                            this.server.SendRequest(direction);
                         }
                     }
                     break;

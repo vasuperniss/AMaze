@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace MazeWpfClient.Model
 {
-    public enum Move { Up, Down, Left, Right }
+    public enum Move { up, down, left, right }
 
     public interface ISinglePlayerModel : INotifyPropertyChanged
     {

@@ -26,19 +26,19 @@ namespace MazeWpfClient.View
             switch (e.Key) {
                 case System.Windows.Input.Key.W:
                 case System.Windows.Input.Key.Up:
-                    this.vm.Move(Move.Up);
+                    this.vm.Move(Move.up);
                     break;
                 case System.Windows.Input.Key.S:
                 case System.Windows.Input.Key.Down:
-                    this.vm.Move(Move.Down);
+                    this.vm.Move(Move.down);
                     break;
                 case System.Windows.Input.Key.D:
                 case System.Windows.Input.Key.Right:
-                    this.vm.Move(Move.Right);
+                    this.vm.Move(Move.right);
                     break;
                 case System.Windows.Input.Key.A:
                 case System.Windows.Input.Key.Left:
-                    this.vm.Move(Move.Left);
+                    this.vm.Move(Move.left);
                     break;
             }
         }
@@ -59,7 +59,7 @@ namespace MazeWpfClient.View
             this.vm.ShowSolution();
         }
 
-        private void OnCloced(object sender, System.EventArgs e)
+        private void OnClosed(object sender, System.EventArgs e)
         {
             this.mainWindow.Show();
         }
