@@ -47,6 +47,12 @@ namespace Maze_Library.Maze
         void ChangeStartPosition();
 
         /// <summary>
+        /// Changes the start position.
+        /// </summary>
+        /// <returns>a new Maze with the new Starting Position</returns>
+        IMaze CreateMazeChangeStartPosition();
+
+        /// <summary>
         /// Changes the end position.
         /// </summary>
         void ChangeEndPosition();

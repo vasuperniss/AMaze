@@ -76,5 +76,7 @@ namespace Maze_Library.Maze
         {
             return this.startPosition;
         }
+
+        public abstract IMaze CreateMazeChangeStartPosition();
     }
 }

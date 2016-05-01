@@ -301,6 +301,19 @@ namespace Maze_Library.Maze.Matrix
             this.endPosition = new MazePosition(this.height - 1, eCol);
         }
 
+
+        /// <summary>
+        /// Creates the maze change start position.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public override IMaze CreateMazeChangeStartPosition()
+        {
+            MatrixMaze newMaze = new MatrixMaze(this);
+            newMaze.ChangeStartPosition();
+            return newMaze;
+        }
+
         /// <summary>
         /// Changes the end position.
         /// </summary>
