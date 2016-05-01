@@ -11,12 +11,14 @@ namespace MazeWpfClient.View
     {
         private MultiPlayerViewModel vm;
         private Window mainWindow;
+        private IMultiPlayerModel model;
 
         public MultiPlayer(IMultiPlayerModel model, Window main)
         {
             InitializeComponent();
             this.mainWindow = main;
-            this.vm = new MultiPlayerViewModel(model);
+            this.model = model;
+            this.vm = new MultiPlayerViewModel(this.model);
             this.DataContext = this.vm;
             this.mazeCtrlPlayer.DataContext = this.vm.Player;
             this.mazeCtrlOpponent.DataContext = this.vm.Opponent;
@@ -63,6 +65,7 @@ namespace MazeWpfClient.View
 
         private void OnClosed(object sender, System.EventArgs e)
         {
+            
             this.mainWindow.Show();
         }
     }
