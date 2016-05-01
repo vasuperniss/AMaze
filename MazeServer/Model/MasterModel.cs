@@ -35,6 +35,8 @@ namespace MazeServer.Model
         /// </summary>
         public event UpdateModel TaskCompleted;
 
+        private object lockThis;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MasterModel"/> class.
         /// initializes the dictionaries, and creates a path for the solutions file.
@@ -49,6 +51,7 @@ namespace MazeServer.Model
             string dir = Directory.GetCurrentDirectory();
             solutions_path = dir + "\\" + "mazeSolutions.json";
 
+            lockThis = new object();
             CreateDataFromFile();
         }
 
@@ -99,7 +102,7 @@ namespace MazeServer.Model
                 mazeSolutions.Add(name, jsonDesc);
                 File.AppendAllText(@solutions_path, jsonDesc + '\n');
             }
-            catch (ArgumentException)
+            catch (Exception)
             {
                 // dictionary already contains the solution
             }

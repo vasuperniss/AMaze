@@ -56,13 +56,20 @@ namespace MazeServer.Model.Options
                     g.GameStarted();
                     string reply;
                     IMaze maze = g.GetMaze();
+                    IMaze secondMaze;
                     object client;
+                    string mazeName;
 
                     // generate answer for first client
-                    GenerateAnswer firstClient = BuildMaze(maze, name + "_1");
+                    mazeName = name + "_1";
+                    this.model.AddMaze(mazeName, maze);
+                    GenerateAnswer firstClient = BuildMaze(maze, mazeName);
+
                     // change starting position for second client
-                    maze.ChangeStartPosition();
-                    GenerateAnswer secondClient = BuildMaze(maze, name + "_2");
+                    mazeName = name + "_2";
+                    secondMaze = maze.CreateMazeChangeStartPosition();
+                    this.model.AddMaze(mazeName, secondMaze);
+                    GenerateAnswer secondClient = BuildMaze(secondMaze, mazeName);
 
                     // first client
                     g.RetrieveOtherClient(from, out client);

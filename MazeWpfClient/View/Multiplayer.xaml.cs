@@ -65,7 +65,7 @@ namespace MazeWpfClient.View
 
         private void OnClosed(object sender, System.EventArgs e)
         {
-            
+            this.model.SendMessage("close "+this.model.GameName);
             this.mainWindow.Show();
         }
     }
