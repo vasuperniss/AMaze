@@ -52,7 +52,7 @@ namespace MazeWpfClient.ViewModel
 
         public void Move(Move m)
         {
-            if (this.model.WonGame == 0)
+            if (this.model.PlayerWonGame == false)
                 this.model.MakeMove(m);
         }
 

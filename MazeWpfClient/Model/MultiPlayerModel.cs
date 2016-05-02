@@ -117,27 +117,33 @@ namespace MazeWpfClient.Model
             this.showHint = false;
         }
 
-        /* 
-         * returns 0 if no one won.
-         * return 1 if first player won.
-         * return 2 if second player won.
-         */
-        public int WonGame
+        public bool PlayerWonGame
         {
             get
             {
                 if (this.multiPlayerMaze == null)
                 {
-                    return 0;
+                    return false;
                 }
-                if (this.multiPlayerMaze.PlayerEnd.Row == this.PlayerPosition.Row &&
-                    this.multiPlayerMaze.PlayerEnd.Col == this.PlayerPosition.Col)
-                    return 1;
-                if (this.multiPlayerMaze.OpponentEnd.Row == this.OpponentPosition.Row &&
-                    this.multiPlayerMaze.OpponentEnd.Col == this.OpponentPosition.Col)
-                    return 2;
+                return this.multiPlayerMaze.PlayerEnd.Row == this.PlayerPosition.Row &&
+                    this.multiPlayerMaze.PlayerEnd.Col == this.PlayerPosition.Col;
+            }
+            set
+            {
+                this.NotifyPropertyChanged(PlayerType.Player, "WonGame");
+            }
+        }
 
-                return 0;
+        public bool OpponentWonGame
+        {
+            get
+            {
+                if (this.multiPlayerMaze == null)
+                {
+                    return false;
+                }
+                return this.multiPlayerMaze.OpponentEnd.Row == this.OpponentPosition.Row &&
+                    this.multiPlayerMaze.OpponentEnd.Col == this.OpponentPosition.Col;
             }
             set
             {
@@ -172,12 +178,11 @@ namespace MazeWpfClient.Model
                     if (this.multiPlayerMaze != null)
                     {
                         this.multiPlayerMaze.PlayerSolution = ((answer as ServerAnswer).Content as SolveAnswer).Maze;
-                        Console.WriteLine(((answer as ServerAnswer).Content as SolveAnswer));
                     }
                     break;
                 case 3:
                     this.multiPlayerMaze = new MultiPlayerMaze((answer as ServerAnswer).Content as MultiplayerAnswer, rows, cols, this.server);
-                    //this.server.SendRequest("solve " + this.multiPlayerMaze.PlayerMazeName + " 0");
+                    this.server.SendRequest("solve " + this.multiPlayerMaze.PlayerMazeName + " 0");
 
                     this.PlayerMazeName = this.multiPlayerMaze.PlayerMazeName;
                     this.PlayerMazeString = this.multiPlayerMaze.PlayerMaze;
@@ -187,7 +192,8 @@ namespace MazeWpfClient.Model
                     this.OpponentMazeString = this.multiPlayerMaze.OpponentMaze;
                     this.OpponentPosition = this.multiPlayerMaze.OpponentPosition;
 
-                    this.WonGame = 0;
+                    this.PlayerWonGame = false;
+                    this.OpponentWonGame = false;
                     break;
                 case 4:
                     PlayAnswer playAns = (answer as ServerAnswer).Content as PlayAnswer;
@@ -196,21 +202,17 @@ namespace MazeWpfClient.Model
                         var content = (Move)Enum.Parse(typeof(Move), playAns.Move);
                         switch (content)
                         {
-                            case Move.up:
+                            case Move.Up:
                                 this.multiPlayerMaze.OpponentPosition.Row -= 2;
-                                //this.OpponentPosition.Row -= 2;
                                 break;
-                            case Move.down:
+                            case Move.Down:
                                 this.multiPlayerMaze.OpponentPosition.Row += 2;
-                                //this.OpponentPosition.Row += 2;
                                 break;
-                            case Move.left:
+                            case Move.Left:
                                 this.multiPlayerMaze.OpponentPosition.Col -= 2;
-                                //this.OpponentPosition.Col -= 2;
                                 break;
-                            case Move.right:
+                            case Move.Right:
                                 this.multiPlayerMaze.OpponentPosition.Col += 2;
-                                //this.OpponentPosition.Col += 2;
                                 break;
                             default:
                                 break;

@@ -50,9 +50,9 @@ namespace MazeWpfClient.ViewModel
             set {; }
         }
 
-        public int VM_WonGame
+        public bool VM_WonGame
         {
-            get { return this.model.WonGame; }
+            get { return this.model.PlayerWonGame; }
             set {; }
         }
 

@@ -97,14 +97,17 @@ namespace MazeServer.Model
         /// <param name="jsonDesc">The json description of the solution.</param>
         public void AddMazeSolution(string name, string jsonDesc)
         {
-            try
-            {
-                mazeSolutions.Add(name, jsonDesc);
-                File.AppendAllText(@solutions_path, jsonDesc + '\n');
-            }
-            catch (Exception)
-            {
-                // dictionary already contains the solution
+            lock (lockThis)
+            { 
+                try
+                {
+                    mazeSolutions.Add(name, jsonDesc);
+                    File.AppendAllText(@solutions_path, jsonDesc + '\n');
+                }
+                catch (Exception)
+                {
+                    // dictionary already contains the solution
+                }
             }
         }
 

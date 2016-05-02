@@ -30,19 +30,19 @@ namespace MazeWpfClient.View
             {
                 case System.Windows.Input.Key.W:
                 case System.Windows.Input.Key.Up:
-                    this.vm.Move(Move.up);
+                    this.vm.Move(Move.Up);
                     break;
                 case System.Windows.Input.Key.S:
                 case System.Windows.Input.Key.Down:
-                    this.vm.Move(Move.down);
+                    this.vm.Move(Move.Down);
                     break;
                 case System.Windows.Input.Key.D:
                 case System.Windows.Input.Key.Right:
-                    this.vm.Move(Move.right);
+                    this.vm.Move(Move.Right);
                     break;
                 case System.Windows.Input.Key.A:
                 case System.Windows.Input.Key.Left:
-                    this.vm.Move(Move.left);
+                    this.vm.Move(Move.Left);
                     break;
             }
         }
