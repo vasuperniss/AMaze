@@ -280,10 +280,11 @@ namespace Maze_Library.Maze.Matrix
         {
             Random r = new Random();
             int sCol;
-            while ((sCol = r.Next(this.width)) == this.startPosition.Colomn)
+            do
             {
+                sCol = r.Next(this.width);
                 sCol = sCol % 2 == 0 ? sCol : sCol - 1;
-            }
+            } while (sCol == this.startPosition.Colomn);
             this.startPosition = new MazePosition(0, sCol);
         }
 
@@ -294,10 +295,11 @@ namespace Maze_Library.Maze.Matrix
         {
             Random r = new Random();
             int eCol;
-            while ((eCol = r.Next(this.width)) == this.endPosition.Colomn)
+            do
             {
+                eCol = r.Next(this.width);
                 eCol = eCol % 2 == 0 ? eCol : eCol - 1;
-            }
+            } while (eCol == this.endPosition.Colomn);
             this.endPosition = new MazePosition(this.height - 1, eCol);
         }
 
