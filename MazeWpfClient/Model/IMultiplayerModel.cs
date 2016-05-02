@@ -9,6 +9,7 @@ namespace MazeWpfClient.Model
         void MakeMove(Move move);
         void SolveMaze();
         void GetHint();
+        void SendMessage(string message);
 
         string PlayerMazeName { get; set; }
         string OpponentMazeName { get; set; }

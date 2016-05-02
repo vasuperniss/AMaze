@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace MazeServer.Model.Options
 {
@@ -29,6 +30,7 @@ namespace MazeServer.Model.Options
             MultiplayerGame game = model.IsClientInGame(from);
             if (game == null) return;
 
+
             game.RemoveClient(from);
             // game is empty
             if (game.Count == 0) model.RemoveMultiplayerGame(game.GetName());
@@ -42,7 +44,7 @@ namespace MazeServer.Model.Options
         ///          'false' if command is invalid.</returns>
         public override bool Validate(string[] commandParsed)
         {
-            if (commandParsed.Count() != 1) return false;
+            if (commandParsed.Count() != 2) return false;
 
             return true;
         }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MazeServer.Model.Options;
 using MazeServer.View;
+using System;
 
 namespace MazeServer.Model
 {
