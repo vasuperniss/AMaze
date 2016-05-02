@@ -94,7 +94,12 @@ namespace MazeWpfClient
         /// <returns>the settings matching the key</returns>
         public string this[string key]
         {
-            get { return this.settingsDict[key]; }
+            get
+            {
+                if (this.settingsDict.ContainsKey(key))
+                    return this.settingsDict[key];
+                return null;
+            }
             set
             {
                 this.settingsDict[key] = value;
@@ -142,7 +147,7 @@ namespace MazeWpfClient
                 var settings = configFile.AppSettings.Settings;
                 return settings[key].Value;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }

@@ -5,16 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MazeWpfClient.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="500">
-    <Border Width="Auto" Height="Auto" BorderBrush="#FFA61C1C" BorderThickness="2">
-        <Grid Background="BlueViolet" Width="Auto" Height="Auto">
+             d:DesignHeight="315" d:DesignWidth="500">
+    <Border Width="Auto" Height="Auto" BorderBrush="Black" BorderThickness="2">
+        <Grid Background="RoyalBlue" Width="Auto" Height="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.7*"/>
-                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.8*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{Binding VM_MazeName}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
-            <Canvas Background="Beige" x:Name="canvas" Grid.Row="1" Margin="5" Width="480" Height="250"/>
+            <TextBlock Grid.Row="0" Text="{Binding VM_MazeName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="White"/>
+            <StackPanel Grid.Row="1" Width="490" Height="260" Background="Gray">
+                <StackPanel Grid.Row="1" Width="484" Height="254" Background="Navy" Margin="3">
+                    <Canvas Background="Beige" x:Name="canvas"  VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="2" Width="480" Height="250"/>
+                </StackPanel>
+            </StackPanel>
             <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Label x:Name="cTxt1" FontSize="28" Visibility="Hidden" Content="Congratulations!!" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FFC97C7C" BorderBrush="#FFC53232" BorderThickness="0,1"/>
                 <Label x:Name="cTxt2" Visibility="Hidden" Margin="8" Content="You solved the Maze." Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FFEAC5C5"/>
