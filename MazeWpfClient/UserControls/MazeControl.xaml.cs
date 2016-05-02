@@ -11,7 +11,6 @@ namespace MazeWpfClient.UserControls
     public partial class MazeControl : UserControl
     {
         private Ellipse player;
-        private Ellipse hint;
 
         private int canvasWidth = 480, canvasHeight = 250;
 
@@ -19,6 +18,11 @@ namespace MazeWpfClient.UserControls
 
         private int mCols;
         private int mRows;
+
+        private int endCol, endRow;
+        private int startCol, startRow;
+
+        private int lastHintRow = -1, lastHintCol = -1;
 
         public MazeControl()
         {
@@ -40,7 +44,7 @@ namespace MazeWpfClient.UserControls
                     height = 2 * y;
                     if (i % 2 == 1) height = y;
                     if (j % 2 == 1) width = x;
-                    mazeCells[i, j] = this.GetBorder(Brushes.Bisque, posX, posY, width, height);
+                    mazeCells[i, j] = this.GetBorder(Brushes.Cornsilk, posX, posY, width, height);
                     this.canvas.Children.Add(mazeCells[i, j]);
                     posX += width;
                 }
@@ -48,37 +52,27 @@ namespace MazeWpfClient.UserControls
             }
             this.player = new Ellipse();
             this.player.Fill = Brushes.Black;
-            this.player.Width = 20;
-            this.player.Height = 20;
-
-            this.hint = new Ellipse();
-            this.hint.Fill = Brushes.OrangeRed;
-            this.hint.Width = 30;
-            this.hint.Height = 30;
-
-            double www = this.canvas.Height;
-            www = this.canvas.ActualHeight;
+            this.player.Width = x < y ? 2 * x : 2 * y;
+            this.player.Height = x < y ? 2 * x : 2 * y;
         }
 
         private void DrawPlayer(int row, int col)
         {
             this.canvas.Children.Remove(this.player);
-            Canvas.SetLeft(this.player, ((col / 2) * (canvasWidth / 24)));
-            Canvas.SetTop(this.player, ((row / 2) * (canvasHeight / 8)));
+            Point relativePoint = this.mazeCells[row, col].TransformToAncestor(this.canvas)
+                          .Transform(new Point(0, 0));
+            Canvas.SetLeft(this.player, relativePoint.X + (this.mazeCells[row, col].Width - this.player.Width) / 2);
+            Canvas.SetTop(this.player, relativePoint.Y + (this.mazeCells[row, col].Height - this.player.Height) / 2);
             this.canvas.Children.Add(this.player);
+            if (this.lastHintCol != -1)
+                this.mazeCells[lastHintRow, lastHintCol].Background = Brushes.Cornsilk;
         }
 
         private void DrawHint(int row, int col)
         {
-            this.canvas.Children.Remove(this.hint);
-            Canvas.SetLeft(this.hint, ((col / 2) * (canvasWidth / 24)));
-            Canvas.SetTop(this.hint, ((row / 2) * (canvasHeight / 8)));
-            this.canvas.Children.Add(this.hint);
-            if (this.canvas.Children.Contains(this.player))
-            {
-                this.canvas.Children.Remove(this.player);
-                this.canvas.Children.Add(this.player);
-            }
+            this.mazeCells[row, col].Background = Brushes.Tomato;
+            this.lastHintRow = row;
+            this.lastHintCol = col;
         }
 
         private void DrawMaze(string maze)
@@ -115,58 +109,23 @@ namespace MazeWpfClient.UserControls
                         this.mazeCells[i, j].BorderBrush = Brushes.Navy;
                         this.mazeCells[i, j].BorderThickness = new Thickness(left, top, right, bottom);
                     }
+                    if (matrix[i, j] == '*')
+                    {
+                        this.mazeCells[i, j].Background = Brushes.LawnGreen;
+                        this.mazeCells[i, j].BorderThickness = new Thickness(2);
+                        this.mazeCells[i, j].BorderBrush = Brushes.Green;
+                        startCol = j;
+                        startRow = i;
+                    }
+                    else if (matrix[i, j] == '#')
+                    {
+                        this.mazeCells[i, j].Background = Brushes.CadetBlue;
+                        this.mazeCells[i, j].BorderThickness = new Thickness(2);
+                        this.mazeCells[i, j].BorderBrush = Brushes.Blue;
+                        endCol = j;
+                        endRow = i;
+                    }
                 }
-        }
-
-        private void AddBorders()
-        {
-            // upper
-            Line upper = this.GetLine();
-            upper.X1 = 0;
-            upper.X2 = canvasWidth;
-            upper.Y1 = upper.Y2 = 0;
-            this.canvas.Children.Add(upper);
-
-            // lower
-            Line lower = this.GetLine();
-            lower.X1 = 0;
-            lower.X2 = canvasWidth;
-            lower.Y1 = lower.Y2 = canvasHeight;
-            this.canvas.Children.Add(lower);
-
-            // right
-            Line right = this.GetLine();
-            right.X1 = right.X2 = 0;
-            right.Y1 = 0;
-            right.Y2 = canvasHeight;
-            this.canvas.Children.Add(right);
-
-            // left
-            Line left = this.GetLine();
-            left.X1 = left.X2 = canvasWidth;
-            left.Y1 = 0;
-            left.Y2 = canvasHeight;
-            this.canvas.Children.Add(left);
-        }
-
-        private Line GetLine()
-        {
-            Line line = new Line();
-            line.Stroke = Brushes.Black;
-            line.StrokeThickness = 5.5;
-            return line;
-        }
-
-        private Rectangle GetRectangle(Brush b, double x, double y, double width, double height)
-        {
-            Rectangle rec = new Rectangle();
-            rec.Width = width;
-            rec.Height = height;
-            Canvas.SetLeft(rec, x);
-            Canvas.SetTop(rec, y);
-            rec.Fill = b;
-            rec.StrokeThickness = 5;
-            return rec;
         }
 
         private Border GetBorder(Brush b, double x, double y, double width, double height)
@@ -204,12 +163,14 @@ namespace MazeWpfClient.UserControls
                 int row = int.Parse(position[0]);
                 int col = int.Parse(position[1]);
                 this.DrawPlayer(row, col);
+
+                this.mazeCells[startRow, startCol].Background = Brushes.GreenYellow;
+                this.mazeCells[endRow, endCol].Background = Brushes.BlueViolet;
             }
         }
 
         private void HintTextChanged(object sender, TextChangedEventArgs e)
         {
-            this.canvas.Children.Remove(this.hint);
             if ((sender as TextBox).Text.Length > 0)
             {
                 string[] position = (sender as TextBox).Text.Split(new char[] { ',' });
@@ -246,16 +207,13 @@ namespace MazeWpfClient.UserControls
             int rows = 2 * 8 - 1;
             int cols = 2 * 24 - 1;
             char[,] matrix = this.stringMazeToIntMatrix(solution, rows, cols);
-            int width = canvasWidth / 23;
-            int height = canvasHeight / 8;
             for (int i = 0; i < rows; ++i)
             {
                 for (int j = 0; j < cols; ++j)
                 {
                     if (matrix[i, j] == '2')
                     {
-                        Rectangle rec2 = this.GetRectangle(Brushes.PaleVioletRed, (j / 2) * width + 6, (i / 2) * height + 6, width - 12, height - 12);
-                        this.canvas.Children.Add(rec2);
+                        this.mazeCells[i, j].Background = Brushes.Violet;
                     }
                 }
             }

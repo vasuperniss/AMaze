@@ -25,6 +25,12 @@
             this.col = pos.col;
         }
 
+        public MazePosition(int row, int col)
+        {
+            this.row = row;
+            this.col = col;
+        }
+
         /// <summary>
         /// Gets or sets the row.
         /// </summary>
