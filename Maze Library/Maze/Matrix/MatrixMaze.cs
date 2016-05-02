@@ -284,7 +284,7 @@ namespace Maze_Library.Maze.Matrix
             {
                 sCol = r.Next(this.width);
                 sCol = sCol % 2 == 0 ? sCol : sCol - 1;
-            } while (sCol == this.startPosition.Colomn);
+            } while (sCol == this.startPosition.Colomn || sCol == this.endPosition.Colomn);
             this.startPosition = new MazePosition(0, sCol);
         }
 
@@ -299,7 +299,7 @@ namespace Maze_Library.Maze.Matrix
             {
                 eCol = r.Next(this.width);
                 eCol = eCol % 2 == 0 ? eCol : eCol - 1;
-            } while (eCol == this.endPosition.Colomn);
+            } while (eCol == this.endPosition.Colomn || eCol == this.startPosition.Colomn);
             this.endPosition = new MazePosition(this.height - 1, eCol);
         }
 
