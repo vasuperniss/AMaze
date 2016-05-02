@@ -14,6 +14,7 @@ namespace MazeWpfClient.Model
         private int rows;
         private bool showSolution;
         private bool showHint;
+        private bool connected;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -24,6 +25,7 @@ namespace MazeWpfClient.Model
             this.cols = 24;
             this.rows = 8;
             this.answersFactory = new JsonAnswerFactory();
+            this.connected = true;
         }
 
         public void LoadNewGame(string mazeName)
@@ -67,6 +69,12 @@ namespace MazeWpfClient.Model
             {
                 this.NotifyPropertyChanged("MazeString");
             }
+        }
+
+        public bool isConnected
+        {
+            get { return this.connected; }
+            set { this.NotifyPropertyChanged("ServerDisconnected"); }
         }
 
         public MazePosition PlayerPosition
@@ -144,6 +152,13 @@ namespace MazeWpfClient.Model
 
         private void ServerResponseHandler(object sender, ResponseEventArgs args)
         {
+            // server disconnected
+            if(args.Response == null)
+            {
+                //this.NotifyPropertyChanged("ServerDisconnected");
+                this.isConnected = false;
+                return;
+            }
             IServerAnswer answer = this.answersFactory.GetJsonAnswer(args.Response);
             switch ((answer as ServerAnswer).Type)
             {
@@ -170,7 +185,7 @@ namespace MazeWpfClient.Model
                         this.WonGame = false;
                     }
                     break;
-            }
+            }      
         }
     }
 }

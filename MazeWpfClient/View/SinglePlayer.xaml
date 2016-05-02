@@ -5,23 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MazeWpfClient.View"
         mc:Ignorable="d"
-        Title="SinglePlayer" Height="420" Width="500" MinWidth="575" MinHeight="420"
+        Title="SinglePlayer" Height="498" Width="437" MinWidth="575" MinHeight="600"
         xmlns:Controls="clr-namespace:MazeWpfClient.UserControls" KeyUp="window_onKeyUp" Closed="OnClosed">
-    <Grid Background="#FFE0E2E8">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="6*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1" Margin="5" Orientation="Vertical" Background="#FF7C7978">
-            <Controls:MazeControl x:Name="mazeCtrl" Grid.Row="1" Margin="10,10,10,0" VerticalAlignment="Top"></Controls:MazeControl>
-            <Label x:Name="label" Content="Use WASD or Arrow keys to play." Height="26" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White"/>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Margin="5" Orientation="Horizontal" Background="#FFECE5E3">
+    <Grid>
+        <TextBox Visibility="Hidden" Text="{Binding VM_ServerDisconnected}" TextChanged="ServerDisconnectedChanged"/>
+        <Controls:MazeControl x:Name="mazeCtrl" Margin="10,57,10,0" Height="454" VerticalAlignment="Top"/>
+        <StackPanel Grid.Row="0" Margin="10,10,10,517" Orientation="Horizontal" VerticalAlignment="Top">
             <Label Content="maze name : " Height="25" VerticalAlignment="Bottom"/>
             <TextBox x:Name="mazeNameTxt" Width="135" Height="25" Margin="0,0,5,0" VerticalAlignment="Bottom"/>
             <Button Content="Create" VerticalAlignment="Bottom" Height="30" Width="70" Margin="5,0" Click="CreateClicked"/>
             <Button Content="Show Hint" VerticalAlignment="Bottom" Height="30" Width="70" Margin="5,0" Click="ShowHintClicked"/>
             <Button Content="Show Solution" VerticalAlignment="Bottom" Height="30" Width="100" Margin="5,0" Click="ShowSolutionClicked"/>
         </StackPanel>
+        <Label x:Name="label" Content="Use WASD or Arrow keys to play." Height="26" HorizontalAlignment="Left" Margin="10,516,0,0" VerticalAlignment="Top" Width="184"/>
     </Grid>
 </Window>

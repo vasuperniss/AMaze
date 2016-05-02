@@ -75,6 +75,15 @@ namespace MazeWpfClient.ViewModel
             set {; }
         }
 
+        public string VM_ServerDisconnected
+        {
+            get
+            {
+                return this.model.isConnected ? "" : "Lost connection to server. Close to go back to main menu.";
+            }
+            set {; }
+        }
+
         internal void CreateNewMaze(string text)
         {
             this.model.LoadNewGame(text);
