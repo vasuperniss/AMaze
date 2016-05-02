@@ -29,26 +29,29 @@ namespace MazeWpfClient
 
         private void SinglePlayerBtn_Clicked(object sender, RoutedEventArgs e)
         {
+            var location = this.PointToScreen(new Point(0, 0));
             ISinglePlayerModel model = new SinglePlayerModel(server);
             SinglePlayer singlePlayer = new SinglePlayer(model, this);
+            singlePlayer.Left = location.X;
+            singlePlayer.Top = location.Y;
             singlePlayer.Show();
             this.Hide();
         }
 
         private void MultiplayerBtn_Clicked(object sender, RoutedEventArgs e)
         {
+            var location = this.PointToScreen(new Point(0, 0));
             IMultiPlayerModel model = new MultiPlayerModel(server);
             MultiPlayer multiPlayer = new MultiPlayer(model, this);
+            multiPlayer.Left = location.X;
+            multiPlayer.Top = location.Y;
             multiPlayer.Show();
             this.Hide();
         }
 
         private void SettingsBtn_Clicked(object sender, RoutedEventArgs e)
         {
-            double x, y;
-            x = this.Width / 4;
-            y = this.Height / 4;
-            var location = this.PointToScreen(new Point(x, y));
+            var location = this.PointToScreen(new Point(0, 0));
 
             Settings settings = new Settings(this.server);
             settings.Left = location.X;

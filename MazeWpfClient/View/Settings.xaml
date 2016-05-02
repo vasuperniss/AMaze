@@ -1,4 +1,5 @@
 ﻿<Window x:Class="MazeWpfClient.View.Settings"
+        Name="Settings_Window"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,18 +7,23 @@
         xmlns:local="clr-namespace:MazeWpfClient.View"
         xmlns:MyNamespace="clr-namespace:MazeWpfClient.View"
         mc:Ignorable="d"
-        Title="Settings" Height="201.68" Width="237.815">
+        Title="Settings" Height="266" Width="225" ResizeMode="NoResize">
     <Grid>
-        <StackPanel Height="168" Margin="10,10,10,0" VerticalAlignment="Top">
+        <StackPanel Height="168" Margin="10,78,10,0" VerticalAlignment="Top">
             <Label x:Name="IP_label" Content="IP Address" FontFamily="Tahoma" Margin="5,0" FontSize="16"/>
             <TextBox x:Name="IP_text" Height="23" TextWrapping="Wrap" Margin="10,0" FontFamily="Tahoma" PreviewMouseDown="IP_text_PreviewMouseDown"/>
             <Label x:Name="Port_label" Content="Port&#xD;&#xA;" Height="28" FontFamily="Tahoma" Margin="5,0" FontSize="16"/>
             <TextBox x:Name="Port_text" Height="23" TextWrapping="Wrap" Margin="10,0" FontFamily="Tahoma" PreviewMouseDown="Port_text_PreviewMouseDown"/>
             <Grid Height="34" Margin="10,10,10,0">
-                <Button x:Name="cancel" Content="Cancel" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="75" Click="cancel_Click"/>
-                <Button x:Name="confirm" Content="Confirm" HorizontalAlignment="Right" Margin="0,7,10,0" VerticalAlignment="Top" Width="75" Click="confirm_Click"/>
+                <Button x:Name="cancel" Content="Cancel" HorizontalAlignment="Left" Margin="0,7,0,0" VerticalAlignment="Top" Width="75" Click="cancel_Click"/>
+                <Button x:Name="confirm" Content="Confirm" HorizontalAlignment="Right" Margin="0,7,0,0" VerticalAlignment="Top" Width="75" Click="confirm_Click"/>
             </Grid>
         </StackPanel>
-
+        <Grid HorizontalAlignment="Left" Background="#4e7bd4" Height="73" VerticalAlignment="Top" Width="305">
+            <Grid.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="20"/>
+            </Grid.Effect>
+            <Label x:Name="label" Content="Settings" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="#f7f7f7" VerticalAlignment="Top" Height="64" Width="285" FontSize="40" FontWeight="Bold"/>
+        </Grid>
     </Grid>
 </Window>
