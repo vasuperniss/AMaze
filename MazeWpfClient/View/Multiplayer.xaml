@@ -6,24 +6,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MazeWpfClient.View"
         mc:Ignorable="d"
-        Title="Multiplayer" Height="584" Width="1247" MinWidth="1310" MinHeight="584"
+        Title="Multiplayer" Height="416" Width="1278" MinWidth="1310" MinHeight="514" ResizeMode="NoResize"
         xmlns:Controls="clr-namespace:MazeWpfClient.UserControls" KeyUp="window_onKeyUp" Closed="OnClosed">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="8*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Margin="5" Orientation="Horizontal">
+        <StackPanel Grid.Row="0" Margin="10,10,10,0" Orientation="Horizontal" VerticalAlignment="Top" Height="38">
             <Label Content="Game Name : " Height="25" VerticalAlignment="Bottom"/>
             <TextBox x:Name="gameNameText" Width="135" Height="25" Margin="0,0,5,0" VerticalAlignment="Bottom"/>
-            <Button Content="Create" VerticalAlignment="Bottom" Height="30" Width="70" Margin="5,37,5,0" Click="CreateClicked"/>
+            <Button Content="Create" VerticalAlignment="Bottom" Height="30" Width="70" Margin="5,0" Click="CreateClicked"/>
             <Button Content="Show Hint" VerticalAlignment="Bottom" Height="30" Width="70" Margin="5,0" Click="ShowHintClicked"/>
         </StackPanel>
-        <Grid Height="395" Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top">
+        <Grid Height="395" Margin="10,53,10,0" VerticalAlignment="Top">
             <Controls:MazeControl x:Name="mazeCtrlPlayer" Width="608" HorizontalAlignment="Left" Margin="0,10,10,10"/>
             <Controls:MazeControl x:Name="mazeCtrlOpponent" Width="608" HorizontalAlignment="Right" Margin="664,10,0,10"/>
         </Grid>
-        <Label x:Name="playerBottomLabel" Content="Use WASD or Arrow keys to play." HorizontalAlignment="Left" Margin="10,405,0,0" Grid.Row="1" VerticalAlignment="Top" Width="607"/>
-        <Label x:Name="OpponentBottomLabel" Content="Opponent's Progress." HorizontalAlignment="Right" Margin="0,404,10,0" Grid.Row="1" VerticalAlignment="Top" Width="605" Height="27"/>
+        <Label x:Name="playerBottomLabel" Content="Use WASD or Arrow keys to play." HorizontalAlignment="Left" Margin="10,445,0,0" VerticalAlignment="Top" Width="607" Height="26"/>
+        <Label x:Name="OpponentBottomLabel" Content="Opponent's Progress." HorizontalAlignment="Right" Margin="0,448,10,0" VerticalAlignment="Top" Width="605" Height="27"/>
     </Grid>
 </Window>

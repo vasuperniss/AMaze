@@ -37,7 +37,7 @@ namespace MazeWpfClient.Model
         {
             get
             {
-                return multiPlayerMaze.Name;
+                return (multiPlayerMaze != null) ? multiPlayerMaze.Name :  "";
             }
             set { this.NotifyPropertyChanged(PlayerType.Player, "GameName"); }
         }
@@ -199,7 +199,8 @@ namespace MazeWpfClient.Model
                     PlayAnswer playAns = (answer as ServerAnswer).Content as PlayAnswer;
                     try
                     {
-                        var content = (Move)Enum.Parse(typeof(Move), playAns.Move);
+                        string playMove = char.ToUpper(playAns.Move[0]) + playAns.Move.Substring(1);
+                        var content = (Move)Enum.Parse(typeof(Move), playMove);
                         switch (content)
                         {
                             case Move.Up:
