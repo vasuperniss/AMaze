@@ -170,9 +170,8 @@
     <None Include="Resources\icon-maze.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\maze-logo.png" />
+    <Resource Include="Resources\AMaze background.jpg" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

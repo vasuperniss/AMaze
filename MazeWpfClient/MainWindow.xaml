@@ -40,7 +40,10 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Background="#f5f5f5" Margin="0,94,0,0">
+        <Grid Margin="0,87,0,0">
+            <Grid.Background>
+                <ImageBrush ImageSource="Resources/AMaze Background.jpg"/>
+            </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.4*"/>
                 <RowDefinition Height="3*"/>
@@ -50,11 +53,11 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="1" Content=" Single player " FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource labelButtonStyle}" BorderBrush="#FF1E4F20" BorderThickness="3,0,0,0" Background="{x:Null}" Click="SinglePlayerBtn_Clicked" Margin="33,10,0,0" Width="206" Height="56"/>
-            <Button Grid.Row="3" Content="Multi player " FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource labelButtonStyle}" BorderBrush="#FFB61616" BorderThickness="3,0,0,0" Background="{x:Null}" Click="MultiplayerBtn_Clicked" Margin="33,2,0,0" Width="194" Height="64"/>
-            <Button Grid.Row="5" Content=" Settings " FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource labelButtonStyle}" BorderBrush="#FFC7B718" BorderThickness="3,0,0,0" Background="{x:Null}" Click="SettingsBtn_Clicked" Margin="33,0,0,0" Height="66" Width="152"/>
+            <Button Grid.Row="1" Content="Single player " Foreground="#f5f5f5" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource labelButtonStyle}" BorderBrush="#30a134" BorderThickness="3,0,0,0" Background="{x:Null}" Click="SinglePlayerBtn_Clicked" Margin="33,22,0,0" Width="206" Height="56"/>
+            <Button Grid.Row="3" Content="Multi player " Foreground="#f5f5f5" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource labelButtonStyle}" BorderBrush="#FFB61616" BorderThickness="3,0,0,0" Background="{x:Null}" Click="MultiplayerBtn_Clicked" Margin="33,12,0,0" Width="194" Height="64"/>
+            <Button Grid.Row="5" Content=" Settings " Foreground="#f5f5f5" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource labelButtonStyle}" BorderBrush="#FFC7B718" BorderThickness="3,0,0,0" Background="{x:Null}" Click="SettingsBtn_Clicked" Margin="33,10,0,0" Height="66" Width="152"/>
         </Grid>
-        <Grid Grid.Row="0" Background="#4e7bd4" Height="87" VerticalAlignment="Top">
+        <Grid Grid.Row="0" Background="#218781" Height="87" VerticalAlignment="Top">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="20" Opacity="0.8" Direction="270" ShadowDepth="0"/>
             </Grid.Effect>
