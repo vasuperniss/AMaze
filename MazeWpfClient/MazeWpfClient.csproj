@@ -81,6 +81,7 @@
     <Compile Include="View\MultiPlayer.xaml.cs">
       <DependentUpon>MultiPlayer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MusicPlayer.cs" />
     <Compile Include="View\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -156,6 +157,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\menu.ogg" />
+    <None Include="Resources\singleplayer.ogg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -171,6 +174,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\AMaze background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="menu.mp3" />
+    <Resource Include="Resources\pause.png" />
+    <Resource Include="Resources\play.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

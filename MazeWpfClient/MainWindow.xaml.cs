@@ -1,7 +1,11 @@
 ﻿using MazeWpfClient.Model;
 using MazeWpfClient.Model.Server;
 using MazeWpfClient.View;
+using System;
+using System.Media;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace MazeWpfClient
 {
@@ -13,10 +17,14 @@ namespace MazeWpfClient
         private IServer server;
         static string[] settings = new string[] { "ip", "port",
                                               "rows", "cols" };
+        private MusicPlayer player;
 
         public MainWindow()
         {
             InitializeComponent();
+            this.player = new MusicPlayer("menu.mp3");
+            this.player.Play();
+
             // Reading App.config file
             if (!AppSettings.Settings.ReadAllSettings(settings))
             {
@@ -61,6 +69,20 @@ namespace MazeWpfClient
             this.server = new MazeServer(AppSettings.Settings["ip"],
                                     int.Parse(AppSettings.Settings["port"]));
             this.server.Connect();
+        }
+
+        private void MusicToggleClicked(object sender, RoutedEventArgs e)
+        {
+            if (this.player.Playing)
+            {
+                this.player.Pause();
+                this.musicImage.Source = new BitmapImage(new Uri(@"/Resources/play.png", UriKind.Relative));
+            }
+            else
+            {
+                this.player.Play();
+                this.musicImage.Source = new BitmapImage(new Uri(@"/Resources/pause.png", UriKind.Relative));
+            }
         }
 
         private void OnClosed(object sender, System.EventArgs e)
