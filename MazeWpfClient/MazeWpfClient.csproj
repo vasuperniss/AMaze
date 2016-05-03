@@ -157,8 +157,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Resources\menu.ogg" />
-    <None Include="Resources\singleplayer.ogg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -178,6 +176,7 @@
   <ItemGroup>
     <Content Include="menu.mp3" />
     <Content Include="multiplayer.mp3" />
+    <Resource Include="Resources\singleplayer.jpg" />
     <Resource Include="Resources\pause.png" />
     <Resource Include="Resources\play.png" />
   </ItemGroup>

@@ -5,30 +5,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MazeWpfClient.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="385" d:DesignWidth="350">
-    <Border Width="Auto" Height="Auto" BorderBrush="Black" BorderThickness="2">
-        <Grid Background="RoyalBlue" Width="Auto" Height="Auto">
+             d:DesignHeight="385" Width="362">
+    <Border Width="Auto" Height="Auto" BorderBrush="Transparent" BorderThickness="2">
+        <Grid Background="Transparent" Width="Auto" Height="Auto">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.8*"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{Binding VM_MazeName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="White"/>
-            <StackPanel Grid.Row="1" Width="335" Height="335" Background="Gray">
-                <StackPanel Grid.Row="1" Width="330" Height="330" Background="Navy" Margin="3"  VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Canvas Background="Beige" x:Name="canvas"  VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="2" Width="320" Height="320"/>
+            <TextBlock Grid.Row="0" Text="{Binding VM_MazeName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="179,8,179,346"/>
+            <StackPanel Background="Transparent" Margin="12,34,0,2">
+                <StackPanel Grid.Row="1" Width="332" Height="341" Margin="0,3,4,3"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Canvas Background="#424242" x:Name="canvas" Margin="6,10,6,2" Width="320" Height="307">
+                        <Canvas.Effect>
+                            <DropShadowEffect BlurRadius="30" ShadowDepth="0"/>
+                        </Canvas.Effect>
+                    </Canvas>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="72,142,72,99">
                 <Label x:Name="cTxt1" FontSize="28" Visibility="Hidden" Content="Congratulations!" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FFC97C7C" BorderBrush="#FFC53232" BorderThickness="0,1"/>
                 <Label x:Name="cTxt2" Visibility="Hidden" Margin="8" Content="You solved the Maze." Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FFEAC5C5"/>
                 <Label x:Name="lostTextUpper" FontSize="28" Visibility="Hidden" Content="You lost." VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FFC97C7C" BorderBrush="#FFC53232" BorderThickness="0,1"/>
             </StackPanel>
-            <TextBox Visibility="Hidden" Text="{Binding VM_PlayerPosition}" TextChanged="PositionTextChanged"/>
-            <TextBox Visibility="Hidden" Text="{Binding VM_MazeString}" TextChanged="MazeTextChanged"/>
-            <TextBox Visibility="Hidden" Text="{Binding VM_WonGame}" TextChanged="WonTextChanged"/>
-            <TextBox Visibility="Hidden" Text="{Binding VM_LostGame}" TextChanged="LostTextChanged"/>
-            <TextBox Visibility="Hidden" Text="{Binding VM_SolutionString}" TextChanged="SolutionTextChanged"/>
-            <TextBox Visibility="Hidden" Text="{Binding VM_Hint}" TextChanged="HintTextChanged"/>
+            <TextBox Visibility="Hidden" Text="{Binding VM_PlayerPosition}" TextChanged="PositionTextChanged" Margin="0,0,0,339"/>
+            <TextBox Visibility="Hidden" Text="{Binding VM_MazeString}" TextChanged="MazeTextChanged" Margin="0,0,0,339"/>
+            <TextBox Visibility="Hidden" Text="{Binding VM_WonGame}" TextChanged="WonTextChanged" Margin="0,0,0,339"/>
+            <TextBox Visibility="Hidden" Text="{Binding VM_LostGame}" TextChanged="LostTextChanged" Margin="0,0,0,339"/>
+            <TextBox Visibility="Hidden" Text="{Binding VM_SolutionString}" TextChanged="SolutionTextChanged" Margin="0,0,0,339"/>
+            <TextBox Visibility="Hidden" Text="{Binding VM_Hint}" TextChanged="HintTextChanged" Margin="0,0,0,339"/>
         </Grid>
     </Border>
 </UserControl>
