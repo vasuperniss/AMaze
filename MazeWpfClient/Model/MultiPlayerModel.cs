@@ -16,6 +16,7 @@ namespace MazeWpfClient.Model
         private int rows;
         private bool showSolution;
         private bool showHint;
+        private bool connected;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -26,6 +27,7 @@ namespace MazeWpfClient.Model
             this.cols = 24;
             this.rows = 8;
             this.answersFactory = new JsonAnswerFactory();
+            this.connected = true;
         }
 
         public void SendMessage(string message)
@@ -39,7 +41,7 @@ namespace MazeWpfClient.Model
             {
                 return (multiPlayerMaze != null) ? multiPlayerMaze.Name :  "";
             }
-            set { this.NotifyPropertyChanged(PlayerType.Player, "GameName"); }
+            set { this.NotifyPropertyChanged(PlayerType.None, "GameName"); }
         }
 
         public MazePosition Hint
@@ -47,7 +49,7 @@ namespace MazeWpfClient.Model
             get
             {
                 if (!this.showHint) return null;
-                return this.multiPlayerMaze.Hint;
+                return this.multiPlayerMaze != null ? this.multiPlayerMaze.Hint : null;
             }
             set { this.NotifyPropertyChanged(PlayerType.Player, "Hint"); }
         }
@@ -131,7 +133,6 @@ namespace MazeWpfClient.Model
             set
             {
                 this.NotifyPropertyChanged(PlayerType.Player, "WonGame");
-                //this.NotifyPropertyChanged(PlayerType.Opponent, "LostGame");
             }
         }
 
@@ -149,7 +150,6 @@ namespace MazeWpfClient.Model
             set
             {
                 this.NotifyPropertyChanged(PlayerType.Opponent, "WonGame");
-                //this.NotifyPropertyChanged(PlayerType.Player, "LostGame");
             }
         }
 
@@ -172,8 +172,25 @@ namespace MazeWpfClient.Model
             this.NotifyPropertyChanged(PlayerType.Player, "SolutionString");
         }
 
+        public bool isConnected
+        {
+            get { return this.connected; }
+            set
+            {
+                this.connected = value;
+                this.NotifyPropertyChanged(PlayerType.None, "ServerDisconnected");
+            }
+        }
+
         private void ServerResponseHandler(object sender, ResponseEventArgs args)
         {
+            // server disconnected
+            if (args.Response == null)
+            {
+                //this.NotifyPropertyChanged("ServerDisconnected");
+                this.isConnected = false;
+                return;
+            }
             IServerAnswer answer = this.answersFactory.GetJsonAnswer(args.Response);
             switch ((answer as ServerAnswer).Type)
             {

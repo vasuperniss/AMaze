@@ -1,6 +1,7 @@
 ﻿using MazeWpfClient.Model;
 using MazeWpfClient.ViewModel;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace MazeWpfClient.View
 {
@@ -44,6 +45,17 @@ namespace MazeWpfClient.View
                 case System.Windows.Input.Key.Left:
                     this.vm.Move(Move.Left);
                     break;
+            }
+        }
+
+        private void ServerDisconnectedChanged(object sender, TextChangedEventArgs e)
+        {
+            string message = (sender as TextBox).Text;
+            if (message.Length > 0)
+            {
+                MessageBoxResult result = MessageBox.Show(message, "No connection", MessageBoxButton.OK);
+                this.Close();
+                this.mainWindow.Show();
             }
         }
 

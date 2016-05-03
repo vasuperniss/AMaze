@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace MazeWpfClient.ViewModel
 {
-    public enum PlayerType { Player, Opponent }
+    public enum PlayerType { Player, Opponent, None }
 
     class MultiPlayerViewModel : INotifyPropertyChanged
     {
@@ -42,12 +42,30 @@ namespace MazeWpfClient.ViewModel
             MultiPropertyChangedEventArgs m = e as MultiPropertyChangedEventArgs;
             if (m != null)
             {
-                if (m.Type == PlayerType.Player)
-                    this.playerVM.Notify(this, new PropertyChangedEventArgs(e.PropertyName));
-                    
-                if (m.Type == PlayerType.Opponent)
-                    this.opponentVM.Notify(this, new PropertyChangedEventArgs(e.PropertyName));
+                switch (m.Type)
+                {
+                    case PlayerType.Player:
+                        this.playerVM.Notify(this, new PropertyChangedEventArgs(e.PropertyName));
+                        break;
+                    case PlayerType.Opponent:
+                        this.opponentVM.Notify(this, new PropertyChangedEventArgs(e.PropertyName));
+                        break;
+                    case PlayerType.None:
+                        this.PropertyChanged(this, new PropertyChangedEventArgs("VM_" + e.PropertyName));
+                        break;
+                    default:
+                        break;
+                }                 
             }
+        }
+
+        public string VM_ServerDisconnected
+        {
+            get
+            {
+                return this.model.isConnected ? "" : "Lost connection to server. Close to go back to main menu.";
+            }
+            set {; }
         }
 
         public void Move(Move m)

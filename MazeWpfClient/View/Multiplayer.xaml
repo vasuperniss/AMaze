@@ -27,5 +27,6 @@
         </Grid>
         <Label x:Name="playerBottomLabel" Content="Use WASD or Arrow keys to play." HorizontalAlignment="Left" Margin="10,445,0,0" VerticalAlignment="Top" Width="607" Height="26"/>
         <Label x:Name="OpponentBottomLabel" Content="Opponent's Progress." HorizontalAlignment="Right" Margin="0,448,10,0" VerticalAlignment="Top" Width="605" Height="27"/>
+        <TextBox Visibility="Hidden" Text="{Binding VM_ServerDisconnected}" TextChanged="ServerDisconnectedChanged"/>
     </Grid>
 </Window>

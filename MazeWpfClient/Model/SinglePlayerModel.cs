@@ -118,7 +118,7 @@ namespace MazeWpfClient.Model
             get
             {
                 if (!this.showSolution) return "";
-                return this.singlePlayerMaze.Solution;
+                return this.singlePlayerMaze != null ? this.singlePlayerMaze.Solution : null;
             }
             set
             {
@@ -131,7 +131,7 @@ namespace MazeWpfClient.Model
             get
             {
                 if (!this.showHint) return null;
-                return this.singlePlayerMaze.Hint;
+                return this.singlePlayerMaze != null ? this.singlePlayerMaze.Hint : null;
             }
             set
             {

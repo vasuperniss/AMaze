@@ -22,5 +22,6 @@ namespace MazeWpfClient.Model
         bool PlayerWonGame { get; set; }
         bool OpponentWonGame { get; set; }
         MazePosition Hint { get; set; }
+        bool isConnected { get; set; }
     }
 }
