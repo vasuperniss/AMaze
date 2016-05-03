@@ -1,5 +1,6 @@
 ﻿using MazeWpfClient.Model.Answer;
 using MazeWpfClient.Model.Server;
+using System.Collections.Generic;
 using System;
 
 namespace MazeWpfClient.Model
@@ -13,6 +14,8 @@ namespace MazeWpfClient.Model
         private int rows;
         private int cols;
         private string solution = "";
+        private List<MazePosition> solutionPath;
+        private int hintIndex = 0;
         private MazePosition hint;
 
         public MultiPlayerMaze(MultiplayerAnswer answer, int rows, int cols, IServer server)
@@ -83,6 +86,16 @@ namespace MazeWpfClient.Model
             set { this.opponenetPosition = value; }
         }
 
+        public MazePosition Start
+        {
+            get { return this.answer.You.Start; }
+        }
+
+        public MazePosition End
+        {
+            get { return this.answer.You.End; }
+        }
+
         public string PlayerSolution
         {
             get
@@ -91,7 +104,32 @@ namespace MazeWpfClient.Model
             }
             set
             {
+                if (this.solution == value) return;
                 this.solution = value;
+                this.solutionPath = new List<MazePosition>();
+                this.solutionPath.Add(new MazePosition(this.Start));
+                this.solutionPath.Add(new MazePosition(this.Start));
+                while (this.solutionPath[this.solutionPath.Count - 1].Row != this.End.Row
+                    || this.solutionPath[this.solutionPath.Count - 1].Col != this.End.Col)
+                {
+                    MazePosition currPos = this.solutionPath[this.solutionPath.Count - 1];
+                    MazePosition prevPos = this.solutionPath[this.solutionPath.Count - 2];
+                    if (currPos.Row > 0 && (this.solution[(currPos.Row - 1) * (this.cols * 2 - 1) + (currPos.Col)] == '2' || this.solution[(currPos.Row - 1) * (this.cols * 2 - 1) + (currPos.Col)] == '#') &&
+                        (prevPos.Row != currPos.Row - 1 || prevPos.Col != currPos.Col))
+                        this.solutionPath.Add(new MazePosition(currPos.Row - 1, currPos.Col));
+                    else if (currPos.Row < this.rows * 2 - 2 && (this.solution[(currPos.Row + 1) * (this.cols * 2 - 1) + (currPos.Col)] == '2' || this.solution[(currPos.Row + 1) * (this.cols * 2 - 1) + (currPos.Col)] == '#') &&
+                        (prevPos.Row != currPos.Row + 1 || prevPos.Col != currPos.Col))
+                        this.solutionPath.Add(new MazePosition(currPos.Row + 1, currPos.Col));
+                    else if (currPos.Col > 0 && (this.solution[(currPos.Row) * (this.cols * 2 - 1) + (currPos.Col - 1)] == '2' || this.solution[(currPos.Row) * (this.cols * 2 - 1) + (currPos.Col - 1)] == '#') &&
+                        (prevPos.Row != currPos.Row || prevPos.Col != currPos.Col - 1))
+                        this.solutionPath.Add(new MazePosition(currPos.Row, currPos.Col - 1));
+                    else
+                        this.solutionPath.Add(new MazePosition(currPos.Row, currPos.Col + 1));
+                }
+                this.solutionPath.RemoveAt(0);
+                this.solutionPath.Add(this.End);
+                this.solutionPath.Add(this.End);
+                this.hint = this.solutionPath[2];
             }
         }
 
@@ -159,13 +197,18 @@ namespace MazeWpfClient.Model
                     }
                     break;
             }
-            if (this.solution != "")
-            {
-                if (this.solution[this.playerPosition.Row * (this.cols * 2 - 1) + this.playerPosition.Col] == '2')
+            bool onSolution = false;
+            for (int i = 0; i < this.solutionPath.Count; i++)
+                if (this.playerPosition.Row == this.solutionPath[i].Row &&
+                    this.playerPosition.Col == this.solutionPath[i].Col)
                 {
-                    this.hint = new MazePosition(this.playerPosition);
+                    this.Hint = this.solutionPath[i + 2];
+                    onSolution = true;
+                    this.hintIndex = i;
+                    break;
                 }
-            }
+            if (!onSolution)
+                this.Hint = this.solutionPath[this.hintIndex];
             return moved;
         }
     }
