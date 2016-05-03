@@ -23,6 +23,7 @@ namespace MazeWpfClient.UserControls
         private int startCol, startRow;
 
         private int lastHintRow = -1, lastHintCol = -1;
+        private Brush backgroundColor;
 
         public MazeControl()
         {
@@ -34,6 +35,8 @@ namespace MazeWpfClient.UserControls
             double x = canvasWidth / ((double)(3 * mCols - 1));
             double y = canvasHeight / ((double)(3 * mRows - 1));
             double posX = 0, posY = 0;
+            this.backgroundColor = (SolidColorBrush)(new BrushConverter().ConvertFrom("#ededed"));
+
             for (int i = 0; i < mRows * 2 - 1; ++i)
             {
                 double height = 0;
@@ -44,7 +47,7 @@ namespace MazeWpfClient.UserControls
                     height = 2 * y;
                     if (i % 2 == 1) height = y;
                     if (j % 2 == 1) width = x;
-                    mazeCells[i, j] = this.GetBorder(Brushes.Cornsilk, posX, posY, width, height);
+                    mazeCells[i, j] = this.GetBorder(this.backgroundColor, posX, posY, width, height);
                     this.canvas.Children.Add(mazeCells[i, j]);
                     posX += width;
                 }
@@ -65,7 +68,7 @@ namespace MazeWpfClient.UserControls
             Canvas.SetTop(this.player, relativePoint.Y + (this.mazeCells[row, col].Height - this.player.Height) / 2);
             this.canvas.Children.Add(this.player);
             if (this.lastHintCol != -1)
-                this.mazeCells[lastHintRow, lastHintCol].Background = Brushes.Cornsilk;
+                this.mazeCells[lastHintRow, lastHintCol].Background = this.backgroundColor;
         }
 
         private void DrawHint(int row, int col)
@@ -105,7 +108,7 @@ namespace MazeWpfClient.UserControls
                         if (i > 0 && matrix[i - 1, j] != '1') top = 0;
                         if (i + 1 < mRows * 2 - 1 && matrix[i + 1, j] != '1') bottom = 0;
 
-                        this.mazeCells[i, j].Background = Brushes.Cornsilk;
+                        this.mazeCells[i, j].Background = this.backgroundColor;
                         this.mazeCells[i, j].BorderBrush = Brushes.Navy;
                         this.mazeCells[i, j].BorderThickness = new Thickness(left, top, right, bottom);
                     }
@@ -191,6 +194,18 @@ namespace MazeWpfClient.UserControls
             {
                 this.cTxt1.Visibility = Visibility.Hidden;
                 this.cTxt2.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void LostTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((sender as TextBox).Text.ToLower() == "true")
+            {
+                this.lostTextUpper.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.lostTextUpper.Visibility = Visibility.Hidden;
             }
         }
 

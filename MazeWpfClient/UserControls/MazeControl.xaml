@@ -7,24 +7,30 @@
              mc:Ignorable="d" 
              d:DesignHeight="315" d:DesignWidth="500">
     <Border Width="Auto" Height="Auto" BorderBrush="Black" BorderThickness="2">
-        <Grid Background="RoyalBlue" Width="Auto" Height="Auto">
+        <Grid Background="#3b3b3b" Width="Auto" Height="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="0.8*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="{Binding VM_MazeName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="White"/>
-            <StackPanel Grid.Row="1" Width="490" Height="260" Background="Gray">
-                <StackPanel Grid.Row="1" Width="484" Height="254" Background="Navy" Margin="3">
-                    <Canvas Background="Beige" x:Name="canvas"  VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="2" Width="480" Height="250"/>
+            <StackPanel Grid.Row="1" Width="490" Height="260">
+                <StackPanel Grid.Row="1" Width="484" Height="254" Margin="3">
+                    <Canvas Background="#ededed" x:Name="canvas" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="2" Width="480" Height="250">
+                        <Canvas.Effect>
+                            <DropShadowEffect ShadowDepth="1" BlurRadius="30" Opacity="0.6"/>
+                        </Canvas.Effect>
+                    </Canvas>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Label x:Name="cTxt1" FontSize="28" Visibility="Hidden" Content="Congratulations!!" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FFC97C7C" BorderBrush="#FFC53232" BorderThickness="0,1"/>
+                <Label x:Name="cTxt1" FontSize="28" Visibility="Hidden" Content="Congratulations!" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FFC97C7C" BorderBrush="#FFC53232" BorderThickness="0,1"/>
+                <Label x:Name="lostTextUpper" FontSize="28" Visibility="Hidden" Content="You lost." VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FFC97C7C" BorderBrush="#FFC53232" BorderThickness="0,1"/>
                 <Label x:Name="cTxt2" Visibility="Hidden" Margin="8" Content="You solved the Maze." Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FFEAC5C5"/>
             </StackPanel>
             <TextBox Visibility="Hidden" Text="{Binding VM_PlayerPosition}" TextChanged="PositionTextChanged"/>
             <TextBox Visibility="Hidden" Text="{Binding VM_MazeString}" TextChanged="MazeTextChanged"/>
             <TextBox Visibility="Hidden" Text="{Binding VM_WonGame}" TextChanged="WonTextChanged"/>
+            <TextBox Visibility="Hidden" Text="{Binding VM_LostGame}" TextChanged="LostTextChanged"/>
             <TextBox Visibility="Hidden" Text="{Binding VM_SolutionString}" TextChanged="SolutionTextChanged"/>
             <TextBox Visibility="Hidden" Text="{Binding VM_Hint}" TextChanged="HintTextChanged"/>
         </Grid>

@@ -6,7 +6,6 @@ namespace MazeWpfClient.ViewModel
     class SinglePlayerViewModel : INotifyPropertyChanged
     {
         private ISinglePlayerModel model;
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public SinglePlayerViewModel(ISinglePlayerModel model)
@@ -72,6 +71,12 @@ namespace MazeWpfClient.ViewModel
                 else
                     return "";
                 }
+            set {; }
+        }
+
+        public bool VM_LostGame
+        {
+            get {return this.model.LostGame; }
             set {; }
         }
 

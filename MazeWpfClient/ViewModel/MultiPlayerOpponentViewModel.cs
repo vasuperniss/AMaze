@@ -56,6 +56,12 @@ namespace MazeWpfClient.ViewModel
             set {; }
         }
 
+        public bool VM_LostGame
+        {
+            get { return this.model.PlayerWonGame; }
+            set {; }
+        }
+
         public string VM_SolutionString
         {
             get { return ""; }

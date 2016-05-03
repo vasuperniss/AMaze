@@ -43,10 +43,10 @@ namespace MazeWpfClient.ViewModel
             if (m != null)
             {
                 if (m.Type == PlayerType.Player)
-                    this.playerVM.Notify(this, new PropertyChangedEventArgs("VM_" + e.PropertyName));
+                    this.playerVM.Notify(this, new PropertyChangedEventArgs(e.PropertyName));
                     
                 if (m.Type == PlayerType.Opponent)
-                    this.opponentVM.Notify(this, new PropertyChangedEventArgs("VM_" + e.PropertyName));
+                    this.opponentVM.Notify(this, new PropertyChangedEventArgs(e.PropertyName));
             }
         }
 

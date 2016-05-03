@@ -131,6 +131,7 @@ namespace MazeWpfClient.Model
             set
             {
                 this.NotifyPropertyChanged(PlayerType.Player, "WonGame");
+                //this.NotifyPropertyChanged(PlayerType.Opponent, "LostGame");
             }
         }
 
@@ -147,7 +148,8 @@ namespace MazeWpfClient.Model
             }
             set
             {
-                this.NotifyPropertyChanged(PlayerType.Player, "WonGame");
+                this.NotifyPropertyChanged(PlayerType.Opponent, "WonGame");
+                //this.NotifyPropertyChanged(PlayerType.Player, "LostGame");
             }
         }
 
@@ -159,6 +161,7 @@ namespace MazeWpfClient.Model
                     this.showHint = false;
                 this.NotifyPropertyChanged(PlayerType.Player, "PlayerPosition");
                 this.NotifyPropertyChanged(PlayerType.Player, "WonGame");
+                this.NotifyPropertyChanged(PlayerType.Player, "LostGame");
                 this.NotifyPropertyChanged(PlayerType.Player, "Hint");
             }
         }
@@ -220,6 +223,7 @@ namespace MazeWpfClient.Model
                         }
                         this.NotifyPropertyChanged(PlayerType.Opponent, "PlayerPosition");
                         this.NotifyPropertyChanged(PlayerType.Opponent, "WonGame");
+                        this.NotifyPropertyChanged(PlayerType.Opponent, "LostGame");
                     }
                     catch(Exception e) { }
 

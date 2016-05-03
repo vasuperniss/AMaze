@@ -74,7 +74,11 @@ namespace MazeWpfClient.Model
         public bool isConnected
         {
             get { return this.connected; }
-            set { this.NotifyPropertyChanged("ServerDisconnected"); }
+            set
+            {
+                this.connected = value;
+                this.NotifyPropertyChanged("ServerDisconnected");
+            }
         }
 
         public MazePosition PlayerPosition
@@ -89,6 +93,12 @@ namespace MazeWpfClient.Model
             }
         }
 
+        public bool LostGame
+        {
+            get { return false; }
+            set { this.NotifyPropertyChanged("LostGame"); }
+        }
+
         public bool WonGame
         {
             get
@@ -100,10 +110,7 @@ namespace MazeWpfClient.Model
                 return this.singlePlayerMaze.End.Row == this.PlayerPosition.Row &&
                     this.singlePlayerMaze.End.Col == this.PlayerPosition.Col;
             }
-            set
-            {
-                this.NotifyPropertyChanged("WonGame");
-            }
+            set { this.NotifyPropertyChanged("WonGame"); }
         }
 
         public string SolutionString
