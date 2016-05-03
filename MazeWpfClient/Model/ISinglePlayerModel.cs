@@ -20,5 +20,7 @@ namespace MazeWpfClient.Model
         bool LostGame { get; set; }
         MazePosition Hint { get; set; }
         bool isConnected { get; set; }
+
+        void Restart();
     }
 }

@@ -94,9 +94,9 @@ namespace MazeWpfClient.ViewModel
             this.model.LoadNewGame(text);
         }
 
-        internal void ShowSolution()
+        internal void RestartMaze()
         {
-            this.model.SolveMaze();
+            this.model.Restart();
         }
 
         internal void ShowHint()

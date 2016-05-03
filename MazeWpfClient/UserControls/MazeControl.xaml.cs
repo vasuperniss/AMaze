@@ -12,7 +12,7 @@ namespace MazeWpfClient.UserControls
     {
         private Ellipse player;
 
-        private int canvasWidth = 480, canvasHeight = 250;
+        private int canvasWidth = 320, canvasHeight = 320;
 
         private Border[,] mazeCells;
 
@@ -29,8 +29,8 @@ namespace MazeWpfClient.UserControls
         {
             InitializeComponent();
 
-            this.mRows = AppSettings.Settings["rows"] != null ? int.Parse(AppSettings.Settings["rows"]) : 8;
-            this.mCols = AppSettings.Settings["cols"] != null ? int.Parse(AppSettings.Settings["cols"]) : 24;
+            this.mRows = AppSettings.Settings["rows"] != null ? int.Parse(AppSettings.Settings["rows"]) : 10;
+            this.mCols = AppSettings.Settings["cols"] != null ? int.Parse(AppSettings.Settings["cols"]) : 10;
             mazeCells = new Border[mRows * 2 - 1, mCols * 2 - 1];
             double x = canvasWidth / ((double)(3 * mCols - 1));
             double y = canvasHeight / ((double)(3 * mRows - 1));
