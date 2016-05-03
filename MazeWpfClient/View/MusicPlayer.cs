@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace MazeWpfClient.View
 {
-    class MusicPlayer
+    public class MusicPlayer
     {
         private MediaPlayer player;
         private bool playing;
@@ -30,6 +30,12 @@ namespace MazeWpfClient.View
         public void Pause()
         {
             this.player.Pause();
+            this.playing = false;
+        }
+
+        public void Stop()
+        {
+            this.player.Stop();
             this.playing = false;
         }
 

@@ -24,8 +24,8 @@ namespace MazeWpfClient.Model
         {
             this.server = server;
             this.server.OnResponseReceived += this.ServerResponseHandler;
-            this.cols = 24;
-            this.rows = 8;
+            this.cols = int.Parse(AppSettings.Settings["cols"]);
+            this.rows = int.Parse(AppSettings.Settings["rows"]);
             this.answersFactory = new JsonAnswerFactory();
             this.connected = true;
         }

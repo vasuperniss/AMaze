@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MazeWpfClient.View"
         mc:Ignorable="d"
-        Title="SinglePlayer" Height="434" Width="468" MinWidth="400" MinHeight="400"
+        Title="SinglePlayer" Height="486.5" Width="468" MinWidth="400" MinHeight="400"
         xmlns:Controls="clr-namespace:MazeWpfClient.UserControls" KeyUp="window_onKeyUp" Closed="OnClosed">
-    <Grid Height="425" VerticalAlignment="Top">
+    <Grid Height="455" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <TextBox Visibility="Hidden" Text="{Binding VM_ServerDisconnected}" TextChanged="ServerDisconnectedChanged"/>
-        <Controls:MazeControl Grid.Row="1" x:Name="mazeCtrl" Margin="0" VerticalAlignment="Top"/>
+        <Controls:MazeControl Grid.Row="1" x:Name="mazeCtrl" Margin="0" VerticalAlignment="Top" Height="376"/>
         <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
             <Label Content="maze name : " Height="25" VerticalAlignment="Bottom"/>
             <TextBox x:Name="mazeNameTxt" Width="104" Height="25" Margin="0,0,5,0" VerticalAlignment="Bottom"/>

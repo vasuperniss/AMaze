@@ -177,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="menu.mp3" />
+    <Content Include="multiplayer.mp3" />
     <Resource Include="Resources\pause.png" />
     <Resource Include="Resources\play.png" />
   </ItemGroup>

@@ -13,10 +13,15 @@ namespace MazeWpfClient.View
         private MultiPlayerViewModel vm;
         private Window mainWindow;
         private IMultiPlayerModel model;
+        private MusicPlayer player;
 
         public MultiPlayer(IMultiPlayerModel model, Window main)
         {
             InitializeComponent();
+
+            this.player = new MusicPlayer("multiplayer.mp3");
+            this.player.Play();
+
             this.mainWindow = main;
             this.model = model;
             this.vm = new MultiPlayerViewModel(this.model);
@@ -81,6 +86,12 @@ namespace MazeWpfClient.View
             {
                 this.model.SendMessage("close " + this.model.GameName);
             }
+            this.player.Stop();
+
+            MainWindow main = mainWindow as MainWindow;
+            if (main != null)
+                main.GetPlayer().Play();
+            
             this.mainWindow.Show();
         }
     }

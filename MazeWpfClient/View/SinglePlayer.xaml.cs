@@ -1,5 +1,6 @@
 ﻿using MazeWpfClient.Model;
 using MazeWpfClient.ViewModel;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,11 +13,16 @@ namespace MazeWpfClient.View
     {
         private SinglePlayerViewModel vm;
         private Window mainWindow;
+        private MusicPlayer player;
 
         public SinglePlayer(ISinglePlayerModel model, Window main)
         {
             InitializeComponent();
+
+            this.player = new MusicPlayer("singleplayer.mp3");
+            this.player.Play();
             this.mainWindow = main;
+
             this.vm = new SinglePlayerViewModel(model);
             this.DataContext = this.vm;
             this.mazeCtrl.DataContext = this.vm;
@@ -73,6 +79,12 @@ namespace MazeWpfClient.View
 
         private void OnClosed(object sender, System.EventArgs e)
         {
+            this.player.Stop();
+
+            MainWindow main = this.mainWindow as MainWindow;
+            if(main != null)
+                main.GetPlayer().Play();
+
             this.mainWindow.Show();
         }
     }

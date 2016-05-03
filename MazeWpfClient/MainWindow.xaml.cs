@@ -22,8 +22,7 @@ namespace MazeWpfClient
         public MainWindow()
         {
             InitializeComponent();
-            this.player = new MusicPlayer("menu.mp3");
-            this.player.Play();
+
 
             // Reading App.config file
             if (!AppSettings.Settings.ReadAllSettings(settings))
@@ -33,6 +32,8 @@ namespace MazeWpfClient
             this.server = new MazeServer(AppSettings.Settings["ip"],
                                     int.Parse(AppSettings.Settings["port"]));
             this.server.Connect();
+            this.player = new MusicPlayer("menu.mp3");
+            this.player.Play();
         }
 
         private void SinglePlayerBtn_Clicked(object sender, RoutedEventArgs e)
@@ -42,6 +43,8 @@ namespace MazeWpfClient
             SinglePlayer singlePlayer = new SinglePlayer(model, this);
             singlePlayer.Left = location.X;
             singlePlayer.Top = location.Y;
+
+            this.player.Pause();
             singlePlayer.Show();
             this.Hide();
         }
@@ -53,6 +56,8 @@ namespace MazeWpfClient
             MultiPlayer multiPlayer = new MultiPlayer(model, this);
             multiPlayer.Left = location.X;
             multiPlayer.Top = location.Y;
+
+            this.player.Pause();
             multiPlayer.Show();
             this.Hide();
         }
@@ -87,7 +92,13 @@ namespace MazeWpfClient
 
         private void OnClosed(object sender, System.EventArgs e)
         {
+            this.player.Stop();
             this.server.Close();
+        }
+
+        public MusicPlayer GetPlayer()
+        {
+            return this.player;
         }
     }
 }
