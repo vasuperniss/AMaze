@@ -1,6 +1,7 @@
 ﻿using MazeWpfClient.Model.Answer;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System;
 
 namespace MazeWpfClient.Model
 {
@@ -24,14 +25,14 @@ namespace MazeWpfClient.Model
             this.hint = new MazePosition(this.answer.Start);
         }
 
-        public SinglePlayerMaze(SolveAnswer answer, int rows, int cols)
-        {
-            this.answer = new GenerateAnswer(answer);
-            this.cols = cols;
-            this.rows = rows;
-            this.playerPosition = new MazePosition(this.answer.Start);
-            this.hint = new MazePosition(this.answer.Start);
-        }
+        //public SinglePlayerMaze(SolveAnswer answer, int rows, int cols)
+        //{
+        //    this.answer = new GenerateAnswer(answer);
+        //    this.cols = cols;
+        //    this.rows = rows;
+        //    this.playerPosition = new MazePosition(this.answer.Start);
+        //    this.hint = new MazePosition(this.answer.Start);
+        //}
 
         public string Name
         {
@@ -170,6 +171,12 @@ namespace MazeWpfClient.Model
             if (!onSolution)
                 this.Hint = this.solutionPath[this.hintIndex];
             return moved;
+        }
+
+        internal void Restart()
+        {
+            this.playerPosition = new MazePosition(this.Start);
+            this.hintIndex = 0;
         }
     }
 }

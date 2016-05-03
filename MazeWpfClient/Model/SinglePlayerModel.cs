@@ -1,6 +1,7 @@
 ﻿using MazeWpfClient.Model.Answer;
 using MazeWpfClient.Model.Server;
 using System.ComponentModel;
+using System;
 
 namespace MazeWpfClient.Model
 {
@@ -22,8 +23,8 @@ namespace MazeWpfClient.Model
         {
             this.server = server;
             this.server.OnResponseReceived += this.ServerResponseHandler;
-            this.cols = 24;
-            this.rows = 8;
+            this.cols = int.Parse(AppSettings.Settings["cols"]);
+            this.rows = int.Parse(AppSettings.Settings["rows"]);
             this.answersFactory = new JsonAnswerFactory();
             this.connected = true;
         }
@@ -175,17 +176,26 @@ namespace MazeWpfClient.Model
                     {
                         this.singlePlayerMaze.Solution = ((answer as ServerAnswer).Content as SolveAnswer).Maze;
                     }
-                    else
-                    {
-                        this.singlePlayerMaze = new SinglePlayerMaze((answer as ServerAnswer).Content as SolveAnswer, rows, cols);
-                        this.server.SendRequest("solve " + this.singlePlayerMaze.Name + " 0");
-                        this.MazeName = this.singlePlayerMaze.Name;
-                        this.MazeString = this.singlePlayerMaze.Maze;
-                        this.PlayerPosition = this.singlePlayerMaze.PlayerPosition;
-                        this.WonGame = false;
-                    }
+                    //else
+                    //{
+                    //    this.singlePlayerMaze = new SinglePlayerMaze((answer as ServerAnswer).Content as SolveAnswer, rows, cols);
+                    //    this.server.SendRequest("solve " + this.singlePlayerMaze.Name + " 0");
+                    //    this.MazeName = this.singlePlayerMaze.Name;
+                    //    this.MazeString = this.singlePlayerMaze.Maze;
+                    //    this.PlayerPosition = this.singlePlayerMaze.PlayerPosition;
+                    //    this.WonGame = false;
+                    //}
                     break;
             }      
+        }
+
+        public void Restart()
+        {
+            this.singlePlayerMaze.Restart();
+            this.MazeName = this.singlePlayerMaze.Name;
+            this.MazeString = this.singlePlayerMaze.Maze;
+            this.PlayerPosition = this.singlePlayerMaze.PlayerPosition;
+            this.WonGame = false;
         }
     }
 }

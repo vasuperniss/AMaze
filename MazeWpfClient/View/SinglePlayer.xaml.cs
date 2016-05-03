@@ -66,9 +66,9 @@ namespace MazeWpfClient.View
             this.vm.ShowHint();
         }
 
-        public void ShowSolutionClicked(object sender, RoutedEventArgs e)
+        public void RestartClicked(object sender, RoutedEventArgs e)
         {
-            this.vm.ShowSolution();
+            this.vm.RestartMaze();
         }
 
         private void OnClosed(object sender, System.EventArgs e)

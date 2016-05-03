@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MazeWpfClient.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="315" d:DesignWidth="500">
+             d:DesignHeight="385" d:DesignWidth="350">
     <Border Width="Auto" Height="Auto" BorderBrush="Black" BorderThickness="2">
         <Grid Background="RoyalBlue" Width="Auto" Height="Auto">
             <Grid.RowDefinitions>
@@ -13,9 +13,9 @@
                 <RowDefinition Height="0.8*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="{Binding VM_MazeName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="White"/>
-            <StackPanel Grid.Row="1" Width="490" Height="260" Background="Gray">
-                <StackPanel Grid.Row="1" Width="484" Height="254" Background="Navy" Margin="3">
-                    <Canvas Background="Beige" x:Name="canvas"  VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="2" Width="480" Height="250"/>
+            <StackPanel Grid.Row="1" Width="335" Height="335" Background="Gray">
+                <StackPanel Grid.Row="1" Width="330" Height="330" Background="Navy" Margin="3"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Canvas Background="Beige" x:Name="canvas"  VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Margin="2" Width="320" Height="320"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
