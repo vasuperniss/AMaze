@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MazeWpfClient.View"
         mc:Ignorable="d"
         Background="#545454"
-        Title="SinglePlayer" Height="608" Width="311.5" MinWidth="468" MinHeight="570.5" ResizeMode="NoResize"
+        Title="SinglePlayer" Height="608" Width="527" MinWidth="468" MinHeight="570.5" ResizeMode="NoResize"
         xmlns:Controls="clr-namespace:MazeWpfClient.UserControls" KeyUp="window_onKeyUp" Closed="OnClosed">
     <Grid>
         <Grid Margin="0,87,0,0">
@@ -20,6 +20,7 @@
                 <Button Content="Create" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" VerticalAlignment="Bottom" Height="{Binding Height, ElementName=mazeNameTxt}" Width="70" Margin="5,0,5,5" Click="CreateClicked"/>
                 <Button Content="Show Hint" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" VerticalAlignment="Bottom" Height="{Binding Height, ElementName=mazeNameTxt}" Width="70" Margin="5,0,5,5" Click="ShowHintClicked"/>
                 <Button Content="Restart" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" VerticalAlignment="Bottom" Height="{Binding Height, ElementName=mazeNameTxt}" Width="70" Margin="5,0,5,5" Click="RestartClicked"/>
+                <Button x:Name="musicToggle" Content="Pause Music" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" VerticalAlignment="Bottom" Height="{Binding Height, ElementName=mazeNameTxt}" Width="75" Margin="5,0,5,5" Click="MusicToggleClicked"/>
             </StackPanel>
             <Controls:MazeControl x:Name="mazeCtrl" Margin="50,46,50,0" VerticalAlignment="Top" BorderBrush="Transparent" Height="390"/>
         </Grid>

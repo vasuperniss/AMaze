@@ -77,6 +77,20 @@ namespace MazeWpfClient.View
             this.vm.RestartMaze();
         }
 
+        public void MusicToggleClicked(object sender, RoutedEventArgs e)
+        {
+            if (this.player.Playing)
+            {
+                this.player.Pause();
+                this.musicToggle.Content = "Play Music";
+            }
+            else
+            {
+                this.player.Play();
+                this.musicToggle.Content = "Pause Music";
+            }
+        }
+
         private void OnClosed(object sender, System.EventArgs e)
         {
             this.player.Stop();
