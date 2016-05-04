@@ -25,15 +25,6 @@ namespace MazeWpfClient.Model
             this.hint = new MazePosition(this.answer.Start);
         }
 
-        //public SinglePlayerMaze(SolveAnswer answer, int rows, int cols)
-        //{
-        //    this.answer = new GenerateAnswer(answer);
-        //    this.cols = cols;
-        //    this.rows = rows;
-        //    this.playerPosition = new MazePosition(this.answer.Start);
-        //    this.hint = new MazePosition(this.answer.Start);
-        //}
-
         public string Name
         {
             get { return this.answer.Name; }

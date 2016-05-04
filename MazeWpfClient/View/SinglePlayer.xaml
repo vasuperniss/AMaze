@@ -5,22 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MazeWpfClient.View"
         mc:Ignorable="d"
-        Title="SinglePlayer" Height="634.5" Width="311.5" MinWidth="468" MinHeight="570.5" ResizeMode="NoResize"
+        Background="#545454"
+        Title="SinglePlayer" Height="608" Width="311.5" MinWidth="468" MinHeight="570.5" ResizeMode="NoResize"
         xmlns:Controls="clr-namespace:MazeWpfClient.UserControls" KeyUp="window_onKeyUp" Closed="OnClosed">
     <Grid>
         <Grid Margin="0,87,0,0">
             <Grid.Background>
-                <ImageBrush ImageSource="../Resources/singleplayer.jpg"/>
+                <ImageBrush ImageSource="../Resources/singleplayer.jpg" Opacity="0.65"/>
             </Grid.Background>
             <TextBox Visibility="Hidden" Text="{Binding VM_ServerDisconnected}" TextChanged="ServerDisconnectedChanged" Margin="0,0,0,0"/>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,480" Height="27">
-                <Label Content="Maze name: " Height="{Binding Height, ElementName=mazeNameTxt}" Foreground="White" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="mazeNameTxt" Background="#636363" BorderBrush="Transparent" Width="104" Height="25" Margin="0,0,5,0" VerticalAlignment="Bottom"/>
-                <Button Content="Create" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" VerticalAlignment="Bottom" Height="{Binding Height, ElementName=mazeNameTxt}" Width="70" Margin="5,0" Click="CreateClicked"/>
-                <Button Content="Show Hint" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" VerticalAlignment="Bottom" Height="{Binding Height, ElementName=mazeNameTxt}" Width="70" Margin="5,0" Click="ShowHintClicked"/>
-                <Button Content="Restart" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" VerticalAlignment="Bottom" Height="{Binding Height, ElementName=mazeNameTxt}" Width="70" Margin="5,0" Click="RestartClicked"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,-2,0,446" Height="48">
+                <Label Content="Maze name: " Height="{Binding Height, ElementName=mazeNameTxt}" Foreground="White" VerticalAlignment="Bottom" Margin="0,0,0,5"/>
+                <TextBox x:Name="mazeNameTxt" Background="#636363" Foreground="White" BorderBrush="Transparent" Width="104" Height="25" Margin="0,0,5,5" VerticalAlignment="Bottom"/>
+                <Button Content="Create" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" VerticalAlignment="Bottom" Height="{Binding Height, ElementName=mazeNameTxt}" Width="70" Margin="5,0,5,5" Click="CreateClicked"/>
+                <Button Content="Show Hint" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" VerticalAlignment="Bottom" Height="{Binding Height, ElementName=mazeNameTxt}" Width="70" Margin="5,0,5,5" Click="ShowHintClicked"/>
+                <Button Content="Restart" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" VerticalAlignment="Bottom" Height="{Binding Height, ElementName=mazeNameTxt}" Width="70" Margin="5,0,5,5" Click="RestartClicked"/>
             </StackPanel>
-            <Controls:MazeControl x:Name="mazeCtrl" Margin="0,46,0,0" VerticalAlignment="Top" BorderBrush="Transparent" Height="432"/>
+            <Controls:MazeControl x:Name="mazeCtrl" Margin="50,46,50,0" VerticalAlignment="Top" BorderBrush="Transparent" Height="390"/>
         </Grid>
         <Grid Background="#218781" Height="87" VerticalAlignment="Top" Margin="0">
             <Grid.Effect>
@@ -28,6 +29,6 @@
             </Grid.Effect>
             <Label x:Name="label" Content="Singleplayer" HorizontalAlignment="Left" Foreground="#f7f7f7" VerticalAlignment="Top" Height="77" Width="462" FontSize="50" FontWeight="Bold"/>
         </Grid>
-        <Label Content="Use WASD or Arrow keys to play." Foreground="White" Height="26" HorizontalAlignment="Left" Margin="10,569,0,0" VerticalAlignment="Top" Width="184"/>
+        <Label Content="Use WASD or Arrow keys to play." Foreground="White" Height="26" HorizontalAlignment="Left" Margin="10,544,0,0" VerticalAlignment="Top" Width="184"/>
     </Grid>
 </Window>

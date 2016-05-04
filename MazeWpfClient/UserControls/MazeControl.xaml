@@ -11,7 +11,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{Binding VM_MazeName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="179,8,179,346"/>
+            <TextBlock Grid.Row="0" Text="{Binding VM_MazeName}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="#ededed" Margin="10,8,10,347" Width="338" Height="26" TextAlignment="Center"/>
             <StackPanel Background="Transparent" Margin="12,34,0,2">
                 <StackPanel Grid.Row="1" Width="332" Height="341" Margin="0,3,4,3"  VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Canvas Background="#424242" x:Name="canvas" Margin="6,10,6,2" Width="320" Height="307">

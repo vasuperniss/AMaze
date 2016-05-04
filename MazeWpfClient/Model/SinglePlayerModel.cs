@@ -52,7 +52,7 @@ namespace MazeWpfClient.Model
         {
             get
             {
-                return this.singlePlayerMaze != null ? this.singlePlayerMaze.Name : "No Maze atm";
+                return this.singlePlayerMaze != null ? this.singlePlayerMaze.Name : "Create a maze to play.";
             }
             set
             {
