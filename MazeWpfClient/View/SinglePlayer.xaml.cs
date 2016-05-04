@@ -3,6 +3,7 @@ using MazeWpfClient.ViewModel;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MazeWpfClient.View
 {
@@ -64,7 +65,10 @@ namespace MazeWpfClient.View
         public void CreateClicked(object sender, RoutedEventArgs e)
         {
             if (this.mazeNameTxt.Text.Length > 0)
+            {
                 this.vm.CreateNewMaze(this.mazeNameTxt.Text);
+                this.mazeCtrl.Focus();
+            }
         }
 
         public void ShowHintClicked(object sender, RoutedEventArgs e)

@@ -24,6 +24,7 @@ namespace MazeWpfClient.UserControls
 
         private int lastHintRow = -1, lastHintCol = -1;
         private Brush backgroundColor;
+        private Brush borderColor;
 
         public MazeControl()
         {
@@ -36,6 +37,7 @@ namespace MazeWpfClient.UserControls
             double y = canvasHeight / ((double)(3 * mRows - 1));
             double posX = 0, posY = 0;
             this.backgroundColor = (SolidColorBrush)(new BrushConverter().ConvertFrom("#ededed"));
+            this.borderColor = (SolidColorBrush)(new BrushConverter().ConvertFrom("#218781"));
 
             for (int i = 0; i < mRows * 2 - 1; ++i)
             {
@@ -95,7 +97,7 @@ namespace MazeWpfClient.UserControls
                         if (i + 1 < mRows * 2 - 1 && matrix[i + 1, j] == '1') bottom = 0;
 
                         this.mazeCells[i, j].Background = Brushes.Gray;
-                        this.mazeCells[i, j].BorderBrush = Brushes.Navy;
+                        this.mazeCells[i, j].BorderBrush = this.borderColor;
                         this.mazeCells[i, j].BorderThickness = new Thickness(left, top, right, bottom);
                     }
                     else
@@ -109,7 +111,7 @@ namespace MazeWpfClient.UserControls
                         if (i + 1 < mRows * 2 - 1 && matrix[i + 1, j] != '1') bottom = 0;
 
                         this.mazeCells[i, j].Background = this.backgroundColor;
-                        this.mazeCells[i, j].BorderBrush = Brushes.Navy;
+                        this.mazeCells[i, j].BorderBrush = this.borderColor;
                         this.mazeCells[i, j].BorderThickness = new Thickness(left, top, right, bottom);
                     }
                     if (matrix[i, j] == '*')
@@ -124,7 +126,7 @@ namespace MazeWpfClient.UserControls
                     {
                         this.mazeCells[i, j].Background = Brushes.CadetBlue;
                         this.mazeCells[i, j].BorderThickness = new Thickness(2);
-                        this.mazeCells[i, j].BorderBrush = Brushes.Blue;
+                        this.mazeCells[i, j].BorderBrush = this.borderColor;
                         endCol = j;
                         endRow = i;
                     }
