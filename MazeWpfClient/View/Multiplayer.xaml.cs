@@ -123,7 +123,6 @@ namespace MazeWpfClient.View
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         public void NewGameClicked(object sender, RoutedEventArgs e)
         {
-            this.OnClosed(sender, e);
             this.Close();
         }
 
@@ -157,21 +156,18 @@ namespace MazeWpfClient.View
             {
                 this.model.SendMessage("close " + this.model.GameName);
             }
-            this.player.Stop();
+            this.MusicOnClose();
+            this.mainWindow.Show();
+        }
 
+        private void MusicOnClose()
+        {
+            this.player.Stop();
             MainWindow main = mainWindow as MainWindow;
             if (main != null)
             {
                 main.MusicToggleClicked(null, null);
-                MusicPlayer player = main.GetPlayer();
-                if (!player.Playing)
-                {
-                    player.Play();
-                }
             }
-
-            
-            this.mainWindow.Show();
         }
     }
 }
