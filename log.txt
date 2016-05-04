@@ -1,0 +1,1053 @@
+* commit 6c7736d7e2e559c4af73d289df15c3503f593d39
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Wed May 4 23:05:19 2016 +0300
+| 
+|     Added exception handling to MutiplayerViewModel.
+|     Simplified some if-expressions.
+|     Changed MusicToggleClicked method to be public.
+|     Fixed: Main menu music button changes image properly are playback is resumed when multiplayer/singleplayer windows are closed.
+|  
+* commit 8a5d49456e3558194eab89e7b31e18850edaa7d4
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Wed May 4 22:47:09 2016 +0300
+| 
+|     Added documentation for multiplayer files, windows, and the rest.
+|     Fixed some bad automatic documentation.
+|  
+* commit 7777e25abc8860a0ba09faaf8fe78ce1fd7f75ba
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Wed May 4 21:38:46 2016 +0300
+| 
+|     fixed hint when pressed Restart.
+|  
+* commit 84882b4703e9049ebd689e795ce9970b9d63f972
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Wed May 4 21:32:11 2016 +0300
+| 
+|     Re-added function that was removed due to conflicts.
+|    
+*   commit 11fa00fecd1a9ca488c8c30bff0e5b651eac0ab6
+|\  Merge: 01af3cc ed97c21
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Wed May 4 21:31:43 2016 +0300
+| | 
+| |     Resolved conflicts.
+| |   
+| * commit ed97c2101b264f590145d66ee3590807d481d197
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Wed May 4 21:16:13 2016 +0300
+| | 
+| |     fixed some problems caused because of the merge.
+| |     
+| *   commit edcd807cbe04eadac7bce31d4478c3d43c0e0c8b
+| |\  Merge: f1a8ae7 d5d5583
+| | | Author: vasuperniss <vasuperniss@gmail.com>
+| | | Date:   Wed May 4 21:11:00 2016 +0300
+| | | 
+| | |     merge
+| | |    
+| * | commit f1a8ae7be02a5fb3dba75ee4f74d97596fe6ab55
+| | | Author: vasuperniss <vasuperniss@gmail.com>
+| | | Date:   Wed May 4 21:03:49 2016 +0300
+| | | 
+| | |     anded comments and documentation.
+| | |    
+* | | commit 01af3ccc64814b3697a8f5f5a40d4c5c6754e30d
+| |/  Author: Max <max.anisimov230@gmail.com>
+|/|   Date:   Wed May 4 21:19:16 2016 +0300
+| |   
+| |       Fixed: settings menu textboxes now change to the correct default color.
+| |       Fixed: mazeNameText in singleplayer now properly loses focus when a game is created, and regains focus only when clicked on with mouse.
+| |   
+* | commit d5d55833d41fbd6254eeeaf4321d8a008dd9a622
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Wed May 4 19:08:42 2016 +0300
+| | 
+| |     Changed MazeControl border colors to match header.
+| |     Re-positioned losing message in MazeControl.
+| |     Fixed focus staying on gameText box after creating a game.
+| |   
+* | commit ce1a0fd88f81ff12278aa22df0acf7a473025792
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Wed May 4 18:46:27 2016 +0300
+| | 
+| |     Added music toggle button for singleplayer and multiplayer.
+| |     Tweaked singleplayer window size a bit.
+| |   
+* | commit 37704877fdd54d7ed6e9ef35b7eadbf3e05fabaa
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Wed May 4 18:41:25 2016 +0300
+| | 
+| |     Added singleplayer track.
+| |     Compressed all tracks.
+| |     
+* |   commit 4d7e441e18e6fef0d9f257457a498de0bff1ca52
+|\ \  Merge: 052d3ed 26c5773
+| |/  Author: Max <max.anisimov230@gmail.com>
+| |   Date:   Wed May 4 18:36:01 2016 +0300
+| |   
+| |       Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| |   
+| * commit 26c5773b1d0157b678bcd08c383eb2e90c54cb08
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Tue May 3 23:21:26 2016 +0300
+| | 
+| |     Create README.md
+| |   
+* | commit 052d3edb46352833a4af54ebbf835aca3aaa2be2
+|/  Author: Max <max.anisimov230@gmail.com>
+|   Date:   Wed May 4 18:35:44 2016 +0300
+|   
+|       Completed appearance for singleplayer, and multiplayer.
+|       Fixed MazeControl text above maze not showing up properly.
+|       Changed text that appears above empty maze when a game has not been created in singleplayer/multiplayer.
+|  
+* commit fed0eba9d64185cd830c1139672c0a1de4468e9d
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Tue May 3 23:20:05 2016 +0300
+| 
+|     Removed 2 unused music files.
+|     Changed MazeControl colors again.
+|     Changed Singleplayer appearance(not done yet).
+|  
+* commit c87b7526b3883c31a5a901b0175ec5f0293756eb
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Tue May 3 22:27:56 2016 +0300
+| 
+|     Fixed rows/cols settings for multiplayer.
+|     Restored lose game messages.
+|     Added music to singleplayer and multiplayer.  Main menu music stops when launching singleplayer or multiplayer, and resumes when they are closed.
+|     Added music for multiplayer.
+|    
+*   commit 40076c78ba1d2441b3e6baf7efdfe707f8c4aa6d
+|\  Merge: bf61648 ae1dac9
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Tue May 3 21:39:20 2016 +0300
+| | 
+| |     Resolved conflicts.
+| |   
+| * commit ae1dac9a81bf1b36f4ce8d22b26c7e3a37d91303
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Tue May 3 20:47:06 2016 +0300
+| | 
+| |     changed single player drawing.
+| |     removed the show solution button.
+| |     added a restart button.
+| |     changed the mazes to be 10*10 in both client and server
+| |   
+* | commit bf61648d85448810048fcc1634d9d12de51e9747
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Tue May 3 21:38:46 2016 +0300
+| | 
+| |     Changed appearance of settings menu.
+| |     Updated Hint finding  for multiplayer.
+| |   
+* | commit d7ef4d56fed8f49e65497fdf8aded308af98f7d3
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Tue May 3 20:06:37 2016 +0300
+| | 
+| |     Added MusicPlayer class to play music.
+| |     Added Play/Pause Button for main menu.
+| |     Added 2 music files for menu, and singleplayer.
+| |   
+* | commit a4473989d01ba7181c6bc9899bd1f81d89949229
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Tue May 3 18:23:50 2016 +0300
+| | 
+| |     Added server disconnection handling for Multiplayer and singleplayer.
+| |     Fixed crash when ShowHint or ShowSolution buttons are pressed if the a maze was not generated.
+| |   
+* | commit da0ce1a3ee52a9e65f7f21f2fedf486bb27f142a
+|/  Author: Max <max.anisimov230@gmail.com>
+|   Date:   Tue May 3 17:58:14 2016 +0300
+|   
+|       Added message when a player loses a multiplayer match.
+|       Changed MazeControls colors slightly, and added member for controlling background color.
+|    
+*   commit 4d7441153c230fb1d992f65b0405de5afedfa24c
+|\  Merge: e946f86 a7f58ae
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Mon May 2 23:58:18 2016 +0300
+| | 
+| |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| |     
+| *   commit a7f58ae16924c9730a78c3d4a192e441861d0b00
+| |\  Merge: 22b2b78 f3cc9d7
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Mon May 2 23:36:49 2016 +0300
+| | | 
+| | |     Resolved conflicts.
+| | |    
+| * | commit 22b2b78e66c7e8f0383fb189dedc48d99c3c16e2
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Mon May 2 23:35:59 2016 +0300
+| | | 
+| | |     Added some server disconnection handling which doesn't work. Yet.
+| | |    
+* | | commit e946f8633171e8d25df1ba8ae9fea48ff0662203
+| |/  Author: vasuperniss <vasuperniss@gmail.com>
+|/|   Date:   Mon May 2 23:58:11 2016 +0300
+| |   
+| |       Fixed the hint mechanism.
+| |       and added more visual drawing to the maze control.
+| |     
+* |   commit f3cc9d7a60f7dbfe00068f467cd2660e5bf76739
+|\ \  Merge: 865eb85 0e0e66f
+| |/  Author: vasuperniss <vasuperniss@gmail.com>
+| |   Date:   Mon May 2 22:29:41 2016 +0300
+| |   
+| |       merge
+| |     
+| *   commit 0e0e66feef6897b951d3daa2dab1b2d285dd39f6
+| |\  Merge: adbf84e c9a9dbe
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Mon May 2 20:27:50 2016 +0300
+| | | 
+| | |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| | |    
+| * | commit adbf84e90cebdaf35c6e242e9bf34f18cb45e3b0
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Mon May 2 20:27:37 2016 +0300
+| | | 
+| | |     Fixed broken sync in multiplayer.
+| | |     Changed MazeControl colors, added drop shadow.
+| | |     Changed Multiplayer, Singleplayer, Settings and Main Menu appearance.
+| | |     Players now cannot move in multiplayer if one of them finished the maze.
+| | |     Singleplayer, Multiplayer, and Settings windows position is now relative to the main window position.
+| | |    
+* | | commit 865eb8508ee1d668c3c7ccc875cb820daf3dc381
+| |/  Author: vasuperniss <vasuperniss@gmail.com>
+|/|   Date:   Mon May 2 22:27:24 2016 +0300
+| |   
+| |       changed the way that the maze is drawn on the screen.
+| |   
+* | commit c9a9dbe2ae8babc777277f722c489da822767379
+|/  Author: vasuperniss <vasuperniss@gmail.com>
+|   Date:   Mon May 2 20:14:16 2016 +0300
+|   
+|       fixed another bug in the change start position (maze Library).
+|  
+* commit d1dfffbb26ba9a05a438a57a71e0073e262431db
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Mon May 2 17:58:15 2016 +0300
+| 
+|     Added lock when writing solutions to file.
+|     Changed Move Enum back to capital letters.
+|     Added bool WonGame methods for Player and Opponent.
+|    
+*   commit 179bbd547c99cdddf1d913a4592383974901bd27
+|\  Merge: 564dc7a 0450948
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Mon May 2 15:20:15 2016 +0300
+| | 
+| |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| |   
+| * commit 04509483d8bc8b616d290f6392e3afebd8aee58f
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Sun May 1 23:47:04 2016 +0300
+| | 
+| |     Multiplayer now syncs movement of opponent.
+| |     Changed some exception handling, and added generation of mazes for multiplayer.
+| |   
+* | commit 564dc7a17b49933b7fe27ff8814b9aa7c5b119e2
+|/  Author: vasuperniss <vasuperniss@gmail.com>
+|   Date:   Mon May 2 15:20:06 2016 +0300
+|   
+|       fixed bug related to changing starting positions in mazes (maze Library)
+|  
+* commit 90847fc5bb766f679e90dbeab4413275ac062baf
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Sun May 1 22:35:02 2016 +0300
+| 
+|     added Creation of a new IMaze from an older one with a different starting position
+|  
+* commit ccb1344c3467184dc5dc2223cdaab83302b79859
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Sun May 1 14:39:40 2016 +0300
+| 
+|     small fix in the multiplayer view
+|  
+* commit 134a09a56cc4ca4cf9604f6e497738e2413b921e
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Sat Apr 30 22:24:13 2016 +0300
+| 
+|     Added MultiPlayerOpponentViewModel for opponent screen in multiplayer.
+|     Added MultiPlayerPlayerViewModel for player screen in multiplayer.
+|     MultiPlayerViewModel contains an instance of each of the classes above.
+|     Added MultiPropertyChangedEventArgs class that adds an enum member to identify when an Opponent or Player viewmodel sent a notification.
+|  
+* commit 05f6d42f6562ebab50455525741953f1d1e8a3ea
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Fri Apr 29 20:26:13 2016 +0300
+| 
+|     Implemented IMultiPlayerModel interface.
+|     Implemented MultiPlayerMaze class.
+|     Added MultiPlayerModel class.
+|  
+* commit 66af7fe0dcff50fa865c80202e54619bac4673a3
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Fri Apr 29 19:28:28 2016 +0300
+| 
+|     Fixed some properties in SinglePlayerViewModel throwing NullReference exceptions.
+|     Added Multiplayer xaml, and model files.
+|    
+*   commit 6a5017be1b5b59e862dbb6633feaf6477a401457
+|\  Merge: af9bc32 b564c2e
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Thu Apr 28 23:09:49 2016 +0300
+| | 
+| |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| |   
+| * commit b564c2ebf27e940843bee42b01f68afc8795bc45
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Thu Apr 28 15:30:33 2016 +0300
+| | 
+| |     changed the way that singleplayer is opened to match the requirements of the exercise.
+| |     
+* |   commit af9bc3289411c56b4f748083eb240e71b47579eb
+|\ \  Merge: 922c985 c146851
+| |/  Author: Max <max.anisimov230@gmail.com>
+| |   Date:   Thu Apr 28 13:28:00 2016 +0300
+| |   
+| |       resolved conflicts.
+| |   
+| * commit c146851e5f25b3da73126f159a18d7bc253b6ac1
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Thu Apr 28 13:19:13 2016 +0300
+| | 
+| |     fixed the settings window funcionality.
+| |   
+* | commit 922c98565f0cca4655ef945f887381a9c1ba434e
+|/  Author: Max <max.anisimov230@gmail.com>
+|   Date:   Wed Apr 27 23:58:14 2016 +0300
+|   
+|       Added GetSettingValue to AppSettings.
+|       Settings window now displays data from AppSettings.
+|  
+* commit 07fcd0ebacfb3cd268cc90143f0176dc6c7506a1
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Wed Apr 27 23:48:55 2016 +0300
+| 
+|     Added Settings window.
+|     Added a ModifySetting method to AppSettings.
+|    
+*   commit 37058dc6c87d7d268bafde06b2dbfc91bc4c7ebb
+|\  Merge: ff77b68 75b3f84
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Wed Apr 27 21:38:46 2016 +0300
+| | 
+| |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| |     
+| *   commit 75b3f840b0056414c9abce138840653735967b4e
+| |\  Merge: fbe7db3 3c91cef
+| | | Author: vasuperniss <vasuperniss@gmail.com>
+| | | Date:   Wed Apr 27 21:35:07 2016 +0300
+| | | 
+| | |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| | |    
+| * | commit fbe7db3c9a78ad0bb7621086274600fd03c920f9
+| | | Author: vasuperniss <vasuperniss@gmail.com>
+| | | Date:   Wed Apr 27 21:34:56 2016 +0300
+| | | 
+| | |     fixed canvas sizing to defined numbers.
+| | |     fixed window not closing.
+| | |     added going back to main menu from singleplayer
+| | |    
+* | | commit ff77b680305304ad42760a7362316e68a2f27eef
+| |/  Author: Max <max.anisimov230@gmail.com>
+|/|   Date:   Wed Apr 27 21:38:37 2016 +0300
+| |   
+| |       Added Settings window.
+| |       Added handler for settings window in MainWindow.
+| |   
+* | commit 3c91cef5e4b70c4c6d4fee595bd07bfc4ec8fca7
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Wed Apr 27 21:18:27 2016 +0300
+| | 
+| |     Fixed the fix.
+| |   
+* | commit be1590e4babd32cf08b26dfe31dbd2cb56513eca
+|/  Author: Max <max.anisimov230@gmail.com>
+|   Date:   Wed Apr 27 21:17:49 2016 +0300
+|   
+|       Fixed: server sends wrong type of command when a generated maze is asked to be generated again.
+|  
+* commit 5de30110fe2cccd43970dd9a8ff25643104b291d
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Wed Apr 27 00:24:28 2016 +0300
+| 
+|     added hint and solution displaying.
+|  
+* commit e0cf7387ea7944748d72359bb5731d46a40afc86
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Mon Apr 25 23:23:46 2016 +0300
+| 
+|     redone the MVVM, and changed almost
+|     every related class to it.
+|     fixed the maze movement in gameplay.
+|  
+* commit e2886ac56eb1deae5847206e0b1caa7d44cc5d4c
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Sun Apr 24 14:52:25 2016 +0300
+| 
+|     fixed the maze drawing
+|  
+* commit 0400b953855d5f2d6e6d2e09f8f957b5fd459020
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Sun Apr 24 13:08:34 2016 +0300
+| 
+|     Added more MVVM code, the single player is now displaying (incorrectly) a maze
+|  
+* commit 4716ca0dc631a5feeaa8eb9eae9be97c07dc3bca
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Sat Apr 23 19:29:09 2016 +0300
+| 
+|     Added some MVVM functionality and created a black window for the single player game
+|    
+*   commit 41886392ed1dfa0a7d0251a906d0a4c5fbb8a933
+|\  Merge: bad2061 8066ec3
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Sat Apr 23 15:38:14 2016 +0300
+| | 
+| |     merge.
+| |   
+| * commit 8066ec39a74e92d7f1d12619710cd96893826556
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Sat Apr 9 12:37:30 2016 +0300
+| | 
+| |     Testing commit.
+| |   
+| * commit 96b689b497a5cd661f9beff291ecbe9b049d7c53
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Mon Apr 4 22:00:22 2016 +0300
+| | 
+| |     Fixed: CreateDataFromFile caused the solutions file to be in constant use.
+| |   
+* | commit bad206180635d310c89cc4b7af92b2c6a23526cc
+|/  Author: vasuperniss <vasuperniss@gmail.com>
+|   Date:   Sat Apr 23 15:30:59 2016 +0300
+|   
+|       added the model classes from ex1's model folder.
+|       continued work on the first screen of the app.
+|  
+* commit 764efdf57d63d9f9cbbab99664b2af4d1a5b7b10
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Mon Apr 4 20:29:44 2016 +0300
+| 
+|     Fixed: server now prevents players from joining a multiplayer game that has started even when one of the players left.
+|     Fixed: GenerateOption now sends client a maze if its solution already exists, but the maze itself does not.
+|  
+* commit d54921408e46bfe762231fed8176380cb30d1427
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Mon Apr 4 18:59:52 2016 +0300
+| 
+|     Added documentation to server.
+|     Fixed some bugs in the server.
+|  
+* commit 9b3fca7808af2b8f559eb3d2ec3a96c8c7c48096
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Mon Apr 4 12:08:43 2016 +0300
+| 
+|     Fixed some bugs in the Server Project
+|  
+* commit 28205ed23ced6406699833b8c8d3dcf32d1c5aee
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Mon Apr 4 10:53:20 2016 +0300
+| 
+|     Change to ToString functions of Matrix Maze
+|     to visually include the start and end Positions of the Maze
+|  
+* commit 85c6fcedf5b3cd100616c15b6e0e8aca73b4782e
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Mon Apr 4 10:41:01 2016 +0300
+| 
+|     Added full documentation to the Client Project
+|    
+*   commit 64377bb81c979b5af5b0cd30c3e9d409c3817998
+|\  Merge: ed90732 ab854ee
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Sun Apr 3 23:35:51 2016 +0300
+| | 
+| |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| |   
+| * commit ab854eeb8c311d96bd4411d66ee34e55d180a5b7
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Sun Apr 3 20:08:19 2016 +0300
+| | 
+| |     Added some exception handling.
+| |     Removed prints.
+| |     Removed some commented code.
+| |   
+| * commit 59e635d14f3200b1e2fe14dab1c28b1a956b5af6
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Sun Apr 3 19:57:35 2016 +0300
+| | 
+| |     Bug fixes and performance improvements.
+| |     Fixed: server generating a maze and sending it to client even if a maze by the same name already exists.
+| |     Changed: removed event raising from PerformAction method in Commandable and placed them inside Options Execute methods, and changed Execute methods to return void.
+| |     
+| *   commit cc7ac45e64da6e10c40094af745b006aeae8d2b9
+| |\  Merge: d5cbf7b 904c933
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Sat Apr 2 12:50:10 2016 +0300
+| | | 
+| | |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| | |    
+| * | commit d5cbf7b5bdc04790753847b6cbdd1924bbb7dc67
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Sat Apr 2 12:49:58 2016 +0300
+| | | 
+| | |     Changed AddMaze() method in model to include json description of maze.
+| | |     Bug Fixed: SolveOption now searches for solution before attempting to fetch a maze by name.
+| | |     Added function to model to load maze solution from file.
+| | |    
+* | | commit ed90732526bcc7197d6c5eec501dfcd9cae3ba20
+| |/  Author: vasuperniss <vasuperniss@gmail.com>
+|/|   Date:   Sun Apr 3 23:35:43 2016 +0300
+| |   
+| |       Added full documentation to the Maze Library Project
+| |   
+* | commit 904c9337ba6ea7af4913b1979cb1ce601f45167c
+|/  Author: vasuperniss <vasuperniss@gmail.com>
+|   Date:   Sat Apr 2 12:05:51 2016 +0300
+|   
+|       Polished the Client project, added the Visual option, and added alot of server/client comunication exeption handling
+|  
+* commit b3a326c517e931bda78180a54a330b78d845eb08
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Fri Apr 1 23:53:22 2016 +0300
+| 
+|     Added a dummy client project to test multiplayer.
+|     Bug fixed: validation function of CloseOption returned false when command was valid.
+|  
+* commit e7e7c169843fe58e2712695d55d911f72bb34e73
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Fri Apr 1 23:32:47 2016 +0300
+| 
+|     Bug fixed: MultiplayerOption now uses Replace() method to remove newline chars.
+|  
+* commit 703cb57c7bc46666909bc78f1b1cc088fd9322b8
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Fri Apr 1 23:26:39 2016 +0300
+| 
+|     Bug fixed: Client was sending the same message twice.
+|     Added Thread pool to server.
+|  
+* commit 448ad5021af6b5e6d6dbcafe28622f07731f7c03
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Fri Apr 1 21:48:58 2016 +0300
+| 
+|     Fixed some bugs releated to json and server client communications
+|    
+*   commit 2bb3aba8b266c5587d43717b4a613adff4ad5c4a
+|\  Merge: f993d9d c753f55
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Fri Apr 1 19:59:22 2016 +0300
+| | 
+| |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| |     
+| *   commit c753f55767830808867d1778999a629b29165a74
+| |\  Merge: 493e8aa d44da61
+| | | Author: vasuperniss <vasuperniss@gmail.com>
+| | | Date:   Fri Apr 1 14:46:41 2016 +0300
+| | | 
+| | |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| | |    
+| * | commit 493e8aad7215f85374184cee1499fd17b65bea71
+| | | Author: vasuperniss <vasuperniss@gmail.com>
+| | | Date:   Fri Apr 1 14:46:33 2016 +0300
+| | | 
+| | |     Fixed the BFS algoritm
+| | |     changed the implemenation of PriorityQueue
+| | |     added a new Collections class : RandomList
+| | |    
+* | | commit f993d9dc3c2fdb78a3707a1c4b28de6551578f69
+| |/  Author: Max <max.anisimov230@gmail.com>
+|/|   Date:   Fri Apr 1 19:59:10 2016 +0300
+| |   
+| |       Fixed a bug in Client causing it not send messages.
+| |       Fixed a bug in CreateMaze method in GenerateOption using old values for AppSettings.
+| |       Created constructor for RequestHandler to initialize Options Dictionary.
+| |       Addded some print commands in the server for debugging.
+| |     
+* |   commit d44da61c8a83a0947bef7fbb477bac03320d1e2c
+|\ \  Merge: 9abe58a 27717d1
+| |/  Author: Max <max.anisimov230@gmail.com>
+| |   Date:   Fri Apr 1 01:42:41 2016 +0300
+| |   
+| |       Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| |   
+| * commit 27717d1181649c1012c12c7c1072216574c2b3e6
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Fri Apr 1 00:24:34 2016 +0300
+| | 
+| |     Fixed the Dfs solver, left to do :
+| |     fix the bugs in the BFS solver, mainly fix the PriorityQueue class which doesn't work correctly atm
+| |   
+* | commit 9abe58a35117b2843666e3be918ed662cfb62885
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Fri Apr 1 01:42:33 2016 +0300
+| | 
+| |     Completed CloseOption.
+| |     Removed GetClients() from MultiplayerGame. Used RetreiveOtherClient method instead.
+| |     Changed some documentation in PlayOption.
+| |     Added RemoveMultiplayerGame method to model.
+| |   
+* | commit ca5599bbc30f7d5a2c0bce2a18cdffcdcc10a19c
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Fri Apr 1 01:31:29 2016 +0300
+| | 
+| |     Completed PlayOption.
+| |     Changed IsClientInQueue to IsClientInGame. This method checks if a client is in a game and returns it. Otherwise returns null.
+| |     Changed MultiplayerOption to use IsClientInGame.
+| |     Added method to MultiplayerGame that retrieves second client from the game.
+| |     Changed ReplyToClient method in Presenter to cast in a 'prettier' way.
+| |   
+* | commit 432433213440f6af56fc6577ec18c4e1580c2da8
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Fri Apr 1 00:54:29 2016 +0300
+| | 
+| |     Completed MultiplayerOption.
+| |   
+* | commit 4dee200db09458fc92153e486d906132decb123c
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Fri Apr 1 00:14:55 2016 +0300
+| | 
+| |     Changed SolveOption to use new classes for JSON generation.
+| |     Added GetMazeSolution method to model.
+| |   
+* | commit d829502ef6b90377141f66296a3ebf8defdc18c8
+|/  Author: Max <max.anisimov230@gmail.com>
+|   Date:   Thu Mar 31 23:59:48 2016 +0300
+|   
+|       Added Classes from Client Project to create answers in JSON format.
+|       Added Answer Class that holds the answer type and content, and can generate a serialized answer.
+|       Rewrote GenerateOption to use new class.
+|       Changed Server Main to use AppSettings class.
+|  
+* commit 701f10b843efac7eca2dcd45e7fc1d1b27bb10f7
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Thu Mar 31 22:05:32 2016 +0300
+| 
+|     fixed alot of bugs in the Algoritms sub namespace, added a Library Testing project.
+|     Made the maze generation much much better
+|  
+* commit 01684d0dc857ea0eb3e54c1397918c5c7c422607
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Thu Mar 31 18:37:34 2016 +0300
+| 
+|     made MazeFactory public
+|    
+*   commit 0133979f09ddf118e530d801276616854b933bc2
+|\  Merge: e6f1f8e b7463f7
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Thu Mar 31 18:28:29 2016 +0300
+| | 
+| |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| |   
+| * commit b7463f71346b1ab514adb65b409a534187531612
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Wed Mar 30 23:33:34 2016 +0300
+| | 
+| |     Completed SolveOption.
+| |     Added AddSolution method to model.
+| |     Constructor of MasterModel will now write a solution to a file upon adding it, and will try to initiate the solution list if the solution file exists. Otherwise it will create an empty json file.
+| |     
+| *   commit 27af22606b94dd65c919986d2fa9e49b3172d1b4
+| |\  Merge: 9a8d156 d1b8b67
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Wed Mar 30 22:55:08 2016 +0300
+| | | 
+| | |     Completed GenerateMaze option.
+| | |     Moved Json Converter.
+| | |    
+| * | commit 9a8d156d16c4bdf8c9f6c1c2241e81e69ff1335f
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Wed Mar 30 22:10:58 2016 +0300
+| | | 
+| | |     Changed Commandable methods to use parameters instead of members for certain functions.
+| | |     Commandable now receives object parameter.
+| | |     Added class to generate JSON strings.
+| | |     Added lock to Multiplayer class when adding players.
+| | |     Added class to make access to App.Config settings easier.
+| | |     Finished Main function for server.
+| | |    
+* | | commit e6f1f8ee520bd4e7d438ed518ebac273f61a4960
+| |/  Author: vasuperniss <vasuperniss@gmail.com>
+|/|   Date:   Thu Mar 31 18:28:17 2016 +0300
+| |   
+| |       Made MatrixMaze hidden from the user
+| |       Mazes are now created threw the MazeFactory object.
+| |       Added changeStart/End Position functionallity to IMaze
+| |   
+* | commit d1b8b67299a8712996bbeb2111ffbda6e9cdeb1f
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Wed Mar 30 21:29:11 2016 +0300
+| | 
+| |     done working on the Library Project, left to do (in Library Proj) : Debugging
+| |   
+* | commit e580d631f00c3b6fd4ff85647ac7834b3a3ef204
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Tue Mar 29 23:43:51 2016 +0300
+| | 
+| |     added New Collections class : Tree
+| |     added more function to IMaze
+| |     added more code to the wallbreaker classes
+| |     changed the algoritm classes from T to State<T>
+| |   
+* | commit 086483028dff8c61d838c78415ff55c629e5b1a0
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Tue Mar 29 22:31:16 2016 +0300
+| | 
+| |     Removed ReshableMartixMaze from the Library project, changed the way MatrixMaze creates itself in his constructor, changed the way the WallBreakerFactory works, fixed some bugs in the Collections sub namespace classes and finally made some classes of the Library invisible to it's users
+| |   
+* | commit f49d812867467d0d3590de9d74f50d810a94f060
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Tue Mar 29 20:34:20 2016 +0300
+| | 
+| |     Added an AppSettings class to the Client Proj, it's a singleton class for reading the app.config file and share the settings data with the entire project (the data is read only once)
+| |   
+* | commit 57871669dcdfa7534a909791efb67b26c5e4051a
+|/  Author: vasuperniss <vasuperniss@gmail.com>
+|   Date:   Tue Mar 29 20:13:17 2016 +0300
+|   
+|       Changed alot of the namespaces in the classes of the Library to better match the folders they are in
+|  
+* commit e37066c5934cab8ca980b21d65c6f29779876e78
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Mon Mar 28 23:52:14 2016 +0300
+| 
+|     Added IClientView to MessageEventArgs so that Presenter would be able to send a reply to clients.
+|     Added  SendMessage() method to IClientView.
+|  
+* commit b193478505edc5f3a6e7749c11ed10c962aff240
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Mon Mar 28 21:42:40 2016 +0300
+| 
+|     Presenter now starts a new thread when receiving notification upon client connection, and also subscribes for events from IClientView.
+|     Added StartListening() method to IClientView.
+|     Completed MessageEventArgs interface.
+|     Renamed/Removed some interfaces.
+|  
+* commit 2be896d5cbc3b642471f7c67460ed2aa44204cc6
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Mon Mar 28 15:54:59 2016 +0300
+| 
+|     Added IClientView and ILobbyView interfaces.
+|     Added classes for handling arguments for events.
+|  
+* commit 94e804cb9334298dfe3a2bbe709e932096567537
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Mon Mar 28 11:43:46 2016 +0300
+| 
+|     Changed the DFS class a little, and started working on SearchTreeResult class
+|    
+*   commit 547b09798af9d78176ccb5c2d779d5d70879610e
+|\  Merge: e47afe8 9f2dcf8
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Mon Mar 28 10:51:05 2016 +0300
+| | 
+| |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| |   
+| * commit 9f2dcf8f704f3d34b908161d21a39c455986cb0f
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Mon Mar 28 00:12:56 2016 +0300
+| | 
+| |     Added delegate for Model to notify when finished working on a task.
+| |     Added method to MasterModel to raise an event when a task is finished.
+| |     Presenter now uses the new delegate to send a reply to a client.
+| |   
+| * commit 228879baabe11940349413399785a7dfcd881c3f
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Sun Mar 27 23:24:20 2016 +0300
+| | 
+| |     Moved interfaces to proper folders.
+| |     Removed ICommandable and IObserverable interfaces, and removed Observable class.
+| |     Communicator class now listens indefinitely to new clients, and on connect opens a new thread for a client.
+| |     Added ClientHandler class to handle communication between server and an individual client.
+| |     Added event notifications for ClientHandler and Commandable.
+| |   
+* | commit e47afe809dc8145ea31aa019611912463ad6c05b
+|/  Author: vasuperniss <vasuperniss@gmail.com>
+|   Date:   Mon Mar 28 10:50:55 2016 +0300
+|   
+|       completed the jsonAnswer factory, and all the ServerAnswer classes
+|  
+* commit 65302e57d255cbee1be48c10d81326ff4d1cade3
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Sun Mar 27 19:11:33 2016 +0300
+| 
+|     in Client Proj : changed the Server classes to be the Model instead of the View.
+|     Redone the MVP pattern : both View and Model now do not know about the existance of the Presenter, and communicate with him threw Events
+|    
+*   commit 61a4dd3f3830e342cdaa817775956786ddb95e24
+|\  Merge: f21fec1 d348d2e
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Sat Mar 26 19:55:50 2016 +0300
+| | 
+| |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| |     
+| *   commit d348d2e0f04936b55006c88d3609da5cd04d95a8
+| |\  Merge: ecd3ddb 8280ccf
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Sat Mar 26 19:50:55 2016 +0300
+| | | 
+| | |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| | |    
+| * | commit ecd3ddb3c160b43f629f4dbcee30fbcd7675351c
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Sat Mar 26 19:50:44 2016 +0300
+| | | 
+| | |     Commandable PerformAction method verifies the command before execution instead of RequestHandler.
+| | |     Added a delegate and event to Commandable.
+| | |     Added MultiplayerGame class.
+| | |     Added RequestHandler to MazePresenter with options in constructor.
+| | |      
+| * |   commit 125a2f22aebd138ef6b79769ea2994928815f443
+| |\ \  Merge: 0ce71ca d7f3ed5
+| | | | Author: Max <max.anisimov230@gmail.com>
+| | | | Date:   Fri Mar 25 21:36:33 2016 +0300
+| | | | 
+| | | |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| | | |     
+| * | | commit 0ce71ca94d6b331aea0ccf3bab4606bbb0bffd28
+| | | | Author: Max <max.anisimov230@gmail.com>
+| | | | Date:   Fri Mar 25 00:47:01 2016 +0200
+| | | | 
+| | | |     Added abstract class called Commandable that executes an Option and then updates its observers. All Option classes iherent from Commandable.
+| | | |     RequestHandler now uses new function from Commandable.
+| | | |     Added GetMessage() method to IMazeView interface.
+| | | |     
+* | | | commit f21fec188717f7acd33798761890e31f122ef1b4
+| |_|/  Author: vasuperniss <vasuperniss@gmail.com>
+|/| |   Date:   Sat Mar 26 19:55:47 2016 +0300
+| | |   
+| | |       added RandomizedPrim algoritm for generating Mazes.
+| | |       on the client side , started working on the Model section : the classes that represent answers from the server
+| | |    
+* | | commit 8280ccf82b790d691c5fdef4a68c570761eb7472
+| |/  Author: vasuperniss <vasuperniss@gmail.com>
+|/|   Date:   Sat Mar 26 13:52:32 2016 +0300
+| |   
+| |       repositioned classes in forders, added a new type of search result for algoritms (SearchTreeResult), added Wall breaking classes for generating the maze (DFS & Random)
+| |   
+* | commit d7f3ed5d96f6c5a46917f30cf4e364d4f55a9d6a
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Fri Mar 25 20:09:54 2016 +0300
+| | 
+| |     made small modifications to the client project.
+| |     in the Maze Library Project : added classes for Generating a Maze
+| |   
+* | commit 49f440b66e01c2acf121b24acbd70200631b3dc8
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Fri Mar 25 18:18:02 2016 +0300
+| | 
+| |     Client Project : Cleaned the main function, added a Presenter class, got a direction on implementing the client
+| |   
+* | commit 8a07ff5679320222c429c1dfaaa72f3c4f14f0cb
+|/  Author: vasuperniss <vasuperniss@gmail.com>
+|   Date:   Fri Mar 25 17:42:13 2016 +0300
+|   
+|       Made some changes to the constuction of the View section of the client project
+|  
+* commit 198ea0a49c1a668b38a6f487a91d3a2a76513730
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Thu Mar 24 15:35:26 2016 +0200
+| 
+|     began writing the main for the client project
+|     and changed the port in the app.config files to 55000 from 8888
+|  
+* commit 4641ad94afb436c435694e6dd1cd02b7a3b27e3f
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Thu Mar 24 15:03:08 2016 +0200
+| 
+|     commit serverCommunicator
+|  
+* commit a951a79710bd5c84303de6345383e664aeac56c5
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Thu Mar 24 14:59:45 2016 +0200
+| 
+|     Added the ServerCommunicator class :
+|     Connects to the server App
+|     Sends request and always listens to responses on a seperate thread, on receiving a Response the ServerCommunicator activates the onResponse event
+|     users of the ServerCommunicator need to register to the onResponse event
+|    
+*   commit 8101d297ce1ace7053bf8f4f1ed87677a1b84248
+|\  Merge: 06756a2 f44f0d4
+| | Author: vasuperniss <vasuperniss@gmail.com>
+| | Date:   Thu Mar 24 13:31:17 2016 +0200
+| | 
+| |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| |     
+| *   commit f44f0d490977f048207ff3d330de174f8f25d421
+| |\  Merge: ed8a119 fd16510
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Thu Mar 24 00:32:51 2016 +0200
+| | | 
+| | |     Merge branch 'master' of https://github.com/MaximusPrime2015/AMaze.git
+| | |    
+| * | commit ed8a119e851c6d976def368231cd96eb26b532e4
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Thu Mar 24 00:32:48 2016 +0200
+| | | 
+| | |     Moved some more stuff around.
+| | |     RequestHandler searches options dictionary by first word of request string.
+| | |    
+| * | commit ac49ce5960677166be8be67bd9bb31c66d7d63aa
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Wed Mar 23 21:49:29 2016 +0200
+| | | 
+| | |     Added validation checks for server options.
+| | |    
+| * | commit 0d5b79f67dc45b6bc2c9f8bc2a678d667d52b603
+| | | Author: Max <max.anisimov230@gmail.com>
+| | | Date:   Wed Mar 23 21:29:33 2016 +0200
+| | | 
+| | |     Created new folders for MVP model, and moved some stuff around.
+| | |     Added configuration entries in App.config files for client and server.
+| | |    
+* | | commit 06756a2f9ab570062e73592801b760ca2228ac73
+| |/  Author: vasuperniss <vasuperniss@gmail.com>
+|/|   Date:   Thu Mar 24 13:31:03 2016 +0200
+| |   
+| |       Started work on the client project
+| |   
+* | commit fd1651022a97fe338193cefdfcb725c4008e8d3d
+|/  Author: vasuperniss <vasuperniss@gmail.com>
+|   Date:   Wed Mar 23 16:59:14 2016 +0200
+|   
+|       Added some small changes to the maze library
+|  
+* commit b880a8b8693c6b279b750951e8edfc48f7731ef4
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Sat Mar 19 23:11:31 2016 +0200
+| 
+|     Added Interfaces for MVP pattern.
+|     Added classes that implement the interfaces.
+|     Added Observer interface, and Observable abstract class.
+|     Created new folders and moved some classes.
+|  
+* commit 70fce088e2b7c4a12612bb15d04d1191027a5624
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Sat Mar 19 22:39:19 2016 +0200
+| 
+|     Added Communicator class for communication.
+|     Added MazeModel class.
+|     Added (empty) ServerReply class.
+|  
+* commit 5076d3034b7fb6d5fb57cc61fded391e98750049
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Sat Mar 19 17:03:29 2016 +0200
+| 
+|     Added Code to BFS searcher class
+|     Updated Collections a bit
+|  
+* commit 555083677e49c7a58d22ee3aa42e32bebadf1bfb
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Sat Mar 19 16:26:00 2016 +0200
+| 
+|     Completed the PriorityQueue class
+|  
+* commit 1658122450cb348b381bbe79a75ab140ebf69217
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Sat Mar 19 15:50:47 2016 +0200
+| 
+|     re-commit Collections namespace
+|     Add a StateComparer class
+|  
+* commit d26cf1176c87c88442d7c2a49f80f2d62f448ea3
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Sat Mar 19 15:23:32 2016 +0200
+| 
+|     Created Collections namespace in Maze_Library
+|     Currently contains PriorityQueue and Vector classes
+|     (C# doesn't have a built-in heap and vector)
+|  
+* commit 8caf48785c3881e60a745ff1d0bb038e4653df63
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Fri Mar 18 23:20:40 2016 +0200
+| 
+|     Added Request Handler, and options dictionary for the server.
+|  
+* commit 1af1f6de88103ecfd5f25c43ffef610951501e26
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Thu Mar 17 20:45:48 2016 +0200
+| 
+|     Added a couple of functions to the Algorithms classes
+|     Created a new Maze class : MatrixMaze a Maze Object using a Matrix of 1s and 0s to represent walls and paths
+|  
+* commit cc15e810a17bb0c04b50ecd674c56bd159bfec34
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Thu Mar 17 20:28:21 2016 +0200
+| 
+|     Created The Algorithms sub namespace
+|     Added all the nessecery classes for solving the maze based on Dynamic programing as seen in the lectures
+|  
+* commit 8de93bf80ecc07c947e379fd38f7fb377723088c
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Thu Mar 17 19:55:42 2016 +0200
+| 
+|     Re-Commit the Maze interface (failed the first time)
+|  
+* commit 24e0f5d5860b05d123428a35a431fa8f37c633cf
+| Author: vasuperniss <vasuperniss@gmail.com>
+| Date:   Thu Mar 17 19:53:40 2016 +0200
+| 
+|     Created the Maze Interface and MazePosition Class
+|  
+* commit 2e19765911f5e79abb711f1eeca7848557fdfc20
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Mon Mar 14 22:09:00 2016 +0200
+| 
+|     Commit test.
+|    
+*   commit 3782fd00e9e95136910b65520a222bb338960bd1
+|\  Merge: 604dc8b d16bb28
+| | Author: Max <max.anisimov230@gmail.com>
+| | Date:   Mon Mar 14 21:54:57 2016 +0200
+| | 
+| |     Merge remote-tracking branch 'origin/mazeProj'
+| |     
+| *   commit d16bb2843b2fa1b1bfdd6c5e846d98c76d2e874b
+| |\  Merge: ecab24d ec1bb8c
+| | | Author: vasuperniss <vasuperniss@gmail.com>
+| | | Date:   Mon Mar 14 21:43:17 2016 +0200
+| | | 
+| | |     Merge branch 'mazeProj' of https://github.com/MaximusPrime2015/AMaze.git
+| | |    
+| | * commit ec1bb8c2176b200bf2bbd8dce45716d69791cb2f
+| | | Author: vasuperniss <vasuperniss@gmail.com>
+| | | Date:   Mon Mar 14 21:21:20 2016 +0200
+| | | 
+| | |     Create README.md
+| | |    
+| * | commit ecab24d439ee3d33fc1907a5834e75466290aecf
+| |/  Author: vasuperniss <vasuperniss@gmail.com>
+| |   Date:   Mon Mar 14 21:42:59 2016 +0200
+| |   
+| |       Added two new Projects :
+| |       MazeClient for the client side and Maze Library for the dll
+| |   
+| * commit 39b848d2ad0392a583634586a25eaadc48cc4f03
+|   Author: vasuperniss <vasuperniss@gmail.com>
+|   Date:   Mon Mar 14 21:04:02 2016 +0200
+|   
+|       Created the AMaze solution & Created the MazeServer Project for the server side
+|  
+* commit 604dc8bf44054b9c1a642dd370bd1386a71bcaf2
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Mon Mar 14 21:53:59 2016 +0200
+| 
+|     README.md commit fix
+|  
+* commit 630668409b26d9e9cf5b5b48dcdb5d95f3b79320
+| Author: Max <max.anisimov230@gmail.com>
+| Date:   Mon Mar 14 19:44:25 2016 +0200
+| 
+|     Update README.md
+|  
+* commit a750c56ca52ae22ebd2675b48a8c3bc6f86a15e4
+  Author: Max <max.anisimov230@gmail.com>
+  Date:   Mon Mar 14 19:42:45 2016 +0200
+  
+      Initial commit

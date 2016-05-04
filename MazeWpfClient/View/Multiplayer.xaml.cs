@@ -161,7 +161,15 @@ namespace MazeWpfClient.View
 
             MainWindow main = mainWindow as MainWindow;
             if (main != null)
-                main.GetPlayer().Play();
+            {
+                main.MusicToggleClicked(null, null);
+                MusicPlayer player = main.GetPlayer();
+                if (!player.Playing)
+                {
+                    player.Play();
+                }
+            }
+
             
             this.mainWindow.Show();
         }
