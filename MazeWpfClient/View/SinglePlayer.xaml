@@ -16,7 +16,7 @@
             <TextBox Visibility="Hidden" Text="{Binding VM_ServerDisconnected}" TextChanged="ServerDisconnectedChanged" Margin="0,0,0,0"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,-2,0,446" Height="48">
                 <Label Content="Maze name: " Height="{Binding Height, ElementName=mazeNameTxt}" Foreground="White" VerticalAlignment="Bottom" Margin="0,0,0,5"/>
-                <TextBox x:Name="mazeNameTxt" Background="#636363" Foreground="White" BorderBrush="Transparent" Width="104" Height="25" Margin="0,0,5,5" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="mazeNameTxt" Focusable="True" Background="#636363" Foreground="White" BorderBrush="Transparent" Width="104" Height="25" Margin="0,0,5,5" VerticalAlignment="Bottom" PreviewMouseDown="mazeNameTextMouseDown"/>
                 <Button Content="Create" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" VerticalAlignment="Bottom" Height="{Binding Height, ElementName=mazeNameTxt}" Width="70" Margin="5,0,5,5" Click="CreateClicked"/>
                 <Button Content="Show Hint" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" VerticalAlignment="Bottom" Height="{Binding Height, ElementName=mazeNameTxt}" Width="70" Margin="5,0,5,5" Click="ShowHintClicked"/>
                 <Button Content="Restart" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" VerticalAlignment="Bottom" Height="{Binding Height, ElementName=mazeNameTxt}" Width="70" Margin="5,0,5,5" Click="RestartClicked"/>

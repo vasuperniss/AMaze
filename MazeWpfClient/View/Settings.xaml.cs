@@ -12,6 +12,7 @@ namespace MazeWpfClient.View
     public partial class Settings : Window
     {
         private IServer server;
+        private Brush textBoxBackgroundColor;
 
         public Settings(IServer server)
         {
@@ -19,6 +20,7 @@ namespace MazeWpfClient.View
             this.IP_text.Text = AppSettings.Settings["ip"];
             this.Port_text.Text = AppSettings.Settings["port"];
             this.server = server;
+            this.textBoxBackgroundColor = (SolidColorBrush)(new BrushConverter().ConvertFrom("#636363"));
         }
 
         private void cancel_Click(object sender, RoutedEventArgs e)
@@ -50,12 +52,12 @@ namespace MazeWpfClient.View
 
         private void Port_text_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.Port_text.Background = Brushes.White;
+            this.Port_text.Background = this.textBoxBackgroundColor;
         }
 
         private void IP_text_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.IP_text.Background = Brushes.White;
+            this.IP_text.Background = this.textBoxBackgroundColor;
         }
     }
 }

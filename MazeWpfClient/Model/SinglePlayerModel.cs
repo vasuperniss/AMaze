@@ -163,7 +163,6 @@ namespace MazeWpfClient.Model
             // server disconnected
             if(args.Response == null)
             {
-                //this.NotifyPropertyChanged("ServerDisconnected");
                 this.isConnected = false;
                 return;
             }
@@ -183,26 +182,20 @@ namespace MazeWpfClient.Model
                     {
                         this.singlePlayerMaze.Solution = ((answer as ServerAnswer).Content as SolveAnswer).Maze;
                     }
-                    //else
-                    //{
-                    //    this.singlePlayerMaze = new SinglePlayerMaze((answer as ServerAnswer).Content as SolveAnswer, rows, cols);
-                    //    this.server.SendRequest("solve " + this.singlePlayerMaze.Name + " 0");
-                    //    this.MazeName = this.singlePlayerMaze.Name;
-                    //    this.MazeString = this.singlePlayerMaze.Maze;
-                    //    this.PlayerPosition = this.singlePlayerMaze.PlayerPosition;
-                    //    this.WonGame = false;
-                    //}
                     break;
             }      
         }
 
         public void Restart()
         {
-            this.singlePlayerMaze.Restart();
-            this.MazeName = this.singlePlayerMaze.Name;
-            this.MazeString = this.singlePlayerMaze.Maze;
-            this.PlayerPosition = this.singlePlayerMaze.PlayerPosition;
-            this.WonGame = false;
+            if(this.singlePlayerMaze != null)
+            {
+                this.singlePlayerMaze.Restart();
+                this.MazeName = this.singlePlayerMaze.Name;
+                this.MazeString = this.singlePlayerMaze.Maze;
+                this.PlayerPosition = this.singlePlayerMaze.PlayerPosition;
+                this.WonGame = false;
+            }
         }
     }
 }

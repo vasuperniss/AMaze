@@ -11,9 +11,9 @@
     <Grid Background="#424242">
         <StackPanel Height="156" Margin="10,87,10,0" VerticalAlignment="Top">
             <Label x:Name="IP_label" Foreground="#f7f7f7" Content="IP Address" FontFamily="Tahoma" Margin="5,0" FontSize="16"/>
-            <TextBox x:Name="IP_text" Background="#636363" BorderBrush="Transparent" Height="23" TextWrapping="Wrap" Margin="10,0" FontFamily="Tahoma" PreviewMouseDown="IP_text_PreviewMouseDown"/>
+            <TextBox x:Name="IP_text" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" Height="23" TextWrapping="Wrap" Margin="10,0" FontFamily="Tahoma" PreviewMouseDown="IP_text_PreviewMouseDown"/>
             <Label x:Name="Port_label" Foreground="#f7f7f7" Content="Port&#xD;&#xA;" Height="28" FontFamily="Tahoma" Margin="5,0" FontSize="16"/>
-            <TextBox x:Name="Port_text" Background="#636363" BorderBrush="Transparent" Height="23" TextWrapping="Wrap" Margin="10,0" FontFamily="Tahoma" PreviewMouseDown="Port_text_PreviewMouseDown"/>
+            <TextBox x:Name="Port_text" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" Height="23" TextWrapping="Wrap" Margin="10,0" FontFamily="Tahoma" PreviewMouseDown="Port_text_PreviewMouseDown"/>
             <Grid Height="34" Margin="10,10,10,0">
                 <Button x:Name="cancel" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" Content="Cancel" HorizontalAlignment="Left" Margin="0,7,0,0" VerticalAlignment="Top" Width="75" Click="cancel_Click"/>
                 <Button x:Name="confirm" Foreground="#f7f7f7" Background="#636363" BorderBrush="Transparent" Content="Confirm" HorizontalAlignment="Right" Margin="0,7,0,0" VerticalAlignment="Top" Width="75" Click="confirm_Click"/>
