@@ -49,6 +49,7 @@ namespace MazeWpfClient.UserControls
         /// The background color of the cells
         /// </summary>
         private Brush backgroundColor;
+        private Brush borderColor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MazeControl"/> class.
@@ -67,9 +68,9 @@ namespace MazeWpfClient.UserControls
             double x = canvasWidth / ((double)(3 * mCols - 1));
             double y = canvasHeight / ((double)(3 * mRows - 1));
             double posX = 0, posY = 0;
-            this.backgroundColor = (SolidColorBrush)(new BrushConverter()
-                                                    .ConvertFrom("#ededed"));
-            // position each cell in it's right place on the canvas
+            this.backgroundColor = (SolidColorBrush)(new BrushConverter().ConvertFrom("#ededed"));
+            this.borderColor = (SolidColorBrush)(new BrushConverter().ConvertFrom("#218781"));
+
             for (int i = 0; i < mRows * 2 - 1; ++i)
             {
                 double height = 0;
@@ -156,9 +157,8 @@ namespace MazeWpfClient.UserControls
                             bottom = 0;
 
                         this.mazeCells[i, j].Background = Brushes.Gray;
-                        this.mazeCells[i, j].BorderBrush = Brushes.Navy;
-                        this.mazeCells[i, j].BorderThickness
-                                    = new Thickness(left, top, right, bottom);
+                        this.mazeCells[i, j].BorderBrush = this.borderColor;
+                        this.mazeCells[i, j].BorderThickness = new Thickness(left, top, right, bottom);
                     }
                     else
                     {
@@ -173,9 +173,8 @@ namespace MazeWpfClient.UserControls
                             bottom = 0;
 
                         this.mazeCells[i, j].Background = this.backgroundColor;
-                        this.mazeCells[i, j].BorderBrush = Brushes.Navy;
-                        this.mazeCells[i, j].BorderThickness
-                                    = new Thickness(left, top, right, bottom);
+                        this.mazeCells[i, j].BorderBrush = this.borderColor;
+                        this.mazeCells[i, j].BorderThickness = new Thickness(left, top, right, bottom);
                     }
                     if (matrix[i, j] == '*')
                     {
@@ -191,7 +190,7 @@ namespace MazeWpfClient.UserControls
                         // draw end position
                         this.mazeCells[i, j].Background = Brushes.CadetBlue;
                         this.mazeCells[i, j].BorderThickness = new Thickness(2);
-                        this.mazeCells[i, j].BorderBrush = Brushes.Blue;
+                        this.mazeCells[i, j].BorderBrush = this.borderColor;
                         endCol = j;
                         endRow = i;
                     }

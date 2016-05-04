@@ -67,7 +67,12 @@ namespace MazeWpfClient.View
         private void CreateClicked(object sender, RoutedEventArgs e)
         {
             if (this.gameNameText.Text.Length > 0)
+            {
                 this.vm.CreateNewGame(this.gameNameText.Text);
+                this.gameNameText.Visibility = Visibility.Hidden;
+                this.gameCreateButton.Visibility = Visibility.Hidden;
+                this.gameNameLabel.Visibility = Visibility.Hidden;
+            }
         }
 
         private void ShowHintClicked(object sender, RoutedEventArgs e)
@@ -78,6 +83,26 @@ namespace MazeWpfClient.View
         public void ShowSolutionClicked(object sender, RoutedEventArgs e)
         {
             this.vm.ShowSolution();
+        }
+
+        public void NewGameClicked(object sender, RoutedEventArgs e)
+        {
+            this.OnClosed(sender, e);
+            this.Close();
+        }
+
+        public void MusicToggleClicked(object sender, RoutedEventArgs e)
+        {
+            if (this.player.Playing)
+            {
+                this.player.Pause();
+                this.musicToggle.Content = "Play Music";
+            }
+            else
+            {
+                this.player.Play();
+                this.musicToggle.Content = "Pause Music";
+            }
         }
 
         private void OnClosed(object sender, System.EventArgs e)

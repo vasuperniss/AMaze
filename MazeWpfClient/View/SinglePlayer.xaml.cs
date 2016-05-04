@@ -3,6 +3,7 @@ using MazeWpfClient.ViewModel;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MazeWpfClient.View
 {
@@ -97,7 +98,10 @@ namespace MazeWpfClient.View
         public void CreateClicked(object sender, RoutedEventArgs e)
         {
             if (this.mazeNameTxt.Text.Length > 0)
+            {
                 this.vm.CreateNewMaze(this.mazeNameTxt.Text);
+                this.mazeCtrl.Focus();
+        }
         }
 
         /// <summary>
@@ -120,11 +124,20 @@ namespace MazeWpfClient.View
             this.vm.RestartMaze();
         }
 
-        /// <summary>
-        /// Called when [closed].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        public void MusicToggleClicked(object sender, RoutedEventArgs e)
+        {
+            if (this.player.Playing)
+            {
+                this.player.Pause();
+                this.musicToggle.Content = "Play Music";
+            }
+            else
+            {
+                this.player.Play();
+                this.musicToggle.Content = "Pause Music";
+            }
+        }
+
         private void OnClosed(object sender, System.EventArgs e)
         {
             this.player.Stop();
