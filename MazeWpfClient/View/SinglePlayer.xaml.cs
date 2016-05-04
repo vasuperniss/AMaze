@@ -124,6 +124,11 @@ namespace MazeWpfClient.View
             this.vm.RestartMaze();
         }
 
+        /// <summary>
+        /// Musics the toggle clicked.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         public void MusicToggleClicked(object sender, RoutedEventArgs e)
         {
             if (this.player.Playing)
@@ -138,6 +143,11 @@ namespace MazeWpfClient.View
             }
         }
 
+        /// <summary>
+        /// Called when [closed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void OnClosed(object sender, System.EventArgs e)
         {
             this.player.Stop();
