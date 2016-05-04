@@ -101,7 +101,14 @@ namespace MazeWpfClient.View
             {
                 this.vm.CreateNewMaze(this.mazeNameTxt.Text);
                 this.mazeCtrl.Focus();
+                this.mazeNameTxt.Focusable = false;
+            }
         }
+
+        public void mazeNameTextMouseDown(object sender, RoutedEventArgs e)
+        {
+            this.mazeNameTxt.Focusable = true;
+            this.mazeNameTxt.Focus();
         }
 
         /// <summary>
