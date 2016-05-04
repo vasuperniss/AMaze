@@ -160,7 +160,7 @@ namespace MazeWpfClient.View
 
             MainWindow main = this.mainWindow as MainWindow;
             if(main != null)
-                main.GetPlayer().Play();
+                main.MusicToggleClicked(null, null);
             // go back to the main menu
             this.mainWindow.Show();
         }

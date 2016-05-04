@@ -88,7 +88,7 @@ namespace MazeWpfClient.ViewModel
                         break;
                     // handle notification about game
                     case PlayerType.None:
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("VM_" + e.PropertyName));
+                        this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("VM_" + e.PropertyName));
                         break;
                     default:
                         break;

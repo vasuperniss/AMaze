@@ -115,7 +115,7 @@ namespace MazeWpfClient
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void MusicToggleClicked(object sender, RoutedEventArgs e)
+        public void MusicToggleClicked(object sender, RoutedEventArgs e)
         {
             if (this.player.Playing)
             {
