@@ -30,7 +30,6 @@
             <TextBox Visibility="Hidden" Text="{Binding VM_MazeString}" TextChanged="MazeTextChanged" Margin="0,0,0,339"/>
             <TextBox Visibility="Hidden" Text="{Binding VM_WonGame}" TextChanged="WonTextChanged" Margin="0,0,0,339"/>
             <TextBox Visibility="Hidden" Text="{Binding VM_LostGame}" TextChanged="LostTextChanged" Margin="0,0,0,339"/>
-            <TextBox Visibility="Hidden" Text="{Binding VM_SolutionString}" TextChanged="SolutionTextChanged" Margin="0,0,0,339"/>
             <TextBox Visibility="Hidden" Text="{Binding VM_Hint}" TextChanged="HintTextChanged" Margin="0,0,0,339"/>
         </Grid>
     </Border>

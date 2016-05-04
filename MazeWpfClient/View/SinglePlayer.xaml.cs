@@ -12,25 +12,46 @@ namespace MazeWpfClient.View
     /// </summary>
     public partial class SinglePlayer : Window
     {
+        /// <summary>
+        /// the View Model
+        /// </summary>
         private SinglePlayerViewModel vm;
+        /// <summary>
+        /// The main menu window
+        /// </summary>
         private Window mainWindow;
+        /// <summary>
+        /// The music player
+        /// </summary>
         private MusicPlayer player;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SinglePlayer"/> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="main">The main.</param>
         public SinglePlayer(ISinglePlayerModel model, Window main)
         {
             InitializeComponent();
-
+            // play the single player music
             this.player = new MusicPlayer("singleplayer.mp3");
             this.player.Play();
             this.mainWindow = main;
-
+            // create a ViewModel for the singleplayer with the given model
             this.vm = new SinglePlayerViewModel(model);
             this.DataContext = this.vm;
             this.mazeCtrl.DataContext = this.vm;
         }
 
+        /// <summary>
+        /// Handles the onKeyUp event of the window control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Input.KeyEventArgs"/> instance containing the event data.</param>
         private void window_onKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
+            this.Focus();
+            // check if the pressed key is a movement key
             switch (e.Key) {
                 case System.Windows.Input.Key.W:
                 case System.Windows.Input.Key.Up:
@@ -51,43 +72,63 @@ namespace MazeWpfClient.View
             }
         }
 
+        /// <summary>
+        /// Servers the disconnected changed.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="TextChangedEventArgs"/> instance containing the event data.</param>
         private void ServerDisconnectedChanged(object sender, TextChangedEventArgs e)
         {
             string message = (sender as TextBox).Text;
             if(message.Length > 0)
             {
-                MessageBoxResult result = MessageBox.Show(message, "No connection", MessageBoxButton.OK);
+                MessageBoxResult result = MessageBox.Show(message,
+                                        "No connection", MessageBoxButton.OK);
+                // close the single player window
                 this.Close();
                 this.mainWindow.Show();
             }
         }
 
+        /// <summary>
+        /// Creates the clicked.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         public void CreateClicked(object sender, RoutedEventArgs e)
         {
             if (this.mazeNameTxt.Text.Length > 0)
             {
                 this.vm.CreateNewMaze(this.mazeNameTxt.Text);
                 this.mazeCtrl.Focus();
-                this.mazeNameTxt.Focusable = false;
-            }
+        }
         }
 
-        public void mazeNameTextMouseDown(object sender, RoutedEventArgs e)
-        {
-            this.mazeNameTxt.Focusable = true;
-            this.mazeNameTxt.Focus();
-        }
-
+        /// <summary>
+        /// Shows the hint clicked.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         public void ShowHintClicked(object sender, RoutedEventArgs e)
         {
             this.vm.ShowHint();
         }
 
+        /// <summary>
+        /// Restarts the clicked.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         public void RestartClicked(object sender, RoutedEventArgs e)
         {
             this.vm.RestartMaze();
         }
 
+        /// <summary>
+        /// Musics the toggle clicked.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         public void MusicToggleClicked(object sender, RoutedEventArgs e)
         {
             if (this.player.Playing)
@@ -102,6 +143,11 @@ namespace MazeWpfClient.View
             }
         }
 
+        /// <summary>
+        /// Called when [closed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void OnClosed(object sender, System.EventArgs e)
         {
             this.player.Stop();
@@ -109,7 +155,7 @@ namespace MazeWpfClient.View
             MainWindow main = this.mainWindow as MainWindow;
             if(main != null)
                 main.GetPlayer().Play();
-
+            // go back to the main menu
             this.mainWindow.Show();
         }
     }
