@@ -10,11 +10,27 @@ namespace MazeWpfClient.View
     /// </summary>
     public partial class MultiPlayer : Window
     {
+        /// <summary>
+        /// </summary>
         private MultiPlayerViewModel vm;
+        /// <summary>
+        /// The main window
+        /// </summary>
         private Window mainWindow;
+        /// <summary>
+        /// The model
+        /// </summary>
         private IMultiPlayerModel model;
+        /// <summary>
+        /// The player
+        /// </summary>
         private MusicPlayer player;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiPlayer"/> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="main">The main.</param>
         public MultiPlayer(IMultiPlayerModel model, Window main)
         {
             InitializeComponent();
@@ -30,6 +46,11 @@ namespace MazeWpfClient.View
             this.mazeCtrlOpponent.DataContext = this.vm.Opponent;
         }
 
+        /// <summary>
+        /// Handles movement.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Input.KeyEventArgs"/> instance containing the event data.</param>
         private void window_onKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             switch (e.Key)
@@ -53,6 +74,11 @@ namespace MazeWpfClient.View
             }
         }
 
+        /// <summary>
+        /// Handles server disconnection
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="TextChangedEventArgs"/> instance containing the event data.</param>
         private void ServerDisconnectedChanged(object sender, TextChangedEventArgs e)
         {
             string message = (sender as TextBox).Text;
@@ -64,6 +90,11 @@ namespace MazeWpfClient.View
             }
         }
 
+        /// <summary>
+        /// Creates a new game
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void CreateClicked(object sender, RoutedEventArgs e)
         {
             if (this.gameNameText.Text.Length > 0)
@@ -75,22 +106,32 @@ namespace MazeWpfClient.View
             }
         }
 
+        /// <summary>
+        /// Show a hint
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void ShowHintClicked(object sender, RoutedEventArgs e)
         {
             this.vm.ShowHint();
         }
 
-        public void ShowSolutionClicked(object sender, RoutedEventArgs e)
-        {
-            this.vm.ShowSolution();
-        }
-
+        /// <summary>
+        /// Closes window and goes back to main window.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         public void NewGameClicked(object sender, RoutedEventArgs e)
         {
             this.OnClosed(sender, e);
             this.Close();
         }
 
+        /// <summary>
+        /// Toggles the music.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         public void MusicToggleClicked(object sender, RoutedEventArgs e)
         {
             if (this.player.Playing)
@@ -105,6 +146,11 @@ namespace MazeWpfClient.View
             }
         }
 
+        /// <summary>
+        /// Called when [closed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void OnClosed(object sender, System.EventArgs e)
         {
             if (this.gameNameText.Text.Length > 0)

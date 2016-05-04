@@ -133,7 +133,7 @@ namespace MazeWpfClient.Model
                 // start the solution path with the starting position
                 this.solutionPath.Add(new MazePosition(this.Start));
                 this.solutionPath.Add(new MazePosition(this.Start));
-                // run threw the solution string until the end of the maze is reached
+                // run through the solution string until the end of the maze is reached
                 while (this.solutionPath[this.solutionPath.Count - 1].Row != this.End.Row
                     || this.solutionPath[this.solutionPath.Count - 1].Col != this.End.Col)
                 {

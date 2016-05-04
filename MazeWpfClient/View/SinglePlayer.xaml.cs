@@ -50,7 +50,6 @@ namespace MazeWpfClient.View
         /// <param name="e">The <see cref="System.Windows.Input.KeyEventArgs"/> instance containing the event data.</param>
         private void window_onKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            this.Focus();
             // check if the pressed key is a movement key
             switch (e.Key) {
                 case System.Windows.Input.Key.W:

@@ -264,7 +264,7 @@ namespace MazeWpfClient.Model
         }
 
         /// <summary>
-        /// Servers the response handler.
+        /// Handles the server responses.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="args">The <see cref="ResponseEventArgs"/> instance containing the event data.</param>
