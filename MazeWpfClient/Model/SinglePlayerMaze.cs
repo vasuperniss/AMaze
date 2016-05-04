@@ -268,6 +268,8 @@ namespace MazeWpfClient.Model
         internal void Restart()
         {
             this.playerPosition = new MazePosition(this.Start);
+            this.hint = this.solutionPath[2];
+            this.hintIndex = 2;
             this.hintIndex = 0;
         }
     }

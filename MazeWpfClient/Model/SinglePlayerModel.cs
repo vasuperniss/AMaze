@@ -309,6 +309,8 @@ namespace MazeWpfClient.Model
                 this.MazeName = this.singlePlayerMaze.Name;
                 this.MazeString = this.singlePlayerMaze.Maze;
                 this.PlayerPosition = this.singlePlayerMaze.PlayerPosition;
+                this.showHint = false;
+                this.Hint = null;
                 this.WonGame = false;
             }
         }
